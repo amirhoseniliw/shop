@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحه چت پشتیبانی</title>
+    <style>
+        body {
+            font-family: 'Tahoma', sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* استایل برای صفحه چت */
+        .chat-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            background: #ffffff;
+        }
+
+        /* استایل برای پنجره چت */
+        .chat-box {
+            width: 100%;
+            max-width: 600px;
+            height: 500px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow-y: scroll;
+            margin-bottom: 10px;
+        }
+
+        /* پیام‌های ورودی */
+        .message {
+            max-width: 80%;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background-color: #f1f0f0;
+            color: #333;
+            word-wrap: break-word;
+            position: relative;
+        }
+
+        /* پیام‌های ارسال‌شده توسط کاربر */
+        .message.sent {
+            align-self: flex-end;
+            background-color: #4caf50;
+            color: #fff;
+        }
+
+        /* پیام‌های ارسال‌شده توسط پشتیبان */
+        .message.received {
+            align-self: flex-start;
+            background-color: #e0e0e0;
+        }
+
+        /* استایل برای زمان ارسال پیام */
+        .message-time {
+            font-size: 12px;
+            color: #999;
+            position: absolute;
+            bottom: -18px;
+            right: 10px;
+        }
+
+        /* قسمت ورودی پیام */
+        .input-container {
+            display: flex;
+            width: 100%;
+            max-width: 600px;
+            padding: 10px;
+            background-color: #fff;
+            border-top: 1px solid #ddd;
+            position: relative;
+        }
+
+        .input-container input {
+            width: 90%;
+            padding: 10px;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        .input-container button {
+            width: 10%;
+            padding: 10px;
+            background-color: #4caf50;
+            border: none;
+            border-radius: 20px;
+            margin-left: 10px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* استایل برای هنگام ارسال پیام */
+        .input-container input:focus {
+            outline: none;
+            border-color: #4caf50;
+        }
+
+        /* استایل برای دکمه ارسال */
+        .input-container button:hover {
+            background-color: #45a049;
+        }
+
+        /* استایل اسکرول */
+        .chat-box::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .chat-box::-webkit-scrollbar-thumb {
+            background-color: #ddd;
+            border-radius: 10px;
+        }
+
+        .chat-box::-webkit-scrollbar-thumb:hover {
+            background-color: #ccc;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="chat-container">
+        <!-- پنجره چت -->
+        <div class="chat-box" id="chat-box">
+            <!-- پیام‌ها در اینجا نمایش داده می‌شود -->
+        </div>
+
+        <!-- فرم ورودی پیام -->
+        <div class="input-container">
+            <input type="text" id="message-input" placeholder="پیام خود را بنویسید..." />
+            <button onclick="sendMessage()">ارسال</button>
+        </div>
+    </div>
+
+    <script>
+        // نمونه داده پیام‌ها
+        let messages = [
+            { sender: 'user', message: 'سلام!', timestamp: '10:00' },
+            { sender: 'support', message: 'سلام! چطور می توانم کمک کنم؟', timestamp: '10:01' },
+        ];
+
+        // تابع برای نمایش پیام‌ها
+        function displayMessages() {
+            const chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML = '';  // پاک کردن پیام‌های قدیمی
+
+            // اضافه کردن هر پیام به پنجره چت
+            messages.forEach(msg => {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message', msg.sender === 'user' ? 'sent' : 'received');
+                messageDiv.textContent = msg.message;
+
+                // اضافه کردن زمان به پیام
+                const timeDiv = document.createElement('div');
+                timeDiv.classList.add('message-time');
+                timeDiv.textContent = msg.timestamp;
+
+                messageDiv.appendChild(timeDiv);
+                chatBox.appendChild(messageDiv);
+            });
+
+            // اسکرول به پایین پنجره چت
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // تابع برای ارسال پیام جدید
+        function sendMessage() {
+            const inputField = document.getElementById('message-input');
+            const messageText = inputField.value.trim();
+
+            if (messageText !== '') {
+                const timestamp = new Date().toLocaleTimeString().slice(0, 5);  // زمان جاری به فرمت ۱۰:۱۰
+                messages.push({ sender: 'user', message: messageText, timestamp: timestamp });
+
+                // نمایش پیام جدید
+                displayMessages();
+
+                // پاک کردن ورودی پیام
+                inputField.value = '';
+            }
+        }
+
+        // نمایش اولیه پیام‌ها
+        displayMessages();
+    </script>
+
+</body>
+</html>
+//!--------------------------------
+<form>
+    <div class="form-group">
+        <label for="quantity">تعداد:</label>
+        <input type="number" id="quantity" placeholder="تعداد" oninput="calculateTotal()">
+    </div>
+    <div class="form-group">
+        <label for="unit_price">قیمت واحد:</label>
+        <input type="number" id="unit_price" placeholder="قیمت واحد" oninput="calculateTotal()">
+    </div>
+    <div class="form-group">
+        <label for="total_price">قیمت کل:</label>
+        <input type="text" id="total_price" placeholder="قیمت کل" readonly>
+    </div>
+    <button type="button" class="btn" onclick="alert('اطلاعات ذخیره شد!')">ذخیره</button>
+</form>
+</div>
+
+<script>
+function calculateTotal() {
+    const quantity = parseInt(document.getElementById('quantity').value) || 0;
+    const unitPrice = parseInt(document.getElementById('unit_price').value) || 0;
+    const totalPrice = quantity * unitPrice;
+    document.getElementById('total_price').value = totalPrice.toLocaleString('fa-IR');
+}
+</script>
+//!------------------
+<div class="sidebar">
+    <div class="text-center py-4">
+        <h4>فروشگاه شما</h4>
+    </div>
+    <a href="<?php $this->url('/panel') ?>" class="active"><i class="fas fa-tachometer-alt"></i> داشبورد</a>
+    <a href="<?php $this->url('/products') ?>"><i class="fas fa-box"></i> محصولات</a>
+    <a href="<?php $this->url('/orders') ?>"><i class="fas fa-shopping-cart"></i> سفارش‌ها</a>
+    <a href="<?php $this->url('/users') ?>"><i class="fas fa-users"></i> مشتریان</a>
+    <a href="<?php $this->url('/reports') ?>"><i class="fas fa-chart-line"></i> گزارش‌ها</a>
+    <a href="<?php $this->url('/settings') ?>"><i class="fas fa-cogs"></i> تنظیمات</a>
+</div>

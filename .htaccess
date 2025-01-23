@@ -1,0 +1,13 @@
+# فعال‌سازی ماژول rewrite  
+RewriteEngine On  
+RewriteBase /  
+
+# هدایت تمام درخواست‌ها (به جز دایرکتوری‌ها و فایل‌های موجود) به index.php  
+RewriteCond %{REQUEST_FILENAME} !-d  
+RewriteCond %{REQUEST_FILENAME} !-f  
+RewriteRule ^(.+)$ TahrirKhayam/index.php [QSA,L]  
+
+# مسدود کردن دسترسی به پوشه‌های داخلی خاص  
+ 
+RewriteCond %{THE_REQUEST} /(application|system|view)/.+ [NC]  
+RewriteRule ^ - [R=403,L]
