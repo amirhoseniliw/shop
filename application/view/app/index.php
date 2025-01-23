@@ -588,8 +588,11 @@
                                     </div>
                                     <div class="product-title">
                                         <div class="title">
-                                            <p class="text-overflow-1 title-font">دفتر سیمی 85 برگ همیشه طرح انار کد
-                                                6338</p>
+                                           
+                                                <p class="text-overflow-1 title-font"><?= $all_post['name'] ?>
+                                                    <br><u>
+                                                        کده <?= $all_post['product_id'] ?> </u>
+                                                </p>
                                         </div>
                                     </div>
                                     <div class="product-action">

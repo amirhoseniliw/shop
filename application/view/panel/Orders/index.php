@@ -74,7 +74,7 @@
                 </div>
             </div>
         </nav>
-        <div class="container mt-5">
+        <div class="container mt-5 refreshDiv" id="refreshDiv">
             <h1 class="text-center">سفارش‌ها</h1>
             <table class="table table-striped mt-4">
                 <thead>
@@ -109,7 +109,7 @@
                             <?php } elseif ($order['status'] == 'completed') {  ?>
                             <span class="badge bg-success">کامل شد </span> <?php } else { ?>
                             <span class="badge bg-danger">لغو شد</span> <?php }?>
-                            <button class="btn btn-warning btn-sm save1">کامل شد</button>
+                            <button class="btn btn-warning btn-sm save1" id="refreshButton">کامل شد</button>
                         </td>
                         <td>
                             <a href="<?php echo $this->url('/orders/show/' . $order['order_id']) ?>">
