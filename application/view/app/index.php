@@ -513,13 +513,13 @@
 
                         <div class="col-lg-4">
                             <div class="advert-item advert-box-item">
-                                <a href=""><img src="assets/img/advert-box-1.webp" class="rounded-4" alt=""></a>
+                                <a href=""><img src="<?php echo $this->asset('/img_site/banerr/adary.jpg') ?>" class="rounded-4" alt=""></a>
                             </div>
                         </div>
 
                         <div class="col-lg-8">
                             <div class="advert-item advert-box-item">
-                                <a href=""><img src="assets/img/advert-box-2.webp" class="rounded-4" alt=""></a>
+                                <a href=""><img src="<?php echo $this->asset('/img_site/banerr/N.jpg') ?>" class="rounded-4" alt=""></a>
                             </div>
                         </div>
 
