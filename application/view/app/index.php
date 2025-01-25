@@ -525,13 +525,13 @@
 
                         <div class="col-lg-8">
                             <div class="advert-item advert-box-item">
-                                <a href=""><img src="assets/img/advert-box-3.webp" class="rounded-4" alt=""></a>
+                                <a href=""><img src="<?php echo $this->asset('/img_site/banerr/K.jpg') ?>" class="rounded-4" alt=""></a>
                             </div>
                         </div>
 
                         <div class="col-lg-4">
                             <div class="advert-item advert-box-item">
-                                <a href=""><img src="assets/img/advert-box-4.webp" class="rounded-4" alt=""></a>
+                                <a href=""><img src="<?php echo $this->asset('/img_site/banerr/B.jpg') ?>" class="rounded-4" alt=""></a>
                             </div>
                         </div>
 
@@ -540,7 +540,7 @@
 
                 <div class="col-lg-4">
                     <div class="advert-item advert-box-item-two">
-                        <a href=""><img src="assets/img/advert-box-5.webp" class="rounded-4" alt=""></a>
+                        <a href=""><img src="<?php echo $this->asset('/img_site/banerr/daftar.jpg') ?>" class="rounded-4" alt=""></a>
                     </div>
                 </div>
 
