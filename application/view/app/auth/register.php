@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>قالب استادینو</title>
-    <meta content="" name="description">
+    <title> ثبت نام</title>
+    <meta ntent="" name="description">
     <meta content="width=device-width, initial-scale=1" name="viewport">
 
     <meta content="" property="og:title">
@@ -14,12 +14,12 @@
 
     <!-- Place favicon.ico in the root directory -->
 
-    <link href="assets/css/normalize.css" rel="stylesheet">
-    <link href="assets/font/bootstrap-icon/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/responsive.css" rel="stylesheet">
-
+    <link rel="icon" href="<?php echo $this->asset('/img_site/icon/icon.png') ?>">
+    <link href="<?php $this->asset('css/normalize.css')?>" rel="stylesheet">
+    <link href="<?php $this->asset('font/bootstrap-icon/bootstrap-icons.min.css')?>" rel="stylesheet">
+    <link href="<?php $this->asset('css/bootstrap.min.css')?>" rel="stylesheet">
+    <link href="<?php $this->asset('css/style.css" rel="stylesheet')?>">
+    <link href="<?php $this->asset('css/responsive.css')?>" rel="stylesheet">
     <meta content="#f4f5f9" name="theme-color">
 </head>
 
@@ -37,8 +37,8 @@
                     <div class="content-box auth-front auth-front-reg">
                         <div class="container-fluid">
                             <div class="auth-action text-center">
-                                <a href="login.html" class="btn btn-lg font-18">ورود به سایت</a>
-                                <a href="register.html" class="btn btn-lg bg-white shadow-md fw-bold font-18 ms-2">عضویت در سایت</a>
+                                <a href="<?php $this->url('/auth/login') ?>" class="btn btn-lg font-18">ورود به سایت</a>
+                                <a href="<?php $this->url('/auth/register') ?>" class="btn btn-lg bg-white shadow-md fw-bold font-18 ms-2">عضویت در سایت</a>
                             </div>
 
                             <div class="auth-form mt-80 py-4">

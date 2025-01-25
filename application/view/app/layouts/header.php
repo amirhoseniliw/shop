@@ -45,12 +45,12 @@
                             </button>
                             <div aria-labelledby="responsive menu" class="offcanvas offcanvas-start" id="responsiveMenu" tabindex="-1">
                                 <div class="offcanvas-header">
-                                    <h5 class="offcanvas-title" id="offcanvasRightLabel">فروشگاه استادینو</h5>
+                                    <h5 class="offcanvas-title" id="offcanvasRightLabel">لوازم التحریر  خیام</h5>
                                     <button aria-label="Close" class="btn-close" data-bs-dismiss="offcanvas" type="button"></button>
                                 </div>
                                 <div class="offcanvas-body">
                                     <a class="text-center d-block mb-3" href="">
-                                        <img alt="" class="img-fluid" src="assets/img/logo.png" width="200">
+                                        <img alt="" class="img-fluid" src="<?php echo $this->asset('/img_site/icon/icon.png') ?>" width="200">
                                     </a>
                                     <div class="header-bottom-form mb-4 w-100">
                                         <div class="search-form">
@@ -63,38 +63,42 @@
                                         </div>
                                     </div>
                                     <ul class="rm-item-menu navbar-nav">
-                                        <li class="nav-item bg-ul-f7"><a class="nav-link" href="index.html">صفحه
+                                        <li class="nav-item bg-ul-f7"><a class="nav-link" href="<?php $this->url('/home/index') ?>">صفحه
                                             اصلی</a>
                                         </li>
                                         <li class="nav-item bg-ul-f7">
-                                            <a class="nav-link" href="">گوشی موبایل</a>
+                                            <a class="nav-link" href=""> نوشت افزار </a>
                                             <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
                                             <ul class="navbar-nav h-0">
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="">برند</a>
+                                                    <a class="nav-link" href="">انواع</a>
                                                     <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
                                                     <ul class="navbar-nav h-0 bg-ul-f7">
-                                                        <li class="nav-item"><a class="nav-link" href="">سامسونگ</a>
+                                                        <li class="nav-item"><a class="nav-link" href="">مداد</a>
                                                         </li>
-                                                        <li class="nav-item"><a class="nav-link" href="">هوآوی</a>
+                                                        <li class="nav-item"><a class="nav-link" href="">پاک کن</a>
                                                         </li>
-                                                        <li class="nav-item"><a class="nav-link" href="">شیائومی</a>
+                                                        <li class="nav-item"><a class="nav-link" href="">خودکار</a>
                                                         </li>
-                                                        <li class="nav-item"><a class="nav-link" href="">الجی</a>
+                                                        <li class="nav-item"><a class="nav-link" href="">خط کش</a>
                                                         </li>
-                                                        <li class="nav-item"><a class="nav-link" href="">سونی</a>
+                                                        <li class="nav-item"><a class="nav-link" href="">غلط گیر </a>
                                                         </li>
                                                     </ul>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="">بر اساس رده بندی</a>
+                                                    <a class="nav-link" href="">برند</a>
                                                     <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
                                                     <ul class="navbar-nav h-0 bg-ul-f7">
-                                                        <li class="nav-item"><a class="nav-link" href="">لمسی</a>
+                                                        <li class="nav-item"><a class="nav-link" href="">بیک</a>
                                                         </li>
-                                                        <li class="nav-item"><a class="nav-link" href="">دکمه ای</a>
+                                                        <li class="nav-item"><a class="nav-link" href="">سی کلاس</a>
                                                         </li>
-                                                        <li class="nav-item"><a class="nav-link" href="">نظامی</a>
+                                                        <li class="nav-item"><a class="nav-link" href="">پالمو</a>
+                                                        </li><li class="nav-item"><a class="nav-link" href="">کیان </a>
+                                                        </li><li class="nav-item"><a class="nav-link" href="">پیکاسو</a>
+                                                        </li>
+                                                        <li class="nav-item"><a class="nav-link" href="">فابر کاستر</a>
                                                         </li>
                                                     </ul>
                                                 </li>

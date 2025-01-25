@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>قالب استادینو</title>
+    <title> ورود</title>
     <meta content="" name="description">
     <meta content="width=device-width, initial-scale=1" name="viewport">
 
@@ -13,59 +13,76 @@
     <meta content="" property="og:image">
 
     <!-- Place favicon.ico in the root directory -->
-
-    <link href="assets/css/normalize.css" rel="stylesheet">
-    <link href="assets/font/bootstrap-icon/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/responsive.css" rel="stylesheet">
-
+    <link rel="icon" href="<?php echo $this->asset('/img_site/icon/icon.png') ?>">
+    <link href="<?php $this->asset('css/normalize.css')?>" rel="stylesheet">
+    <link href="<?php $this->asset('font/bootstrap-icon/bootstrap-icons.min.css')?>" rel="stylesheet">
+    <link href="<?php $this->asset('css/bootstrap.min.css')?>" rel="stylesheet">
+    <link href="<?php $this->asset('css/style.css" rel="stylesheet')?>">
+    <link href="<?php $this->asset('css/responsive.css')?>" rel="stylesheet">
     <meta content="#f4f5f9" name="theme-color">
 </head>
-
 <body style="background-color:#eef1f4;">
-
-
 <!-- start content -->
-
 <div class="content">
     <div class="container-fluid">
         <div class="auth">
             <div class="auth-logo text-center my-4"><img src="assets/img/logo.png" width="180" alt=""></div>
             <div class="row justify-content-center">
                 <div class="col-lg-4">
-                    <div class="content-box p-3">
-                        <form action="">
-
-                            <div class="alert text-center alert-success">
-                                یک کد برای شما پیامک شد لطفا آن را وارد کنید
+                    <div class="content-box auth-front">
+                        <div class="container-fluid">
+                            <div class="auth-action text-center">
+                                <a href="<?php $this->url('/auth/login') ?>" class="btn btn-lg bg-white shadow-md fw-bold font-18">ورود به سایت</a>
+                                <a href="<?php $this->url('/auth/register') ?>" class="btn btn-lg font-18 ms-2">عضویت در سایت</a>
                             </div>
 
-                            <div id="otp-input">
-                                <input placeholder="_" type="number" step="1" min="0" max="9" autocomplete="no" pattern="\d*" />
-                                <input placeholder="_" type="number" step="1" min="0" max="9" autocomplete="no" pattern="\d*" />
-                                <input placeholder="_" type="number" step="1" min="0" max="9" autocomplete="no" pattern="\d*" />
-                                <input placeholder="_" type="number" step="1" min="0" max="9" autocomplete="no" pattern="\d*" />
-                                <input placeholder="_" type="number" step="1" min="0" max="9" autocomplete="no" pattern="\d*" />
-                                <input placeholder="_" type="number" step="1" min="0" max="9" autocomplete="no" pattern="\d*" />
-                                <input id="otp-value" placeholder="_" type="hidden" name="otp" />
+                            <div class="auth-form mt-80 py-4">
+                                <form action="">
+                                    
+                                    <div class="mb-4 form-avatar text-center">
+                                        <img src="assets/img/user-avatar.svg" width="100" alt="">
+                                    </div>
+
+                                    <div class="comment-item mb-3">
+                                        <input type="email" class="form-control" id="floatingInputEmail">
+                                        <label for="floatingInputEmail" class="form-label label-float">ایمیل خود را وارد
+                                            کنید</label>
+                                    </div>
+
+                                    <div class="comment-item mt-4 position-relative">
+                                        <input type="password" class="form-control" id="floatingInputPasswd">
+                                        <label for="floatingInputPasswd" class="form-label label-float">رمز عبور خود را
+                                            وارد
+                                            کنید</label>
+                                    </div>
+
+                                    <div class="row align-items-center">
+                                        <div class="col-6">
+                                            <div class="form-check my-4">
+                                                <div class="d-flex">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                                    <label class="form-check-label mt-1" for="flexCheckChecked">
+                                                        مرا به خاطر بسپار
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="text-end">
+                                                <a href="">فراموشی رمزعبور</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-0">
+                                        <button type="submit" class="btn main-color-one-bg w-100 py-3">
+                                            ثبت نام در سایت
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
 
-
-                            <!-- Countdown timer html -->
-                            <div class="countDownContainer">
-                                <div class="countdown-bar" id="countdownB">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                            </div>
-
-                            <div class="form-group mt-4">
-                                <button id="submit" type="submit" class="btn main-color-one-bg w-100 py-3">
-                                    ثبت نام در سایت
-                                </button>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,28 +145,6 @@
 <script src="assets/js/plugins.js"></script>
 <script src="assets/js/main.js"></script>
 
-
-<!-- Run Countdown Timer Script -->
-<script type="text/javascript">
-    $(document).ready(function () {
-        countdown('countdownB', 0, 0, 0, 60);
-    });
-</script>
-<!-- End script -->
-
-
-<!-- otp input callback -->
-
-
-<script>
-    const continueButton = document.querySelector("#submit");
-    continueButton.addEventListener("click", (e) => {
-        updateValue(inputs);
-        alert(OTPValueContainer.value);
-    });
-</script>
-
-<!-- end otp input callback -->
 
 </body>
 

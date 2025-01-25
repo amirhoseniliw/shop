@@ -17,9 +17,7 @@
             margin-bottom: 20px;  
         }  
 
-        .flash {  
-            animation: flashAnimation 0.5s ease;  
-        }  
+      
 
         @keyframes flashAnimation {  
             0% { opacity: 1; }  
@@ -37,9 +35,9 @@
         document.getElementById('refreshButton').addEventListener('click', function() {  
             const refreshDiv = document.getElementById('refreshDiv');  
             
-            // اگر کلاس 'flash' وجود داشته باشد، آن را حذف می‌کنیم و دوباره اضافه می‌کنیم  
+            
             refreshDiv.classList.remove('flash');  
-            void refreshDiv.offsetWidth; // این خط برای ایجاد بازخورد (reflow) است  
+            void refreshDiv.offsetWidth;  
             refreshDiv.classList.add('flash');  
         });  
     </script>  
