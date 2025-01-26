@@ -8,7 +8,7 @@ class Auth extends Controller{
        
 
         // $this->dd($categories);
-        return $this->View('app.auth.otp-sms');
+        return $this->View('app.auth.login');
 
     }
     public function register(){
@@ -18,4 +18,12 @@ class Auth extends Controller{
         return $this->View('app.auth.register');
 
     }
+    public function otp_sms(){
+       
+
+        // $this->dd($categories);
+        return $this->View('app.auth.otp-sms');
+
+    }
+    
 }

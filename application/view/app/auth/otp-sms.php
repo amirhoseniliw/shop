@@ -1,179 +1,179 @@
-<!doctype html>
-<html class="no-js" dir="rtl" lang="Fa_IR">
-
-<head>
-    <meta charset="utf-8">
-    <title>قالب استادینو</title>
-    <meta content="" name="description">
-    <meta content="width=device-width, initial-scale=1" name="viewport">
-
-    <meta content="" property="og:title">
-    <meta content="" property="og:type">
-    <meta content="" property="og:url">
-    <meta content="" property="og:image">
-
-    <!-- Place favicon.ico in the root directory -->
-
-    <link rel="icon" href="<?php echo $this->asset('/img_site/icon/icon.png') ?>">
-    <link href="<?php $this->asset('css/normalize.css')?>" rel="stylesheet">
-    <link href="<?php $this->asset('font/bootstrap-icon/bootstrap-icons.min.css')?>" rel="stylesheet">
-    <link href="<?php $this->asset('css/bootstrap.min.css')?>" rel="stylesheet">
-    <link href="<?php $this->asset('css/style.css" rel="stylesheet')?>">
-    <link href="<?php $this->asset('css/responsive.css')?>" rel="stylesheet">
-    <meta content="#f4f5f9" name="theme-color">
-</head>
-
-<body style="background-color:#eef1f4;">
-
-
-<!-- start content -->
-
-<div class="content">
-    <div class="container-fluid">
-        <div class="auth">
-            <div class="auth-logo text-center my-4"><img src="assets/img/logo.png" width="180" alt=""></div>
-            <div class="row justify-content-center">
-                <div class="col-lg-4">
-                    <div class="content-box p-3">
-                        <form action="">
-
-                            <div class="alert text-center alert-success">
-                                یک کد برای شما پیامک شد لطفا آن را وارد کنید
-                            </div>
-
-                            <div id="otp-input">  
-    <input placeholder="_" type="number" step="1" min="0" max="9" autocomplete="off" pattern="\d*" maxlength="1" oninput="moveToNext(this)" />  
-    <input placeholder="_" type="number" step="1" min="0" max="9" autocomplete="off" pattern="\d*" maxlength="1" oninput="moveToNext(this)" />  
-    <input placeholder="_" type="number" step="1" min="0" max="9" autocomplete="off" pattern="\d*" maxlength="1" oninput="moveToNext(this)" />  
-    <input placeholder="_" type="number" step="1" min="0" max="9" autocomplete="off" pattern="\d*" maxlength="1" oninput="moveToNext(this)" />  
-    <input placeholder="_" type="number" step="1" min="0" max="9" autocomplete="off" pattern="\d*" maxlength="1" oninput="moveToNext(this)" />  
-    <input placeholder="_" type="number" step="1" min="0" max="9" autocomplete="off" pattern="\d*" maxlength="1" oninput="moveToNext(this)" />  
-    <input id="otp-value" placeholder="_" type="hidden" name="otp" />  
-</div>  
-<div class="countDownContainer">  
-    <div class="countdown-bar" id="countdownB">  
-        <div></div>  
-        <div></div>  
-    </div>  
-</div>  
-
-<script>  
-$(document).ready(function () {  
-    countdown('countdownB', 0, 0, 0, 60);  
-});
-function moveToNext(input) {  
-    if (input.value.length >= 1) {  
-        let nextInput = input.nextElementSibling;  
-        if (nextInput) {  
-            nextInput.focus();  
-        } else {  
-            // در صورت نیاز می‌توانید اینجا اقداماتی انجام دهید (مثل ارسال فرم)  
-            console.log("تمام فیلدها پر شده‌اند.");  
+<!DOCTYPE html>  
+<html lang="fa">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>فراموشی رمز عبور</title>  
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">  
+    <style>  
+        body {  
+            font-family: 'Vazirmatn', sans-serif;  
+            background-color: #e0f7fa;  
+            margin: 0;  
+            display: flex;  
+            justify-content: center;  
+            align-items: center;  
+            height: 100vh;  
+            padding: 20px;  
         }  
-    }  
-}  
-</script>  
+        .code{
+            text-align: right;
+        }
+        .number{
+            text-align: center;
+        }
+        .container {  
+            background: white;  
+            padding: 30px;  
+            border-radius: 10px;  
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);  
+            width: 100%;  
+            max-width: 400px;  
+            text-align: right;  
+        }  
+        h2 {  
+            text-align: center;  
+            color: #00796b;  
+        }  
+        label {  
+            font-size: 14px;  
+            margin-bottom: 5px;  
+            display: block;  
+        }  
+        input[type="text"], input[type="submit"] {  
+            width: 100%;  
+            padding: 10px;  
+            margin: 10px 0;  
+            border: 1px solid #00796b;  
+            border-radius: 5px;  
+            font-size: 16px;  
+        }  
+        input[type="submit"] {  
+            background-color: #00796b;  
+            color: white;  
+            cursor: pointer;  
+            transition: background-color 0.3s;  
+        }  
+        input[type="submit"]:hover {  
+            background-color: #004d40;  
+        }  
+        .hidden {  
+            display: none;  
+        }  
+        #phone-display {  
+            margin: 20px 0;  
+            font-size: 18px;  
+            color: #00796b;  
+            text-align: center;  
+        }  
+        #timer {  
+            font-size: 18px;  
+            text-align: center;  
+            color: red;  
+        }  
+        #edit-phone-btn {  
+            margin-top: 10px;  
+            padding: 10px;  
+            width: 100%;  
+            background-color: #ffca28;  
+            color: #000;  
+            border: none;  
+            border-radius: 5px;  
+            font-size: 16px;  
+            cursor: pointer;  
+            transition: background-color 0.3s;  
+        }  
+        #edit-phone-btn:hover {  
+            background-color: #ffc107;  
+        }  
+    </style>  
+</head>  
+<body>  
+    <div class="container">  
+        <h2>دریافت کد تایید</h2>  
+        <form id="forgot-password-form">  
+            <label for="phone">شماره تلفن:</label>  
+            <input type="text" id="phone" name="phone" class="number" placeholder="0912xxxxxxx" required>  
+            <input type="submit" value="دریافت کد">  
+        </form>  
 
+        <div id="phone-display" class="hidden"></div>  
+        <div id="verification-section" class="hidden">  
+            <label for="code">کد تایید:</label>  
+            <input type="text" id="code" class="code" name="code" placeholder="کد دریافتی را وارد کنید" required>  
+            <input type="submit" value="تایید" id="verify-btn">  
+        </div>  
+        <div id="timer" class="hidden"></div>  
+        <button id="edit-phone-btn" class="hidden">ویرایش شماره تلفن</button>  
+    </div>  
 
-                            <!-- Countdown timer html -->
-                            <div class="countDownContainer">
-                                <div class="countdown-bar" id="countdownB">
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                            </div>
+    <script>  
+        const form = document.getElementById('forgot-password-form');  
+        const verificationSection = document.getElementById('verification-section');  
+        const phoneDisplay = document.getElementById('phone-display');  
+        const timerDisplay = document.getElementById('timer');  
+        const verifyButton = document.getElementById('verify-btn');  
+        const editButton = document.getElementById('edit-phone-btn');  
 
-                            <div class="form-group mt-4">
-                                <button id="submit" type="submit" class="btn main-color-one-bg w-100 py-3">
-                                    ثبت نام در سایت
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        let countdownInterval;  
 
-<!-- end content -->
+        form.addEventListener('submit', (e) => {  
+            e.preventDefault();  
+            const phone = document.getElementById('phone').value;  
 
-<br><br><br><br><br><br><br>
+            // مخفی کردن ورودی شماره تلفن و دکمه  
+            form.classList.add('hidden');  
 
+            // نمایش شماره تلفن  
+            phoneDisplay.textContent = `شماره تلفن شما: ${phone}`;  
+            phoneDisplay.classList.remove('hidden');  
 
-<!-- start mobile menu fixed -->
+            // نمایش دکمه ویرایش  
+            editButton.classList.remove('hidden');  
 
-<div class="mobile-footer d-lg-none d-table justify-content-center shadow-box bg-white position-fixed bottom-0 p-2 w-100" style="z-index: 100;table-layout: fixed;">
-    <ul class="d-table-row">
-        <li class="d-table-cell pointer" onclick="topFunction()">
-            <div class="mf-link nav-link text-center">
-                <span class="d-block mf-link-icon"><i class="bi bi-chevron-up font-20"></i></span>
-                <span class="mt-1 font-12 fw-bold mf-link-title">بالا</span>
-            </div>
-        </li>
-        <li class="d-table-cell"><a href="" class="mf-link nav-link text-center">
-            <div class="mf-link-icon position-relative d-table mx-auto">
-                <i class="bi bi-heart font-20"></i>
-                <span class="position-absolute main-color-one-bg rounded-pill font-10 text-white badge" style="right:-40%;bottom:-5px;">0</span>
-            </div>
-            <span class="mt-1 font-12 fw-bold mf-link-title">علاقه مندی ها</span>
-        </a></li>
-        <li class="d-table-cell"><a href="" class="mf-link nav-link text-center">
-            <span class="d-block mf-link-icon"><i class="bi bi-house font-20"></i></span>
-            <span class="mt-1 font-12 fw-bold mf-link-title">صفحه اصلی</span>
-        </a></li>
-        <li class="d-table-cell"><a href="" class="mf-link nav-link text-center">
-            <div class="position-relative mf-link-icon d-table mx-auto">
-                <span class="d-block mf-link-icon"><i class="bi bi-arrow-left-right font-20"></i></span>
-                <span class="position-absolute main-color-one-bg rounded-pill font-10 text-white badge" style="right:-60%;bottom:-5px;">0</span>
-            </div>
-            <span class="mt-1 font-12 fw-bold mf-link-title">مقایسه</span>
-        </a></li>
-        <li class="d-table-cell"><a class="mf-link nav-link text-center" data-bs-toggle="offcanvas" href="#offcanvasCart" role="button" aria-controls="offcanvasCart">
-            <div class="position-relative mf-link-icon d-table mx-auto">
-                <span class="d-block mf-link-icon"><i class="bi bi-bag font-20"></i></span>
-                <span class="position-absolute main-color-one-bg rounded-pill font-10 text-white badge" style="right:-60%;bottom:-5px;">0</span>
-            </div>
-            <span class="mt-1 font-12 fw-bold mf-link-title">سبد خرید</span>
-        </a></li>
-    </ul>
-</div>
+            verificationSection.classList.remove('hidden'); // نمایش بخش ورود کد تایید  
+            
+            // شروع شمارش معکوس دو دقیقه‌ای  
+            startTimer(120); // 120 ثانیه  
+        });  
 
-<!-- /mobile menu fixed -->
+        const startTimer = (duration) => {  
+            let timer = duration, minutes, seconds;  
+            countdownInterval = setInterval(() => {  
+                minutes = parseInt(timer / 60, 10);  
+                seconds = parseInt(timer % 60, 10);  
+    
+                // فرمت زمان به صورت دو رقمی  
+                seconds = seconds < 10 ? "0" + seconds : seconds;  
+    
+                timerDisplay.textContent = `زمان باقی‌مانده: ${minutes}:${seconds}`;  
+                timerDisplay.classList.remove('hidden');  
+    
+                if (--timer < 0) {  
+                    clearInterval(countdownInterval);  
+                    timerDisplay.textContent = "زمان شما به پایان رسید!";  
+                    verifyButton.disabled = true; // غیرفعال کردن دکمه تایید  
+                }  
+            }, 1000);  
+        };  
 
+        verifyButton.addEventListener('click', (e) => {  
+            e.preventDefault();  
+            // منطق تایید کد برای بررسی صحت کد وارد شده  
+            alert("کد تایید بررسی شد!"); // نمایش پیغام تأیید (شبیه‌سازی)  
+        });  
 
+        editButton.addEventListener('click', () => {  
+            // نمایش فرم و پنهان کردن نمایش شماره تلفن و دکمه ویرایش  
+            form.classList.remove('hidden');  
+            phoneDisplay.classList.add('hidden');  
+            editButton.classList.add('hidden');  
+            verificationSection.classList.add('hidden'); // پنهان کردن بخش کد تایید  
+            timerDisplay.classList.add('hidden'); // پنهان کردن تایمر  
 
-<script src="assets/js/vendor/modernizr-3.11.2.min.js"></script>
-<script src="assets/js/vendor/jquery-3.7.1.min.js"></script>
-<script src="assets/js/vendor/bootstrap.bundle-5.3.2.min.js"></script>
-<script src="assets/js/plugin/otp-sms/otp-input.js"></script>
-<script src="assets/js/plugin/otp-loader/script.js"></script>
-<script src="assets/js/plugins.js"></script>
-<script src="assets/js/main.js"></script>
-
-
-<!-- Run Countdown Timer Script -->
-<script type="text/javascript">
-    $(document).ready(function () {
-        countdown('countdownB', 0, 0, 0, 60);
-    });
-</script>
-<!-- End script -->
-
-
-<!-- otp input callback -->
-
-
-<script>
-    const continueButton = document.querySelector("#submit");
-    continueButton.addEventListener("click", (e) => {
-        updateValue(inputs);
-        alert(OTPValueContainer.value);
-    });
-</script>
-
-<!-- end otp input callback -->
-
-</body>
-
+            // متوقف کردن تایمر  
+            clearInterval(countdownInterval);  
+        });  
+    </script>  
+</body>  
 </html>

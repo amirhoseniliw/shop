@@ -69,7 +69,7 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="text-end">
-                                                <a href="">فراموشی رمزعبور</a>
+                                                <a href="<?php $this->url('/Auth/otp_sms') ?>">فراموشی رمزعبور</a>
                                             </div>
                                         </div>
                                     </div>
