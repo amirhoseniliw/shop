@@ -42,15 +42,19 @@
                             </div>
 
                             <div class="auth-form mt-80 py-4">
-                                <form action="">
+                                <form action="<?php  $this->url('/UserPanel') ?>" method="post">
                                     
                                     <div class="mb-4 form-avatar text-center">
                                         <img src="assets/img/user-avatar.svg" width="100" alt="">
                                     </div>
-
                                     <div class="comment-item mb-3">
-                                        <input type="email" class="form-control" id="floatingInputEmail">
-                                        <label for="floatingInputEmail" class="form-label label-float">ایمیل خود را وارد
+                                        <input type="text" class="form-control" id="floatingInputEmail">
+                                        <label for="floatingInputEmail" class="form-label label-float"> نام کاربری خود را وارد   
+                                            کنید</label>
+                                    </div>
+                                    <div class="comment-item mb-3">
+                                        <input type="text" class="form-control" id="floatingInputEmail">
+                                        <label for="floatingInputEmail" class="form-label label-float">تلفن خود را وارد  
                                             کنید</label>
                                     </div>
 
@@ -71,7 +75,7 @@
                                         <div class="d-flex">
                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
                                             <label class="form-check-label mt-1 font-14" for="flexCheckChecked">
-                                                <a href="" class="text-info font-14">شرایط و قوانین</a> استفاده از سایت راستچین را مطالعه نموده و با کلیه موارد آن موافقم.
+                                                <a href="" class="text-info font-14">شرایط و قوانین</a> استفاده از سایت فروشگاه خیام  را مطالعه نموده و با کلیه موارد آن موافقم.
                                             </label>
                                         </div>
                                     </div>

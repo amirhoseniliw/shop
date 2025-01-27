@@ -44,9 +44,9 @@
                                     </div>
 
                                     <div class="comment-item mb-3">
-                                        <input type="email" class="form-control" id="floatingInputEmail">
-                                        <label for="floatingInputEmail" class="form-label label-float">ایمیل خود را وارد
-                                            کنید</label>
+                                        <input type="text" class="form-control" id="floatingInputEmail">
+                                        <label for="floatingInputEmail" class="form-label label-float">  نام کاربری خود را وارد نمایید   
+                                            </label>
                                     </div>
 
                                     <div class="comment-item mt-4 position-relative">

@@ -249,16 +249,16 @@
                             </div>
                         </div>
                         <div class="top-header-logo d-lg-block d-none">
-                            <a href="index.html">
-                                <img alt="" src="assets/img/logo.png">
+                            <a href="<?php $this->url('/home') ?>">
+                                <img alt="" src="<?php echo $this->asset('/img_site/icon/icon.png') ?> " title="صفحه اصلی">
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-2 col-sm-4 col-7 order-lg-1 order-2">
                     <div class="top-header-logo">
-                        <a href="index.html">
-                            <img src="assets/img/logo.png" alt="">
+                        <a href="<?php $this->url('/home') ?>">
+                            <img src="<?php echo $this->asset('/img_site/icon/icon.png') ?>" width="100" alt="صفحه اصلی" title="صفحه اصلی">
                         </a>
                     </div>
                 </div>
@@ -277,6 +277,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-4 col-3 order-lg-3 order-3">
+                    <!-- <div>عکس ایکون پنل </div> -->
                     <div class="top-header-auth">
                         <a href="<?php $this->url('/Auth/login') ?>" class="top-header-auth-login btn">
                         <span class="top-header-auth-login-icon">
