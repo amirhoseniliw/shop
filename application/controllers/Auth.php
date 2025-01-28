@@ -3,12 +3,11 @@
 namespace Application\Controllers;
 
 class Auth extends Controller{
-
     public function login(){
        
 
-        // $this->dd($categories);
         return $this->View('app.auth.login');
+        
 
     }
     public function register(){
@@ -25,9 +24,9 @@ class Auth extends Controller{
         return $this->View('app.auth.otp-sms');
 
     }
-    public function send_mss()  
-    {  $verification_code = rand(10000, 99999); // تولید کد 5 رقمی تصادفی  
-
+    public function send_mss(){   
+        $verification_code  = rand(10000, 99999) ;
+  
         // اطلاعات احراز هویت  
         $apiKey = 'USvet6AabDekmTc81jqeTXYOAsjiNldCeXJwnz6cKS4SLxib'; // توکن API خود را اینجا قرار دهید  
         $url = 'https://api.sms.ir/v1/send/bulk';  
@@ -68,22 +67,33 @@ class Auth extends Controller{
         if (curl_errno($ch)) {  
             echo 'خطا در ارسال درخواست: ' . curl_error($ch);  
         } else {  
-            return $this->redirect('auth/code');
+            return $this->View('app.auth.code', compact('verification_code', 'mobail'));
 
         }  
         
         // بستن cURL session  
         curl_close($ch);  
     }
-public function code()  {
-    return $this->View('app.auth.code');
-
-}
-    // متد برای بررسی کد تأیید
-    public function verify_code()
+    public function set_session()
     {
-     global   $verification_code ;
+        session_start();
+     $_SESSION['status'] = true;
+    }
+    // متد برای بررسی کد تأیید
+    public function password($mobail)
+    {
+        if ( $_SESSION['status'] != true){
+            return $this->redirect('auth/login');
+            $_SESSION['status'] = false;
+        }
+        else {
+        return $this->View('app.auth.password', compact('mobail'));
+        $_SESSION['status'] = false;
 
+    }}
+    public function update_password()
+    {
+       
     }
 }
 ?>  

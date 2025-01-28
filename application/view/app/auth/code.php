@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>  
 <html lang="fa">  
 <head>  
@@ -48,7 +49,7 @@
       background-color: #45a049;  
     }  
     #resend-btn {  
-      display: none; /* مخفی کردن دکمه ارسال مجدد در ابتدا */  
+      display: none;  
       margin-top: 10px;  
       padding: 12px;  
       background-color: #2196F3;  
@@ -64,18 +65,22 @@
 
 <div class="container">  
   <h2>وارد کردن کد تایید</h2>  
-  <form id="verification-form">  
-    <input type="text" class="input-field" placeholder="کد تایید را وارد کنید" required>  
+  <form id="verification-form" method="post" action="<?php $this->url('/auth/password/' . $mobail) ?>">  
+    <input type="text" id="verification-code" class="input-field" placeholder="کد تایید را وارد کنید" required>  
+    <input type="hidden" id="php-code" value="<?php echo $verification_code; ?>">  
     <button type="submit" class="btn">تایید</button>  
   </form>  
   <div id="timer" style="text-align: center; margin-top: 10px;">زمان باقی‌مانده: <span id="time">120</span> ثانیه</div>  
-  <button id="resend-btn">ارسال مجدد کد</button>  
+  <button id="resend-btn"> ویرایش شماره و ارسال دوباره کد </button>  
 </div>  
 
 <script>  
   let timeLeft = 120; // زمان اولیه برای تایمر (60 ثانیه)  
   const timerElement = document.getElementById('time');  
   const resendButton = document.getElementById('resend-btn');  
+  const form = document.getElementById('verification-form');  
+  const phpCode = document.getElementById('php-code').value;  
+  const inputCode = document.getElementById('verification-code');  
 
   // تابع برای شروع تایمر  
   const startTimer = () => {  
@@ -94,14 +99,32 @@
   // شروع تایمر  
   startTimer();  
 
+  // بررسی کد تایید قبل از ارسال فرم  
+  form.addEventListener('submit', (e) => {  
+    if (inputCode.value !== phpCode) {  
+      e.preventDefault(); // جلوگیری از ارسال فرم  
+      alert('کد وارد شده اشتباه است. لطفاً دوباره امتحان کنید.');  
+    } else {  
+      // اگر کد صحیح است، یک درخواست ایجکس برای تنظیم سشن ارسال کنید  
+      e.preventDefault();  
+      fetch('<?php $this->url('/auth/set_session') ?>', {  
+        method: 'POST',  
+        headers: { 'Content-Type': 'application/json' },  
+        body: JSON.stringify({ status: true })  
+      })  
+      .then(response => {  
+        if (response.ok) {  
+          form.submit();  
+        } else {  
+          alert('مشکلی پیش آمده است. لطفاً دوباره تلاش کنید.');  
+        }  
+      });  
+    }  
+  });  
+
   // نمایش دکمه ارسال مجدد وقتی کاربر روی آن کلیک کند  
   resendButton.addEventListener('click', () => {  
-    alert("کد جدید ارسال شد!"); // اینجا می‌توانید منطق ارسال مجدد کد را اضافه کنید  
-    timeLeft = 120; // ریست کردن زمان  
-    timerElement.textContent = timeLeft;  
-    resendButton.style.display = 'none'; // مخفی کردن دکمه ارسال مجدد  
-    document.getElementById('timer').style.display = 'block'; // نمایش تایمر دوباره  
-    startTimer(); // شروع تایمر دوباره  
+    window.location.href = '<?php $this->url('/auth/send_mss') ?>';  
   });  
 </script>  
 
