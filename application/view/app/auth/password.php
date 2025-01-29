@@ -2,6 +2,7 @@
 <html lang="fa">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="<?php echo $this->asset('/img_site/icon/icon.png') ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تغییر رمز عبور</title>
     <style>

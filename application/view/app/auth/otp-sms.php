@@ -1,7 +1,11 @@
+<?php $mass  = ($this->flash('not_find_user'));
+ ?>
 <!DOCTYPE html>
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" href="<?php echo $this->asset('/img_site/icon/icon.png') ?>">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ورود به حساب</title>
   <style>
@@ -43,6 +47,22 @@
     }
 
     /* استایل دکمه */
+    .btn_back{
+      margin-top: 10px;
+      width: 40%;
+      padding: 14px;
+      background-color:rgb(32, 12, 217);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+    .btn_back:hover{
+      background-color:rgb(137, 127, 220);
+
+    }
     .btn {
       width: 100%;
       padding: 14px;
@@ -68,6 +88,12 @@
         font-size: 20px;
       }
     }
+    .span{
+      color:  red;
+      font-size: 15px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+float: right;   
+margin-bottom: 10px; }
   </style>
 </head>
 <body>
@@ -76,7 +102,10 @@
   <h2>وارد کردن شماره تلفن</h2>
   <form method="post" action="<?php $this->url('/auth/send_mss') ?>">
     <input type="tel" class="input-field" name="phone" placeholder="شماره تلفن خود را وارد کنید" required pattern="^[0-9]{11}$" maxlength="11">
+   <?php if($mass != ''){ ?> <span class="span"><?= $mass ?></span><?php }?>
     <button type="submit" class="btn">ارسال کد تایید</button>
+  <a href="<?php $this->url('/auth/login') ?>">  <button type="button" class="btn_back">بازگشت</button></a>
+
   </form>
 </div>
 

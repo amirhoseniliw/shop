@@ -1,13 +1,37 @@
 <?php
 
 namespace Application\Controllers;
+use application\model\Users as UsersModel;
 
 class Auth extends Controller{
     public function login(){
        
 
         return $this->View('app.auth.login');
-        
+
+
+    }
+    public function Check_login(){
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $user = new UsersModel();
+        $user = $user->find_login($username); 
+         
+
+        if($user == ""){
+            $this->flash('not_find_username', '! کاربری با این نام کاربری  یافت نشد ');
+        return $this->redirect('Auth/login');
+    }
+
+    else {
+if($this->verify_password($password, $user['password']) && $user['username'] == $username){
+
+$_SESSION['id_user'] = $user['user_id'];
+$this->dd($_SESSION['id_user']);
+return $this->redirect('home/index');
+
+}
+    }
 
     }
     public function register(){
@@ -25,6 +49,13 @@ class Auth extends Controller{
 
     }
     public function send_mss(){   
+        $user = new UsersModel();
+        $user = $user->find_mob($_POST['phone']);
+        if($user == ""){
+            $this->flash('not_find_user', '! کاربری با این مشخصات یافت نشد ');
+        return $this->redirect('Auth/otp_sms');
+    }
+
         $verification_code  = rand(10000, 99999) ;
   
         // اطلاعات احراز هویت  
@@ -83,7 +114,9 @@ class Auth extends Controller{
     public function password($mobail)
     {
         if ( $_SESSION['status'] != true){
-            return $this->redirect('auth/login');
+            return $this->redirect('Auth/otp_sms');
+            $this->flash('not_find_user', '! کاربری با این مشخصات یافت نشد ');
+
             $_SESSION['status'] = false;
         }
         else {
@@ -91,9 +124,22 @@ class Auth extends Controller{
         $_SESSION['status'] = false;
 
     }}
-    public function update_password()
+    public function update_password($mobail)
     {
-       
+       $user = new UsersModel();
+       $user = $user->find_mob($mobail);
+       if($user == ""){
+        $this->flash('not_find_user', '! کاربری با این مشخصات یافت نشد ');
+    return $this->redirect('Auth/otp_sms');
+}
+else{
+    
+    $password  = $this->hash_password($_POST['password']);
+    $user = new UsersModel();
+    $user = $user->update_password($mobail, $password);
+    return $this->redirect('Auth/login');
+
+}
     }
 }
 ?>  
