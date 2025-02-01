@@ -16,6 +16,7 @@ public function usersEdit($id) {
     return $this->view("panel.Customers.edit" , compact('user'));
 }
 public function usersUpdate($id) {
+    $_POST['password'] = $this->hash_password($_POST['password']);
     if($_FILES['img_prof']['tmp_name'] != null){
         $users = new UsersModel();
         $user = $users->find($id);

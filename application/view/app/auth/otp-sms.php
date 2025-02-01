@@ -1,15 +1,13 @@
-<?php $mass  = ($this->flash('not_find_user'));
- ?>
+<?php $mass = $this->flash('not_find_user'); ?>
 <!DOCTYPE html>
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
   <link rel="icon" href="<?php echo $this->asset('/img_site/icon/icon.png') ?>">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ورود به حساب</title>
+  <title>ورود و تایید حساب</title>
+  <script src="https://www.google.com/recaptcha/api.js?render=your_site_key"></script> <!-- reCAPTCHA -->
   <style>
-    /* استایل های عمومی */
     body {
       font-family: Arial, sans-serif;
       background-color: #f4f4f9;
@@ -19,7 +17,6 @@
       align-items: center;
       height: 100vh;
     }
-    
     .container {
       background-color: #fff;
       padding: 30px;
@@ -27,15 +24,9 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       width: 100%;
       max-width: 400px;
-    }
-    
-    h2 {
       text-align: center;
-      margin-bottom: 20px;
-      font-size: 24px;
     }
-
-    /* استایل فیلد ورودی */
+    h2 { margin-bottom: 20px; font-size: 24px; }
     .input-field {
       width: 100%;
       padding: 12px;
@@ -43,25 +34,7 @@
       border: 1px solid #ccc;
       border-radius: 4px;
       font-size: 16px;
-      box-sizing: border-box;
-    }
-
-    /* استایل دکمه */
-    .btn_back{
-      margin-top: 10px;
-      width: 40%;
-      padding: 14px;
-      background-color:rgb(32, 12, 217);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      cursor: pointer;
-      box-sizing: border-box;
-    }
-    .btn_back:hover{
-      background-color:rgb(137, 127, 220);
-
+      text-align: center;
     }
     .btn {
       width: 100%;
@@ -72,42 +45,143 @@
       border-radius: 4px;
       font-size: 16px;
       cursor: pointer;
-      box-sizing: border-box;
     }
-
-    .btn:hover {
-      background-color: #45a049;
+    .btn:hover { background-color: #45a049; }
+    .btn:disabled {
+      background-color: gray;
+      cursor: not-allowed;
     }
-
-    /* استایل ریسپانسیو */
-    @media (max-width: 600px) {
-      .container {
-        padding: 20px;
-      }
-      h2 {
-        font-size: 20px;
-      }
+    .btn_back {
+      margin-top: 10px;
+      width: 40%;
+      padding: 14px;
+      background-color: rgb(32, 12, 217);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
     }
-    .span{
-      color:  red;
+    .btn_back:hover { background-color: rgb(137, 127, 220); }
+    .span {
+      color: red;
       font-size: 15px;
-      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-float: right;   
-margin-bottom: 10px; }
+      float: right;
+      margin-bottom: 10px;
+    }
+    #timer {
+      margin-top: 10px;
+      font-size: 16px;
+      color: red;
+    }
+    #verification-section { display: none; }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <h2>وارد کردن شماره تلفن</h2>
-  <form method="post" action="<?php $this->url('/auth/send_mss') ?>">
-    <input type="tel" class="input-field" name="phone" placeholder="شماره تلفن خود را وارد کنید" required pattern="^[0-9]{11}$" maxlength="11">
-   <?php if($mass != ''){ ?> <span class="span"><?= $mass ?></span><?php }?>
-    <button type="submit" class="btn">ارسال کد تایید</button>
-  <a href="<?php $this->url('/auth/login') ?>">  <button type="button" class="btn_back">بازگشت</button></a>
+  <!-- فرم ورود شماره -->
+  <div id="phone-section">
+    <h2>وارد کردن شماره تلفن</h2>
+    <form id="phone-form" method="post" action="<?php echo $this->url('/auth/send_mss'); ?>">
+      <input type="tel" class="input-field" id="phone" name="phone" placeholder="شماره تلفن خود را وارد کنید" required pattern="^[0-9]{11}$" maxlength="11">
+      <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+      <?php if($mass != ''){ ?> <span class="span"><?= $mass ?></span><?php } ?>
+      <button type="submit" id="send-btn" class="btn">ارسال کد تایید</button>
+      <div id="timer"></div>
+    </form>
+  </div>
 
-  </form>
+  <!-- فرم تایید کد -->
+  <div id="verification-section">
+    <h2>وارد کردن کد تایید</h2>
+    <form id="verification-form" method="post" action="<?php echo $this->url('/auth/password/') ?>">
+      <input type="hidden" name="phone_hidden" id="phone_hidden">
+      <input type="text" id="verification-code" class="input-field" name="code" placeholder="کد تایید را وارد کنید" required>
+      <button type="submit" class="btn">تایید</button>
+    </form>
+    <button id="edit-number-btn" class="btn_back">ویرایش شماره</button>
+  </div>
 </div>
+
+<script>
+  const sendButton = document.getElementById("send-btn");
+  const timerElement = document.getElementById("timer");
+  const phoneSection = document.getElementById("phone-section");
+  const verificationSection = document.getElementById("verification-section");
+  const editNumberButton = document.getElementById("edit-number-btn");
+
+  function checkTimer() {
+    let endTime = localStorage.getItem("sendCodeEndTime");
+    let savedPhone = localStorage.getItem("savedPhone");
+
+    if (endTime) {
+      let now = Date.now();
+      let timeLeft = Math.floor((endTime - now) / 1000);
+
+      if (timeLeft > 0) {
+        disableButton(timeLeft);
+        if (savedPhone) {
+          document.getElementById("phone_hidden").value = savedPhone;
+          phoneSection.style.display = "none";
+          verificationSection.style.display = "block";
+        }
+      }
+    }
+  }
+
+  function disableButton(timeLeft) {
+    sendButton.disabled = true;
+    timerElement.style.display = "block";
+
+    let interval = setInterval(() => {
+      if (timeLeft <= 0) {
+        clearInterval(interval);
+        sendButton.disabled = false;
+        timerElement.style.display = "none";
+        localStorage.removeItem("sendCodeEndTime");
+      } else {
+        timerElement.textContent = `لطفاً ${timeLeft} ثانیه صبر کنید...`;
+        timeLeft--;
+      }
+    }, 1000);
+  }
+
+  document.getElementById("phone-form").addEventListener("submit", (e) => {
+    let phoneInput = document.getElementById("phone").value.trim();
+    if (!/^[0-9]{11}$/.test(phoneInput)) {
+      alert("لطفاً یک شماره تلفن معتبر وارد کنید.");
+      e.preventDefault();
+      return;
+    }
+    grecaptcha.ready(function() {
+      grecaptcha.execute('your_site_key', {action: 'submit'}).then(function(token) {
+        document.getElementById('g-recaptcha-response').value = token;
+        let now = Date.now();
+        let endTime = now + 120000;
+        localStorage.setItem("sendCodeEndTime", endTime);
+        localStorage.setItem("savedPhone", phoneInput);
+        disableButton(120);
+      });
+    });
+  });
+
+  document.getElementById("verification-form").addEventListener("submit", (e) => {
+    let enteredCode = document.getElementById("verification-code").value.trim();
+    if (enteredCode === "") {
+      alert("کد تایید را وارد کنید.");
+      e.preventDefault();
+    }
+  });
+
+  editNumberButton.addEventListener("click", () => {
+    localStorage.removeItem("savedPhone");
+    phoneSection.style.display = "block";
+    verificationSection.style.display = "none";
+  });
+
+  checkTimer();
+</script>
 
 </body>
 </html>

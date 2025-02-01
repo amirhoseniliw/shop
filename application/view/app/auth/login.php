@@ -1,5 +1,5 @@
 <?php 
-$mass  = ($this->flash('not_find_username'));
+$mass  = $this->flash('login_errors');
 $captcha_number = rand(1000, 9999); // تولید یک عدد تصادفی بین 1000 و 9999  
 $_SESSION['captcha'] = $captcha_number; // ذخیره عدد در SESSION 
  ?>
@@ -45,21 +45,19 @@ $_SESSION['captcha'] = $captcha_number; // ذخیره عدد در SESSION
     display: block;
     margin: auto;
 }
+.alert-custom {  
+            position: fixed;  
+            top: 20px;  
+            right: 20px;  
+            z-index: 9999;  
+            display: none; /* در ابتدا مخفی است */  
+            background-color: #f8d7da; /* پس‌زمینه خطا */  
+            color: #721c24; /* رنگ متن */  
+            padding: 10px 20px; /* پدینگ */  
+            border-radius: 5px; /* گوشه‌های گرد */  
+            border: 1px solid #f5c6cb; /* خط دور */  
+        }  
 
-.buuten_code_captcha {
-    width: 30%;
-    height: 40%;
-    font-size: small;
-    background-color: #007BFF  ;
-    color: #FFFFFF  ;
-    border: none;
-    border-radius: 5px;
-}
-.buuten_code_captcha:hover{
-    font-size: small;
-    background-color:rgb(97, 170, 248)  ;
-    color: #FFFFFF  ;
-}
 </style>
 
 <body style="background-color:#eef1f4;">
@@ -67,7 +65,7 @@ $_SESSION['captcha'] = $captcha_number; // ذخیره عدد در SESSION
     <div class="content">
         <div class="container-fluid">
             <div class="auth">
-                <div class="auth-logo text-center my-4"><img src="assets/img/logo.png" width="180" alt=""></div>
+                <div class="auth-logo text-center my-4"><img src="<?php echo $this->asset('/img_site/icon/tahrirKhayam.png') ?>" width="180" alt=""></div>
                 <div class="row justify-content-center">
                     <div class="col-lg-4">
                         <div class="content-box auth-front">
@@ -104,36 +102,36 @@ $_SESSION['captcha'] = $captcha_number; // ذخیره عدد در SESSION
                                                 کنید</label>
                                         </div>
 
-                                        <?php if (!empty($mss)): ?>  
-    <span class="alert-custom" id="error-message">  
-        <?php echo $mss; ?>  
-    </span>  
-<?php endif; ?>  
+                                        <?php if (!empty($mass)){ ?>
+                                        <span class="alert-custom" id="error-message">
+                                            <?php echo $mass; ?>
+                                        </span>
+                                        <?php }?>
 
-                              
-                                                        <label style="font-size: 20px;" for="captcha">برای ورود به سایت عدد را وارد کنید </label>
-                                                        <div class="code_captcha"><?=$captcha_number?></div>
 
-                                                        <input type="text" id="captcha" name="captcha"
-                                                            class="input_code_captcha" required>
+                                        <label style="font-size: 20px;" for="captcha">برای ورود به سایت عدد را وارد کنید
+                                        </label>
+                                        <div class="code_captcha"><?=$captcha_number?></div>
 
-                                                        <!-- دکمه Refresh -->
-                                                        <button type="button" class="buuten_code_captcha"
-                                                            onclick="window.location.reload();">تازه‌سازی عدد</button> 
-                                                             <div class="row align-items-center">
-                                                    <div class="col-6">
-                                                        <div class="text-end">
-                                                            <a href="<?php $this->url('/Auth/otp_sms') ?>">فراموشی
-                                                                رمزعبور</a>
-                                                        </div>
-                                                    </div>
+                                        <input type="text" id="captcha" name="captcha" class="input_code_captcha"
+                                            required>
+
+                                        <!-- دکمه Refresh -->
+                                        
+                                        <div class="row align-items-center">
+                                            <div class="col-6">
+                                                <div class="text-end">
+                                                    <a href="<?php $this->url('/Auth/otp_sms') ?>" style="float: right; margin: 10px; color: blue;">فراموشی
+                                                        رمزعبور</a>
                                                 </div>
+                                            </div>
+                                        </div>
 
-                                                <div class="form-group mb-0">
-                                                    <button type="submit" class="btn main-color-one-bg w-100 py-3">
-                                                        ورود به سایت
-                                                    </button>
-                                                </div>
+                                        <div class="form-group mb-0">
+                                            <button type="submit" class="btn main-color-one-bg w-100 py-3">
+                                                ورود به سایت
+                                            </button>
+                                        </div>
                                     </form>
                                 </div>
 
@@ -196,21 +194,21 @@ $_SESSION['captcha'] = $captcha_number; // ذخیره عدد در SESSION
     <!-- /mobile menu fixed -->
 
 
-    <script>  
+    <script>
     // با بارگذاری صفحه، پیام نشان داده می‌شود  
-    window.onload = function() {  
-        var errorMessage = document.getElementById('error-message');  
-        if (errorMessage) {  
+    window.onload = function() {
+        var errorMessage = document.getElementById('error-message');
+        if (errorMessage) {
             errorMessage.style.display = 'inline-block'; // پیام خطا را نشان می‌دهد  
 
             // پس از 5 ثانیه پیام را ناپدید می‌کند  
-            setTimeout(function() {  
-                errorMessage.style.display = 'none';  
+            setTimeout(function() {
+                errorMessage.style.display = 'none';
             }, 5000); // 5000 میلی ثانیه = 5 ثانیه  
-        }  
-    };  
-</script>  
-                
+        }
+    };
+    </script>
+
     <script src="<?php $this->asset('js/vendor/modernizr-3.11.2.min.js')?>"></script>
     <script src="<?php $this->asset('js/vendor/jquery-3.7.1.min.js')?>"></script>
     <script src="<?php $this->asset('js/vendor/bootstrap.bundle-5.3.2.min.js')?>"></script>

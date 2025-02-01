@@ -77,6 +77,16 @@
 </div>  
 
 <script>  
+if (performance.navigation.type === 1) {
+  alert("رفرش مجاز نیست! لطفاً از دکمه‌های داخل صفحه استفاده کنید.");
+  window.location.href = '<?php $this->url('/auth/send_mss') ?>'; // یا هر آدرسی که می‌خواهید
+}
+document.addEventListener("keydown", function (e) {
+  if (e.key === "F5" || (e.ctrlKey && e.key === "r")) {
+    e.preventDefault();
+    alert("رفرش صفحه مجاز نیست!");
+  }
+});
   let timeLeft = 120; // زمان اولیه برای تایمر (60 ثانیه)  
   const timerElement = document.getElementById('time');  
   const resendButton = document.getElementById('resend-btn');  

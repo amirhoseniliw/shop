@@ -32,7 +32,7 @@ class Users extends Model
     }
     public function update_password($mobail, $values) {
         $query = "UPDATE `users` SET  `password` = ?  , `updated_at` = NOW() WHERE `phone_number` = ?;";  
-        $this->execute($query ,array_merge( array_values($values), [$mobail]));
+        $this->execute($query ,array_merge( [$values, $mobail]));
         $this->closeConnection();
     }
     public function update($id, $values) {
