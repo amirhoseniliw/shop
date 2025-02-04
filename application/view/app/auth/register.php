@@ -1,4 +1,4 @@
-<?php $mass = $this->flash('login_errors'); ?>
+<?php $mass = $this->flash('register_error'); ?>
 <!doctype html>
 <html class="no-js" dir="rtl" lang="Fa_IR">
 
@@ -178,7 +178,7 @@
             return;
         }
 
-        showToast("ثبت نام انجام شد !", "success");
+        showToast("  در حال انجام  ...", "success");
         setTimeout(() => this.submit(), 1500);
     });
 
@@ -204,13 +204,7 @@
         }
     </script>
 
-    <!-- <script src="<?php  $this->asset('js/vendor/modernizr-3.11.2.min.js') ?>"></script>  
-<script src="<?php  $this->asset('js/vendor/jquery-3.7.1.min.js') ?>"></script>  
-<script src="<?php  $this->asset('js/vendor/bootstrap.bundle-5.3.2.min.js') ?>"></script>  
-<script src="<?php  $this->asset('js/plugin/otp-sms/otp-input.js') ?>"></script>  
-<script src="<?php  $this->asset('js/plugin/otp-loader/script.js') ?>"></script>  
-<script src="<?php  $this->asset('js/plugins.js') ?>"></script>  
-<script src="<?php  $this->asset('js/main.js') ?>"></script>   -->
+
 
 </body>
 

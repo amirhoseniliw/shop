@@ -8,9 +8,13 @@ class Auth extends Controller
 {
     public function login()
     {
+ if(isset($_SESSION['id_user'])){
+    return $this->redirect('home/index');
 
+        }
 
         return $this->View('app.auth.login');
+       
     }
     public function Check_login()
     {
@@ -45,7 +49,10 @@ class Auth extends Controller
     public function register()
     {
 
-
+        if(isset($_SESSION['id_user'])){
+            return $this->redirect('home/index');
+        
+                }
         // $this->dd($categories);
         return $this->View('app.auth.register');
     }
@@ -148,7 +155,38 @@ class Auth extends Controller
             return $this->redirect('Auth/login');
         }
     }
-    public function register_Check(){
-        echo "hi";
+    public function register_Check()
+    {
+
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $phone_number = $_POST['phone_number'];
+        if(!isset($_POST)){
+            $this->flash('register_error', 'لطفا اطلاعات رو به درستی وارد کنید !');
+            return $this->redirect('Auth/register');
+        }
+        else {
+            $user = new UsersModel();
+        $user = $user->find_mob($phone_number);
+        if ($user != "") {
+            $this->flash('register_error', 'شما از قبل  سایت ثبت نام کرده اید !');
+            return $this->redirect('Auth/register');
+        }
+        else{
+            $user = new UsersModel();
+            $user = $user->find_username($username);
+             if ($user != "") {
+                $this->flash('register_error', '!شما از قبل در سایت ثبت  کرده اید ');
+                return $this->redirect('Auth/register');
+            }
+            else{         $_POST['password'] = $this->hash_password($_POST['password']);
+                $user = new UsersModel();
+                $user = $user->insert($_POST);
+                $user = new UsersModel();
+                $user = $user->find_username($username);
+                $_SESSION['id_user'] = $user['user_id'];
+                   return $this->redirect('home/index');            }
+        }
     }
+}
 }

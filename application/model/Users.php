@@ -24,9 +24,17 @@ class Users extends Model
         $this->closeConnection();
         return $result;
     }
+    public function find_username($username)
+    {
+        $query = "SELECT `username` FROM `users` WHERE `username` = ?";
+        $result = $this->query($query, [$username])->fetch();
+        $this->closeConnection();
+        return $result;
+    }
+    
     public function insert($values)
     {
-        $query = "INSERT INTO `users`(`username`, `password`, `phone_number`, `created_at`) VALUES (?,?,?,NOW());";
+        $query = "INSERT INTO `users`(`username`,`phone_number`, `password`,  `created_at`) VALUES (?,?,?,NOW());";
         $this->execute($query , array_values($values));
         $this->closeConnection();
     }
