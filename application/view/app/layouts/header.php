@@ -27,6 +27,28 @@
     <link rel="icon" href="<?php echo $this->asset('/img_site/icon/icon.png') ?>">
 
     <meta content="#f4f5f9" name="theme-color">
+    <style>  
+    .top-header-user-panel {  
+        display: flex;  
+        align-items: center;  
+        background-color: #f0f0f0; /* رنگ پس‌زمینه */  
+        border: 2px solid #0E1935; /* رنگ و ضخامت مرز */  
+        border-radius: 5px; /* شعاع گوشه‌ها */  
+        padding: 10px; /* فاصله داخلی */  
+        text-decoration: none; /* حذف خط زیر */  
+        color: #0E1935; /* رنگ متن */  
+        transition: background-color 0.3s, transform 0.2s; /* افکت‌های تغییر رنگ */  
+    }  
+
+    .top-header-user-panel:hover {  
+        background-color: #e0e0e0; /* رنگ پس‌زمینه حین هاور */  
+        transform: scale(1.05); /* کوچک کردن دکمه */  
+    }  
+
+    .top-header-user-panel-icon {  
+        margin-right: 8px; /* فاصله بین آیکن و متن */  
+    }  
+</style>  
 </head>
 
 <body>
@@ -279,6 +301,7 @@
                 <div class="col-lg-4 col-sm-4 col-3 order-lg-3 order-3">
                     <!-- <div>عکس ایکون پنل </div> -->
                     <div class="top-header-auth">
+                        <?php   if(!isset($_SESSION['id_user'])){ ?>
                         <a href="<?php $this->url('/Auth/login') ?>" class="top-header-auth-login btn">
                         <span class="top-header-auth-login-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -287,6 +310,16 @@
                         </span>
                             <span class="top-header-auth-login-text">ثبت نام / ورود</span>
                         </a>
+                        <?php } else { ?>
+                            <a href="<?php $this->url('/Userpanel') ?>" class="top-header-user-panel btn">  
+    <span class="top-header-user-panel-icon">  
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">  
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-3.33 0-10 1.67-10 5v2h20v-2c0-3.33-6.67-5-10-5z" fill="#0E1935"/>  
+        </svg>  
+    </span>  
+    <span class="top-header-user-panel-text">پنل کاربری</span>  
+</a> 
+                            <?php }?>
                         <a class="top-header-cart btn" data-bs-toggle="offcanvas" href="" role="button" aria-controls="offcanvasCart">
                         <span class="top-header-cart-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">

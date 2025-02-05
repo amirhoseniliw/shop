@@ -23,36 +23,17 @@
                                     <img src="assets/img/user-avatar.svg" alt="">
                                 </div>
                                 <div class="profile-box-desc mt-2">
-                                    <h6 class="text-center">امیر رضایی</h6>
-                                    <p class="">093012345678</p>
+                                    <h6 class="text-center"><?= $user['username'] ?></h6>
+                                    <p class=""><?= $user['phone_number'] ?></p>
                                 </div>
                             </div>
                             <div class="panel-nav-nav">
                                 <ul class="rm-item-menu navbar-nav">
-                                    <li class="nav-item active"><a href="index.html" class="nav-link"><i class="bi bi-house box-icon"></i><span>پروفایل <small class="badge rounded-pill bg-warning text-dark">5</small></span> </a>
+                                    <li class="nav-item active"><a href="<?php $this->url('/Userpanel') ?>" class="nav-link"><i class="bi bi-house box-icon"></i><span>پروفایل <small class="badge rounded-pill bg-warning text-dark">5</small></span> </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="index.html" class="nav-link"><i class="bi bi-menu-app box-icon"></i><span>زیر منو دار</span></a>
-                                        <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
-                                        <ul class="navbar-nav h-0">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="">منو شماره 1</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="">منو شماره 2</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="">منو شماره 3</a>
-                                                <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
-                                                <ul class="navbar-nav h-0 bg-ul-f7">
-                                                    <li class="nav-item"><a href="" class="nav-link">منو شماره 1</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link">منو شماره 2</a>
-                                                    </li>
-                                                    <li class="nav-item"><a href="" class="nav-link">منو شماره 3</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
+                                        <a href="<?php $this->url('/Userpanel/edit_profil') ?>" class="nav-link"><i class="bi bi-menu-app box-icon"></i><span>ویرایش اطلاعات</span></a>
+                                      
                                     </li>
                                     <li class="nav-item"><a class="nav-link" href="">
                                         <i class="bi bi-cart-check box-icon"></i>سفارش های من </a>
@@ -96,36 +77,17 @@
                                 <img src="assets/img/user-avatar.svg" alt="">
                             </div>
                             <div class="profile-box-desc mt-2">
-                                <h6 class="text-center">امیر رضایی</h6>
-                                <p class="">093012345678</p>
+                                <h6 class="text-center"><?= $user['username'] ?></h6>
+                                <p class=""><?= $user['phone_number'] ?></p>
                             </div>
                         </div>
                         <div class="panel-nav-nav">
                             <ul class="rm-item-menu navbar-nav">
-                                <li class="nav-item active"><a href="index.html" class="nav-link"><i class="bi bi-house box-icon"></i><span>پروفایل <small class="badge rounded-pill bg-warning text-dark">5</small></span> </a>
+                                <li class="nav-item active"><a href="<?php $this->url('/Userpanel') ?>" class="nav-link"><i class="bi bi-house box-icon"></i><span>پروفایل <small class="badge rounded-pill bg-warning text-dark">5</small></span> </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="index.html" class="nav-link"><i class="bi bi-menu-app box-icon"></i><span>زیر منو دار</span></a>
-                                    <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
-                                    <ul class="navbar-nav h-0">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="">منو شماره 1</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="">منو شماره 2</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="">منو شماره 3</a>
-                                            <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
-                                            <ul class="navbar-nav h-0 bg-ul-f7">
-                                                <li class="nav-item"><a href="" class="nav-link">منو شماره 1</a></li>
-                                                <li class="nav-item"><a href="" class="nav-link">منو شماره 2</a>
-                                                </li>
-                                                <li class="nav-item"><a href="" class="nav-link">منو شماره 3</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                    <a href="<?php $this->url('/Userpanel/edit_profil') ?>" class="nav-link"><i class="bi bi-pencil box-icon"></i><span>ویرایش اطلاعات </span></a>
+                                   
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="">
                                     <i class="bi bi-cart-check box-icon"></i>سفارش های من </a>
