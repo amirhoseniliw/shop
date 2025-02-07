@@ -10,6 +10,13 @@ class Users extends Model
         $this->closeConnection();
         return $result;
     }
+    public function find($id)
+    {
+        $query = "SELECT * FROM `users` WHERE `user_id` = ?";
+        $result = $this->query($query, [$id])->fetch();
+        $this->closeConnection();
+        return $result;
+    }
     public function find_login($username)
     {
         $query = "SELECT * FROM `users` WHERE `username` = ?";
@@ -45,10 +52,16 @@ class Users extends Model
     }
     public function update($id, $values) {
         $query = "UPDATE `users` SET `username` = ?, `email` = ?, `password` = ?, `phone_number` = ?, `address` = ?, `status` = ?, `user_type` = ?, `img_prof` = ?, `updated_at` = NOW() WHERE `user_id` = ?;";  
+
         $this->execute($query ,array_merge( array_values($values), [$id]));
         $this->closeConnection();
     }
-   
+    public function update_panel_info($id, $values) {
+        $query = "UPDATE `users` SET `username` = ?, `email` = ?, `phone_number` = ?, `updated_at` = NOW() WHERE `user_id` = ?;";  
+        $this->execute($query ,array_merge( array_values($values), [$id]));
+        $this->closeConnection();
+    }
+    
     public function update_butten($id, $field, $value) {  
         // از نام فیلد ورودی در SQL به طور ایمن استفاده کنید  
         $query = "UPDATE `users` SET `$field` = ? WHERE `user_id` = ?;";  
