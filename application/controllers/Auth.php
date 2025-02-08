@@ -6,6 +6,14 @@ use application\model\Users as UsersModel;
 
 class Auth extends Controller
 {
+    public function logout(){
+        if(isset($_SESSION['id_user'])){
+            unset($_SESSION['id_user']);
+            return $this->redirect('home/index');
+
+        }
+
+    }
     public function login()
     {
  if(isset($_SESSION['id_user'])){

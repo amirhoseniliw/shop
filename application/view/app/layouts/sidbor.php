@@ -108,7 +108,7 @@
                                     <i class="bi bi-gift box-icon"></i>کد های تخفیف من</a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="">
-                                    <i class="bi bi-arrow-right-square box-icon"></i>خروج از حساب کاربری</a>
+                                <a href="<?php $this->url('/auth/logout') ?>" class="nav-link">     <i class="bi bi-arrow-right-square box-icon"></i>خروج از حساب کاربری</a>
                                 </li>
 
                             </ul>

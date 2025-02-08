@@ -57,7 +57,8 @@ class Users extends Model
         $this->closeConnection();
     }
     public function update_panel_info($id, $values) {
-        $query = "UPDATE `users` SET `username` = ?, `email` = ?, `phone_number` = ?, `updated_at` = NOW() WHERE `user_id` = ?;";  
+     
+        $query = "UPDATE `users` SET `username` = ?, `email` = ?, `phone_number` = ?,`img_prof` = ? , `updated_at` = NOW() WHERE `user_id` = ?;";  
         $this->execute($query ,array_merge( array_values($values), [$id]));
         $this->closeConnection();
     }

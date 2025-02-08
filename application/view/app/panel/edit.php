@@ -3,9 +3,8 @@
 
 $this->include('app.layouts.header');   
 $this->include('app.layouts.sidbor', ['user' => $user]);   
-$error = $this->flash('error');
-$success = $this->flash('success');
-
+$error = $this->flash('error');  
+$success = $this->flash('success');  
 ?>  
 
 <style>  
@@ -66,83 +65,82 @@ $success = $this->flash('success');
     .btnbtn:hover {  
         background-color: #218838;  
     }  
-    .message {  
-        padding: 10px;  
-        border-radius: 5px;  
-        margin-bottom: 15px;  
-        text-align: center;  
-        transition: opacity 0.5s ease;  
-    }  
-    .message_success {  
-        background-color: #d4edda;  
-        color: #155724;  
-        border: 1px solid #c3e6cb;  
-    }  
-    .message_error {  
-        background-color: #f8d7da;  
-        color: #721c24;  
-        border: 1px solid #f5c6cb;  
-    }  
 </style>  
-
 <div class="container">  
     <h2>ویرایش پروفایل</h2>  
-    
-    <!-- نمایش پیام‌ها -->  
-    <div id="message" class="message_error" style="display: none;">  
-        <p id="message-text"><?= $error ?></p>  
-    </div>  
-    <div id="message" class="message_success" style="display: none;">  
-        <p id="message-text"><?= $success , 'ddd' ?></p>  
-    </div>  
+
     <div class="profile-picture">  
         <img src="<?php echo $user['img_prof'] != "" ? $this->asset($user['img_prof']) : $this->asset('/img_site/icon/user.jpg'); ?>" alt="img prof ">  
     </div>  
 
-    <form action="<?php $this->url('/UserPanel/send_code') ?>" method="post" enctype="multipart/form-data">  
+    <form id="profile-form" action="<?php $this->url('/UserPanel/send_code') ?>" method="post" enctype="multipart/form-data">  
         <div class="form-group">  
             <label for="username">نام کاربری</label>  
-            <input type="text" id="username" name="username" placeholder="نام کاربری را وارد کنید" value="<?= htmlspecialchars($user['username']) ?>">  
+            <p><?= htmlspecialchars($user['username']) ?></p>  
+            <input type="text" id="username" name="username" placeholder="نام کاربری جدید را وارد کنید" value="">  
         </div>  
 
         <div class="form-group">  
-            <label for="email">ایمیل</label>  
-            <input type="email" id="email" name="email" placeholder="ایمیل را وارد کنید" value="<?= htmlspecialchars($user['email'] ?? '') ?>">  
+            <label for="email">ایمیل</label>   
+            <p><?= $user['email'] ?? ' ایمیلی وارد نشده است !'?></p>  
+            <input type="email" id="email" name="email" placeholder="ایمیل جدید را وارد کنید" value="">  
         </div>  
 
         <div class="form-group">  
             <label for="phone">شماره تلفن</label>  
-            <input type="tel" id="phone" name="phone" placeholder="شماره تلفن را وارد کنید" value="<?= htmlspecialchars($user['phone_number']) ?>">  
+            <p><?= htmlspecialchars($user['phone_number']) ?></p>  
+            <input type="tel" id="phone" name="phone_number" placeholder="شماره تلفن جدید را وارد کنید" value="">  
         </div>  
 
         <div class="form-group">  
             <label for="profile-picture">عکس کاربر</label>  
-            <input type="file" id="profile-picture" name="profile_picture">  
-        </div>  
-
-        <button type="submit" class="btnbtn">ویرایش</button>  
+            <input type="file" id="profile-picture" name="img_prof">  
+        </div>        <button type="submit" class="btnbtn">ویرایش</button>  
     </form>  
 </div>  
 
 <script>  
-    function showMessage(type, message) {  
-        const messageDiv = document.getElementById('message');  
-        const messageText = document.getElementById('message-text');  
+    document.getElementById('profile-form').addEventListener('submit', function(event) {  
+        const originalUsername = "<?= htmlspecialchars($user['username']) ?>";  
+        const originalEmail = "<?= htmlspecialchars($user['email']) ?>";  
+        const originalPhone = "<?= htmlspecialchars($user['phone_number']) ?>";  
+
+        const newUsername = document.getElementById('username').value.trim();  
+        const newEmail = document.getElementById('email').value.trim();  
+        const newPhone = document.getElementById('phone').value.trim();  
+
+        let errorMessage = '';  
+        if (newUsername === '' && newEmail === '' && newPhone === '') {  
+            errorMessage += "لطفاً حداقل یک فیلد را پر کنید: نام کاربری، ایمیل یا شماره تلفن.\n";  
+        } 
+        // بررسی ورودی‌ها  
+        if (newUsername === originalUsername) {  
+            errorMessage += "نام کاربری جدید نمی‌تواند برابر با نام کاربری فعلی باشد.\n";  
+        }  
         
-        messageDiv.className = 'message ' + type;  
-        messageText.innerText = message;  
-        messageDiv.style.display = 'block';  
+        if (newEmail !== '' && newEmail === originalEmail) {  
+            errorMessage += "ایمیل جدید نمی‌تواند برابر با ایمیل فعلی باشد.\n";  
+        }  
+        
+        if (newPhone === originalPhone) {  
+            errorMessage += "شماره تلفن جدید نمی‌تواند برابر با شماره تلفن فعلی باشد.\n";  
+        }  
 
-        setTimeout(() => {  
-            messageDiv.style.opacity = '0'; // انیمیشن محو شدن  
-            setTimeout(() => {  
-                messageDiv.style.display = 'none'; // پنهان کردن بعد از انیمیشن  
-                messageDiv.style.opacity = '1'; // تنظیم مجدد برای بار بعدی  
-            }, 500);  
-        }, 2000);  
-    }  
+        // اگر خطایی وجود داشت، ارسال فرم را متوقف کنید  
+        if (errorMessage) {  
+            event.preventDefault(); // جلوگیری از ارسال فرم  
+            alert(errorMessage.trim()); // نمایش پیام خطا به صورت alert  
+        }  
+    });  
 
-    // مثال برای استف
+    // نمایش پیام‌ها در صورت وجود  
+    <?php if ($error): ?>  
+        alert('<?= addslashes($error) ?>');  
+    <?php endif; ?>  
+    <?php if ($success): ?>  
+        alert('<?= addslashes($success) ?>');  
+    <?php endif; ?>  
+
 </script>  
 
 <?php $this->include('app.layouts.footer'); ?>
