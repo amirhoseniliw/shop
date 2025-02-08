@@ -39,22 +39,29 @@ class UserPanel extends Controller
       $this->flash('error', 'لطفا اطلاعات رو به درستی وارد کنید !');
       return $this->redirect('Userpanel/edit_profil');
     } else {
+      if($_POST['email'] != ""){
       $user_id = $_SESSION['id_user'];
       $user = new UsersModel();
-      $user = $user->find($user_id);
+      $user = $user->find_email($_POST['email']);
 
-      if ($user['email'] == $_POST['email'] && $_POST['email'] != "") {
-        $this->flash('error', 'این ایمیل تکرار می باشد !');
+      if ($user != '') {
+        $this->flash('error', 'این ایمیل از قبل استفاده شده است ! ' );
         return $this->redirect('Userpanel/edit_profil');
-      } else {
+      } 
+    }
+      else {
+        $user_id = $_SESSION['id_user'];
+      $user = new UsersModel();
+      $user = $user->find_mob($_POST['phone_number']);
+      if ($user != "") {
+        $this->flash('error', 'این شماره متلق به کاربر دیگریست !');
+        return $this->redirect('Userpanel/edit_profil');
+      } 
         $user_id = $_SESSION['id_user'];
         $user = new UsersModel();
         $user = $user->find($user_id);
-        if ( $_POST['phone_number'] ==  $user['phone_number']){
-          $this->flash('error', 'این ایمیل تکرار می باشد !');
-          return $this->redirect('Userpanel/edit_profil');
-        }
-        else {
+       
+       
         $username = isset($_POST['username']) ? $_POST['username'] : $user['username'];
         $email = isset($_POST['email']) ? $_POST['email'] : $user['email'];
         $phone_number = isset($_POST['phone_number']) ? $_POST['phone_number'] : $user['phone_number'];
@@ -63,7 +70,7 @@ class UserPanel extends Controller
         $user = new UsersModel();
         $user = $user->find_mob($phone_number);
         if ($user = "") {
-          $this->flash('register_error', 'شما از قبل  سایت ثبت نام کرده اید !');
+          $this->flash('register_error', '');
           return $this->redirect('Auth/register');
         } else {
           $user = new UsersModel();
@@ -130,7 +137,7 @@ class UserPanel extends Controller
                 }
               }
             }
-          }
+          
         }
        }
       }

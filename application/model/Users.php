@@ -31,6 +31,13 @@ class Users extends Model
         $this->closeConnection();
         return $result;
     }
+    public function find_email($email)
+    {
+        $query = "SELECT `username` FROM `users` WHERE `email` = ?";
+        $result = $this->query($query, [$email])->fetch();
+        $this->closeConnection();
+        return $result;
+    }
     public function find_username($username)
     {
         $query = "SELECT `username` FROM `users` WHERE `username` = ?";

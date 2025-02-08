@@ -66,6 +66,9 @@ $success = $this->flash('success');
         background-color: #218838;  
     }  
 </style>  
+<div id="message" class="message" style="display: none;">  
+        <p id="message-text"></p>  
+</div>
 <div class="container">  
     <h2>ویرایش پروفایل</h2>  
 
@@ -139,7 +142,7 @@ $success = $this->flash('success');
     <?php endif; ?>  
     <?php if ($success): ?>  
         alert('<?= addslashes($success) ?>');  
-    <?php endif; ?>  
+    <?php endif; ?>   
 
 </script>  
 
