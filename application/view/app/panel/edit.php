@@ -129,9 +129,10 @@ document.getElementById('profile-form').addEventListener('submit', function(even
     const newUsername = document.getElementById('username').value.trim();  
     const newEmail = document.getElementById('email').value.trim();  
     const newPhone = document.getElementById('phone').value.trim();  
+    const img = document.getElementById('profile-picture').value.trim();  
 
     let errorMessage = '';  
-    if (newUsername === '' && newEmail === '' && newPhone === '') {  
+    if (newUsername === '' && newEmail === '' && newPhone === '' && img === '') {  
         errorMessage += "لطفاً حداقل یک فیلد را پر کنید.\n";  
     }   
     // بررسی ورودی‌ها  

@@ -65,6 +65,7 @@ class UserPanel extends Controller
               return $this->redirect('Userpanel/edit_profil');  
           }   
       }  
+     
       // در اینجا می‌توانیم اطلاعات کاربر را بروزرسانی کنیم  
       $user_id = $_SESSION['id_user'];     
       $userModel = new UsersModel();  
@@ -73,9 +74,9 @@ class UserPanel extends Controller
       $email = !empty($_POST['email']) ? $_POST['email'] : $user['email'];  
       $phone_number = !empty($_POST['phone_number']) ? $_POST['phone_number'] : $user['phone_number'];  
       $img_prof = !empty($_FILES['img_prof']['name']) ? $_FILES['img_prof'] : $user['img_prof'];  
-  
+      
+   
       // ذخیره اطلاعات کاربر در جلسه  
-      $_SESSION['info'] = [$username, $email, $phone_number, $img_prof];  
 
       // تولید کد تأیید  
       if (!isset($_SESSION['verification_code'])) {  
@@ -115,8 +116,17 @@ class UserPanel extends Controller
                   // ارسال کد تأیید  
                   $code = $_SESSION['verification_code'];  
                   $message = 'کد تایید شما برای ویرایش اطلاعات ' . $code . ' می باشد';  
-                  $this->sendMessage($message, $user['phone_number']);  
-                  
+                  $this->sendMessage($message, $user['phone_number']); 
+                
+                  if($img_prof != null){
+                    $user_id = $_SESSION['id_user'];
+                    $users = new UsersModel();
+                    $user = $users->find($user_id);
+                    $this->removeImage($user['img_prof']);
+                    $_POST['img_prof'] =  $this->saveImage($img_prof , '/img/users');
+                    $_POST['img_prof'] = str_replace( 'public/' , "",$_POST['img_prof'] ); }
+                    $_SESSION['info'] = [$username, $email, $phone_number,  $_POST['img_prof']];  
+
                   // به‌روزرسانی زمان آخرین ارسال کد  
                   $_SESSION['last_code_sent_time'] = $current_time;  
                   $_SESSION['resend_count']++;  

@@ -17,7 +17,7 @@
                         <div class="penel-nav-seller">
                             <div class="profile-box mb-3 d-flex flex-column justify-content-center align-items-center">
                                 <div class="profile-box-image">
-                                    <img src="<?php echo $user['img_prof'] != "" ? $this->asset($user['img_prof']) : $this->asset('\img_site\icon\user.jpg'); ?>" style="border-radius: 20px;" alt="">
+                                    <img src="<?php echo $user['img_prof'] != "" ? $this->asset($user['img_prof']) : $this->asset('\img_site\icon\user.jpg'); ?>" style="border-radius: 100px;" height="20"  alt="">
                                 </div>
                                 <div class="profile-box-desc mt-2">
                                     <h6 class="text-center"><?= $user['username'] ?></h6>
@@ -71,7 +71,7 @@
                     <div class="penel-nav-seller">
                         <div class="profile-box mb-3 d-flex flex-column justify-content-center align-items-center">
                             <div class="profile-box-image">
-                                <img src="<?php echo $user['img_prof'] != "" ? $this->asset($user['img_prof']) : $this->asset('\img_site\icon\user.jpg'); ?>" alt="error img" style="border-radius: 20px;" width="80">
+                                <img src="<?php echo $user['img_prof'] != "" ? $this->asset($user['img_prof']) : $this->asset('\img_site\icon\user.jpg'); ?>" alt="error img" style="border-radius: 20px;" width="60">
                             </div>
                             <div class="profile-box-desc mt-2">
                                 <h6 class="text-center"><?= $user['username'] ?></h6>
