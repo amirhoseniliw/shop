@@ -17,7 +17,7 @@
                         <div class="penel-nav-seller">
                             <div class="profile-box mb-3 d-flex flex-column justify-content-center align-items-center">
                                 <div class="profile-box-image">
-                                    <img src="<?php echo $user['img_prof'] != "" ? $this->asset($user['img_prof']) : $this->asset('\img_site\icon\user.jpg'); ?>" style="border-radius: 100px;" height="20"  alt="">
+                                    <img src="<?php echo $user['img_prof'] != "" ? $this->asset($user['img_prof']) : $this->asset('\img_site\icon\user.jpg'); ?>" style="border-radius: 100px;" width="50" alt="">
                                 </div>
                                 <div class="profile-box-desc mt-2">
                                     <h6 class="text-center"><?= $user['username'] ?></h6>
@@ -32,29 +32,23 @@
                                         <a href="<?php $this->url('/Userpanel/edit_profil') ?>" class="nav-link"><i class="bi bi-menu-app box-icon"></i><span>ویرایش اطلاعات</span></a>
                                       
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" href="">
-                                        <i class="bi bi-cart-check box-icon"></i>سفارش های من </a>
+                                    <li class="nav-item">
+                                    <a href="<?php $this->url('/Userpanel/latest_order') ?>" class="nav-link"> <i class="bi bi-cart-check box-icon"></i>سفارش های من </a>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" href="">
-                                        <i class="bi bi-pin-map box-icon"></i>آدرس های من</a>
+                                    <li class="nav-item">
+                                    <a href="<?php $this->url('/Userpanel/address') ?>" class="nav-link"> <i class="bi bi-pin-map box-icon"></i>آدرس های من</a>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" href="">
-                                        <i class="bi bi-bell box-icon"></i>پیام ها و اطلاعیه ها</a>
-                                    </li>
-                                    <li class="nav-item"><a class="nav-link" href="">
-                                        <i class="bi bi-chat-dots box-icon"></i>نظرات من</a>
-                                    </li>
+                                   
+                                   
                                     <li class="nav-item"><a class="nav-link" href="">
                                         <i class="bi bi-question-circle box-icon"></i>درخواست پشتیبانی</a>
                                     </li>
                                     <li class="nav-item"><a class="nav-link" href="">
                                         <i class="bi bi-heart box-icon"></i>محصولات مورد علاقه</a>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" href="">
-                                        <i class="bi bi-gift box-icon"></i>کد های تخفیف من</a>
-                                    </li>
-                                    <li class="nav-item"><a class="nav-link" href="">
-                                        <i class="bi bi-arrow-right-square box-icon"></i>خروج از حساب کاربری</a>
+                                  
+                                    <li class="nav-item">
+                                    <a href="<?php $this->url('/auth/logout') ?>" class="nav-link">         <i class="bi bi-arrow-right-square box-icon"></i>خروج از حساب کاربری</a>
                                     </li>
 
                                 </ul>
@@ -86,28 +80,22 @@
                                     <a href="<?php $this->url('/Userpanel/edit_profil') ?>" class="nav-link"><i class="bi bi-pencil box-icon"></i><span>ویرایش اطلاعات </span></a>
                                    
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="">
-                                    <i class="bi bi-cart-check box-icon"></i>سفارش های من </a>
+                                <li class="nav-item">
+                               <a href="<?php $this->url('/Userpanel/latest_order') ?>" class="nav-link">     <i class="bi bi-cart-check box-icon"></i>سفارش های من </a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="">
-                                    <i class="bi bi-pin-map box-icon"></i>آدرس های من</a>
+                                <li class="nav-item">
+                                <a href="<?php $this->url('/Userpanel/address') ?>" class="nav-link">  <i class="bi bi-pin-map box-icon"></i>آدرس های من</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="">
-                                    <i class="bi bi-bell box-icon"></i>پیام ها و اطلاعیه ها</a>
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="">
-                                    <i class="bi bi-chat-dots box-icon"></i>نظرات من</a>
-                                </li>
+                               
+                              
                                 <li class="nav-item"><a class="nav-link" href="">
                                     <i class="bi bi-question-circle box-icon"></i>درخواست پشتیبانی</a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="">
                                     <i class="bi bi-heart box-icon"></i>محصولات مورد علاقه</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="">
-                                    <i class="bi bi-gift box-icon"></i>کد های تخفیف من</a>
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="">
+                               
+                                <li class="nav-item">
                                 <a href="<?php $this->url('/auth/logout') ?>" class="nav-link">     <i class="bi bi-arrow-right-square box-icon"></i>خروج از حساب کاربری</a>
                                 </li>
 

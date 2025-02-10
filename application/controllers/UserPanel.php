@@ -3,6 +3,8 @@
 namespace application\controllers;
 
 use application\model\Users as UsersModel;
+use application\model\Orders as OrdersModel;
+
 
 class UserPanel extends Controller
 {
@@ -21,7 +23,10 @@ class UserPanel extends Controller
     $user = new UsersModel();
     $user = $user->find($user_id);
     return $this->view("app.panel.index", compact('user'));
+
   }
+ 
+  
   public function edit_profil()
   {
 
@@ -154,4 +159,43 @@ class UserPanel extends Controller
       }
     }
   }
+  public function latest_order()
+  {
+    if (!isset($_SESSION['id_user'])) {
+      return $this->redirect('auth/login');
+    }
+    $user_id = $_SESSION['id_user'];
+    $orders = new OrdersModel();
+    $orders = $orders->allPanel($user_id);
+    $user = new UsersModel();
+    $user = $user->find($user_id);
+
+    return $this->view("app.panel.latest_order", compact('user' , 'orders'));
+
+  }
+  public function order_detail($id)
+  {
+    if (!isset($_SESSION['id_user'])) {
+      return $this->redirect('auth/login');
+    }
+    $user_id = $_SESSION['id_user'];
+    $orders = new OrdersModel();
+    $orders = $orders->find($id);
+    $user = new UsersModel();
+    $user = $user->find($user_id);
+    return $this->view("app.panel.order_detail", compact('user' , 'orders'));
+
+  }
+  public function address()
+  {
+    if (!isset($_SESSION['id_user'])) {
+      return $this->redirect('auth/login');
+    }
+    $user_id = $_SESSION['id_user'];
+    $user = new UsersModel();
+    $user = $user->find($user_id);
+    return $this->view("app.panel.address", compact('user'));
+
+  }
+  
 }
