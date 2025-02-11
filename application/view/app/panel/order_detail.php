@@ -294,10 +294,6 @@
     </div>
 </div>
 
-<!-- /content -->
-
-
-<!-- start footer -->
 
 <?php $this->include('app.layouts.footer'); ?>
 

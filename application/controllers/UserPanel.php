@@ -245,5 +245,15 @@ class UserPanel extends Controller
 
 
   }
+  public function ticket()
+  {
+    $user_id = $_SESSION['id_user'];
+    $user = new UsersModel();
+    $user = $user->find($user_id);
+
+    
+    return $this->view("app.panel.ticket", compact('user'));
+
+  }
   
 }

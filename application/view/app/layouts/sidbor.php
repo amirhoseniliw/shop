@@ -40,8 +40,8 @@
                                     </li>
                                    
                                    
-                                    <li class="nav-item"><a class="nav-link" href="">
-                                        <i class="bi bi-question-circle box-icon"></i>درخواست پشتیبانی</a>
+                                    <li class="nav-item">
+                                    <a href="<?php $this->url('/Userpanel/ticket') ?>" class="nav-link">      <i class="bi bi-question-circle box-icon"></i>درخواست پشتیبانی</a>
                                     </li>
                                     <li class="nav-item">
                                     <a href="<?php $this->url('/Userpanel/favorites') ?>" class="nav-link">   <i class="bi bi-heart box-icon"></i>محصولات مورد علاقه</a>
@@ -88,8 +88,8 @@
                                 </li>
                                
                               
-                                <li class="nav-item"><a class="nav-link" href="">
-                                    <i class="bi bi-question-circle box-icon"></i>درخواست پشتیبانی</a>
+                                <li class="nav-item">
+                                <a href="<?php $this->url('/Userpanel/ticket') ?>" class="nav-link">      <i class="bi bi-question-circle box-icon"></i>درخواست پشتیبانی</a>
                                 </li>
                                 <li class="nav-item">
                                 <a href="<?php $this->url('/Userpanel/favorites') ?>" class="nav-link">  <i class="bi bi-heart box-icon"></i>محصولات مورد علاقه</a>
