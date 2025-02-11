@@ -224,6 +224,14 @@ class UserPanel extends Controller
     return $this->redirect('Userpanel/address');
 
   }
+  public function favorites()
+  {
+    $user_id = $_SESSION['id_user'];
+    $user = new UsersModel();
+    $user = $user->find($user_id);
+    return $this->view("app.panel.favorites", compact('user'));
+
+  }
   
   
 }
