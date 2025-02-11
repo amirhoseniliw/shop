@@ -5,6 +5,7 @@ namespace application\controllers;
 use application\model\Users as UsersModel;
 use application\model\Orders as OrdersModel;
 use application\model\addres as AssersModel;
+use application\model\favorites as favoritesModel;
 
 
 class UserPanel extends Controller
@@ -229,9 +230,20 @@ class UserPanel extends Controller
     $user_id = $_SESSION['id_user'];
     $user = new UsersModel();
     $user = $user->find($user_id);
-    return $this->view("app.panel.favorites", compact('user'));
+    $favorite = new favoritesModel();
+    $favorite = $favorite->allPanel($user_id);
+    
+    return $this->view("app.panel.favorites", compact('user' , 'favorite'));
 
   }
-  
+  public function delete_favorites($id)
+  {
+   
+    $favorite = new favoritesModel();
+    $favorite = $favorite->delete($id);
+    return $this->redirect('Userpanel/favorites');
+
+
+  }
   
 }
