@@ -4,6 +4,7 @@ namespace application\controllers;
 
 use application\model\Users as UsersModel;
 use application\model\Orders as OrdersModel;
+use application\model\addres as AssersModel;
 
 
 class UserPanel extends Controller
@@ -188,14 +189,41 @@ class UserPanel extends Controller
   }
   public function address()
   {
-    if (!isset($_SESSION['id_user'])) {
-      return $this->redirect('auth/login');
-    }
+  
     $user_id = $_SESSION['id_user'];
     $user = new UsersModel();
     $user = $user->find($user_id);
-    return $this->view("app.panel.address", compact('user'));
+    $adders = new AssersModel();
+    $adders = $adders->allPanel($user_id);
+    return $this->view("app.panel.address", compact('user' , 'adders'));
 
   }
+  public function create_address()
+  {
+   
+    $user_id = $_SESSION['id_user'];
+    $user = new UsersModel();
+    $user = $user->find($user_id);
+   
+    return $this->view("app.panel.address_create", compact('user'));
+
+  }
+  public function stor_addres()
+  {
+   
+    $user_id = $_SESSION['id_user'];
+    $adders = new AssersModel();
+    $adders = $adders->insert($user_id , $_POST);
+    return $this->redirect('Userpanel/address');
+
+  }
+  public function delete_adders($id)
+  {
+    $adders = new AssersModel();
+    $adders = $adders->delete($id);
+    return $this->redirect('Userpanel/address');
+
+  }
+  
   
 }
