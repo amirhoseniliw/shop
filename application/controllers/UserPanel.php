@@ -6,6 +6,7 @@ use application\model\Users as UsersModel;
 use application\model\Orders as OrdersModel;
 use application\model\addres as AssersModel;
 use application\model\favorites as favoritesModel;
+use application\model\messages as messagesModel;
 
 
 class UserPanel extends Controller
@@ -250,9 +251,22 @@ class UserPanel extends Controller
     $user_id = $_SESSION['id_user'];
     $user = new UsersModel();
     $user = $user->find($user_id);
+  $messages = new messagesModel();
+   $chaths = $messages->allPanel_chath($user_id);
+    return $this->view("app.panel.ticket", compact('user' , 'chaths'));
 
-    
-    return $this->view("app.panel.ticket", compact('user'));
+  }
+  public function ticket_single_show($id)
+  {
+    $user_id = $_SESSION['id_user'];
+    $user = new UsersModel();
+    $user = $user->find($user_id);
+
+    $messages = new messagesModel();
+    $messages = $messages->allPanel_mess($id);
+    $chath = new messagesModel();
+    $chath = $chath->find_chath($id);
+    return $this->view("app.panel.ticket_single", compact('user' ,  'messages' , 'chath'));
 
   }
   

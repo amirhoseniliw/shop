@@ -6,8 +6,10 @@
                     <div class="section-title-title">
                         <h3 class="title-font h3 main-color-three-color">آخرین<span class="main-color-one-color"> تیکت ها </span>
                         </h3>
+
                     </div>
-                </div>
+                    <a href="<?php $this->url('/Userpanel/create_address') ?>" class="btn btn-primary btn-sm" style="border-radius: 5px; margin-top: 20px;">ایجاد تیکت جدید</a>  
+                    </div>
                 <div class="table-custom slider-parent p-0">
                     <div class="table-responsive shadow-box roundedTable p-0">
                         <table class="table main-table rounded-0">
@@ -21,50 +23,26 @@
                             </tr>
                             </thead>
                             <tbody>
+                                <?php foreach($chaths as $chath ) {?>
                             <tr>
-                                <td class="align-middle text-center"><p class="mt-2 font-16">545315</p></td>
-                                <td class="align-middle text-center"><p class="mt-2 font-16"> ارسال نشدن فلان سفارش برای من </p></td>
-                                <td class="align-middle text-center"><span class="badge bg-secondary ms-2">در انتظار پاسخ</span></td>
-                                <td class="align-middle text-center"><p class="mt-2 font-16">25 اذر 1402 ساعت 20:30</p></td>
-                                <td class="align-middle text-center"><a href="" class="btn main-color-three-bg shadow-none btn-sm"> <i class="bi bi-eye me-1"></i> نمایش</a></td>
+                                <td class="align-middle text-center"><p class="mt-2 font-16"><?= $chath['chat_id'] ?></p></td>
+                                <td class="align-middle text-center"><p class="mt-2 font-16"><?= $chath['titel'] ?></p></td>
+                                <td class="align-middle text-center">
+                                    <?php if($chath['status'] == 'open') {?> 
+                                <span class="badge bg-success ms-2" style="font-size: 20px;"> باز است </span>
+                            <?php } else{?>
+                                <span class="badge bg-danger ms-2"> بسته است  </span>
+                                <?php }?>
+                            </td>
+                                <td class="align-middle text-center"><p class="mt-2 font-16"><?php echo $this->jalaliData($chath['created_at'])  ?></p></td>
+                                <td class="align-middle text-center"><a href="<?php $this->url('/userpanel/ticket_single_show/' .  $chath['chat_id']) ?>" class="btn main-color-three-bg shadow-none btn-sm"> <i class="bi bi-eye me-1"></i> نمایش</a></td>
                             </tr>
-                            <tr>
-                                <td class="align-middle text-center"><p class="mt-2 font-16">545315</p></td>
-                                <td class="align-middle text-center"><p class="mt-2 font-16"> ارسال نشدن فلان سفارش برای من </p></td>
-                                <td class="align-middle text-center"><span class="badge bg-success  ms-2">پاسخ داده شده</span></td>
-                                <td class="align-middle text-center"><p class="mt-2 font-16">25 اذر 1402 ساعت 20:30</p></td>
-                                <td class="align-middle text-center"><a href="" class="btn main-color-three-bg shadow-none btn-sm"> <i class="bi bi-eye me-1"></i> نمایش</a></td>
-                            </tr>
-                            <tr>
-                                <td class="align-middle text-center"><p class="mt-2 font-16">545315</p></td>
-                                <td class="align-middle text-center"><p class="mt-2 font-16"> ارسال نشدن فلان سفارش برای من </p></td>
-                                <td class="align-middle text-center"><span class="badge bg-danger ms-2">بسته شده</span></td>
-                                <td class="align-middle text-center"><p class="mt-2 font-16">25 اذر 1402 ساعت 20:30</p></td>
-                                <td class="align-middle text-center"><a href="" class="btn main-color-three-bg shadow-none btn-sm"> <i class="bi bi-eye me-1"></i> نمایش</a></td>
-                            </tr>
+                          <?php } ?>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div class="my-paginate mt-5">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link rounded-3" href="#"><i class="bi bi-chevron-right"></i></a>
-                            </li>
-                            <li class="page-item active"><a class="page-link rounded-3" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link rounded-3" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link rounded-3" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link rounded-3" href="#">...</a></li>
-                            <li class="page-item"><a class="page-link rounded-3" href="#">14</a></li>
-                            <li class="page-item"><a class="page-link rounded-3" href="#">15</a></li>
-                            <li class="page-item"><a class="page-link rounded-3" href="#">16</a></li>
-                            <li class="page-item">
-                                <a class="page-link rounded-3" href="#"><i class="bi bi-chevron-left"></i></a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+               
             </div>
         </div>
     </div>
