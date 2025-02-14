@@ -46,6 +46,14 @@ class messages extends Model
                 $this->closeConnection();
                 return $result;
             }
+            
+            public function insert_mess($id_user ,$values)
+            {
+                $query = "INSERT INTO `messages` (`sender_id` , `titel` , `message`,  `created_at`) VALUES (?,?,?,NOW());";
+                $params = array_merge([$id_user], array_values($values));  
+                $this->execute($query, $params);  
+                $this->closeConnection();
+            }
     public function insert($id_user ,$values)
     {
         $query = "INSERT INTO `messages` (`sender_id` , `titel` , `message`,  `created_at`) VALUES (?,?,?,NOW());";

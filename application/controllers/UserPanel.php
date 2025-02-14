@@ -258,6 +258,7 @@ class UserPanel extends Controller
   }
   public function ticket_single_show($id)
   {
+    $_SESSION['chath_id'] = $id ; 
     $user_id = $_SESSION['id_user'];
     $user = new UsersModel();
     $user = $user->find($user_id);
@@ -267,6 +268,16 @@ class UserPanel extends Controller
     $chath = new messagesModel();
     $chath = $chath->find_chath($id);
     return $this->view("app.panel.ticket_single", compact('user' ,  'messages' , 'chath'));
+
+  }
+  public function send_messaged() {
+  $user_id = $_SESSION['id_user'];
+ 
+    $chat_id =  $_SESSION['chath_id'];
+    $chaths = new messagesModel();
+    $chaths = $chaths->insert_mess($user_id , $_POST);
+   return $this->redirect('Userpanel/ticket_single_show/'. $chat_id );
+
 
   }
   

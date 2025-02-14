@@ -39,10 +39,13 @@
                                           <?php } else {?>
                                         <!-- Reply Form-->
                                         <h5 class="mb-3">ارسال پیام</h5>
-                                        <form method="post">
+                                        <form  action="<?php $this->url('/userpanel/send_messaged') ?>" method="post">
                                             <div class="form-group">
-                                                <input type="text" class="input_titel "  name="titel" >
-                                                <textarea class="form-control form-control-rounded" id="review_text" rows="8" placeholder="پیام خود را وارد کنید..." required=""></textarea>
+                                                <span style="font-size: 20px;">عنوان :</span>
+                                                <input type="text" class="form-control form-control-rounded w-50 mx-auto my-2 "  name="titel" placeholder="عنوان پیام خود را بنویسید !" required>
+                                                <span style="font-size: 20px;">متن اصلی پیغام :  </span>
+
+                                                <textarea class="form-control form-control-rounded" id="review_text" rows="8" placeholder="پیام خود را وارد کنید..." required></textarea>
                                             </div>
                                            
                                             </div>
