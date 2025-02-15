@@ -7,7 +7,7 @@ use application\model\Orders as OrdersModel;
 use application\model\addres as AssersModel;
 use application\model\favorites as favoritesModel;
 use application\model\messages as messagesModel;
-
+use PHPMailer\PHPMailer\POP3;
 
 class UserPanel extends Controller
 {
@@ -256,13 +256,19 @@ class UserPanel extends Controller
     return $this->view("app.panel.ticket", compact('user' , 'chaths'));
 
   }
+  public function create_Chath()
+  {
+    $user_id = $_SESSION['id_user'];
+    $messages = new messagesModel();
+    $chaths = $messages->insert_chat($user_id);
+    return $this->redirect('Userpanel/ticket' );
+  }
+  
   public function ticket_single_show($id)
   {
-    $_SESSION['chath_id'] = $id ; 
     $user_id = $_SESSION['id_user'];
     $user = new UsersModel();
     $user = $user->find($user_id);
-
     $messages = new messagesModel();
     $messages = $messages->allPanel_mess($id);
     $chath = new messagesModel();
@@ -270,13 +276,19 @@ class UserPanel extends Controller
     return $this->view("app.panel.ticket_single", compact('user' ,  'messages' , 'chath'));
 
   }
-  public function send_messaged() {
-  $user_id = $_SESSION['id_user'];
- 
+  public function send_messaged($id) {
+   $user_id = $_SESSION['id_user'];
     $chat_id =  $_SESSION['chath_id'];
+    $messages = new messagesModel();
+    $message = $messages->insert($id , $user_id , $_POST);
     $chaths = new messagesModel();
-    $chaths = $chaths->insert_mess($user_id , $_POST);
-   return $this->redirect('Userpanel/ticket_single_show/'. $chat_id );
+    $chaths = $chaths->find_chath($id);
+    if($chaths['titel'] == "") {
+      
+      $messages = new messagesModel();
+      $chaths = $messages->update_chat($id , 'titel' , $_POST['title']);
+    }
+   return $this->redirect('Userpanel/ticket_single_show/'. $id );
 
 
   }

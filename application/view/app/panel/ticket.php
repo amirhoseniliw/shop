@@ -4,11 +4,11 @@
             <div class="col-lg-9">
                 <div class="section-title">
                     <div class="section-title-title">
-                        <h3 class="title-font h3 main-color-three-color">آخرین<span class="main-color-one-color"> تیکت ها </span>
+                        <h3 class="title-font h3 main-color-three-color">آخرین<span class="main-color-one-color"> چت ها </span>
                         </h3>
 
                     </div>
-                    <a href="<?php $this->url('/Userpanel/create_address') ?>" class="btn btn-primary btn-sm" style="border-radius: 5px; margin-top: 20px;">ایجاد تیکت جدید</a>  
+                    <a href="<?php $this->url('/Userpanel/create_Chath') ?>" class="btn btn-primary btn-sm" style="border-radius: 5px; margin-top: 20px;">ایجاد چت جدید</a>  
                     </div>
                 <div class="table-custom slider-parent p-0">
                     <div class="table-responsive shadow-box roundedTable p-0">
@@ -35,7 +35,7 @@
                                 <?php }?>
                             </td>
                                 <td class="align-middle text-center"><p class="mt-2 font-16"><?php echo $this->jalaliData($chath['created_at'])  ?></p></td>
-                                <td class="align-middle text-center"><a href="<?php $this->url('/userpanel/ticket_single_show/' .  $chath['chat_id']) ?>" class="btn main-color-three-bg shadow-none btn-sm"> <i class="bi bi-eye me-1"></i> نمایش</a></td>
+                                <td class="align-middle text-center"><a href="<?php $this->url('/userpanel/ticket_single_show/' .  $chath['chat_id']) ?>" class="btn main-color-three-bg shadow-none btn-sm"> <i class="bi bi-eye me-1"></i> ایجاد پیام برای چت و نمایش پیام ها </a></td>
                             </tr>
                           <?php } ?>
                             </tbody>
