@@ -12,6 +12,13 @@ class messages extends Model
         $this->closeConnection();
         return $result;
     }
+    public function all_chats(){
+        $query = "SELECT `users`.`username` , `chats`.* FROM  `chats` JOIN  `users` ON `chats`.`user_id` = `users`.`user_id` ORDER BY  `chats`.`created_at` DESC;";  
+        $result = $this->query($query)->fetchAll();
+        
+            $this->closeConnection();
+            return $result;
+        }
     public function allPanel_mess($id){
         $query = "SELECT m.*, u.username, u.img_prof , u.phone_number  FROM `messages` m JOIN `users` u ON m.sender_id = u.user_id WHERE m.chat_id = ? ORDER BY `message_id`;";  
         $result = $this->query($query, [$id])->fetchAll();
