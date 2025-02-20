@@ -54,6 +54,8 @@
     <a href="<?php $this->url('/users') ?>"><i class="fas fa-users"></i> مشتریان</a>
     <a href="<?php $this->url('/category') ?>"><i class="fas fa-folder"></i> دسته بندی ها</a>
     <a href="<?php $this->url('/reports') ?>"><i class="fas fa-chart-line"></i> گزارش‌ها</a>
+    <a href="<?php $this->url('/chats_panel') ?>"><i class="fas fa-comment"></i> پیام ها </a>
+
     <a href="<?php $this->url('/settings') ?>"><i class="fas fa-cogs"></i> تنظیمات</a>
 </div>
     <div class="main-content">
