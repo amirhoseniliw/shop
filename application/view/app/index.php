@@ -85,14 +85,11 @@
                                             <div class="title">
                                                 <p class=" title-font"><?= $Bestseller_post['name'] ?></p>
                                             </div>
-                                            <div class="product-rating">
-                                                <div class="number"><span class="text-muted font-12">(15+) 4.8</span></div>
-                                                <div class="icon"><i class="bi bi-star-fill"></i></div>
-                                            </div>
+                                           
                                         </div>
                                         <div class="product-action">
                                             <div class="link">
-                                                <a class="btn border-0 rounded-3 main-color-one-bg" href="">
+                                                <a class="btn border-0 rounded-3 main-color-one-bg" href="<?php $this->url('/product/find/'. $Bestseller_post['product_id']) ?>">
                                                     <i class="bi bi-basket text-white"></i>
                                                 </a>
                                             </div>
@@ -654,7 +651,7 @@
             <div class="row gy-4">
                 <div class="col-12">
                     <div class="advert-item">
-                        <a href=""><img src="assets/img/advert-7.webp" class="rounded-4 w-100" alt=""></a>
+                        <a href=""><img src="" class="rounded-4 w-100" alt=""></a>
                     </div>
                 </div>
             </div>

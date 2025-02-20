@@ -14,7 +14,13 @@ class Products extends Model
         $this->closeConnection();
         return $result;
     }
-    
+    public function find($id)
+    {
+        $query = "SELECT *, (SELECT `name` FROM `categories` WHERE `categories`.`category_id` = `products`.`category_id` ) as category FROM `products` WHERE `product_id` = ?  ";
+        $result = $this->query($query, [$id])->fetch();
+        $this->closeConnection();
+        return $result;
+    }
     public function find_all($fildes, $values, $int)
     {
         // تعریف فیلدهای مجاز

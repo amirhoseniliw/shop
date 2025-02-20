@@ -1,0 +1,122 @@
+<!DOCTYPE html>  
+<html lang="fa">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>اضافه کردن عکس محصول</title>  
+    <style>  
+        body {  
+            font-family: 'Arial', sans-serif;  
+            background-color: #f4f4f4;  
+            margin: 0;  
+            padding: 20px;  
+        }  
+
+        .container {  
+            max-width: 600px;  
+            margin: auto;  
+            background: #fff;  
+            padding: 20px;  
+            border-radius: 8px;  
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  
+        }  
+
+        h1 {  
+            text-align: center;  
+            color: #333;  
+        }  
+
+        .form-group {  
+            margin-bottom: 15px;  
+        }  
+
+        label {  
+            display: block;  
+            margin-bottom: 5px;  
+            font-weight: bold;  
+        }  
+
+        input[type="file"] {  
+            width: 100%;  
+            padding: 10px;  
+            border: 1px solid #ccc;  
+            border-radius: 5px;  
+            font-size: 16px;  
+        }  
+
+        button {  
+            width: 100%;  
+            padding: 10px;  
+            background-color: #28a745;  
+            border: none;  
+            border-radius: 5px;  
+            color: white;  
+            font-size: 16px;  
+            cursor: pointer;  
+        }  
+
+        button:hover {  
+            background-color: #218838;  
+        }  
+
+        .message {  
+            display: none;  
+            margin-top: 15px;  
+            text-align: center;  
+            font-weight: bold;  
+        }  
+
+        .success {  
+            color: green;  
+        }  
+
+        .product-info {  
+            margin-top: 20px;  
+            text-align: center;  
+        }  
+
+        .product-image {  
+            max-width: 100%;  
+            border-radius: 5px;  
+        }  
+    </style>  
+</head>  
+<body>  
+    <div class="container">  
+        <h1>اضافه کردن عکس محصول</h1>  
+
+        <div class="product-info">  
+            <h2 id="productName">نام محصول: <span>محصول مورد نظر</span></h2>  
+            <img id="currentProductImage" class="product-image" src="your-image-url.jpg" alt="Sample Product" />  
+            <!--  به جای "your-image-url.jpg" آدرس عکس خود را قرار دهید -->  
+        </div>  
+
+        <form id="imageForm">  
+            <div class="form-group">  
+                <label for="image">بارگذاری عکس جدید:</label>  
+                <input type="file" id="image" name="image" accept="image/*" required>  
+            </div>  
+            <button type="submit">اضافه کردن عکس</button>  
+        </form>  
+        <div id="message" class="message"></div>  
+    </div>  
+
+    <script>  
+        document.getElementById('imageForm').addEventListener('submit', function (e) {  
+            e.preventDefault();  
+            const productImage = document.getElementById('image').files[0];  
+
+            // نمایش عکس جدید  
+            const reader = new FileReader();  
+            reader.onload = function (event) {  
+                document.getElementById('currentProductImage').src = event.target.result;  
+            }  
+            reader.readAsDataURL(productImage);  
+
+            document.getElementById('message').textContent = 'عکس جدید به محصول اضافه شد.';  
+            document.getElementById('message').classList.add('success');  
+            document.getElementById('message').style.display = 'block';  
+        });  
+    </script>  
+</body>  
+</html>
