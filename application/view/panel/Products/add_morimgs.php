@@ -147,9 +147,9 @@
     <div class="container">  
         <h1>اضافه کردن عکس محصول</h1>  
 
-        <div class="product-info">  
-            <h2 id="productName">نام محصول: <span>محصول مورد نظر</span></h2>  
-            <img id="currentProductImage" class="product-image" src="your-image-url.jpg" alt="Sample Product" />  
+        <div class="product-info"> 
+            <h2 id="productName"><?= $post['name']  ?> <span>محصول مورد نظر</span></h2>  
+            <img id="currentProductImage" class="product-image" src="<?php $this->asset($post['image_url']) ?>" alt="Sample Product" width="200" />  
             <!--  به جای "your-image-url.jpg" آدرس عکس خود را قرار دهید -->  
         </div>  
 

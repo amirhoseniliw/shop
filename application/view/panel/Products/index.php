@@ -160,6 +160,8 @@ $massall = ($this->flash('not_find_all'));
                                 <td><?php echo $this->jalaliData($post['updated_at']) ?></td>
                                 <td>
                                     <a href="<?php $this->url('/Products/products_edit/' . $post['product_id']) ?>"><button class="btn btn-warning btn-sm">ویرایش</button></a>
+                                    <a href="<?php $this->url('/Products/add_mor_img/' . $post['product_id']) ?>"><button class="btn btn-warning btn-sm">اضافه کردن عکس </button></a>
+                                    <a href="<?php $this->url('/Products/add_color/' . $post['product_id']) ?>"><button class="btn btn-warning btn-sm">اضافه کردن رنگ </button></a>
                                     <button class="btn btn-danger btn-sm" onclick="deleteRecord(<?= $post['product_id']?>)">حذف</button>
                                 </td>
                                 </tr>
