@@ -278,7 +278,7 @@ class UserPanel extends Controller
   }
   public function send_messaged($id) {
    $user_id = $_SESSION['id_user'];
-    $chat_id =  $_SESSION['chath_id'];
+
     $messages = new messagesModel();
     $message = $messages->insert($id , $user_id , $_POST);
     $chaths = new messagesModel();

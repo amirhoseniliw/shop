@@ -25,10 +25,20 @@ public function chang_status($id) {
     return $this->redirect('chats_panel');
 
  }
- public function open_chat() {
-
+ public function open_chat($id) {
+    $_SESSION['id_user'] = 1 ;
+    $messages = new messagesModel();
+    $messages = $messages->allPanel_mess($id);
     $chats = new messagesModel();
-    $chats = $chats->all_chats();
-     return $this->view("panel.chats.chat" , compact('chats'));
+    $chath = $chats->find_chath($id);
+     return $this->view("panel.chats.chat" , compact('chath' , 'messages'));
  }
+ public function send_messaged_panel($id) {
+    $user_id = $_SESSION['id_user'];
+    $messages = new messagesModel();
+     $messages->insert($id , $user_id , $_POST);
+
+    return $this->redirect('chats_panel/open_chat/' . $id);
+}
+ 
 }
