@@ -38,80 +38,92 @@
         .navbar {
             margin-right: 250px;
         }
-        body {  
-            font-family: 'Arial', sans-serif;  
-            background-color: #f4f4f4;  
-            margin: 0;  
-            padding: 20px;  
-        }  
-
-        .container {  
-            max-width: 600px;  
-            margin: auto;  
-            background: #fff;  
-            padding: 20px;  
-            border-radius: 8px;  
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  
-        }  
-
-        h1 {  
-            text-align: center;  
-            color: #333;  
-        }  
-
-        .form-group {  
-            margin-bottom: 15px;  
-        }  
-
-        label {  
-            display: block;  
-            margin-bottom: 5px;  
-            font-weight: bold;  
-        }  
-
-        input[type="file"] {  
-            width: 100%;  
-            padding: 10px;  
-            border: 1px solid #ccc;  
-            border-radius: 5px;  
-            font-size: 16px;  
-        }  
-
-        button {  
-            width: 100%;  
-            padding: 10px;  
-            background-color: #28a745;  
-            border: none;  
-            border-radius: 5px;  
-            color: white;  
-            font-size: 16px;  
-            cursor: pointer;  
-        }  
-
-        button:hover {  
-            background-color: #218838;  
-        }  
-
-        .message {  
-            display: none;  
-            margin-top: 15px;  
-            text-align: center;  
-            font-weight: bold;  
-        }  
-
-        .success {  
-            color: green;  
-        }  
-
-        .product-info {  
-            margin-top: 20px;  
-            text-align: center;  
-        }  
-
-        .product-image {  
-            max-width: 100%;  
-            border-radius: 5px;  
-        }  
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .gallery {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+        .image-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .image-container img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+        }
+        .image-container .image-id {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #555;
+        }
+        .delete-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .form-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .form-container {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+            max-width: 400px;
+            width: 100%;
+        }
+        input[type="file"], input[type="text"], button {
+            padding: 12px;
+            margin: 8px;
+            border: none;
+            border-radius: 8px;
+            width: calc(100% - 16px);
+        }
+        button {
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .back-btn {
+            margin-top: 20px;
+            padding: 12px 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -143,42 +155,39 @@
         </div>
     </nav>
 
-
-    <div class="container">  
-        <h1>اضافه کردن عکس محصول</h1>  
-
-        <div class="product-info"> 
-            <h2 id="productName"><?= $post['name']  ?> <span>محصول مورد نظر</span></h2>  
-            <img id="currentProductImage" class="product-image" src="<?php $this->asset($post['image_url']) ?>" alt="Sample Product" width="200" />  
-            <!--  به جای "your-image-url.jpg" آدرس عکس خود را قرار دهید -->  
-        </div>  
-
-        <form id="imageForm">  
-            <div class="form-group">  
-                <label for="image">بارگذاری عکس جدید:</label>  
-                <input type="file" id="image" name="image" accept="image/*" required>  
-            </div>  
-            <button type="submit">اضافه کردن عکس</button>  
-        </form>  
-        <div id="message" class="message"></div>  
-    </div>  
-
-    <script>  
-        document.getElementById('imageForm').addEventListener('submit', function (e) {  
-            e.preventDefault();  
-            const productImage = document.getElementById('image').files[0];  
-
-            // نمایش عکس جدید  
-            const reader = new FileReader();  
-            reader.onload = function (event) {  
-                document.getElementById('currentProductImage').src = event.target.result;  
-            }  
-            reader.readAsDataURL(productImage);  
-
-            document.getElementById('message').textContent = 'عکس جدید به محصول اضافه شد.';  
-            document.getElementById('message').classList.add('success');  
-            document.getElementById('message').style.display = 'block';  
-        });  
-    </script>  
-</body>  
+    <h2>گالری محصولات</h2>
+    <div class="gallery">
+        <div class="image-container">
+            <img src="https://via.placeholder.com/150" alt="محصول">
+            <span class="image-id">ID: 12345</span>
+            <button class="delete-btn">×</button>
+        </div>
+        <div class="image-container">
+            <img src="https://via.placeholder.com/150" alt="محصول">
+            <span class="image-id">ID: 67890</span>
+            <button class="delete-btn">×</button>
+        </div>
+        <!-- تصاویر بیشتر -->
+    </div>
+    
+    <div class="form-wrapper">
+        <div class="form-container">
+            <h3>آپدیت تصویر</h3>
+            <form>
+                <input type="text" placeholder="کد تصویر را وارد کنید">
+                <input type="file" accept="image/*">
+                <button type="submit">آپلود</button>
+            </form>
+        </div>
+        
+        <div class="form-container">
+            <h3>افزودن تصویر جدید</h3>
+            <form>
+                <input type="file" accept="image/*">
+                <button type="submit">افزودن</button>
+            </form>
+        </div>
+    </div>
+    <button class="back-btn" onclick="window.history.back();">بازگشت</button>
+</body>
 </html>

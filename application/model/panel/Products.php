@@ -60,6 +60,36 @@ class Products extends Model
     }
     
 //!------------------------------------------------------------------------------------------------
+public function insert_img($values)
+{
+    $query = "INSERT INTO `product_images`(`product_id`, `image_url`, `alt_text`, `created_at`) VALUES (?,?,?, NOW())";
+    $this->execute($query , array_values($values));
+    $this->closeConnection();
+}
+public function update_img($values)
+{
+    $query = "INSERT INTO `product_images`(`product_id`, `image_url`, `alt_text`, `created_at`) VALUES (?,?,?, NOW())";
+    $this->execute($query , array_values($values));
+    $this->closeConnection();
+}
+public function delete_img($id) {  
+    // اطمینان از اینکه id معتبر است  
+    if (!is_numeric($id)) {  
+        throw new InvalidArgumentException("Product ID باید یک عدد باشد.");  
+    }  
+
+    $query = "DELETE FROM `products` WHERE `product_id` = ?";  
+
+    // اجرای کوئری  
+    if ($this->execute($query, [$id])) {  
+        // در صورت موفقیت، اتصال را ببندید  
+        $this->closeConnection();  
+        return true; // می‌توانید یک مقدار true برگردانید در صورت موفقیت  
+    } else {  
+        // در صورت عدم موفقیت، می‌توانید یک خطای مناسب را مدیریت کنید  
+        throw new Exception("عملیات حذف با موفقیت انجام نشد.");  
+    }  
+} 
     public function insert($values)
     {
         $query = "INSERT INTO `products` (`user_id`,`name`,`brand` ,`description`,`price`,`stock_qty`,`view`,`Selected`, `Bestseller`, `status`,`category_id`, `image_url`, `created_at`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, NOW());";

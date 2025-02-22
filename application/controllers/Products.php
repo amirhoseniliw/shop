@@ -137,8 +137,15 @@ else {
 public function add_mor_img($id) {
     $posts = new ProductsModel();
     $post = $posts->find($id);
-    return $this->view("panel.products.add_morimgs", compact('post')); }
-
+    // $img = new ProductsModel();
+    // $post = $posts->find($id);
+    return $this->view("panel.products.add_morimgs", compact('post')); 
+}
+public function add_mor_img_stor($id) {
+    $posts = new ProductsModel();
+    $post = $posts->find($id);
+    return $this->view("panel.products.add_morimgs", compact('post')); 
+}
 
 public function add_color($id) {
     if($_FILES['image_url']['tmp_name'] != null){
