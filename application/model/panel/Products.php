@@ -66,12 +66,28 @@ public function insert_img($values)
     $this->execute($query , array_values($values));
     $this->closeConnection();
 }
-public function update_img($values)
+public function find_img($id)
 {
-    $query = "INSERT INTO `product_images`(`product_id`, `image_url`, `alt_text`, `created_at`) VALUES (?,?,?, NOW())";
-    $this->execute($query , array_values($values));
+    $query = "SELECT * FROM `product_images` WHERE `product_id` =  ?";
+    $result = $this->query($query, [$id])->fetchAll();
     $this->closeConnection();
+    return $result;
 }
+public function find_img_update( $id_img)
+{
+    $query = "SELECT * FROM `product_images` WHERE  `image_id` = ? ";
+    $result = $this->query($query, [$id_img])->fetch();
+    $this->closeConnection();
+    return $result;
+}
+public function update_img($id, $values)  
+{  
+    $query = "UPDATE `product_images` SET `alt_text`= ?, `image_url`= ?, `created_at`= NOW() WHERE `image_id` = ?";  
+    // ایجاد آرایه جدید با ترکیب مقادیر و شناسه تصویر  
+    $params = array_merge(array_values($values), [$id]);  
+    $this->execute($query, $params);  
+    $this->closeConnection();  
+}  
 public function delete_img($id) {  
     // اطمینان از اینکه id معتبر است  
     if (!is_numeric($id)) {  

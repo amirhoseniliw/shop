@@ -154,36 +154,42 @@
             </div>
         </div>
     </nav>
-
+    <p>نام محصول </p>
+    <h2><?= $post['name']  ?></h2>
+    <br>
     <h2>گالری محصولات</h2>
     <div class="gallery">
+        
+        <?php foreach($img_posts as $img_post) {?>
         <div class="image-container">
-            <img src="https://via.placeholder.com/150" alt="محصول">
-            <span class="image-id">ID: 12345</span>
+            <img src="<?php $this->asset($img_post['image_url']) ?>" alt="محصول">
+            <span class="image-id">ID: <?= $img_post['image_id'] ?></span>
+            <span class="image-id">alt: <?= $img_post['alt_text'] ?></span>
             <button class="delete-btn">×</button>
+            
         </div>
-        <div class="image-container">
-            <img src="https://via.placeholder.com/150" alt="محصول">
-            <span class="image-id">ID: 67890</span>
-            <button class="delete-btn">×</button>
-        </div>
+       <?php } ?>
         <!-- تصاویر بیشتر -->
     </div>
     
     <div class="form-wrapper">
         <div class="form-container">
             <h3>آپدیت تصویر</h3>
-            <form>
-                <input type="text" placeholder="کد تصویر را وارد کنید">
-                <input type="file" accept="image/*">
+            <form action="<?php $this->url('/products/update_img/' . $post['product_id'])  ?>" method="post" enctype="multipart/form-data">
+                <input type="text" name="image_id" placeholder="کد تصویر را وارد کنید" required>
+                <input type="file" name="image_url" accept="image/*" required>
+                <input type="text" name="alt_text" placeholder="توضیحات" required>
+
                 <button type="submit">آپلود</button>
             </form>
         </div>
         
         <div class="form-container">
             <h3>افزودن تصویر جدید</h3>
-            <form>
-                <input type="file" accept="image/*">
+            <form action="<?php $this->url('/products/img_stor/' .  $post['product_id']) ?>" method="post" enctype="multipart/form-data">
+                <input type="file" name="image_url" accept="image/*" required>
+                <input type="text" name="alt_text" placeholder="توضیحات " required>
+
                 <button type="submit">افزودن</button>
             </form>
         </div>

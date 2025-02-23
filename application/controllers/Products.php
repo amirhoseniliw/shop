@@ -120,8 +120,8 @@ public function add_mor_img($id) {
     $posts = new ProductsModel();
     $post = $posts->find($id);
     $img_post = new ProductsModel();
-    $post = $posts->find($id);
-    return $this->view("panel.products.add_morimgs", compact('post')); 
+    $img_posts = $img_post->find_img($id);
+    return $this->view("panel.products.add_morimgs", compact('post' , 'img_posts')); 
 }
 public function img_stor($id) {
     $posts = new ProductsModel();
@@ -129,9 +129,19 @@ public function img_stor($id) {
     return $this->view("panel.products.add_morimgs", compact('post')); 
 }
 public function update_img($id) {
-    $posts = new ProductsModel();
-    $post = $posts->find($id);
-    return $this->view("panel.products.add_morimgs", compact('post')); 
+    $img_id = $_POST['image_id'];
+    unset($_POST['image_id']);
+
+        $img_post = new ProductsModel();
+        $img_posts = $img_post->find_img_update($img_id);
+        $this->removeImage($img_posts['image_url']);
+        $_POST['image_url'] =  $this->saveImage($_FILES['image_url'] , '/img/posts');
+        $_POST['image_url'] = str_replace( 'public/' , "",$_POST['image_url'] ); 
+        // $this->dd($_POST);
+        $img = new ProductsModel();
+        $img->update_img($img_id , $_POST);
+  return $this->redirect('Products/add_mor_img/' . $id);
+
 }
 public function delete_img($id) {
     $posts = new ProductsModel();
