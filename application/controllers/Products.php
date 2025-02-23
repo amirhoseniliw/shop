@@ -124,9 +124,11 @@ public function add_mor_img($id) {
     return $this->view("panel.products.add_morimgs", compact('post' , 'img_posts')); 
 }
 public function img_stor($id) {
-    $posts = new ProductsModel();
-    $post = $posts->find($id);
-    return $this->view("panel.products.add_morimgs", compact('post')); 
+    $_POST['image_url'] =  $this->saveImage($_FILES['image_url'] , '/img/posts');
+    $_POST['image_url'] = str_replace( 'public/' , "",$_POST['image_url'] ); 
+    $imgs = new ProductsModel();
+    $img = $imgs->insert_img($id , $_POST);
+    return $this->redirect('Products/add_mor_img/' . $id);
 }
 public function update_img($id) {
     $img_id = $_POST['image_id'];
@@ -144,29 +146,20 @@ public function update_img($id) {
 
 }
 public function delete_img($id) {
-    $posts = new ProductsModel();
-    $post = $posts->find($id);
-    return $this->view("panel.products.add_morimgs", compact('post')); 
+    $img_post = new ProductsModel();
+    $img_posts = $img_post->find_img_update($id);
+    $this->removeImage($img_posts['image_url']);
+    $img = new ProductsModel();
+    $img = $img->delete_img($id);
+    return $this->redirect('Products/add_mor_img/' . $img_posts['product_id']);
 }
 
 public function add_color($id) {
-    if($_FILES['image_url']['tmp_name'] != null){
-        $posts = new ProductsModel();
-        $post = $posts->find($id);
-        $this->removeImage($post['image_url']);
-        $_POST['image_url'] =  $this->saveImage($_FILES['image_url'] , '/img/posts');
-        $_POST['image_url'] = str_replace( 'public/' , "",$_POST['image_url'] ); 
-        $post = new ProductsModel();
-        $post->update($id , $_POST);
-
-    }
-    
     $posts = new ProductsModel();
     $post = $posts->find($id);
-    $_POST['image_url'] =  $post['image_url'];
-    $post = new ProductsModel();
-    $post->update($id , $_POST);
-    return $this->redirect('products');
+    $colors = new ProductsModel();
+    $colors = $colors->find_img($id);
+    return $this->view("panel.products.addcolors", compact('post' , 'colors')); 
 
 }
 

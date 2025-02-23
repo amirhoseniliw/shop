@@ -60,11 +60,12 @@ class Products extends Model
     }
     
 //!------------------------------------------------------------------------------------------------
-public function insert_img($values)
+public function insert_img($id ,$values)
 {
-    $query = "INSERT INTO `product_images`(`product_id`, `image_url`, `alt_text`, `created_at`) VALUES (?,?,?, NOW())";
-    $this->execute($query , array_values($values));
-    $this->closeConnection();
+    $query = "INSERT INTO `product_images`(`product_id`,  `alt_text`, `image_url`, `created_at`) VALUES (?,?,?, NOW())";
+    $params = array_merge([$id] ,array_values($values) );  
+    $this->execute($query, $params);  
+    $this->closeConnection();  
 }
 public function find_img($id)
 {
@@ -94,7 +95,7 @@ public function delete_img($id) {
         throw new InvalidArgumentException("Product ID باید یک عدد باشد.");  
     }  
 
-    $query = "DELETE FROM `products` WHERE `product_id` = ?";  
+    $query = "DELETE FROM `product_images` WHERE `image_id` = ?";  
 
     // اجرای کوئری  
     if ($this->execute($query, [$id])) {  
