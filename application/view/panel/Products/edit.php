@@ -172,8 +172,7 @@
 <?php }?> 
             </select>  
 
-            <label for="image_url">آدرس تصویر محصول:</label>  
-            <input type="file" name="image_url" >  
+          
                 </br>
             <img src="<?php $this->asset($post['image_url']) ?>" alt="error" width="80">
 

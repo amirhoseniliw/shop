@@ -134,7 +134,11 @@ $massall = ($this->flash('not_find_all'));
                                 <td><?= $post['name'] ?></td>
                                 <td><?= $post['brand'] ?></td>
                                 <td><?= $post['description'] ?></td>
-                                <td><a href="<?= $this->asset($post['image_url']) ?>" target="_blank"><img src="<?= $this->asset($post['image_url']) ?>" alt="محصول" width="80"></a></td>
+                              
+                                <td>  <?php   $imageUrlsArrays = explode(',', $post['image_urls']);
+                                foreach ($imageUrlsArrays as $imageUrlsArray){          ?>
+                                    <a href="<?= $this->asset($imageUrlsArray) ?>" target="_blank"><img src="<?= $this->asset($imageUrlsArray) ?>" alt="محصول" width="80"></a> <?php } ?></td>
+                               
                                 <td><?= $post['price'] ?> تومان</td>
                                 <td><?= $post['stock_qty'] ?></td>
                                 <td><?= $post['categoryname'] ?></td>

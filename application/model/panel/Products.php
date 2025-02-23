@@ -15,7 +15,7 @@ class Products extends Model
         return $result;
     }
     public function allPanel()
-    { $query = "SELECT products.* , categories.name AS categoryname FROM `products` LEFT JOIN categories ON products.category_id = categories.category_id; ";
+    { $query = "SELECT products.*, categories.name AS categoryname, GROUP_CONCAT(product_images.image_url) AS image_urls FROM products LEFT JOIN categories ON products.category_id = categories.category_id LEFT JOIN product_images ON products.product_id = product_images.product_id GROUP BY products.product_id, categories.name;";
         // $query = "SELECT *,( SELECT `name` FROM `categories` WHERE `categories`.`id` = `articles`. `cat_id`) as 'category_name' FROM `articles`";
         $result = $this->query($query)->fetchAll();
         $this->closeConnection();
@@ -92,12 +92,12 @@ public function delete_img($id) {
 } 
     public function insert($values)
     {
-        $query = "INSERT INTO `products` (`user_id`,`name`,`brand` ,`description`,`price`,`stock_qty`,`view`,`Selected`, `Bestseller`, `status`,`category_id`, `image_url`, `created_at`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, NOW());";
+        $query = "INSERT INTO `products` (`user_id`,`name`,`brand` ,`description`,`price`,`stock_qty`,`view`,`Selected`, `Bestseller`, `status`,`category_id`, `created_at`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, NOW());";
         $this->execute($query , array_values($values));
         $this->closeConnection();
     }
     public function update($id, $values) {
-        $query= "UPDATE `products` SET `name` = ?,`brand` = ? , `description` = ?, `price` = ?, `stock_qty` = ?, `view` = ?, `Selected` = ?, `Bestseller` = ?, `status` = ?,`category_id` = ?,`image_url` = ?, `updated_at` = NOW() WHERE `product_id` = ? ";
+        $query= "UPDATE `products` SET `name` = ?,`brand` = ? , `description` = ?, `price` = ?, `stock_qty` = ?, `view` = ?, `Selected` = ?, `Bestseller` = ?, `status` = ?,`category_id` = ? , `updated_at` = NOW() WHERE `product_id` = ? ";
         $this->execute($query ,array_merge( array_values($values), [$id]));
         $this->closeConnection();
     }

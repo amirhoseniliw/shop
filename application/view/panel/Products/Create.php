@@ -178,8 +178,7 @@
 <?php }?>
             </select>  
 
-            <label for="image_url">آدرس تصویر محصول:</label>  
-            <input type="file" name="image_url" required>  
+           
 
             <input type="submit" value="ایجاد محصول">  
         </form>  

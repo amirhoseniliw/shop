@@ -6,8 +6,9 @@ use application\model\panel\Products as ProductsModel;
 use application\model\panel\Category as CategoryModel;
 class products extends Controller{
 public function index() {
-           $posts = new ProductsModel();
-         $posts = $posts->allPanel();
+         $posts = new ProductsModel();
+         $posts = $posts->allPanel();         
+
         return $this->view("panel.products.index", compact('posts'));
 
     }
@@ -19,8 +20,6 @@ public function index() {
 
  }
  public function products_store() {
-    $_POST['image_url'] =  $this->saveImage($_FILES['image_url'] , '/img/posts');
-    $_POST['image_url'] = str_replace( 'public/' , "",$_POST['image_url'] ); 
     $posts = new ProductsModel();
     $posts->insert($_POST);
     return $this->redirect('products');
@@ -28,14 +27,11 @@ public function index() {
 
 }
 public function products_delete($id) {
-    $post = new ProductsModel();
-    $old_post =  $post->find($id);
-$img = $this->removeImage($old_post['image_url']);
-if($img){
+
  $post = new ProductsModel();
     $post->delete($id);
     return $this->redirect('products');
-}
+
    
 
 }
@@ -50,20 +46,6 @@ public function products_edit($id) {
 
 }
 public function products_update($id) {
-    if($_FILES['image_url']['tmp_name'] != null){
-        $posts = new ProductsModel();
-        $post = $posts->find($id);
-        $this->removeImage($post['image_url']);
-        $_POST['image_url'] =  $this->saveImage($_FILES['image_url'] , '/img/posts');
-        $_POST['image_url'] = str_replace( 'public/' , "",$_POST['image_url'] ); 
-        $post = new ProductsModel();
-        $post->update($id , $_POST);
-
-    }
-    
-    $posts = new ProductsModel();
-    $post = $posts->find($id);
-    $_POST['image_url'] =  $post['image_url'];
     $post = new ProductsModel();
     $post->update($id , $_POST);
     return $this->redirect('products');
@@ -137,11 +119,21 @@ else {
 public function add_mor_img($id) {
     $posts = new ProductsModel();
     $post = $posts->find($id);
-    // $img = new ProductsModel();
-    // $post = $posts->find($id);
+    $img_post = new ProductsModel();
+    $post = $posts->find($id);
     return $this->view("panel.products.add_morimgs", compact('post')); 
 }
-public function add_mor_img_stor($id) {
+public function img_stor($id) {
+    $posts = new ProductsModel();
+    $post = $posts->find($id);
+    return $this->view("panel.products.add_morimgs", compact('post')); 
+}
+public function update_img($id) {
+    $posts = new ProductsModel();
+    $post = $posts->find($id);
+    return $this->view("panel.products.add_morimgs", compact('post')); 
+}
+public function delete_img($id) {
     $posts = new ProductsModel();
     $post = $posts->find($id);
     return $this->view("panel.products.add_morimgs", compact('post')); 
