@@ -38,145 +38,84 @@
         .navbar {
             margin-right: 250px;
         }
-        body {  
-            font-family: 'Arial', sans-serif;  
-            background-color: #f4f4f4;  
-            margin: 0;  
-            padding: 20px;  
-        }  
-
-        .container {  
-            max-width: 600px;  
-            margin: auto;  
-            background: #fff;  
-            padding: 20px;  
-            border-radius: 8px;  
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  
-        }  
-
-        h1 {  
-            text-align: center;  
-            color: #333;  
-        }  
-
-        .form-group {  
-            margin-bottom: 15px;  
-        }  
-
-        label {  
-            display: block;  
-            margin-bottom: 5px;  
-            font-weight: bold;  
-        }  
-
-        input[type="file"] {  
-            width: 100%;  
-            padding: 10px;  
-            border: 1px solid #ccc;  
-            border-radius: 5px;  
-            font-size: 16px;  
-        }  
-
-        button {  
-            width: 100%;  
-            padding: 10px;  
-            background-color: #28a745;  
-            border: none;  
-            border-radius: 5px;  
-            color: white;  
-            font-size: 16px;  
-            cursor: pointer;  
-        }  
-
-        button:hover {  
-            background-color: #218838;  
-        }  
-
-        .message {  
-            display: none;  
-            margin-top: 15px;  
-            text-align: center;  
-            font-weight: bold;  
-        }  
-
-        .success {  
-            color: green;  
-        }  
-
-        .product-info {  
-            margin-top: 20px;  
-            text-align: center;  
-        }  
-
-        .product-image {  
-            max-width: 100%;  
-            border-radius: 5px;  
-        }  
-        body {  
-    font-family: 'Arial', sans-serif;  
-    background-color: #f4f4f4;  
-    margin: 0;  
-    padding: 20px;  
-}  
-
-.container {  
-    max-width: 600px;  
-    margin: auto;  
-    background: #fff;  
-    padding: 20px;  
-    border-radius: 8px;  
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  
-}  
-
-h1 {  
-    text-align: center;  
-    color: #333;  
-}  
-
-.form-group {  
-    margin-bottom: 15px;  
-}  
-
-label {  
-    display: block;  
-    margin-bottom: 5px;  
-    font-weight: bold;  
-}  
-
-input[type="number"],  
-select {  
-    width: 100%;  
-    padding: 10px;  
-    border: 1px solid #ccc;  
-    border-radius: 5px;  
-    font-size: 16px;  
-}  
-
-button {  
-    width: 100%;  
-    padding: 10px;  
-    background-color: #28a745;  
-    border: none;  
-    border-radius: 5px;  
-    color: white;  
-    font-size: 16px;  
-    cursor: pointer;  
-}  
-
-button:hover {  
-    background-color: #218838;  
-}  
-
-.message {  
-    display: none;  
-    margin-top: 15px;  
-    text-align: center;  
-    font-weight: bold;  
-}  
-
-.success {  
-    color: green;  
-}
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .gallery {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+        .color-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 120px;
+        }
+        .color-box {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .color-container .color-id {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+        .delete-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .form-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .form-container {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+            max-width: 400px;
+            width: 100%;
+        }
+        input[type="text"], input[type="number"], button {
+            padding: 12px;
+            margin: 8px;
+            border: none;
+            border-radius: 8px;
+            width: calc(100% - 16px);
+        }
+        button {
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -208,40 +147,54 @@ button:hover {
         </div>
     </nav>
 
-    <div class="container">  
-        <h1>اضافه کردن رنگ به محصول</h1>  
-        <form id="colorForm">  
-            <div class="form-group">  
-                <label for="product_id">شناسه محصول:</label>  
-                <input type="number" id="product_id" name="product_id" required placeholder="مثال: 1">  
-            </div>  
-            <div class="form-group">  
-                <label for="color_id">انتخاب رنگ:</label>  
-                <select id="color_id" name="color_id" required>  
-                    <option value="">انتخاب رنگ</option>  
-                    <option value="1">قرمز</option>  
-                    <option value="2">آبی</option>  
-                    <option value="3">سبز</option>  
-                    <!-- می‌توانید رنگ‌های بیشتری اضافه کنید -->  
-                </select>  
-            </div>  
-            <div class="form-group">  
-                <label for="stock">تعداد موجودی:</label>  
-                <input type="number" id="stock" name="stock" required placeholder="مثال: 10">  
-            </div>  
-            <button type="submit">اضافه کردن رنگ</button>  
-        </form>  
-        <div id="message" class="message"></div>  
-    </div>  
 
-    <script>  
-        $(document).ready(function () {  
-            $('#colorForm').on('submit', function (e) {  
-                e.preventDefault();  
-                // اینجا می‌توانید AJAX برای ارسال داده‌ها به سرور اضافه کنید  
-                $('#message').text('رنگ به محصول اضافه شد.').addClass('success').fadeIn();  
-            });  
-        });  
-    </script>  
-</body>  
+
+
+       
+    </style> 
+    <p>نام محصول </p>
+        <h2><?= $post['name']  ?></h2>
+        <br>
+    
+    
+    
+    <h2>مدیریت رنگ‌های محصول</h2>
+
+    <div class="gallery">
+        <div class="color-container">
+            <div class="color-box" style="background: red;"></div>
+            <span class="color-id">ID: 101</span>
+            <span>تعداد: 5</span>
+            <button class="delete-btn">×</button>
+        </div>
+        <div class="color-container">
+            <div class="color-box" style="background: blue;"></div>
+            <span class="color-id">ID: 102</span>
+            <span>تعداد: 8</span>
+            <button class="delete-btn">×</button>
+        </div>
+        <!-- رنگ‌های بیشتر -->
+    </div>
+    
+    <div class="form-wrapper">
+        <div class="form-container">
+            <h3>آپدیت تعداد رنگ</h3>
+            <form>
+                <input type="text" placeholder="کد رنگ را وارد کنید">
+                <input type="number" placeholder="تعداد جدید را وارد کنید">
+                <button type="submit">آپدیت</button>
+            </form>
+        </div>
+        
+        <div class="form-container">
+            <h3>افزودن رنگ جدید</h3>
+            <form>
+                <input type="text" placeholder="نام رنگ را وارد کنید">
+                <input type="text" placeholder="کد رنگ (HEX) را وارد کنید">
+                <input type="number" placeholder="تعداد را وارد کنید">
+                <button type="submit">افزودن</button>
+            </form>
+        </div>
+    </div>
+</body>
 </html>

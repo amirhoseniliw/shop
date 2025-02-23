@@ -59,7 +59,7 @@ class Products extends Model
         return $result;
     }
     
-//!------------------------------------------------------------------------------------------------
+//!------------------------------------------------------------------------------------------------ img
 public function insert_img($id ,$values)
 {
     $query = "INSERT INTO `product_images`(`product_id`,  `alt_text`, `image_url`, `created_at`) VALUES (?,?,?, NOW())";
@@ -107,6 +107,55 @@ public function delete_img($id) {
         throw new Exception("عملیات حذف با موفقیت انجام نشد.");  
     }  
 } 
+//!-------------------------------------------------------------------colors 
+public function insert_color($id ,$values)
+{
+    $query = "INSERT INTO `colors`(`product_id`,  `alt_text`, `image_url`, `created_at`) VALUES (?,?,?, NOW())";
+    $params = array_merge([$id] ,array_values($values) );  
+    $this->execute($query, $params);  
+    $this->closeConnection();  
+}
+public function find_color($id)
+{
+    $query = "SELECT * FROM `product_images` WHERE `product_id` =  ?";
+    $result = $this->query($query, [$id])->fetchAll();
+    $this->closeConnection();
+    return $result;
+}
+public function find_color_update( $id_img)
+{
+    $query = "SELECT * FROM `product_images` WHERE  `image_id` = ? ";
+    $result = $this->query($query, [$id_img])->fetch();
+    $this->closeConnection();
+    return $result;
+}
+public function update_color($id, $values)  
+{  
+    $query = "UPDATE `product_images` SET `alt_text`= ?, `image_url`= ?, `created_at`= NOW() WHERE `image_id` = ?";  
+    // ایجاد آرایه جدید با ترکیب مقادیر و شناسه تصویر  
+    $params = array_merge(array_values($values), [$id]);  
+    $this->execute($query, $params);  
+    $this->closeConnection();  
+}  
+public function delete_color($id) {  
+    // اطمینان از اینکه id معتبر است  
+    if (!is_numeric($id)) {  
+        throw new InvalidArgumentException("Product ID باید یک عدد باشد.");  
+    }  
+
+    $query = "DELETE FROM `product_images` WHERE `image_id` = ?";  
+
+    // اجرای کوئری  
+    if ($this->execute($query, [$id])) {  
+        // در صورت موفقیت، اتصال را ببندید  
+        $this->closeConnection();  
+        return true; // می‌توانید یک مقدار true برگردانید در صورت موفقیت  
+    } else {  
+        // در صورت عدم موفقیت، می‌توانید یک خطای مناسب را مدیریت کنید  
+        throw new Exception("عملیات حذف با موفقیت انجام نشد.");  
+    }  
+} 
+//!-------------------------------------------------------------------------products
     public function insert($values)
     {
         $query = "INSERT INTO `products` (`user_id`,`name`,`brand` ,`description`,`price`,`stock_qty`,`view`,`Selected`, `Bestseller`, `status`,`category_id`, `created_at`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, NOW());";
