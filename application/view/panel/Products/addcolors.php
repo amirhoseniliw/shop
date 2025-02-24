@@ -139,6 +139,78 @@
         option {  
             padding: 10px; /* فاصله داخلی گزینه‌ها */  
         } 
+        select {
+        padding: 10px;
+        /* حاشیه داخلی */
+        width: 250px;
+        /* عرض دلخواه */
+        border: 1px solid #ccc;
+        /* حاشیه */
+        border-radius: 4px;
+        /* گوشه‌های گرد */
+        font-size: 16px;
+        /* اندازه فونت */
+        text-align: right;
+        /* تراز متن به سمت راست */
+        background-color: #fff;
+        /* رنگ پس‌زمینه */
+        appearance: none;
+        /* غیرفعال کردن ظاهر پیش‌فرض مرورگر */
+        cursor: pointer;
+        /* نشانگر ماوس */
+    }
+
+    /* ایجاد یک پیکان برای dropdown */
+    .select-wrapper {
+        position: relative;
+        display: inline-block;
+    }
+    .select-wrapper:after {
+        content: '▼';
+        /* پیکان رو به پایین */
+        position: absolute;
+        right: 10px;
+        /* فاصله از سمت راست */
+        top: 50%;
+        /* مرکز کردن عمودی */
+        transform: translateY(-50%);
+        /* جابجایی به مرکز عمودی */
+        pointer-events: none;
+        /* غیرفعال کردن رویدادهای ماوس برای پیکان */
+    }
+    .delete-btn {
+        position: absolute;
+        top: 2px;
+        right: 5px;
+        background: red;
+        /* رنگ پس‌زمینه */
+        color: white;
+        /* رنگ متن */
+        border: none;
+        /* بدون حاشیه */
+        border-radius: 50%;
+        /* دکمه گرد */
+        width: 25px;
+        /* عرض دکمه */
+        height: 25px;
+        /* ارتفاع دکمه */
+        cursor: pointer;
+        /* نشانگر ماوس */
+        display: flex;
+        /* فعال کردن Flexbox */
+        align-items: center;
+        /* مرکز کردن عمودی */
+        justify-content: center;
+        /* مرکز کردن افقی */
+        font-size: 12px;
+        /* اندازه فونت */
+    }
+
+    .delete-btn i {
+        font-size: 14px;
+        /* اندازه آیکون */
+    }
+
     </style>
 </head>
 <body>
@@ -184,19 +256,18 @@
     <h2>مدیریت رنگ‌های محصول</h2>
 
     <div class="gallery">
-        <?php ?>
+        <?php foreach($colors as $color) { ?>
+
         <div class="color-container">
-            <div class="color-box" style="background: red;"></div>
-            <span class="color-id">ID: 101</span>
-            <span>تعداد: 5</span>
-            <button class="delete-btn">×</button>
+            <div class="color-box" style="background: <?php if($color['Front'] !== 'true'){ echo ($color['hex_value']); }
+            else {echo('linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);');} ?>;"></div>
+            <span class="color-id">ID: <?= $color['color_id'] ?></span>
+            <span class="color-id">name: <?= $color['titel_name'] ?></span>
+            <span>تعداد: <?= $color['stock'] ?></span>
+            <a href="<?php $this->url('/products/delete_color/' .  $color['color_id']) ?>" title="حذف عکس "><button
+                        class="delete-btn"><i class="fas fa-times"></i></button></a>
         </div>
-        <div class="color-container">
-            <div class="color-box" style="background: blue;"></div>
-            <span class="color-id">ID: 102</span>
-            <span>تعداد: 8</span>
-            <button class="delete-btn">×</button>
-        </div>
+        <?php } ?>
         <!-- رنگ‌های بیشتر -->
     </div>
     
@@ -212,14 +283,15 @@
         
         <div class="form-container">
             <h3>افزودن رنگ جدید</h3>
-            <form method="post" action="<?php $this->url('') ?>">
-                <input type="text" name="color_name" placeholder="نام رنگ را وارد کنید">
+            <form method="post" action="<?php $this->url('/Products/color_stor/' . $post['product_id']) ?>">
+                <input type="text" name="color_name" placeholder="نام رنگ را  انگلیسی وارد کنید">
+                <input type="text" name="titel_name" placeholder="نام رنگ را فارسی وارد کنید">
                 <label for="color">کد رنگی را انتخاب کنید </label>
                 <input class="color_input" name="hex_value" type="color" placeholder="کد رنگ (HEX) را وارد کنید">
                 <label for="Front">جور هست یا نیست </label>
                 <select name="Front" required>        
                   <option value="true" >جور هست </option>  
-                  <option value="false" >جور نیست </option>  
+                  <option value="false" selected>جور نیست </option>  
               </select>  
                 <button type="submit">افزودن</button>
             </form>

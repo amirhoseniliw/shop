@@ -110,7 +110,7 @@ public function delete_img($id) {
 //!-------------------------------------------------------------------colors 
 public function insert_color($id ,$values)
 {
-    $query = "INSERT INTO `colors`(`product_id`,  `alt_text`, `image_url`, `created_at`) VALUES (?,?,?, NOW())";
+    $query = "INSERT INTO `colors`(`product_id`, `color_name`, `titel_name`, `hex_value`, `Front`, `created_at`) VALUES (?,?,?,?,?,NOW())";
     $params = array_merge([$id] ,array_values($values) );  
     $this->execute($query, $params);  
     $this->closeConnection();  
@@ -144,7 +144,32 @@ public function delete_color($id) {
         throw new InvalidArgumentException("Product ID باید یک عدد باشد.");  
     }  
 
-    $query = "DELETE FROM `product_images` WHERE `image_id` = ?";  
+    $query = "DELETE FROM `colors` WHERE `color_id` = ?";  
+
+    // اجرای کوئری  
+    if ($this->execute($query, [$id])) {  
+        // در صورت موفقیت، اتصال را ببندید  
+        $this->closeConnection();  
+        return true; // می‌توانید یک مقدار true برگردانید در صورت موفقیت  
+    } else {  
+        // در صورت عدم موفقیت، می‌توانید یک خطای مناسب را مدیریت کنید  
+        throw new Exception("عملیات حذف با موفقیت انجام نشد.");  
+    }  
+} 
+public function find_color_inventory($id_img)
+{
+    $query = "SELECT * FROM `inventory` WHERE  `color_id` = ? ";
+    $result = $this->query($query, [$id_img])->fetch();
+    $this->closeConnection();
+    return $result;
+}
+public function delete_color_in($id) {  
+    // اطمینان از اینکه id معتبر است  
+    if (!is_numeric($id)) {  
+        throw new InvalidArgumentException("Product ID باید یک عدد باشد.");  
+    }  
+
+    $query = "DELETE FROM `inventory` WHERE `color_id` = ?";  
 
     // اجرای کوئری  
     if ($this->execute($query, [$id])) {  

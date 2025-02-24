@@ -159,15 +159,41 @@ public function add_color($id) {
     $post = $posts->find($id);
     $colors = new ProductsModel();
     $colors = $colors->find_color($id);
-    $this->dd($colors);
     return $this->view("panel.products.addcolors", compact('post' , 'colors')); 
 
 }
 public function color_stor($id) {
-  
     $imgs = new ProductsModel();
-    $img = $imgs->insert_img($id , $_POST);
-    return $this->redirect('Products/add_mor_img/' . $id);
+    $img = $imgs->insert_color($id , $_POST);
+    return $this->redirect('Products/add_color/' . $id);
 }
+public function update_color($id) {
+    $img_id = $_POST['image_id'];
+    unset($_POST['image_id']);
 
+        $img_post = new ProductsModel();
+        $img_posts = $img_post->find_img_update($img_id);
+        $this->removeImage($img_posts['image_url']);
+        $_POST['image_url'] =  $this->saveImage($_FILES['image_url'] , '/img/posts');
+        $_POST['image_url'] = str_replace( 'public/' , "",$_POST['image_url'] ); 
+        // $this->dd($_POST);
+        $img = new ProductsModel();
+        $img->update_img($img_id , $_POST);
+  return $this->redirect('Products/add_mor_img/' . $id);
+
+}
+public function delete_color($id) {
+    $inventory = new ProductsModel();
+    $inventory = $inventory->find_color_inventory($id);
+    if ($inventory !== "") {
+        $inventory = new ProductsModel();
+        $inventory = $inventory->delete_color_in($id);
+    }
+  
+    $colors = new ProductsModel();
+    $colors = $colors->find_color($id);
+    $color = new ProductsModel();
+    $color = $color->delete_color($id);
+    return $this->redirect('Products/add_color/' . $colors['product_id']);
+}
 }
