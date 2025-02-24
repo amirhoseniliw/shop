@@ -110,31 +110,30 @@ public function delete_img($id) {
 //!-------------------------------------------------------------------colors 
 public function insert_color($id ,$values)
 {
-    $query = "INSERT INTO `colors`(`product_id`, `color_name`, `titel_name`, `hex_value`, `Front`, `created_at`) VALUES (?,?,?,?,?,NOW())";
+    $query = "INSERT INTO `colors`(`product_id`, `color_name`, `titel_name`, `hex_value`, `Front`, `stock` ,`created_at`) VALUES (?,?,?,?,?,?,NOW())";
     $params = array_merge([$id] ,array_values($values) );  
     $this->execute($query, $params);  
     $this->closeConnection();  
 }
 public function find_color($id)  
 {  
-    $query = "SELECT colors.*, inventory.* FROM colors LEFT JOIN inventory ON inventory.product_id = colors.product_id  WHERE colors.product_id = ?  
-    ";  
-    $result = $this->query($query, [$id])->fetchAll();  
+    $query = "SELECT * FROM `colors` WHERE product_id = ?";
+                $result = $this->query($query, [$id])->fetchAll();  
     $this->closeConnection();  
     return $result;  
 }
-public function find_color_update( $id_img)
+public function find_color_update($color_id)
 {
-    $query = "SELECT * FROM `product_images` WHERE  `image_id` = ? ";
-    $result = $this->query($query, [$id_img])->fetch();
+    $query = "SELECT * FROM `colors` WHERE  `color_id` = ? ";
+    $result = $this->query($query, [$color_id])->fetch();
     $this->closeConnection();
     return $result;
 }
 public function update_color($id, $values)  
 {  
-    $query = "UPDATE `product_images` SET `alt_text`= ?, `image_url`= ?, `created_at`= NOW() WHERE `image_id` = ?";  
+    $query = "UPDATE `colors` SET `stock`= ?, `created_at`= NOW() WHERE `color_id` = ?";  
     // ایجاد آرایه جدید با ترکیب مقادیر و شناسه تصویر  
-    $params = array_merge(array_values($values), [$id]);  
+    $params =[ $values, $id];  
     $this->execute($query, $params);  
     $this->closeConnection();  
 }  
@@ -156,31 +155,7 @@ public function delete_color($id) {
         throw new Exception("عملیات حذف با موفقیت انجام نشد.");  
     }  
 } 
-public function find_color_inventory($id_img)
-{
-    $query = "SELECT * FROM `inventory` WHERE  `color_id` = ? ";
-    $result = $this->query($query, [$id_img])->fetch();
-    $this->closeConnection();
-    return $result;
-}
-public function delete_color_in($id) {  
-    // اطمینان از اینکه id معتبر است  
-    if (!is_numeric($id)) {  
-        throw new InvalidArgumentException("Product ID باید یک عدد باشد.");  
-    }  
 
-    $query = "DELETE FROM `inventory` WHERE `color_id` = ?";  
-
-    // اجرای کوئری  
-    if ($this->execute($query, [$id])) {  
-        // در صورت موفقیت، اتصال را ببندید  
-        $this->closeConnection();  
-        return true; // می‌توانید یک مقدار true برگردانید در صورت موفقیت  
-    } else {  
-        // در صورت عدم موفقیت، می‌توانید یک خطای مناسب را مدیریت کنید  
-        throw new Exception("عملیات حذف با موفقیت انجام نشد.");  
-    }  
-} 
 //!-------------------------------------------------------------------------products
     public function insert($values)
     {

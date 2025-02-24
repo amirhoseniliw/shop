@@ -139,7 +139,7 @@ $massall = ($this->flash('not_find_all'));
                                 <td>  <?php   $imageUrlsArrays = explode(',', $post['image_urls']);
                                 foreach ($imageUrlsArrays as $imageUrlsArray){          ?>
                                     <a href="<?= $this->asset($imageUrlsArray) ?>" target="_blank"><img src="<?= $this->asset($imageUrlsArray) ?>" alt="محصول" width="80"></a> <?php } ?></td>
-                               <td>رنگ</td>
+                               <td><div style="width: 20px; height: 20px; background-color: red;"></div></td>
                                 <td><?= $post['price'] ?> تومان</td>
                                 <td><?= $post['stock_qty'] ?></td>
                                 <td><?= $post['categoryname'] ?></td>

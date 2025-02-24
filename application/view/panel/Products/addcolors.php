@@ -261,8 +261,8 @@
         <div class="color-container">
             <div class="color-box" style="background: <?php if($color['Front'] !== 'true'){ echo ($color['hex_value']); }
             else {echo('linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);');} ?>;"></div>
-            <span class="color-id">ID: <?= $color['color_id'] ?></span>
-            <span class="color-id">name: <?= $color['titel_name'] ?></span>
+            <span class="color-id">کد: <?= $color['color_id'] ?></span>
+            <span class="color-id">نام: <?= $color['titel_name'] ?></span>
             <span>تعداد: <?= $color['stock'] ?></span>
             <a href="<?php $this->url('/products/delete_color/' .  $color['color_id']) ?>" title="حذف عکس "><button
                         class="delete-btn"><i class="fas fa-times"></i></button></a>
@@ -274,9 +274,9 @@
     <div class="form-wrapper">
         <div class="form-container">
             <h3>آپدیت تعداد رنگ</h3>
-            <form>
-                <input type="text" placeholder="کد رنگ را وارد کنید">
-                <input type="number" placeholder="تعداد جدید را وارد کنید">
+            <form   method="post" action="<?php $this->url('/Products/update_color/' . $post['product_id']) ?>">
+                <input type="text" name="color_id" placeholder="کد رنگ را وارد کنید">
+                <input type="number" name="stock" placeholder="تعداد جدید را وارد کنید">
                 <button type="submit">آپدیت</button>
             </form>
         </div>
@@ -293,9 +293,13 @@
                   <option value="true" >جور هست </option>  
                   <option value="false" selected>جور نیست </option>  
               </select>  
+              <input type="number" name="stock" placeholder="تعداد جدید را وارد کنید">
+
                 <button type="submit">افزودن</button>
             </form>
         </div>
     </div>
+    <a href="<?php $this->url('/products') ?> "> <button class="back-btn">بازگشت</button></a>
+
 </body>
 </html>
