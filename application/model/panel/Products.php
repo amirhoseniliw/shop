@@ -115,12 +115,13 @@ public function insert_color($id ,$values)
     $this->execute($query, $params);  
     $this->closeConnection();  
 }
-public function find_color($id)
-{
-    $query = "SELECT * FROM `product_images` WHERE `product_id` =  ?";
-    $result = $this->query($query, [$id])->fetchAll();
-    $this->closeConnection();
-    return $result;
+public function find_color($id)  
+{  
+    $query = "SELECT colors.*, inventory.* FROM colors LEFT JOIN inventory ON inventory.product_id = colors.product_id  WHERE colors.product_id = ?  
+    ";  
+    $result = $this->query($query, [$id])->fetchAll();  
+    $this->closeConnection();  
+    return $result;  
 }
 public function find_color_update( $id_img)
 {

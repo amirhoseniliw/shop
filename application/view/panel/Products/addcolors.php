@@ -116,6 +116,29 @@
             cursor: pointer;
             font-size: 16px;
         }
+        .color_input{
+            width: 80%;
+           
+        }
+        select {  
+            width: 100%;
+            padding: 10px; /* فاصله داخلی */  
+            border: 2px solid #007bff; /* حاشیه */  
+            border-radius: 5px; /* گرد کردن گوشه‌ها */  
+            background-color: #f8f9fa; /* رنگ پس‌زمینه */  
+            font-size: 16px; /* اندازه فونت */  
+            color: #333; /* رنگ متن */  
+            cursor: pointer; /* نشان دادن اشاره‌گر به عنوان کلیک‌پذیر */  
+        }  
+
+        select:focus {  
+            border-color: #0056b3; /* تغییر رنگ حاشیه هنگام تمرکز */  
+            outline: none; /* حذف outline پیش‌فرض */  
+        }  
+
+        option {  
+            padding: 10px; /* فاصله داخلی گزینه‌ها */  
+        } 
     </style>
 </head>
 <body>
@@ -161,6 +184,7 @@
     <h2>مدیریت رنگ‌های محصول</h2>
 
     <div class="gallery">
+        <?php ?>
         <div class="color-container">
             <div class="color-box" style="background: red;"></div>
             <span class="color-id">ID: 101</span>
@@ -188,10 +212,15 @@
         
         <div class="form-container">
             <h3>افزودن رنگ جدید</h3>
-            <form>
-                <input type="text" placeholder="نام رنگ را وارد کنید">
-                <input type="text" placeholder="کد رنگ (HEX) را وارد کنید">
-                <input type="number" placeholder="تعداد را وارد کنید">
+            <form method="post" action="<?php $this->url('') ?>">
+                <input type="text" name="color_name" placeholder="نام رنگ را وارد کنید">
+                <label for="color">کد رنگی را انتخاب کنید </label>
+                <input class="color_input" name="hex_value" type="color" placeholder="کد رنگ (HEX) را وارد کنید">
+                <label for="Front">جور هست یا نیست </label>
+                <select name="Front" required>        
+                  <option value="true" >جور هست </option>  
+                  <option value="false" >جور نیست </option>  
+              </select>  
                 <button type="submit">افزودن</button>
             </form>
         </div>

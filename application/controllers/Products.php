@@ -158,9 +158,16 @@ public function add_color($id) {
     $posts = new ProductsModel();
     $post = $posts->find($id);
     $colors = new ProductsModel();
-    $colors = $colors->find_img($id);
+    $colors = $colors->find_color($id);
+    $this->dd($colors);
     return $this->view("panel.products.addcolors", compact('post' , 'colors')); 
 
+}
+public function color_stor($id) {
+  
+    $imgs = new ProductsModel();
+    $img = $imgs->insert_img($id , $_POST);
+    return $this->redirect('Products/add_mor_img/' . $id);
 }
 
 }
