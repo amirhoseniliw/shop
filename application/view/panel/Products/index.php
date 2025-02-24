@@ -139,7 +139,12 @@ $massall = ($this->flash('not_find_all'));
                                 <td>  <?php   $imageUrlsArrays = explode(',', $post['image_urls']);
                                 foreach ($imageUrlsArrays as $imageUrlsArray){          ?>
                                     <a href="<?= $this->asset($imageUrlsArray) ?>" target="_blank"><img src="<?= $this->asset($imageUrlsArray) ?>" alt="محصول" width="80"></a> <?php } ?></td>
-                               <td><div style="width: 20px; height: 20px; background-color: red;"></div></td>
+                                   
+                               <td> <?php   $colors = explode(',', $post['colors']);
+                               
+                                foreach ($colors as $color){ ?><div style="width: 30px; height: 30px; background: <?php if($color == 'hue') { echo('linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);');} else {echo $color ;}?>;"></div><br>
+                                <?php } ?>
+                            </td>
                                 <td><?= $post['price'] ?> تومان</td>
                                 <td><?= $post['stock_qty'] ?></td>
                                 <td><?= $post['categoryname'] ?></td>
@@ -165,8 +170,8 @@ $massall = ($this->flash('not_find_all'));
                                 <td><?php echo $this->jalaliData($post['updated_at']) ?></td>
                                 <td>
                                     <a href="<?php $this->url('/Products/products_edit/' . $post['product_id']) ?>"><button class="btn btn-warning btn-sm">ویرایش</button></a>
-                                    <a href="<?php $this->url('/Products/add_mor_img/' . $post['product_id']) ?>"><button class="btn btn-warning btn-sm">اضافه کردن عکس </button></a>
-                                    <a href="<?php $this->url('/Products/add_color/' . $post['product_id']) ?>"><button class="btn btn-warning btn-sm">اضافه کردن رنگ </button></a>
+                                    <a href="<?php $this->url('/Products/add_mor_img/' . $post['product_id']) ?>"><button class="btn btn-warning btn-sm">  عکس </button></a>
+                                    <a href="<?php $this->url('/Products/add_color/' . $post['product_id']) ?>"><button class="btn btn-warning btn-sm">  رنگ </button></a>
                                     <button class="btn btn-danger btn-sm" onclick="deleteRecord(<?= $post['product_id']?>)">حذف</button>
                                 </td>
                                 </tr>

@@ -174,7 +174,6 @@
 
           
                 </br>
-            <img src="<?php $this->asset($post['image_url']) ?>" alt="error" width="80">
 
             <input type="submit" value="ویرایش">  
         </form>  

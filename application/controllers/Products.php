@@ -7,8 +7,8 @@ use application\model\panel\Category as CategoryModel;
 class products extends Controller{
 public function index() {
          $posts = new ProductsModel();
-         $posts = $posts->allPanel();         
-
+         $posts = $posts->allPanel();      
+        //  $this->dd($posts)   ;
         return $this->view("panel.products.index", compact('posts'));
 
     }
@@ -153,7 +153,7 @@ public function delete_img($id) {
     $img = $img->delete_img($id);
     return $this->redirect('Products/add_mor_img/' . $img_posts['product_id']);
 }
-
+//?----------------------------------------------------------------------------------colors
 public function add_color($id) {
     $posts = new ProductsModel();
     $post = $posts->find($id);
@@ -163,6 +163,9 @@ public function add_color($id) {
 
 }
 public function color_stor($id) {
+    if($_POST['Front'] == 'true'){
+        $_POST['hex_value'] = 'hue';
+    }
     $imgs = new ProductsModel();
     $img = $imgs->insert_color($id , $_POST);
     return $this->redirect('Products/add_color/' . $id);
