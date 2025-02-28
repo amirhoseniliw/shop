@@ -88,6 +88,7 @@
                         <th>مبلغ کل</th>
                         <th>نام محصول</th>
                         <th>عکس محصول</th>
+                        <th>رنگ محصول</th>
                         <th>تعداد</th>
                         <th>وضعیت</th>
                         <th>عملیات</th>
@@ -102,7 +103,15 @@
                         <td><?= $order['unit_price'] ?></td>
                         <td><?= $order['total_price'] ?></td>
                         <td><?= $order['product_name'] ?></td>
-                        <td><img src="<?php echo $this->asset($order['image_url']) ?>" alt="محصول" width="50"></td>
+                        <td>  <?php   $imageUrlsArrays = explode(',', $order['image_urls']);
+                                foreach ($imageUrlsArrays as $imageUrlsArray){          ?>
+                                    <a href="<?= $this->asset($imageUrlsArray) ?>" target="_blank"><img src="<?= $this->asset($imageUrlsArray) ?>" alt="محصول" width="80"></a> <?php } ?></td>
+                                   
+                               <td> <?php   $colors = explode(',', $order['colors']);
+                               
+                                foreach ($colors as $color){ ?><div style="width: 30px; height: 30px; background: <?php if($color == 'hue') { echo('linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);');} else {echo $color ;}?>;"></div><br>
+                                <?php } ?>
+                            </td>
                         <td><?= $order['quantity'] ?></td>
                         <td> 
                             <input type="hidden" class="item_id" value="<?= $order['order_id'] ?>">
@@ -140,7 +149,7 @@
     // ارسال درخواست AJAX به سرور  
     $.ajax({  
         url: url,  
-        method: 'POST',  
+        method: 'order',  
         data: {},  
         success: function(response) {  
             alert('وضعیت سفارش با ID ' + id + ' تغییر کرد.');  
@@ -165,7 +174,7 @@
         // ارسال درخواست AJAX به سرور  
         $.ajax({
             url: url, // آدرس فایل PHP  
-            method: 'POST', // مطمئن شوید که سرور از POST پشتیبانی می‌کند  
+            method: 'order', // مطمئن شوید که سرور از order پشتیبانی می‌کند  
             data: {}, // در اینجا هیچ داده‌ای ارسال نمی‌شود  
             success: function(response) {
                 alert('وضعیت سفارش با ID ' + id + ' تغییر کرد.');

@@ -301,7 +301,7 @@
                 <div class="col-lg-4 col-sm-4 col-3 order-lg-3 order-3">
                     <!-- <div>عکس ایکون پنل </div> -->
                     <div class="top-header-auth">
-                        <?php   if(!isset($_SESSION['id_user'])){ ?>
+                        <?php   if(!isset($_SESSION['user_id'])){ ?>
                         <a href="<?php $this->url('/Auth/login') ?>" class="top-header-auth-login btn">
                         <span class="top-header-auth-login-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">

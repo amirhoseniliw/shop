@@ -11,7 +11,8 @@ class Orders extends Model
         return $result;
     }
     public function allPanel(){
-    $query = "SELECT orders.*, users.username AS nameuser, products.name AS product_name, products.image_url FROM orders LEFT JOIN users ON users.user_id = orders.user_id LEFT JOIN products ON products.product_id = orders.product_id ";        $result = $this->query($query)->fetchAll();
+        $query = "SELECT orders.*, users.username AS nameuser, products.name AS product_name, GROUP_CONCAT(DISTINCT colors.hex_value) AS colors, GROUP_CONCAT(DISTINCT product_images.image_url) AS image_urls FROM orders LEFT JOIN users ON users.user_id = orders.user_id LEFT JOIN products ON products.product_id = orders.product_id LEFT JOIN colors ON colors.product_id = products.product_id LEFT JOIN product_images ON product_images.product_id = products.product_id GROUP BY orders.order_id, users.username, products.name";  
+        $result = $this->query($query)->fetchAll();
         $this->closeConnection();
         return $result;
     }

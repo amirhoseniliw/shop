@@ -13,16 +13,16 @@ class UserPanel extends Controller
 {
   public function __construct()
   {
-    if (!isset($_SESSION['id_user'])) {
+    if (!isset($_SESSION['user_id'])) {
       return $this->redirect('auth/login');
     }
   }
   public function index()
   {
-    if (!isset($_SESSION['id_user'])) {
+    if (!isset($_SESSION['user_id'])) {
       return $this->redirect('auth/login');
     }
-    $user_id = $_SESSION['id_user'];
+    $user_id = $_SESSION['user_id'];
     $user = new UsersModel();
     $user = $user->find($user_id);
     return $this->view("app.panel.index", compact('user'));
@@ -33,10 +33,10 @@ class UserPanel extends Controller
   public function edit_profil()
   {
 
-    if (!isset($_SESSION['id_user'])) {
+    if (!isset($_SESSION['user_id'])) {
       return $this->redirect('auth/login');
     }
-    $user_id = $_SESSION['id_user'];
+    $user_id = $_SESSION['user_id'];
     $user = new UsersModel();
     $user = $user->find($user_id);
     return $this->view("app.panel.edit", compact('user'));
@@ -50,7 +50,7 @@ class UserPanel extends Controller
   } else {  
       // اگر ایمیل وجود داشته باشد  
       if (!empty($_POST['email'])) {  
-          $user_id = $_SESSION['id_user'];  
+          $user_id = $_SESSION['user_id'];  
           $userModel = new UsersModel();  
           // بررسی وجود ایمیل در پایگاه داده  
           $userEmail = $userModel->find_email($_POST['email']);  
@@ -63,7 +63,7 @@ class UserPanel extends Controller
       // اگر شماره تلفن وجود داشته باشد  
       if (!empty($_POST['phone_number'])) {  
       
-          $user_id = $_SESSION['id_user'];  
+          $user_id = $_SESSION['user_id'];  
           $userModel = new UsersModel();  
           // بررسی وجود شماره تلفن در پایگاه داده  
           $userPhone = $userModel->find_mob($_POST['phone_number']);   
@@ -75,7 +75,7 @@ class UserPanel extends Controller
       }  
      
       // در اینجا می‌توانیم اطلاعات کاربر را بروزرسانی کنیم  
-      $user_id = $_SESSION['id_user'];     
+      $user_id = $_SESSION['user_id'];     
       $userModel = new UsersModel();  
       $user = $userModel->find($user_id);  
       $username = !empty($_POST['username']) ? $_POST['username'] : $user['username'];  
@@ -92,7 +92,7 @@ class UserPanel extends Controller
       }  
   
       // بررسی ورود کاربر  
-      if (!isset($_SESSION['id_user'])) {  
+      if (!isset($_SESSION['user_id'])) {  
           return $this->redirect('auth/login');  
       } else {  
           $current_time = time(); // زمان فعلی  
@@ -127,7 +127,7 @@ class UserPanel extends Controller
                   $this->sendMessage($message, $user['phone_number']); 
                 
                   if($img_prof != null){
-                    $user_id = $_SESSION['id_user'];
+                    $user_id = $_SESSION['user_id'];
                     $users = new UsersModel();
                     $user = $users->find($user_id);
                     $this->removeImage($user['img_prof']);
@@ -148,7 +148,7 @@ class UserPanel extends Controller
   }
   public function verify_code()
   {
-    if (!isset($_SESSION['id_user'])) {
+    if (!isset($_SESSION['user_id'])) {
       return $this->redirect('auth/login');
     } else {
       if ($_SESSION['verification_code'] != $_POST['verification_code']) {
@@ -156,7 +156,7 @@ class UserPanel extends Controller
         $this->flash('error', 'کد تایید اشتباه است');
       } else {
         $user = new UsersModel();
-        $user = $user->update_panel_info($_SESSION['id_user'], $_SESSION['info']);
+        $user = $user->update_panel_info($_SESSION['user_id'], $_SESSION['info']);
         $this->flash('success', 'اطلاعات با موفقیت ویرایش شد');
         return $this->redirect('Userpanel/edit_profil');
       }
@@ -164,10 +164,10 @@ class UserPanel extends Controller
   }
   public function latest_order()
   {
-    if (!isset($_SESSION['id_user'])) {
+    if (!isset($_SESSION['user_id'])) {
       return $this->redirect('auth/login');
     }
-    $user_id = $_SESSION['id_user'];
+    $user_id = $_SESSION['user_id'];
     $orders = new OrdersModel();
     $orders = $orders->allPanel($user_id);
     $user = new UsersModel();
@@ -178,10 +178,10 @@ class UserPanel extends Controller
   }
   public function order_detail($id)
   {
-    if (!isset($_SESSION['id_user'])) {
+    if (!isset($_SESSION['user_id'])) {
       return $this->redirect('auth/login');
     }
-    $user_id = $_SESSION['id_user'];
+    $user_id = $_SESSION['user_id'];
     $orders = new OrdersModel();
     $orders = $orders->find($id);
     $user = new UsersModel();
@@ -192,7 +192,7 @@ class UserPanel extends Controller
   public function address()
   {
   
-    $user_id = $_SESSION['id_user'];
+    $user_id = $_SESSION['user_id'];
     $user = new UsersModel();
     $user = $user->find($user_id);
     $adders = new AssersModel();
@@ -203,7 +203,7 @@ class UserPanel extends Controller
   public function create_address()
   {
    
-    $user_id = $_SESSION['id_user'];
+    $user_id = $_SESSION['user_id'];
     $user = new UsersModel();
     $user = $user->find($user_id);
    
@@ -213,7 +213,7 @@ class UserPanel extends Controller
   public function stor_addres()
   {
    
-    $user_id = $_SESSION['id_user'];
+    $user_id = $_SESSION['user_id'];
     $adders = new AssersModel();
     $adders = $adders->insert($user_id , $_POST);
     return $this->redirect('Userpanel/address');
@@ -228,7 +228,7 @@ class UserPanel extends Controller
   }
   public function favorites()
   {
-    $user_id = $_SESSION['id_user'];
+    $user_id = $_SESSION['user_id'];
     $user = new UsersModel();
     $user = $user->find($user_id);
     $favorite = new favoritesModel();
@@ -248,7 +248,7 @@ class UserPanel extends Controller
   }
   public function ticket()
   {
-    $user_id = $_SESSION['id_user'];
+    $user_id = $_SESSION['user_id'];
     $user = new UsersModel();
     $user = $user->find($user_id);
   $messages = new messagesModel();
@@ -258,7 +258,7 @@ class UserPanel extends Controller
   }
   public function create_Chath()
   {
-    $user_id = $_SESSION['id_user'];
+    $user_id = $_SESSION['user_id'];
     $messages = new messagesModel();
     $chaths = $messages->insert_chat($user_id);
     return $this->redirect('Userpanel/ticket' );
@@ -266,7 +266,7 @@ class UserPanel extends Controller
   
   public function ticket_single_show($id)
   {
-    $user_id = $_SESSION['id_user'];
+    $user_id = $_SESSION['user_id'];
     $user = new UsersModel();
     $user = $user->find($user_id);
     $messages = new messagesModel();
@@ -277,7 +277,7 @@ class UserPanel extends Controller
 
   }
   public function send_messaged($id) {
-   $user_id = $_SESSION['id_user'];
+   $user_id = $_SESSION['user_id'];
 
     $messages = new messagesModel();
     $message = $messages->insert($id , $user_id , $_POST);

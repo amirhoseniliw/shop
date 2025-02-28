@@ -62,7 +62,6 @@
                             <th>نام محصول</th>
                             <th>برند</th>
                             <th>توضیحات</th>
-                            <th>عکس</th>
                             <th>قیمت</th>
                             <th>موجودی</th>
                             <th>نام دسته‌بندی</th>
@@ -82,7 +81,6 @@
                                 <td><?= $post['name'] ?></td>
                                 <td><?= $post['brand'] ?></td>
                                 <td><?= $post['description'] ?></td>
-                                <td><a href="<?= $this->asset($post['image_url']) ?>" target="_blank"><img src="<?= $this->asset($post['image_url']) ?>" alt="محصول" width="80"></a></td>
                                 <td><?= $post['price'] ?> تومان</td>
                                 <td><?= $post['stock_qty'] ?></td>
                                 <td><?= $post['category'] ?></td>

@@ -7,8 +7,8 @@ use application\model\Users as UsersModel;
 class Auth extends Controller
 {
     public function logout(){
-        if(isset($_SESSION['id_user'])){
-            unset($_SESSION['id_user']);
+        if(isset($_SESSION['user_id'])){
+            unset($_SESSION['user_id']);
             return $this->redirect('home/index');
 
         }
@@ -16,7 +16,7 @@ class Auth extends Controller
     }
     public function login()
     {
- if(isset($_SESSION['id_user'])){
+ if(isset($_SESSION['user_id'])){
     return $this->redirect('home/index');
 
         }
@@ -44,7 +44,7 @@ class Auth extends Controller
              else {
                 if ($this->verify_password($password, $user['password']) && $user['username'] == $username) {
 
-                    $_SESSION['id_user'] = $user['user_id'];
+                    $_SESSION['user_id'] = $user['user_id'];
                     return $this->redirect('home/index');
                 }
                 else{
@@ -57,7 +57,7 @@ class Auth extends Controller
     public function register()
     {
 
-        if(isset($_SESSION['id_user'])){
+        if(isset($_SESSION['user_id'])){
             return $this->redirect('home/index');
         
                 }
@@ -192,7 +192,7 @@ class Auth extends Controller
                 $user = $user->insert($_POST);
                 $user = new UsersModel();
                 $user = $user->find_username($username);
-                $_SESSION['id_user'] = $user['user_id'];
+                $_SESSION['user_id'] = $user['user_id'];
                    return $this->redirect('home/index');            }
         }
     }
