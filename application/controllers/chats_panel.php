@@ -26,7 +26,7 @@ public function chang_status($id) {
 
  }
  public function open_chat($id) {
-    $_SESSION['id_user'] = 1 ;
+    $_SESSION['id_user'] = 4 ;
     $messages = new messagesModel();
     $messages = $messages->allPanel_mess($id);
     $chats = new messagesModel();

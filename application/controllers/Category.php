@@ -8,7 +8,7 @@ class Category extends Controller{
         $categories = $category->all();
         return $this->View('panel.category.index', compact('categories'));
     }
-    public function create(){
+    public function create(){  
         return $this->View('panel.category.create');
     }
     public function store(){ 
