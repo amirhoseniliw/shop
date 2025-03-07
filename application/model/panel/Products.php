@@ -15,7 +15,7 @@ class Products extends Model
     }
     public function allPanel()
     { 
-        $query = "SELECT products.*, categories.name AS categoryname, GROUP_CONCAT(DISTINCT product_images.image_url) AS image_urls, GROUP_CONCAT(DISTINCT colors.hex_value) AS colors FROM products LEFT JOIN categories ON products.category_id = categories.category_id LEFT JOIN product_images ON products.product_id = product_images.product_id LEFT JOIN colors ON products.product_id = colors.product_id GROUP BY products.product_id, categories.name;";        // $query = "SELECT *,( SELECT `name` FROM `categories` WHERE `categories`.`id` = `articles`. `cat_id`) as 'category_name' FROM `articles`";
+        $query = "SELECT products.*, categories.name AS categoryname, GROUP_CONCAT(DISTINCT product_images.image_url) AS image_urls, GROUP_CONCAT(DISTINCT colors.hex_value) AS colors, (SELECT SUM(stock) FROM colors WHERE colors.product_id = products.product_id) AS total_quantity FROM products LEFT JOIN categories ON products.category_id = categories.category_id LEFT JOIN product_images ON products.product_id = product_images.product_id LEFT JOIN colors ON products.product_id = colors.product_id GROUP BY products.product_id, categories.name;";       
         $result = $this->query($query)->fetchAll();
         $this->closeConnection();
         return $result;

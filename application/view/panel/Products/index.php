@@ -146,7 +146,7 @@ $massall = ($this->flash('not_find_all'));
                                 <?php } ?>
                             </td>
                                 <td><?= $post['price'] ?> تومان</td>
-                                <td><?= $post['stock_qty'] ?></td>
+                                <td><?= $post['stock_qty'] + $post['total_quantity'] ?><hr>   تعداد موجودی خودش  <?=$post['stock_qty'] ?> </td>
                                 <td><?= $post['categoryname'] ?></td>
                                 <td><?= $post['view'] ?></td>
                                

@@ -8,7 +8,6 @@ class products extends Controller{
 public function index() {
          $posts = new ProductsModel();
          $posts = $posts->allPanel();      
-        //  $this->dd($posts)   ;
         return $this->view("panel.products.index", compact('posts'));
 
     }
