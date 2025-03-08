@@ -32,12 +32,21 @@ public function index() {
 
 // }
 public function find($id){
+    $post = new ProductsModel();  
+
+    // بررسی کنید که آیا کاربر قبلاً این محصول را دیده است یا خیر  
+    if (!isset($_SESSION['product_viewed'][$id])) {  
+        // اگر کاربر قبلاً محصول را ندیده بود، تعداد بازدید را به‌روزرسانی کنید  
+        $post->update_view($id);  
+
+        // یک متغیر در سشن تنظیم کنید تا نشان دهد که این کاربر در این سشن این محصول را دیده است  
+        $_SESSION['product_viewed'][$id] = true;  
+    }  
+
     $posts = new ProductsModel();  
-    $post = $posts->find($id); 
-    if($post == null){
-        $this->flash('not_find_product','not find any record');
-    }
-    return $this->view("app.orther.product", compact('post')); }
+    $post = $posts->find($id);  
+
+    return $this->view("app.orther.product", compact('post'));   }
    
 
 

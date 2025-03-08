@@ -1,4 +1,19 @@
 <?php $this->include('app.layouts.header'); ?>
+<style>
+    .swiper-progress-bar {  
+    position: relative; /* یا position: absolute اگر والد دیگری این خاصیت را دارد */  
+}  
+
+.slide_progress-bar {  
+    position: absolute;  
+    top: 0; /* به بالای دیو والد می‌چسبد */  
+    right: 0; /* اگر می‌خواهید به سمت راست هم بچسبد */  
+    margin-top: 0; /* حذف margin-top اضافی */  
+    height: 10px;  
+    border-radius: 25px;  
+    background-color: red; /* رنگ پس‌زمینه برای دیدن بهتر */  
+} 
+</style>
 
 <!-- end mega menu -->
 
@@ -60,7 +75,6 @@
                 </div>
             </div>
             <div class="col-lg-3">
-
                 <div class="swiper suggetMoment">
                     <div class="swiper-wrapper position-relative">
                         <?php if ($Bestseller_posts !== " ") {
@@ -68,18 +82,16 @@
 
                                 <div class="swiper-slide">
                                     <div class="product-box">
-                                        <div class="product-timer">
-                                            <div class="timer-label">
-                                                <span>40%</span>
-                                            </div>
-                                            <div class="timer">
-                                                <div class='countdown' data-date="2027-01-01" data-time="18:30">
-                                                </div>
-                                            </div>
-                                        </div>
+                                       <div class="d-flex justify-content-center">
+                            <div class="swiper-progress-bar">
+                                <span class="slide_progress-bar"></span>
+                            </div>
+                        </div>
                                         <div class="product-image">
-                                            <img alt="errors" class="img-fluid"
-                                                src="<?php echo $this->asset($Bestseller_post['image_url']); ?>">
+                                        <?php   $imageUrlsArrays = explode(',', $Bestseller_post['photo_file_names']);?>
+                                         <?php   $alt_text = explode(',', $Bestseller_post['alt_texts']);?>
+                                            <img alt="<?= $alt_text[0] ?>" class="img-fluid"
+                                                src="<?php echo $this->asset($imageUrlsArrays[0]); ?>">
                                         </div>
                                         <div class="product-title">
                                             <div class="title">
@@ -94,8 +106,7 @@
                                                 </a>
                                             </div>
                                             <div class="price">
-                                                <p class="old-price">6,500,000 </p>
-                                                <p class="new-price">3,175,000 <span class="font-12">تومان</span></p>
+                                                <p class="new-price"><?php echo $this->formatPrice( $Bestseller_post['price']) ?> <span class="font-12">تومان</span></p>
                                             </div>
                                         </div>
                                     </div>
@@ -177,11 +188,7 @@
                             </div>
                         </div>
                         </div> -->
-                        <div class="d-flex justify-content-center">
-                            <div class="swiper-progress-bar">
-                                <span class="slide_progress-bar"></span>
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
             </div>
@@ -322,10 +329,12 @@
                                                 <div class="product-box">
                                                     <a href="">
                                                         <div class="product-image">
-                                                            <img src="<?php $this->asset($Selected_post['image_url']) ?>"
-                                                                alt="" class="img-fluid one-image">
-                                                            <img src="<?php $this->asset($Selected_post['image_url']) ?>"
-                                                                alt="" class="img-fluid two-image">
+                                                        <?php   $imageUrlsArrays = explode(',', $Selected_post['photo_file_names']);?>
+                                                        <?php   $alt_text = explode(',', $Selected_post['alt_texts']);?>
+                                                            <img src="<?php $this->asset($imageUrlsArrays[0]) ?>"
+                                                                alt="<?= $alt_text[0] ?>" class="img-fluid one-image">
+                                                            <img src="<?php $this->asset($imageUrlsArrays[1]) ?>"
+                                                                alt="<?= $alt_text[0] ?>" class="img-fluid two-image">
                                                         </div>
                                                         <div class="product-title">
                                                             <div class="title">
@@ -429,9 +438,11 @@
                                 <div class="product-box">
                                     <a href="">
                                         <div class="product-image">
-                                            <img src="<?php $this->asset($Bestseller_posts_all['image_url']) ?>" alt="محصول"
+                                        <?php   $imageUrlsArrays = explode(',', $Bestseller_posts_all['photo_file_names']);?>
+                                        <?php   $alt_text = explode(',', $Bestseller_posts_all['alt_texts']);?>
+                                            <img src="<?php $this->asset($imageUrlsArrays[0]) ?>" alt="<?= $alt_text[0] ?>"
                                                 class="img-fluid one-image">
-                                            <img src="<?php $this->asset($Bestseller_posts_all['image_url']) ?>" alt="محصول"
+                                            <img src="<?php $this->asset($imageUrlsArrays[1]) ?>" alt="<?= $alt_text[0] ?>"
                                                 class="img-fluid two-image">
                                         </div>
                                         <div class="product-title">
@@ -580,8 +591,10 @@
                             <div class="product-box">
                                 <a href="">
                                     <div class="product-image">
-                                        <img src="<?php $this->asset($all_post['image_url']) ?>" alt="error" class="img-fluid one-image">
-                                        <img src="<?php $this->asset($all_post['image_url']) ?>" alt="error" class="img-fluid two-image">
+                                    <?php   $imageUrlsArrays = explode(',', $all_post['photo_file_names']);?>
+                                    <?php   $alt_text = explode(',', $all_post['alt_texts']);?>
+                                        <img src="<?php $this->asset($imageUrlsArrays[0]) ?>" alt="<?= $alt_text[0] ?>" class="img-fluid one-image">
+                                        <img src="<?php $this->asset($imageUrlsArrays[1]) ?>" alt="<?= $alt_text[0] ?>" class="img-fluid two-image">
                                     </div>
                                     <div class="product-title">
                                         <div class="title">
