@@ -10,7 +10,6 @@
     </div>
 </div>
 
-
 <div class="product-meta pb-2">
     <div class="container-fluid position-relative">
         <div class="content-box">
@@ -21,16 +20,17 @@
                             <div class="pro-gallery-parent">
                                 <div class="swiper product-gallery">
                                     <div class="swiper-wrapper" title="برای بزرگنمایی تصویر دابل کلیک کنید">
-                                        
+
                                         <?php   $imageUrlsArrays = explode(',', $post['photo_file_names']);?>
                                         <?php   $alt_text = explode(',', $post['alt_texts']);?>
                                         <?php foreach($imageUrlsArrays as $imageUrlsArray) { ?>
-                                            <div class="swiper-slide">
+                                        <div class="swiper-slide">
                                             <div class="swiper-zoom-container">
-                                                <img class="" src="<?php echo $this->asset( $imageUrlsArray) ?>" alt="<?= $alt_text[0] ?>" />
+                                                <img class="" src="<?php echo $this->asset( $imageUrlsArray) ?>"
+                                                    alt="<?= $alt_text[0] ?>" />
                                             </div>
                                         </div>
-                                       <?php } ?>
+                                        <?php } ?>
                                     </div>
                                     <div class="swiper-button-next d-none d-lg-flex"></div>
                                     <div class="swiper-button-prev d-none d-lg-flex"></div>
@@ -39,9 +39,10 @@
                             </div>
                             <div thumbsSlider="" class="swiper product-gallery-thumb">
                                 <div class="swiper-wrapper">
-                                <?php foreach($imageUrlsArrays as $imageUrlsArray) { ?>
+                                    <?php foreach($imageUrlsArrays as $imageUrlsArray) { ?>
                                     <div class="swiper-slide">
-                                        <img alt="<?= $alt_text[0] ?>" class="img-fluid" src="<?php echo $this->asset( $imageUrlsArray) ?>" />
+                                        <img alt="<?= $alt_text[0] ?>" class="img-fluid"
+                                            src="<?php echo $this->asset( $imageUrlsArray) ?>" />
                                     </div>
                                     <?php  } ?>
                                 </div>
@@ -57,14 +58,14 @@
                             <div class="row gy-3 align-items-center">
                                 <div class="col-md-4">
                                     <?php if($post['stock_qty'] <= 0) { ?>
-                                   <div class="label-site rounded-pill"
+                                    <div class="label-site rounded-pill"
                                         style="background-color: #dc3545; color: white;">
                                         <i class="bi bi-x-circle me-1"></i>
                                         <span style="color: white;"> ناموجود در انبار </span>
                                     </div>
                                     <?php } else { ?>
-                                    
-                                     <div class="label-site rounded-pill label-success">
+
+                                    <div class="label-site rounded-pill label-success">
                                         <i class="bi bi-check-circle me-1"></i>
                                         <span> موجود در انبار
                                         </span>
@@ -81,7 +82,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <span class="text-muted-two me-2">کد محصول</span>
-                                   <u> <span><?= $post['product_id'] ?></span></u>
+                                    <u> <span><?= $post['product_id'] ?></span></u>
                                 </div>
                             </div>
                         </div>
@@ -89,26 +90,29 @@
                             <div class="row gy-3">
                                 <div class="col-lg-8">
                                     <div class="product-meta-feature-items">
-                                        <h5 class="title font-16 mb-2"> توضیحات  کالا</h5>
-                                       <span><?= $post['description'] ?></span>
+                                        <h5 class="title font-16 mb-2"> توضیحات کالا</h5>
+                                        <span><?= $post['description'] ?></span>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="product-meta-rating text-lg-end text-start">
                                         <div class="label-site label-waring rounded-pill">
-                                            <span class="product-meta-rating-comment-count me-1">0</span>
-                                            <span class="product-meta-rating-comment-count-text me-3">نظر</span>
-                                            <span class="product-meta-rating-rating-count me-1">0</span>
+                                            <span
+                                                class="product-meta-rating-comment-count me-1"><?= $post['view'] ?></span>
+                                            <span class="product-meta-rating-comment-count-text me-3">بازدید </span>
+
                                             <span class="product-meta-rating-rating-count-text"><i
                                                     class="bi bi-star-fill"></i></span>
                                         </div>
                                     </div>
+                                    <?php if($post['stock_qty'] >= 1) { ?>
                                     <div class="product-meta-rating mt-2 text-lg-end text-start">
                                         <div class="label-site label-success rounded-pill">
                                             آماده ارسال
                                             <i class="bi bi-truck ms-2"></i>
                                         </div>
                                     </div>
+                                    <?php  } ?>
                                 </div>
                             </div>
                         </div>
@@ -136,31 +140,24 @@
                                 انتخاب رنگ کالا
                             </h5>
                             <div class="product-meta-color-items">
-                                <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off"
-                                    checked>
-                                <label class="btn " for="option1">
-                                    <span style="background-color: #c00;"></span>
-                                    قرمز
+                                <?php  
+                               $colors = explode(',', $post['color_names']); 
+                               $titel_name_colors =  explode(',', $post['titel_name_colors']);
+                               $i = 0; // یک شمارنده برای ایجاد id های یکتا  
+                               foreach($colors as $color  ) {  
+                               $color_id = 'option' . $i; // ایجاد یک id یکتا  
+                                 ?>
+                                <input type="radio" class="btn-check" name="options" id="<?php echo $color_id; ?>"  
+                                    autocomplete="off" value="<?php echo $color; ?>">
+                                <label class="btn" for="<?php echo $color_id; ?>" title="red">
+                                    <span
+                                        style="background:<?php if($color == 'hue') { echo('linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);');} else {echo $color ;}?>;"></span>
+                                    <?php echo $color; ?>
                                 </label>
-
-                                <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
-                                <label class="btn " for="option2">
-                                    <span style="background-color: #111;"></span>
-                                    مشکی
-                                </label>
-
-                                <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off"
-                                    disabled>
-                                <label class="btn " for="option3">
-                                    <span style="background-color: #00cc5f;"></span>
-                                    سبز
-                                </label>
-
-                                <input type="radio" class="btn-check" name="options" id="option4" autocomplete="off">
-                                <label class="btn " for="option4">
-                                    <span style="background-color: #1b69f0;"></span>
-                                    آبی
-                                </label>
+                                <?php  
+                                $i++;  
+                                   } 
+                               ?>
                             </div>
                         </div>
                         <div class="product-meta-count text-muted">
@@ -269,6 +266,7 @@
                                                     </defs>
                                                 </svg>
                                             </div>
+
                                             <div class="footer-service-item-desc ms-3">
                                                 <p class="lh-sm font-12">پشتیبانی <strong>24 ساعته</strong></p>
                                             </div>

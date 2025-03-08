@@ -30,6 +30,7 @@ GROUP BY p.product_id;";
     (SELECT `name` FROM `categories` WHERE `categories`.`category_id` = p.`category_id`) AS category,  
     GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
     GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts,  
+    GROUP_CONCAT(DISTINCT c.titel_name) AS titel_name_colors,  
     GROUP_CONCAT(DISTINCT c.hex_value) AS color_names  
 FROM `products` p  
 LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
