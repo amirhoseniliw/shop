@@ -393,16 +393,21 @@
 
                 <div class="category-pro">
                     <div class="row g-3">
+                        <?php foreach($posts as $post ){ ?>
                         <div class="col-md-6 col-xl-4 col-xxl-3">
                             <div class="product-box">
                                 <a href="">
                                     <div class="product-image">
-                                        <img src="assets/img/product/product-1.webp" loading="lazy" alt="" class="img-fluid one-image">
-                                        <img src="assets/img/product/product-2.webp" loading="lazy" alt="" class="img-fluid two-image">
+                                    <?php   $imageUrlsArrays = explode(',', $post['photo_file_names']);
+                                      $alt_text = explode(',', $post['alt_texts']);?>
+                                        <img src="<?php $this->asset($imageUrlsArrays[0]) ?>" loading="lazy" alt="<?= $alt_text[0] ?>" class="img-fluid one-image">
+                                        <?php if(isset($imageUrlsArrays[1])){ ?>
+                                        <img src="<?php $this->asset($imageUrlsArrays[1]) ?>" loading="lazy" alt="<?= $alt_text[0] ?>" class="img-fluid two-image">
+                                        <?php } ?>
                                     </div>
                                     <div class="product-title">
                                         <div class="title">
-                                            <p class="text-overflow-1 title-font">دفتر سیمی 85 برگ همیشه طرح انار کد 6338</p>
+                                            <p class="text-overflow-1 title-font"><?= $post['name'] ?></p>
                                         </div>
                                     </div>
                                     <div class="product-action">
@@ -435,7 +440,7 @@
                             </div>
                         </div>
                        
-                       
+                       <?php } ?>
                     </div>
                 </div>
             </div>

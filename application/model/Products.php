@@ -14,11 +14,11 @@ class Products extends Model
     GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
     GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts,  
     GROUP_CONCAT(DISTINCT c.hex_value) AS color_names  
-FROM `products` p  
-LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
-LEFT JOIN `colors` c ON p.product_id = c.product_id  
-WHERE p.`status` = 'enable'  
-GROUP BY p.product_id;";
+     FROM `products` p  
+      LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
+      LEFT JOIN `colors` c ON p.product_id = c.product_id  
+      WHERE p.`status` = 'enable'  
+       GROUP BY p.product_id;";
         $result = $this->query($query)->fetchAll();
         $this->closeConnection();
         return $result;

@@ -6,13 +6,15 @@ use application\model\Products as ProductsModel;
 use application\model\panel\Category as CategoryModel;
 class search extends Controller{
 public function index() {
-       
-        return $this->view("app.orther.search");
+    $posts = new ProductsModel();
+    $posts = $posts->all();
+        return $this->view("app.orther.search" , compact('posts'));
 
     }
     public function category() {
-       
-        return $this->view("app.orther.category");
+       $posts = new ProductsModel();
+       $posts = $posts->all();
+        return $this->view("app.orther.category" , compact('posts'));
 
     }
     
