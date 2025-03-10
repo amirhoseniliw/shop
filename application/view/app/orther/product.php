@@ -185,7 +185,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><?php } ?>
+                        </div><?php } else {?>
+                       <a href="<?php $this->url('/auth/login') ?>" >    <div style="text-align: center;"><p style="color: #dc3545; ">برای اینکه ثبت سفارش کنید لطفا وارد شوید !</p></div></a> 
+                            <?php }?>
 </form>
                         <div class="shoping-feature border-top pt-3">
                             <nav class="navbar navbar-expand">

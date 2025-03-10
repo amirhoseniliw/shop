@@ -76,7 +76,7 @@
                                     </a>
                                     <div class="header-bottom-form mb-4 w-100">
                                         <div class="search-form">
-                                            <form action="">
+                                            <form action="<?php $this->url('/search') ?>" method="post">
                                                 <div class="search-filed">
                                                     <input class="form-control search-input" placeholder="جستجوی محصولات ..." type="text">
                                                     <button class="btn search-btn main-color-one-bg rounded-3" type="submit"><i class="bi bi-search"></i></button>
@@ -286,7 +286,7 @@
                 </div>
                 <div class="col-lg-6 col-12 order-lg-2 order-4">
                     <div class="search-form">
-                        <form action="">
+                        <form  action="<?php $this->url('/search') ?>" method="post">
                             <div class="search-filed">
                                 <input type="text" placeholder="محصول خود را جستجو کنید" class="form-control search-input">
                                 <button type="submit" class="top-header-search-btn">

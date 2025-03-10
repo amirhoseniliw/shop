@@ -132,7 +132,7 @@
                         <button class="btn btn-danger btn-sm" onclick="deleteRecord(<?= $post['product_id']?>)">حذف</button>
                     </td>
                 </tr>
-                <?php }?>
+                <?php } ?>
             </tbody>
         </table>
     </div>
