@@ -23,24 +23,31 @@ GROUP BY p.product_id;";
         $this->closeConnection();
         return $result;
     }
-    public function find($id)
-    {
-        $query = "SELECT   
-    p.*,  
-    (SELECT `name` FROM `categories` WHERE `categories`.`category_id` = p.`category_id`) AS category,  
-    GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
-    GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts,  
-    GROUP_CONCAT(DISTINCT c.titel_name) AS titel_name_colors,  
-    GROUP_CONCAT(DISTINCT c.hex_value) AS color_names  
-FROM `products` p  
-LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
-LEFT JOIN `colors` c ON p.product_id = c.product_id  
-WHERE p.`product_id` = ?  
-GROUP BY p.product_id; ";
-        $result = $this->query($query, [$id])->fetch();
-        $this->closeConnection();
-        return $result;
-    }
+    public function find($id)  
+{  
+    $query = "SELECT   
+        p.*,  
+        (SELECT `name` FROM `categories` WHERE `categories`.`category_id` = p.`category_id`) AS category,  
+        GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
+        GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts  
+    FROM `products` p  
+    LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
+    WHERE p.`product_id` = ?  
+    GROUP BY p.product_id;";  
+    $result = $this->query($query, [$id])->fetch();  
+    $this->closeConnection();  
+    return $result;  
+} 
+public function findColorsByProductId($id)  
+{  
+    $query = "SELECT *  
+    FROM `colors` 
+    WHERE product_id = ?  
+    ORDER BY titel_name DESC;";  
+    $result = $this->query($query, [$id])->fetchAll();  
+    $this->closeConnection();  
+    return $result;  
+}  
     public function find_all($fildes, $values, $int)  
     {  
         // تعریف فیلدهای مجاز  

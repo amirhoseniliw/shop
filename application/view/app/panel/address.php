@@ -30,7 +30,7 @@
                                     </p>  
                                     <p class="mb-0 text-black font-weight-bold">  
                                         <a class="text-danger" data-toggle="modal"   
-                                            href="<?php $this->url('/userpanel/delete_adders/'. $adder['AddressID'] ) ?>"><i class="bi bi-trash"></i> </a>  
+                                            href="<?php $this->url('/UserPanel/delete_adders/'. $adder['AddressID'] ) ?>"><i class="bi bi-trash"></i> </a>  
                                             
                                     </p>  
                                 </div>  

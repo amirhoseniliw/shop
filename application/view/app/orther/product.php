@@ -134,45 +134,49 @@
                                 <i class="bi bi-bar-chart"></i>
                             </div>
                         </div>
-
+                      <form action="<?php $this->url('/home/addcard/' . $post['product_id']) ?>" method="post">
                         <div class="product-meta-color">
                             <h5 class="font-16">
                                 انتخاب رنگ کالا
                             </h5>
                             <div class="product-meta-color-items">
                                 <?php  
-                               $colors = explode(',', $post['color_names']); 
-                               $titel_name_colors =  explode(',', $post['titel_name_colors']);
-                               $i = 0; // یک شمارنده برای ایجاد id های یکتا  
-                               foreach($colors as $color  ) {  
-                               $color_id = 'option' . $i; // ایجاد یک id یکتا  
+                            
+                                
+                                                  
+                             
+                               $i = 0;  
+                               foreach($colors as $color) {  
+                               $color_id = 'option' . $i; 
                                  ?>
-                                <input type="radio" class="btn-check" name="options" id="<?php echo $color_id; ?>"  
-                                    autocomplete="off" value="<?php echo $color; ?>">
-                                <label class="btn" for="<?php echo $color_id; ?>" title="red">
+                                <input type="radio" class="btn-check" name="colors" id="<?php echo $color_id; ?>"  
+                                    autocomplete="off" value="<?php echo $color['color_id']; ?> "<?php if($color['hex_value'] == 'hue') { echo('checked');} ?>>
+                                <label class="btn" for="<?php echo $color_id; ?>" title="<?= $color['titel_name'] ?>">
                                     <span
-                                        style="background:<?php if($color == 'hue') { echo('linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);');} else {echo $color ;}?>;"></span>
-                                    <?php echo $color; ?>
+                                        style="background:<?php if($color['hex_value'] == 'hue') { echo('linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);');} else {echo $color['hex_value'] ;}?>;"></span>
+                                    <?php echo $color['titel_name']; ?>
                                 </label>
                                 <?php  
                                 $i++;  
+                             
                                    } 
                                ?>
                             </div>
                         </div>
                         <div class="product-meta-count text-muted">
-                            <span>14 عدد در انبار</span>
+                            <span><?=    $post['stock_qty'] , "&nbsp&nbsp"?>   عدد در انبار</span>
                         </div>
+                        <?php if(isset($_SESSION['user_id'])) { ?>
                         <div class="product-meta-action">
                             <div class="row align-items-center gy-3">
                                 <div class="col-lg-6 w-100-in-400">
                                     <h6 class="fs-3 text-sm-start text-center new-price text-dark-emphasis text-start">
-                                        1,200,000 تومان</h6>
+                                    <?php echo $this->formatPrice($post['price']) , "&nbsp" ?>   تومان</h6>
                                 </div>
                                 <div class="col-lg-6 w-100-in-400">
                                     <div class="d-flex justify-content-end flex-wrap">
-                                        <button class="btn me-3 btn-add-to-basket border-0 main-color-one-bg"><i
-                                                class="bi bi-basket text-white font-20 me-1"></i>خرید کالا</button>
+                                      <button class="btn me-3 btn-add-to-basket border-0 main-color-one-bg"><i
+                                                class="bi bi-basket text-white font-20 me-1"></i>  <input type="submit" style="all: unset;" value="خرید کالا ">               </button>
                                         <div class="product-counter-input">
                                             <div class="counter">
                                                 <input type="text" name="count" class="counter" value="1">
@@ -181,8 +185,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
+                        </div><?php } ?>
+</form>
                         <div class="shoping-feature border-top pt-3">
                             <nav class="navbar navbar-expand">
                                 <ul class="navbar-nav justify-content-between w-100 ">

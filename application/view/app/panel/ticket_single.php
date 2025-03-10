@@ -13,11 +13,11 @@
                             <!-- Messages-->
                             <?php foreach($messages as $message ) {?>
                             <div
-                                class="comment <?php if($message['sender_id'] == $_SESSION['id_user']) echo "active" ?>">
+                                class="comment <?php if($message['sender_id'] == $_SESSION['user_id']) echo "active" ?>">
                                 <div class="comment-author-ava"><img src="<?php $this->asset($message['img_prof']) ?>"
                                         alt="Avatar"></div>
                                 <div class="comment-body"
-                                    style="width: 50%;  <?php if($message['sender_id'] !== $_SESSION['id_user']) echo "margin-right: 50%;" ?>">
+                                    style="width: 50%;  <?php if($message['sender_id'] !== $_SESSION['user_id']) echo "margin-right: 50%;" ?>">
                                     <u>
                                         <p style="text-align: center;"><?= $message['title'] ?></p>
                                     </u>

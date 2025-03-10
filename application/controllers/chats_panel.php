@@ -26,7 +26,7 @@ public function chang_status($id) {
 
  }
  public function open_chat($id) {
-    $_SESSION['id_user'] = 4 ;
+    $_SESSION['admin_id'] = 1 ;
     $messages = new messagesModel();
     $messages = $messages->allPanel_mess($id);
     $chats = new messagesModel();
@@ -34,7 +34,7 @@ public function chang_status($id) {
      return $this->view("panel.chats.chat" , compact('chath' , 'messages'));
  }
  public function send_messaged_panel($id) {
-    $user_id = $_SESSION['id_user'];
+    $user_id = $_SESSION['admin_id'];
     $messages = new messagesModel();
      $messages->insert($id , $user_id , $_POST);
 

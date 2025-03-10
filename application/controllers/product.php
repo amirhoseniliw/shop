@@ -44,9 +44,11 @@ public function find($id){
     }  
 
     $posts = new ProductsModel();  
-    $post = $posts->find($id);  
+    $post = $posts->find($id); 
+    $colors = new ProductsModel();  
+    $colors = $colors->findColorsByProductId($id); 
 
-    return $this->view("app.orther.product", compact('post'));   }
+    return $this->view("app.orther.product", compact('post' , 'colors'));   }
    
 
 
