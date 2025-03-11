@@ -49,7 +49,7 @@ public function find_for_search($name)
     LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
     WHERE p.`name` LIKE  ?  
     GROUP BY p.product_id;";  
-    $result = $this->query($query, [$name])->fetchAll();  
+    $result = $this->query($query, [$name])->fetchAll();  fdefefef
     $this->closeConnection();  
     return $result;  
 } 
