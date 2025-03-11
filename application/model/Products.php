@@ -49,7 +49,7 @@ public function find_for_search($name)
     LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
     WHERE p.`name` LIKE  ?  
     GROUP BY p.product_id;";  
-    $result = $this->query($query, [$name])->fetchAll();  fdefefef
+    $result = $this->query($query, [$name])->fetchAll();  
     $this->closeConnection();  
     return $result;  
 } 
@@ -61,9 +61,15 @@ public function count_all()
         return $result;
     }
     public function category()
-    {   $query = "SELECT COUNT(*) AS total_products FROM products; ";
+    { 
+          $query = "  
+        SELECT c.*, COUNT(p.product_id) AS product_count  
+        FROM categories c  
+        LEFT JOIN products p ON c.category_id  = p.category_id  
+        GROUP BY c.category_id   
+    ";  
       
-        $result = $this->query($query)->fetch();
+        $result = $this->query($query)->fetchAll();
         $this->closeConnection();
         return $result;
     }

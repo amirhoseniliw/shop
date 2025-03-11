@@ -8,7 +8,7 @@
         <div class="d-flex align-items-center mb-4 alert alert-light shadow-box rounded-4">
             <span class="h3 main-color-one-color me-3"><?php echo  count($posts); ?></span>
             <h1 class="h3">
-                نتیجه برای   <?= $name ?> !
+                نتیجه برای   <?php if($name_status == "ALL_POSTS") { echo"همه محصولات " ;} else echo  $name ?> !
             </h1>
         </div>
 
@@ -240,42 +240,20 @@
                                     <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                         <div class="accordion-body">
                                             <form action="">
+                                                <?php
+                                                foreach ($categories as $category ){
+                                                 ?>
                                                 <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
                                                     <div class="form-check">
-                                                        <label for="colorCheck111" class="form-check-label">موبایل <i class="bi bi-phone ms-1"></i></label>
-                                                        <input type="checkbox" name="" id="colorCheck111" class="form-check-input">
+                                                        <label for="colorCheck111" class="form-check-label"><?= $category['name'] ?> <img src="<?php echo $this->asset($category['img_url']) ?>" alt="" class="bi bi-phone ms-1" width="20"></img> </label>
+                                                        <input type="checkbox" name="id_category" value="<?= $category['category_id'] ?>" id="colorCheck111" class="form-check-input">
                                                     </div>
                                                     <div>
-                                                        <span class="fw-bold font-14">(27)</span>
+                                                        <span class="fw-bold font-14">(<?= $category['product_count'] ?>)</span>
                                                     </div>
                                                 </div>
-                                                <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
-                                                    <div class="form-check">
-                                                        <label for="colorCheck555" class="form-check-label">ایرپاد <i class="bi bi-earbuds ms-1"></i></label>
-                                                        <input type="checkbox" name="" id="colorCheck555" class="form-check-input">
-                                                    </div>
-                                                    <div>
-                                                        <span class="fw-bold font-14">(32)</span>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
-                                                    <div class="form-check">
-                                                        <label for="colorCheck444" class="form-check-label">تبلت <i class="bi bi-tablet ms-1"></i></label>
-                                                        <input type="checkbox" name="" id="colorCheck444" class="form-check-input">
-                                                    </div>
-                                                    <div>
-                                                        <span class="fw-bold font-14">(14)</span>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
-                                                    <div class="form-check">
-                                                        <label for="colorCheck333" class="form-check-label">هدست <i class="bi bi-headset ms-1"></i></label>
-                                                        <input type="checkbox" name="" id="colorCheck333" class="form-check-input">
-                                                    </div>
-                                                    <div>
-                                                        <span class="fw-bold font-14">(8)</span>
-                                                    </div>
-                                                </div>
+                                                <?php  } ?>
+                                                
                                                 <div class="text-center mb-3 mt-2">
                                                     <input type="submit" class="btn main-color-green text-white rounded-pill px-5 py-2" value="اعمال فیلتر">
                                                 </div>
@@ -299,25 +277,24 @@
                                 <div class="box_filter d-lg-block d-none">
                                     <ul class="list-inline text-start mb-0">
                                         <li class="list-inline-item title-font ms-0">مرتب سازی بر اساس :</li>
-                                        <li class="list-inline-item"><a href="#">گران ترین</a></li>
-                                        <li class="list-inline-item"><a class="active_custom" href="#">ارزان ترین</a>
-                                        </li>
+                                        <li class="list-inline-item"><a class="<?php if($type_post == 'expensive' ) echo "active_custom" ?>" href="#">گران ترین</a></li>
+                                        <li class="list-inline-item"><a class="" href="#">ارزان ترین</a>  </li>
                                         <li class="list-inline-item"><a href="#">پروفروش ترین</a></li>
-                                        <li class="list-inline-item"><a href="#">داغ ترین</a></li>
+                                        <li class="list-inline-item"><a href="#">انتخاب شده  </a></li>
                                         <li class="list-inline-item"><a href="#">محبوب ترین</a></li>
                                     </ul>
                                 </div>
                                 <div class="box_filter_counter fs-6"><i class="bi bi-card-list me-2"></i> 123 کالا</div>
                             </div>
                             <div class="d-lg-none d-block">
-                                <form action="">
+                                <form action="<?php $this->url('search_type/') ?>" method="post" id="sortForm">
                                     <h5 class="mb-3">مرتب سازی بر اساس</h5>
-                                    <select name="" id="" class="form-select">
-                                        <option value="">گران ترین</option>
-                                        <option value="">ارزان ترین</option>
-                                        <option value="">پرفروش ترین</option>
-                                        <option value="">داغ ترین</option>
-                                        <option value="">محبوب ترین</option>
+                                    <select name="type_posts" id="sortingOptions" class="form-select" onchange="document.getElementById('sortForm').submit();">  
+                                    <option value="expensive" <?php if($type_post == 'expensive' ) echo "selected" ?>>گران ترین</option>
+                                        <option value="cheap"  <?php if($type_post == 'cheap' ) echo "selected" ?>>ارزان ترین</option>
+                                        <option value="Bestseller"  <?php if($type_post == 'Bestseller' ) echo "selected" ?>>پرفروش ترین</option>
+                                        <option value="selected"  <?php if($type_post == 'selected' ) echo "selected" ?>>انتخاب شده </option>
+                                        <option value="view"  <?php if($type_post == 'view' ) echo "selected" ?>>محبوب ترین</option>
                                     </select>
                                 </form>
                             </div>
@@ -330,7 +307,7 @@
                         <?php foreach($posts as $post ){ ?>
                         <div class="col-md-6 col-xl-4 col-xxl-3">
                             <div class="product-box">
-                                <a href="">
+                                <a href="<?php $this->url('/product/find/'. $post['product_id']) ?>">
                                     <div class="product-image">
                                     <?php   $imageUrlsArrays = explode(',', $post['photo_file_names']);
                                       $alt_text = explode(',', $post['alt_texts']);?>
@@ -352,7 +329,7 @@
                                         </div>
                                         <div class="price">
                                          
-                                            <p class="new-price">3,175,000 <span class="font-12">تومان</span></p>
+                                            <p class="new-price"><?php echo $this->formatPrice( $post['price']) ?> <span class="font-12">تومان</span></p>
                                         </div>
                                     </div>
                                 </a>
@@ -360,15 +337,12 @@
                                     <div class="d-flex align-items-center justify-content-between">
                                         <nav class="navbar navbar-expand">
                                             <ul class="navbar-nav align-items-center">
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="مشاهده سریع"><i class="bi bi-search"></i></a></li>
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn mx-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="افزودن به سبد خرید"><i class="bi bi-basket"></i></a></li>
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="افزودن به علاقه ها"><i class="bi bi-heart"></i></a></li>
+                                                <li class="nav-item"><a href="<?php $this->url('/product/find/'. $post['product_id']) ?>" class="nav-item product-box-hover-item product-box-hover-item-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="مشاهده سریع"><i class="bi bi-search"></i></a></li>
+                                                <li class="nav-item"><a href="<?php $this->url('/product/find/'. $post['product_id']) ?>" class="nav-item product-box-hover-item product-box-hover-item-btn mx-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="افزودن به سبد خرید"><i class="bi bi-basket"></i></a></li>
+                                                <li class="nav-item"><a href="<?php $this->url('/product/add_fivert/'. $post['product_id']) ?>" class="nav-item product-box-hover-item product-box-hover-item-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="افزودن به علاقه ها"><i class="bi bi-heart"></i></a></li>
                                             </ul>
                                         </nav>
-                                        <div class="product-rating">
-                                            <div class="number"><span class="text-muted font-12">(15+) 4.8</span></div>
-                                            <div class="icon"><i class="bi bi-star-fill"></i></div>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -391,27 +365,7 @@
 <?php $this->include('app.layouts.footer'); ?>
 
 <script src="assets/js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
-<script>
-    $(document).ready(function () {
-        ////slider range
-        $(".catRange").slider({
-            id: "slider5b",
-            min: 1500000,
-            max: 3000000,
-            range: true,
-            step: 10000,
-            value: [1500000, 3000000],
-            rtl: 'false',
-            formatter: function formatter(val) {
-                if (Array.isArray(val)) {
-                    return val[0] + " تومان " + "  تا   " + val[1] + " تومان ";
-                } else {
-                    return val;
-                }
-            },
-        });
-    });
-</script>
+
 <!-- ==== end range slider -->
 
 
