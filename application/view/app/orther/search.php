@@ -6,9 +6,9 @@
     <div class="container-fluid">
 
         <div class="d-flex align-items-center mb-4 alert alert-light shadow-box rounded-4">
-            <span class="h3 main-color-one-color me-3">2169</span>
+            <span class="h3 main-color-one-color me-3"><?php echo  count($posts); ?></span>
             <h1 class="h3">
-                نتیجه برای "گوشی سامسونگ" پیدا شده !
+                نتیجه برای   <?= $name ?> !
             </h1>
         </div>
 
@@ -35,7 +35,7 @@
                                 <div class="category-meta">
                                     <div class="category-meta-title d-flex align-items-center">
                                         <h5>لوازم‌ تحریر</h5>
-                                        <h5 class="ms-2">(17,604 محصول)</h5>
+                                        <h5 class="ms-2">(<?= $count_posts['total_products'] ?> محصول)</h5>
                                     </div>
                                 </div>
                                 <div class="category-bread mt-2">
@@ -47,24 +47,7 @@
                                     </nav>
                                 </div>
                                 <div class="item-boxs">
-                                    <div class="item-box shadow-box">
-                                        <div class="title">
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <h6 class="font-14">فیلتر های اعمال شده</h6>
-                                                <a class="btn border-0" data-bs-toggle="collapse" href="#collapseItemBox1" role="button" aria-expanded="false">
-                                                    <i class="bi bi-chevron-down"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="desc collapse show" id="collapseItemBox1">
-                                            <a href="" class="btn btn-sm rounded-pill border-1 border-muted me-1 font-14 mb-2">
-                                                <span>گوشی الجی</span>
-                                                <span class="ms-3"><i class="bi bi-x text-danger"></i></span></a>
-                                            <a href="" class="btn btn-sm rounded-pill border-1 border-muted me-1 font-14 mb-2">
-                                                <span>دوربین 108</span>
-                                                <span class="ms-3"><i class="bi bi-x text-danger"></i></span></a>
-                                        </div>
-                                    </div>
+                                   
                                     <div class="item-box shadow-box">
                                         <div class="title">
                                             <div class="form-check form-switch  form-sw-custom">
@@ -86,9 +69,9 @@
                                                 <div id="flush-collapseOne1" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample1">
                                                     <div class="accordion-body">
                                                         <div class="search-form">
-                                                            <form action="">
+                                                            <form action="<?php $this->url('/search') ?>" method="post">
                                                                 <div class="search-filed">
-                                                                    <input type="text" placeholder="محصول خود را جستجو کنید" class="form-control search-input">
+                                                                    <input type="text" placeholder="محصول خود را جستجو کنید" name="text_search" class="form-control search-input">
                                                                     <button type="submit" class="top-header-search-btn">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
                                                                             <path d="M12.9742 12.1508L12.9742 12.1508L11.2255 10.4458C12.1333 9.42855 12.6838 8.09702 12.6838 6.63956C12.6838 3.43893 10.0316 0.85 6.76692 0.85C3.50227 0.85 0.85 3.43893 0.85 6.63956C0.85 9.84018 3.50227 12.4291 6.76692 12.4291C8.11591 12.4291 9.36008 11.9872 10.3557 11.243L12.1375 12.9806L12.1372 12.9809L12.1456 12.9879L12.1955 13.0299L12.1952 13.0302L12.2042 13.0367C12.4363 13.2047 12.7646 13.1861 12.9753 12.9795C13.2087 12.7507 13.2081 12.3789 12.9742 12.1508ZM2.03826 6.63956C2.03826 4.09064 4.15218 2.01864 6.76692 2.01864C9.38167 2.01864 11.4956 4.09064 11.4956 6.63956C11.4956 9.18848 9.38167 11.2605 6.76692 11.2605C4.15218 11.2605 2.03826 9.18848 2.03826 6.63956Z" fill="#0E1935" stroke="#0E1935" stroke-width="0.3"></path>
@@ -199,42 +182,25 @@
                     <div class="category-meta">
                         <div class="category-meta-title d-flex align-items-center">
                             <h5>لوازم‌ تحریر</h5>
-                            <h5 class="ms-2">(17,604 محصول)</h5>
+                            <h5 class="ms-2">(<?= $count_posts['total_products'] ?> محصول)</h5>
                         </div>
                     </div>
                     <div class="category-bread mt-2">
                         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">خانه</a></li>
+                                <li class="breadcrumb-item"><a href="<?php $this->url('/home') ?>">خانه</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">لوازم تحریر</li>
                             </ol>
                         </nav>
                     </div>
                     <div class="item-boxs">
-                        <div class="item-box shadow-box">
-                            <div class="title">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <h6 class="font-14">فیلتر های اعمال شده</h6>
-                                    <a class="btn border-0" data-bs-toggle="collapse" href="#collapseItemBox" role="button" aria-expanded="false">
-                                        <i class="bi bi-chevron-down"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="desc collapse show" id="collapseItemBox">
-                                <a href="" class="btn btn-sm rounded-pill border-1 border-muted me-1 font-14 mb-2">
-                                    <span>گوشی الجی</span>
-                                    <span class="ms-3"><i class="bi bi-x text-danger"></i></span></a>
-                                <a href="" class="btn btn-sm rounded-pill border-1 border-muted me-1 font-14 mb-2">
-                                    <span>دوربین 108</span>
-                                    <span class="ms-3"><i class="bi bi-x text-danger"></i></span></a>
-                            </div>
-                        </div>
+                      
                         <div class="item-box shadow-box">
                             <div class="title">
                                 <div class="form-check form-switch  form-sw-custom">
                                     <div class="d-flex align-items-center justify-content-end flex-row-reverse">
                                         <label class="form-check-label d-block mb-0 lh-base fs-6" for="flexSwitchCheckDefault">نمایش کالاهای موجود</label>
-                                        <input class="form-check-input d-block" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                        <input class="form-check-input d-block" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked>
                                     </div>
                                 </div>
                             </div>
@@ -250,9 +216,9 @@
                                     <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                         <div class="accordion-body">
                                             <div class="search-form">
-                                                <form action="">
+                                                <form action="<?php $this->url('/search') ?>" method="post">
                                                     <div class="search-filed">
-                                                        <input type="text" placeholder="محصول خود را جستجو کنید" class="form-control search-input">
+                                                        <input type="text" placeholder="محصول خود را جستجو کنید"  name="text_search" class="form-control search-input">
                                                         <button type="submit" class="top-header-search-btn">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
                                                                 <path d="M12.9742 12.1508L12.9742 12.1508L11.2255 10.4458C12.1333 9.42855 12.6838 8.09702 12.6838 6.63956C12.6838 3.43893 10.0316 0.85 6.76692 0.85C3.50227 0.85 0.85 3.43893 0.85 6.63956C0.85 9.84018 3.50227 12.4291 6.76692 12.4291C8.11591 12.4291 9.36008 11.9872 10.3557 11.243L12.1375 12.9806L12.1372 12.9809L12.1456 12.9879L12.1955 13.0299L12.1952 13.0302L12.2042 13.0367C12.4363 13.2047 12.7646 13.1861 12.9753 12.9795C13.2087 12.7507 13.2081 12.3789 12.9742 12.1508ZM2.03826 6.63956C2.03826 4.09064 4.15218 2.01864 6.76692 2.01864C9.38167 2.01864 11.4956 4.09064 11.4956 6.63956C11.4956 9.18848 9.38167 11.2605 6.76692 11.2605C4.15218 11.2605 2.03826 9.18848 2.03826 6.63956Z" fill="#0E1935" stroke="#0E1935" stroke-width="0.3"></path>
@@ -264,39 +230,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed f-800" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                                            محدوده قیمت
-                                        </button>
-                                    </h2>
-                                    <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                                        <div class="accordion-body">
-                                            <form action="" method="get">
-                                                <div class="form-group">
-                                                    <input type="range" class="catRange" name="range[]">
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <input type="number" name=""  min="1500000"
-                                                               class="form-control input-range-filter"
-                                                               placeholder="از 1500000">
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <input type="number" name=""  min="1500000" max="3000000"
-                                                               class="form-control input-range-filter"
-                                                               placeholder="از 3000000">
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="text-center my-3">
-                                                            <input type="submit" class="btn main-color-green text-white rounded-pill px-5 py-2" value="اعمال فیلتر">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                               
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
                                         <button class="accordion-button collapsed f-800" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
@@ -417,7 +351,7 @@
                                             </button>
                                         </div>
                                         <div class="price">
-                                            <p class="old-price">6,500,000 <span class="danger-label rounded-3 ms-2">40%</span></p>
+                                         
                                             <p class="new-price">3,175,000 <span class="font-12">تومان</span></p>
                                         </div>
                                     </div>

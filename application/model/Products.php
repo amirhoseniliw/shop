@@ -38,6 +38,35 @@ class Products extends Model
     $this->closeConnection();  
     return $result;  
 } 
+public function find_for_search($name)  
+{  
+    $query = "SELECT   
+        p.*,  
+        (SELECT `name` FROM `categories` WHERE `categories`.`category_id` = p.`category_id`) AS category,  
+        GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
+        GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts  
+    FROM `products` p  
+    LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
+    WHERE p.`name` LIKE  ?  
+    GROUP BY p.product_id;";  
+    $result = $this->query($query, [$name])->fetchAll();  
+    $this->closeConnection();  
+    return $result;  
+} 
+public function count_all()
+    {   $query = "SELECT COUNT(*) AS total_products FROM products; ";
+      
+        $result = $this->query($query)->fetch();
+        $this->closeConnection();
+        return $result;
+    }
+    public function category()
+    {   $query = "SELECT COUNT(*) AS total_products FROM products; ";
+      
+        $result = $this->query($query)->fetch();
+        $this->closeConnection();
+        return $result;
+    }
 public function findColorsByProductId($id)  
 {  
     $query = "SELECT *  

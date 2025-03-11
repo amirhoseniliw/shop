@@ -78,7 +78,7 @@
                                         <div class="search-form">
                                             <form action="<?php $this->url('/search') ?>" method="post">
                                                 <div class="search-filed">
-                                                    <input class="form-control search-input" placeholder="جستجوی محصولات ..." type="text">
+                                                    <input class="form-control search-input" name="text_search" placeholder="جستجوی محصولات ..." type="text">
                                                     <button class="btn search-btn main-color-one-bg rounded-3" type="submit"><i class="bi bi-search"></i></button>
                                                 </div>
                                             </form>
@@ -288,7 +288,7 @@
                     <div class="search-form">
                         <form  action="<?php $this->url('/search') ?>" method="post">
                             <div class="search-filed">
-                                <input type="text" placeholder="محصول خود را جستجو کنید" class="form-control search-input">
+                                <input type="text" placeholder="محصول خود را جستجو کنید" name="text_search" class="form-control search-input">
                                 <button type="submit" class="top-header-search-btn">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
                                         <path d="M12.9742 12.1508L12.9742 12.1508L11.2255 10.4458C12.1333 9.42855 12.6838 8.09702 12.6838 6.63956C12.6838 3.43893 10.0316 0.85 6.76692 0.85C3.50227 0.85 0.85 3.43893 0.85 6.63956C0.85 9.84018 3.50227 12.4291 6.76692 12.4291C8.11591 12.4291 9.36008 11.9872 10.3557 11.243L12.1375 12.9806L12.1372 12.9809L12.1456 12.9879L12.1955 13.0299L12.1952 13.0302L12.2042 13.0367C12.4363 13.2047 12.7646 13.1861 12.9753 12.9795C13.2087 12.7507 13.2081 12.3789 12.9742 12.1508ZM2.03826 6.63956C2.03826 4.09064 4.15218 2.01864 6.76692 2.01864C9.38167 2.01864 11.4956 4.09064 11.4956 6.63956C11.4956 9.18848 9.38167 11.2605 6.76692 11.2605C4.15218 11.2605 2.03826 9.18848 2.03826 6.63956Z" fill="#0E1935" stroke="#0E1935" stroke-width="0.3"></path>
