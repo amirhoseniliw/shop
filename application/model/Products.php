@@ -33,6 +33,7 @@ class Products extends Model
     FROM `products` p  
     LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
     WHERE p.`product_id` = ?  
+        AND p.`status` = 'enable'  
     GROUP BY p.product_id;";  
     $result = $this->query($query, [$id])->fetch();  
     $this->closeConnection();  
@@ -40,23 +41,26 @@ class Products extends Model
 } 
 //!-----------------------------------------------------------------------for search 
 // گران ترین
-public function find_most_expensive($limit = 10)  
+public function find_most_expensive($name)  
 {  
     $query = "SELECT   
-        p.*,  
+        p.*,   
         (SELECT `name` FROM `categories` WHERE `categories`.`category_id` = p.`category_id`) AS category,  
         GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
         GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts  
     FROM `products` p  
     LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
-    ORDER BY p.price DESC  
-    LIMIT ?;";  
-    $result = $this->query($query, [$limit])->fetchAll();  
+    WHERE p.`name` LIKE ?   
+    AND p.`status` = 'enable'  
+    GROUP BY p.product_id    
+    ORDER BY p.price DESC;";  
+
+    $result = $this->query($query, ["%$name%"])->fetchAll();  
     $this->closeConnection();  
     return $result;  
-}   
+}  
 //ارزان ترین 
-public function find_most_cheap($limit = 10)  
+public function find_most_cheap($name)  
 {  
     $query = "SELECT   
         p.*,  
@@ -65,14 +69,16 @@ public function find_most_cheap($limit = 10)
         GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts  
     FROM `products` p  
     LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
-    ORDER BY p.price ASC  
-    LIMIT ?;";  
-    $result = $this->query($query, [$limit])->fetchAll();  
+    WHERE p.`name` LIKE ?  
+    AND p.`status` = 'enable' 
+        GROUP BY p.product_id     
+    ORDER BY p.price ASC ;";  
+    $result = $this->query($query, ["%$name%"])->fetchAll();  
     $this->closeConnection();  
     return $result;  
 }  
 //پر فروش
-public function find_best_sellers($limit = 10)  
+public function find_bestseller_products($name)  
 {  
     $query = "SELECT   
         p.*,  
@@ -81,28 +87,51 @@ public function find_best_sellers($limit = 10)
         GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts  
     FROM `products` p  
     LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
-    ORDER BY p.sold_quantity DESC  
-    LIMIT ?;";  
-    $result = $this->query($query, [$limit])->fetchAll();  
-    $this->closeConnection();  
-    return $result;  
-}   
-//محبوب 
-public function find_most_viewed($limit = 10)  
-{  
-    $query = "SELECT   
-        p.*,  
-        (SELECT `name` FROM `categories` WHERE `categories`.`category_id` = p.`category_id`) AS category,  
-        GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
-        GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts  
-    FROM `products` p  
-    LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
-    ORDER BY p.view_count DESC  
-    LIMIT ?;";  
-    $result = $this->query($query, [$limit])->fetchAll();  
+    WHERE p.`Bestseller` = 1  
+      AND p.`status` = 'enable'  
+      AND p.`name` LIKE ?  
+    GROUP BY p.product_id;";  
+    $result = $this->query($query, ["%$name%"])->fetchAll();  
     $this->closeConnection();  
     return $result;  
 }  
+//محبوب 
+public function find_most_viewed($name = '')  
+{  
+    $query = "SELECT   
+        p.*,  
+        (SELECT `name` FROM `categories` WHERE `categories`.`category_id` = p.`category_id`) AS category,  
+        GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
+        GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts  
+    FROM `products` p  
+    LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
+    WHERE p.`name` LIKE ?  
+     AND p.`status` = 'enable'  
+     GROUP BY p.product_id    
+    ORDER BY p.view DESC ;";  
+    $result = $this->query($query, ["%$name%"])->fetchAll();  
+    $this->closeConnection();  
+    return $result;  
+}  
+//انتخابب شده 
+public function find_selected_products($name)  
+{  
+    $query = "SELECT   
+        p.*,  
+        (SELECT `name` FROM `categories` WHERE `categories`.`category_id` = p.`category_id`) AS category,  
+        GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
+        GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts  
+    FROM `products` p  
+    LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
+    WHERE p.`Selected` = 1  
+      AND p.`status` = 'enable'  
+       AND p.`name` LIKE ?  
+    GROUP BY p.product_id;";  
+    $result = $this->query($query, ["%$name%"])->fetchAll();  
+    $this->closeConnection();  
+    return $result;  
+}  
+
 // کلش 
 public function find_for_search($name)  
 {  
@@ -114,13 +143,14 @@ public function find_for_search($name)
     FROM `products` p  
     LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
     WHERE p.`name` LIKE  ?  
+    AND p.`status` = 'enable'  
     GROUP BY p.product_id;";  
-    $result = $this->query($query, [$name])->fetchAll();  
+    $result = $this->query($query, ["%$name%"])->fetchAll();  
     $this->closeConnection();  
     return $result;  
 } 
 public function count_all()
-    {   $query = "SELECT COUNT(*) AS total_products FROM products; ";
+    {   $query = "SELECT COUNT(*) AS total_products FROM products WHERE `status` = 'enable'; ";
       
         $result = $this->query($query)->fetch();
         $this->closeConnection();
@@ -143,7 +173,8 @@ public function findColorsByProductId($id)
 {  
     $query = "SELECT *  
     FROM `colors` 
-    WHERE product_id = ?  
+    WHERE product_id = ?
+    AND  `status` = 'enable'  
     ORDER BY titel_name DESC;";  
     $result = $this->query($query, [$id])->fetchAll();  
     $this->closeConnection();  
@@ -188,7 +219,7 @@ LIMIT 0, $int;  ";
 //!------------------------------------------------------------------------------------------------
   
     public function update_view($id) {
-        $query= "UPDATE `products` SET `view` = `view` + 1 WHERE `product_id` = ? ";
+        $query= "UPDATE `products` SET `view` = `view` + 1 WHERE `product_id` = ? AND `status` = 'enable'";
         $this->execute($query , [$id]);
         $this->closeConnection();
     }

@@ -342,24 +342,28 @@
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="box_filter d-lg-block d-none">
                                     <ul class="list-inline text-start mb-0">
-                                        <?php $type_post = 'Bestseller' ; ?>
                                         <li class="list-inline-item title-font ms-0">مرتب سازی بر اساس :</li>
                                         <li class="list-inline-item"><a
                                                 class="<?php if($type_post == 'expensive' ) echo "active_custom" ;?>"
-                                                href="<?php $this->url('/search/index/' . 'expensive'); ?>">گران ترین</a></li>
+                                                href="<?php $this->url('/search/index/' . 'expensive'); ?>">گران
+                                                ترین</a></li>
                                         <li class="list-inline-item"><a
                                                 class="<?php if($type_post == 'cheap' ) echo "active_custom" ;?>"
-                                                href="<?php $this->url('/search/index/' . 'cheap'); ?>">ارزان ترین</a> </li>
+                                                href="<?php $this->url('/search/index/' . 'cheap'); ?>">ارزان ترین</a>
+                                        </li>
                                         <li class="list-inline-item"><a
                                                 class="<?php if($type_post == 'Bestseller' ) echo "active_custom" ;?>"
-                                                href="<?php $this->url('/search/index/' . 'Bestseller'); ?>">پروفروش ترین</a>
+                                                href="<?php $this->url('/search/index/' . 'Bestseller'); ?>">پروفروش
+                                                ترین</a>
                                         </li>
                                         <li class="list-inline-item"><a
                                                 class="<?php if($type_post == 'selected' ) echo "active_custom" ;?>"
-                                                href="<?php $this->url('/search/index/' . 'selected'); ?>">انتخاب شده </a></li>
+                                                href="<?php $this->url('/search/index/' . 'selected'); ?>">انتخاب شده
+                                            </a></li>
                                         <li class="list-inline-item"><a
                                                 class="<?php if($type_post == 'view' ) echo "active_custom" ;?>"
-                                                href="<?php $this->url('/search/index/' . 'view'); ?>">محبوب ترین</a></li>
+                                                href="<?php $this->url('/search/index/' . 'view'); ?>">محبوب ترین</a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="box_filter_counter fs-6"><i class="bi bi-card-list me-2"></i> 123 کالا</div>
@@ -371,7 +375,7 @@
                                         onchange="document.getElementById('sortForm').submit();">
                                         <option value="expensive"
                                             <?php if($type_post == 'expensive' ) echo "selected" ?>>گران ترین</option>
-                                        <option value="cheap" <?php if($type_post == 'expensive' ) echo "selected" ?>>
+                                        <option value="cheap" <?php if($type_post == 'cheap' ) echo "selected" ?>>
                                             ارزان ترین</option>
                                         <option value="Bestseller"
                                             <?php if($type_post == 'Bestseller' ) echo "selected" ?>>پرفروش ترین

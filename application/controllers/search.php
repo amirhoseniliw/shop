@@ -10,14 +10,17 @@ class search extends Controller
 {
     public function index($type_posts)
     {
-        if (!isset($name)) {
-            $name = str_replace("%", "", $_SESSION['name']);
-        }
+       
+       if(isset($_GET['type_posts'])){
+        $type_post = $_GET['type_posts'] ;
+        return $this->redirect('search/index/' . $type_post);
+       }
         if (isset($_POST['text_search'])) {
             $name = $_POST['text_search'];
 
-            $_SESSION['name'] = "%$name%";
+            $_SESSION['name'] = $name;
         }
+        else {$name =  $_SESSION['name'];}
         if ($name == "") {
             $name_status = "ALL_POSTS";
         } else {
@@ -32,33 +35,38 @@ class search extends Controller
         $search_name =  $_SESSION['name'];
         switch ($type_posts) {
             case 'expensive':
-                 // $posts = new ProductsModel();
-                // $posts = $posts->find_for_search($search_name);
+                 $posts = new ProductsModel();
+                $posts = $posts->find_most_expensive($search_name);
+                $type_post = 'expensive' ;
                 break;
             case 'cheap':
-                    // $posts = new ProductsModel();
-                // $posts = $posts->find_for_search($search_name);
+                    $posts = new ProductsModel();
+                $posts = $posts->find_most_cheap($search_name);
+                $type_post = 'cheap' ;
              break;
             case 'Bestseller':
-                    // $posts = new ProductsModel();
-                // $posts = $posts->find_for_search($search_name);
+                    $posts = new ProductsModel();
+                $posts = $posts->find_bestseller_products($search_name);
+                $type_post = 'Bestseller' ;
              break;
 
             case 'selected':
-                // $posts = new ProductsModel();
-                // $posts = $posts->find_for_search($search_name);
+                $posts = new ProductsModel();
+                $posts = $posts->find_selected_products($search_name);
+                $type_post = 'selected' ;
              break;
             case 'view':
-                // $posts = new ProductsModel();
-                // $posts = $posts->find_for_search($search_name);
+                $posts = new ProductsModel();
+                $posts = $posts->find_most_viewed($search_name);
+                $type_post = 'view' ;
              break;
 
             default:
-                echo "عدد نامشخص است";
+                $this->dd('چیزی یافت نشد !');
         }
-        $posts = new ProductsModel();
-        $posts = $posts->find_for_search($search_name);
-        return $this->view("app.orther.search", compact('posts', 'name', 'name_status', 'count_posts', 'categories'));
+        // $posts = new ProductsModel();
+        // $posts = $posts->find_for_search($search_name);
+        return $this->view("app.orther.search", compact( 'type_post' , 'posts', 'name', 'name_status', 'count_posts', 'categories'));
     }
 
     public function search_type()
