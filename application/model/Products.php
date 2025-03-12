@@ -38,6 +38,72 @@ class Products extends Model
     $this->closeConnection();  
     return $result;  
 } 
+//!-----------------------------------------------------------------------for search 
+// گران ترین
+public function find_most_expensive($limit = 10)  
+{  
+    $query = "SELECT   
+        p.*,  
+        (SELECT `name` FROM `categories` WHERE `categories`.`category_id` = p.`category_id`) AS category,  
+        GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
+        GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts  
+    FROM `products` p  
+    LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
+    ORDER BY p.price DESC  
+    LIMIT ?;";  
+    $result = $this->query($query, [$limit])->fetchAll();  
+    $this->closeConnection();  
+    return $result;  
+}   
+//ارزان ترین 
+public function find_most_cheap($limit = 10)  
+{  
+    $query = "SELECT   
+        p.*,  
+        (SELECT `name` FROM `categories` WHERE `categories`.`category_id` = p.`category_id`) AS category,  
+        GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
+        GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts  
+    FROM `products` p  
+    LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
+    ORDER BY p.price ASC  
+    LIMIT ?;";  
+    $result = $this->query($query, [$limit])->fetchAll();  
+    $this->closeConnection();  
+    return $result;  
+}  
+//پر فروش
+public function find_best_sellers($limit = 10)  
+{  
+    $query = "SELECT   
+        p.*,  
+        (SELECT `name` FROM `categories` WHERE `categories`.`category_id` = p.`category_id`) AS category,  
+        GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
+        GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts  
+    FROM `products` p  
+    LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
+    ORDER BY p.sold_quantity DESC  
+    LIMIT ?;";  
+    $result = $this->query($query, [$limit])->fetchAll();  
+    $this->closeConnection();  
+    return $result;  
+}   
+//محبوب 
+public function find_most_viewed($limit = 10)  
+{  
+    $query = "SELECT   
+        p.*,  
+        (SELECT `name` FROM `categories` WHERE `categories`.`category_id` = p.`category_id`) AS category,  
+        GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
+        GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts  
+    FROM `products` p  
+    LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
+    ORDER BY p.view_count DESC  
+    LIMIT ?;";  
+    $result = $this->query($query, [$limit])->fetchAll();  
+    $this->closeConnection();  
+    return $result;  
+}  
+// کلش 
 public function find_for_search($name)  
 {  
     $query = "SELECT   
