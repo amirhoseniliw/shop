@@ -57,7 +57,7 @@
                                                     <label class="form-check-label d-block mb-0 lh-base fs-6"
                                                         for="flexSwitchCheckDefault1">نمایش کالاهای موجود</label>
                                                     <input class="form-check-input d-block" type="checkbox"
-                                                        role="switch" id="flexSwitchCheckDefault1">
+                                                        role="switch" id="flexSwitchCheckDefault1" checked>
                                                 </div>
                                             </div>
                                         </div>
@@ -98,45 +98,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="accordion-item">
-                                                <h2 class="accordion-header">
-                                                    <button class="accordion-button collapsed f-800" type="button"
-                                                        data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo1"
-                                                        aria-expanded="false" aria-controls="flush-collapseTwo1">
-                                                        محدوده قیمت
-                                                    </button>
-                                                </h2>
-                                                <div id="flush-collapseTwo1" class="accordion-collapse collapse"
-                                                    data-bs-parent="#accordionFlushExample">
-                                                    <div class="accordion-body">
-                                                        <form action="" method="get">
-                                                            <div class="form-group">
-                                                                <input type="range" class="catRange" name="range[]">
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-6">
-                                                                    <input type="number" name="" min="1500000"
-                                                                        class="form-control input-range-filter"
-                                                                        placeholder="از 1500000">
-                                                                </div>
-                                                                <div class="col-6">
-                                                                    <input type="number" name="" min="1500000"
-                                                                        max="3000000"
-                                                                        class="form-control input-range-filter"
-                                                                        placeholder="از 3000000">
-                                                                </div>
-                                                                <div class="col-12">
-                                                                    <div class="text-center my-3">
-                                                                        <input type="submit"
-                                                                            class="btn main-color-green text-white rounded-pill px-5 py-2"
-                                                                            value="اعمال فیلتر">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                         
                                             <div class="accordion-item">
                                                 <h2 class="accordion-header">
                                                     <button class="accordion-button collapsed f-800" type="button"
@@ -148,59 +110,30 @@
                                                 <div id="flush-collapseThree1" class="accordion-collapse collapse"
                                                     data-bs-parent="#accordionFlushExample">
                                                     <div class="accordion-body">
+                                                        
                                                         <form action="">
-                                                            <div
-                                                                class="d-flex align-items-center justify-content-between flex-wrap mb-3">
-                                                                <div class="form-check">
-                                                                    <label for="colorCheck1"
-                                                                        class="form-check-label">موبایل <i
-                                                                            class="bi bi-phone ms-1"></i></label>
-                                                                    <input type="checkbox" name="" id="colorCheck1"
-                                                                        class="form-check-input">
-                                                                </div>
-                                                                <div>
-                                                                    <span class="fw-bold font-14">(27)</span>
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="d-flex align-items-center justify-content-between flex-wrap mb-3">
-                                                                <div class="form-check">
-                                                                    <label for="colorCheck5"
-                                                                        class="form-check-label">ایرپاد <i
-                                                                            class="bi bi-earbuds ms-1"></i></label>
-                                                                    <input type="checkbox" name="" id="colorCheck5"
-                                                                        class="form-check-input">
-                                                                </div>
-                                                                <div>
-                                                                    <span class="fw-bold font-14">(32)</span>
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="d-flex align-items-center justify-content-between flex-wrap mb-3">
-                                                                <div class="form-check">
-                                                                    <label for="colorCheck4"
-                                                                        class="form-check-label">تبلت <i
-                                                                            class="bi bi-tablet ms-1"></i></label>
-                                                                    <input type="checkbox" name="" id="colorCheck4"
-                                                                        class="form-check-input">
-                                                                </div>
-                                                                <div>
-                                                                    <span class="fw-bold font-14">(14)</span>
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="d-flex align-items-center justify-content-between flex-wrap mb-3">
-                                                                <div class="form-check">
-                                                                    <label for="colorCheck3"
-                                                                        class="form-check-label">هدست <i
-                                                                            class="bi bi-headset ms-1"></i></label>
-                                                                    <input type="checkbox" name="" id="colorCheck3"
-                                                                        class="form-check-input">
-                                                                </div>
-                                                                <div>
-                                                                    <span class="fw-bold font-14">(8)</span>
-                                                                </div>
-                                                            </div>
+                                                <?php
+                                                foreach ($categories as $category ){
+                                                 ?>
+                                                <div
+                                                    class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+                                                    <div class="form-check">
+                                                        <label for="colorCheck111"
+                                                            class="form-check-label"><?= $category['name'] ?> <img
+                                                                src="<?php echo $this->asset($category['img_url']) ?>"
+                                                                alt="" class="bi bi-phone ms-1" width="20"></img>
+                                                        </label>
+                                                        <input type="checkbox" name="id_category"
+                                                            value="<?= $category['category_id'] ?>" id="colorCheck111"
+                                                            class="form-check-input">
+                                                    </div>
+                                                    <div>
+                                                        <span
+                                                            class="fw-bold font-14">(<?= $category['product_count'] ?>)</span>
+                                                    </div>
+                                                </div>
+                                                <?php  } ?>
+                                                            
                                                             <div class="text-center mb-3 mt-2">
                                                                 <input type="submit"
                                                                     class="btn main-color-green text-white rounded-pill px-5 py-2"
@@ -366,7 +299,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="box_filter_counter fs-6"><i class="bi bi-card-list me-2"></i> 123 کالا</div>
+                                <div class="box_filter_counter fs-6"><i class="bi bi-card-list me-2"></i> <?php echo  count($posts); ?> کالا</div>
                             </div>
                             <div class="d-lg-none d-block">
                                 <form action="<?php $this->url('search/') ?>" method="get" id="sortForm">
