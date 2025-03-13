@@ -5,32 +5,67 @@ use Application\Controllers\Controller;
 use application\model\Products as ProductsModel;
 use application\model\panel\Category as CategoryModel;
 class product extends Controller{
-public function index() {
+public function index($type_posts) {
+    if(isset($_GET['type_posts'])){
+        $type_post = $_GET['type_posts'] ;
+        return $this->redirect('search/index/' . $type_post);
+       }
+        $count_posts = new ProductsModel;
+        $count_posts = $count_posts->count_all();
+      
+      
+
+
+     
+      
        
-        return $this->view("app.orther.product");
+           $search_name = null;
+        switch ($type_posts) {
+            case 'expensive':
+                 $posts = new ProductsModel();
+                $posts = $posts->find_most_expensive($search_name);
+                $type_post = 'expensive' ;
+                break;
+            case 'cheap':
+                    $posts = new ProductsModel();
+                $posts = $posts->find_most_cheap($search_name);
+                $type_post = 'cheap' ;
+             break;
+            case 'Bestseller':
+                    $posts = new ProductsModel();
+                $posts = $posts->find_bestseller_products($search_name);
+                $type_post = 'Bestseller' ;
+             break;
+
+            case 'selected':
+                $posts = new ProductsModel();
+                $posts = $posts->find_selected_products($search_name);
+                $type_post = 'selected' ;
+             break;
+            case 'view':
+                $posts = new ProductsModel();
+                $posts = $posts->find_most_viewed($search_name);
+                $type_post = 'view' ;
+             break;
+             case 'all':
+                $posts = new ProductsModel();
+                $posts = $posts->find_most_cheap_all();
+                $type_post = 'cheap' ;
+             break;
+            default:
+                $this->dd('چیزی یافت نشد !');
+        }  
+        
+
+
+
+
+
+
+
+        return $this->view("app.orther.all_product" , compact('posts' , 'count_posts' , 'type_post' ));
 
     }
-
-// public function products_update($id) {
-//     if($_FILES['image_url']['tmp_name'] != null){
-//         $posts = new ProductsModel();
-//         $post = $posts->find($id);
-//         $this->removeImage($post['image_url']);
-//         $_POST['image_url'] =  $this->saveImage($_FILES['image_url'] , '/img/posts');
-//         $_POST['image_url'] = str_replace( 'public/' , "",$_POST['image_url'] ); 
-//         $post = new ProductsModel();
-//         $post->update($id , $_POST);
-
-//     }
-    
-//     $posts = new ProductsModel();
-//     $post = $posts->find($id);
-//     $_POST['image_url'] =  $post['image_url'];
-//     $post = new ProductsModel();
-//     $post->update($id , $_POST);
-//     return $this->redirect('products');
-
-// }
 public function find($id){
     $post = new ProductsModel();  
 
@@ -51,6 +86,26 @@ public function find($id){
     return $this->view("app.orther.product", compact('post' , 'colors'));   }
    
 
+    public function category($id_category) {
+       
+         
+               $posts = new ProductsModel();
+           $posts = $posts->find_for_search('' ,$id_category);
+           
+           $category = new ProductsModel();
+        $categories = $category->category();
+        $count_posts = new ProductsModel;
+        $count_posts = $count_posts->count_all();
+            
+    
+    
+    
+    
+    
+    
+    
+            return $this->view("app.orther.category" , compact('posts' , 'count_posts'  ));
+    
+        }
 
-//?------------------------------------------------------------------------------------------------------------
 }

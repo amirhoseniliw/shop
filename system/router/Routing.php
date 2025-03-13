@@ -32,11 +32,13 @@ if (method_exists($object, $method)) {
   if ($parameterCount <= count(array_slice($this->current_route , 2)))
     call_user_func_array(array($object , $method), array_slice($this->current_route , 2));
     else {
-      echo "404 - parameter error!";
+      $protocol = stripos($_SERVER['SERVER_PROTOCOL'], 'https')=== true ? 'https://' : 'http://';
+    header("Location: ".$protocol.$_SERVER['HTTP_HOST']."/TahrirKhayam/". "error/error_404");
     }
     }
   else {
-    echo "404 - method not exist!";
+    $protocol = stripos($_SERVER['SERVER_PROTOCOL'], 'https')=== true ? 'https://' : 'http://';
+    header("Location: ".$protocol.$_SERVER['HTTP_HOST']."/TahrirKhayam/". "error/error_404");
   }
 }
 

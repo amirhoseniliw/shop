@@ -274,7 +274,7 @@
                 <div class="swiper-wrapper">
                     <?php foreach ($categories as $category) { ?>
                         <div class="swiper-slide">
-                            <a href="">
+                            <a href="<?php $this->url('/product/category/' . $category['category_id']) ?>">
                                 <div class="slider-category-item">
                                     <div class="slider-category-item-title">
                                         <h6><?= $category['category_name'] ?></h6>
@@ -316,7 +316,7 @@
                                 </div>
                             </div>
                             <div class="amzming-slider-image text-center">
-                                <img src="assets/img/gift-ruysa-1.jpg" alt="">
+                                <img src="<?php $this->asset('img_site/icon/gift-ruysa-1.jpg')?>" alt="">
                             </div>
                         </div>
                         <div class="col-lg-9">
@@ -327,7 +327,7 @@
                                     <div class="swiper-wrapper"> <?php foreach ($Selected_posts as $Selected_post) { ?>
                                             <div class="swiper-slide">
                                                 <div class="product-box">
-                                                    <a href="">
+                                                    <a href="<?php $this->url('/product/find/'. $Selected_post['product_id']) ?>">
                                                         <div class="product-image">
                                                         <?php   $imageUrlsArrays = explode(',', $Selected_post['photo_file_names']);?>
                                                         <?php   $alt_text = explode(',', $Selected_post['alt_texts']);?>
@@ -364,17 +364,17 @@
                                                         <div class="d-flex align-items-center justify-content-between">
                                                             <nav class="navbar navbar-expand">
                                                                 <ul class="navbar-nav align-items-center">
-                                                                    <li class="nav-item"><a href=""
+                                                                    <li class="nav-item"><a href="<?php $this->url('/product/find/'. $Selected_post['product_id']) ?>"
                                                                             class="nav-item product-box-hover-item product-box-hover-item-btn"
                                                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                                                             data-bs-title="مشاهده سریع"><i
                                                                                 class="bi bi-search"></i></a></li>
-                                                                    <li class="nav-item"><a href=""
+                                                                    <li class="nav-item"><a href="<?php $this->url('/product/find/'. $Selected_post['product_id']) ?>"
                                                                             class="nav-item product-box-hover-item product-box-hover-item-btn mx-3"
                                                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                                                             data-bs-title="افزودن به سبد خرید"><i
                                                                                 class="bi bi-basket"></i></a></li>
-                                                                    <li class="nav-item"><a href=""
+                                                                    <li class="nav-item"><a href="<?php $this->url('/product/addfivert/'. $Selected_post['product_id']) ?>"
                                                                             class="nav-item product-box-hover-item product-box-hover-item-btn"
                                                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                                                             data-bs-title="افزودن به علاقه ها"><i
@@ -422,7 +422,7 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="section-title-link text-sm-end text-start">
-                            <a class="btn btn-title  rounded-pill" href=""> مشاهده همه</a>
+                            <a class="btn btn-title  rounded-pill" href="<?php $this->url('/product/index/Bestseller') ?>"> مشاهده همه</a>
                         </div>
                     </div>
                 </div>
@@ -436,7 +436,7 @@
                         <?php foreach ($Bestseller_posts_alls as $Bestseller_posts_all) { ?>
                             <div class="swiper-slide">
                                 <div class="product-box">
-                                    <a href="">
+                                    <a href="<?php $this->url('/product/find/'. $Bestseller_posts_all['product_id']) ?>">
                                         <div class="product-image">
                                         <?php   $imageUrlsArrays = explode(',', $Bestseller_posts_all['photo_file_names']);?>
                                         <?php   $alt_text = explode(',', $Bestseller_posts_all['alt_texts']);?>
@@ -473,17 +473,17 @@
                                         <div class="d-flex align-items-center justify-content-between">
                                             <nav class="navbar navbar-expand">
                                                 <ul class="navbar-nav align-items-center">
-                                                    <li class="nav-item"><a href=""
+                                                    <li class="nav-item"><a href="<?php $this->url('/product/find/'. $Bestseller_posts_all['product_id']) ?>"
                                                             class="nav-item product-box-hover-item product-box-hover-item-btn"
                                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                                             data-bs-title="مشاهده سریع"><i class="bi bi-search"></i></a>
                                                     </li>
-                                                    <li class="nav-item"><a href=""
+                                                    <li class="nav-item"><a href="<?php $this->url('/product/find/'. $Bestseller_posts_all['product_id']) ?>"
                                                             class="nav-item product-box-hover-item product-box-hover-item-btn mx-3"
                                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                                             data-bs-title="افزودن به سبد خرید"><i
                                                                 class="bi bi-basket"></i></a></li>
-                                                    <li class="nav-item"><a href=""
+                                                    <li class="nav-item"><a href="<?php $this->url('/product/addfivert/'. $Bestseller_posts_all['product_id']) ?>"
                                                             class="nav-item product-box-hover-item product-box-hover-item-btn"
                                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                                             data-bs-title="افزودن به علاقه ها"><i
@@ -575,7 +575,7 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="section-title-link text-sm-end text-start">
-                            <a class="btn btn-title  rounded-pill" href=""> مشاهده همه</a>
+                            <a class="btn btn-title  rounded-pill" href="<?php $this->url('/product/index/cheap') ?>"> مشاهده همه</a>
                         </div>
                     </div>
                 </div>
@@ -589,7 +589,7 @@
                         <?php foreach($all_posts as $all_post) {?>
                         <div class="swiper-slide">
                             <div class="product-box">
-                                <a href="">
+                                <a href="<?php $this->url('/product/find/'. $all_post['product_id']) ?>">
                                     <div class="product-image">
                                     <?php   $imageUrlsArrays = explode(',', $all_post['photo_file_names']);?>
                                     <?php   $alt_text = explode(',', $all_post['alt_texts']);?>
@@ -621,27 +621,24 @@
                                     <div class="d-flex align-items-center justify-content-between">
                                         <nav class="navbar navbar-expand">
                                             <ul class="navbar-nav align-items-center">
-                                                <li class="nav-item"><a href=""
+                                                <li class="nav-item"><a href="<?php $this->url('/product/find/'. $all_post['product_id']) ?>"
                                                         class="nav-item product-box-hover-item product-box-hover-item-btn"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         data-bs-title="مشاهده سریع"><i class="bi bi-search"></i></a>
                                                 </li>
-                                                <li class="nav-item"><a href=""
+                                                <li class="nav-item"><a href="<?php $this->url('/product/find/'. $all_post['product_id']) ?>"
                                                         class="nav-item product-box-hover-item product-box-hover-item-btn mx-3"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         data-bs-title="افزودن به سبد خرید"><i
                                                             class="bi bi-basket"></i></a></li>
-                                                <li class="nav-item"><a href=""
+                                                <li class="nav-item"><a href="<?php $this->url('/product/find/'. $all_post['product_id']) ?>"
                                                         class="nav-item product-box-hover-item product-box-hover-item-btn"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         data-bs-title="افزودن به علاقه ها"><i
                                                             class="bi bi-heart"></i></a></li>
                                             </ul>
                                         </nav>
-                                        <div class="product-rating">
-                                            <div class="number"><span class="text-muted font-12">(15+) 4.8</span></div>
-                                            <div class="icon"><i class="bi bi-star-fill"></i></div>
-                                        </div>
+                                      
                                     </div>
                                 </div>
                             </div>

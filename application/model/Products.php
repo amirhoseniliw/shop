@@ -59,6 +59,8 @@ public function find_most_expensive($name)
     $this->closeConnection();  
     return $result;  
 }  
+
+
 //ارزان ترین 
 public function find_most_cheap($name)  
 {  
@@ -151,7 +153,7 @@ public function find_selected_products($name)
 }  
 
 // کلش 
-public function find_for_search($name, $id_category)  
+public function find_for_search($name , $id_category)  
 {  
     $query = "SELECT   
         p.*,  

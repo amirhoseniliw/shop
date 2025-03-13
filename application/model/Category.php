@@ -21,7 +21,7 @@ class Category extends Model {
         return $result;
     }
     public function all_cat_post(){
-        $query = "SELECT c.name AS category_name,c.img_url AS img_url, COUNT(p.product_id ) AS post_count FROM categories c LEFT JOIN products p ON c.category_id  = p.category_id GROUP BY c.category_id , c.name ORDER BY c.name;";
+        $query = "SELECT c.name AS category_name,c.img_url AS img_url, c.category_id as category_id, COUNT(p.product_id ) AS post_count FROM categories c LEFT JOIN products p ON c.category_id  = p.category_id GROUP BY c.category_id , c.name ORDER BY c.name;";
         $result = $this->query($query)->fetchAll();
         $this->closeConnection();
         return $result;
