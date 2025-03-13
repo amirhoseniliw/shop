@@ -360,13 +360,16 @@
                                                         </div>
 
                                                     </a>
-                                                    <?php  foreach ($favorites as $favorite) {  
-        // بررسی آرایه‌های درون آرایه اصلی  
-        if (in_array($target_number, $sub_array)) { // استفاده از in_array برای پیدا کردن عدد  
-            $found = true; // عدد پیدا شد  
-            break; // خروج از حلقه  
-        }  
-    }   ?>
+                                                    <?php 
+                                                    if($favorites !== null ){
+                                                    $found = false ;
+                                                     foreach ($favorites as $favorite) {  
+                                                       if (in_array($Selected_post['product_id'], $favorite)) { // استفاده از in_array برای پیدا کردن عدد  
+                                                          $found = true; // عدد پیدا شد  
+                                                              break; // خروج از حلقه  
+                                                                }  
+                                                     }  
+                                                     } ?>
                                                     <div class="product-foot mt-2 border-top border-1 pt-1">
                                                         <div class="d-flex align-items-center justify-content-between">
                                                             <nav class="navbar navbar-expand">
@@ -382,10 +385,10 @@
                                                                             data-bs-title="افزودن به سبد خرید"><i
                                                                                 class="bi bi-basket"></i></a></li>
                                                                     <li class="nav-item"><a href="<?php $this->url('/product/add_favorites/'. $Selected_post['product_id']) ?>"
-                                                                            class="nav-item product-box-hover-item product-box-hover-item-btn"
+                                                                            class="nav-item product-box-hover-item product-box-hover-item-btn "
                                                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                                                             data-bs-title="افزودن به علاقه ها"><i
-                                                                                class="bi bi-heart" style=""></i></a></li>
+                                                                                class="bi bi-heart-fill" style="<?php if($found == true ) {echo " color: red ;";}?>"></i></a></li>
                                                                 </ul>
                                                             </nav>
 
@@ -476,6 +479,16 @@
                                         </div>
 
                                     </a>
+                                    <?php 
+                                                    if($favorites !== null ){
+                                                    $found = false ;
+                                                     foreach ($favorites as $favorite) {  
+                                                       if (in_array($Bestseller_posts_all['product_id'], $favorite)) { // استفاده از in_array برای پیدا کردن عدد  
+                                                          $found = true; // عدد پیدا شد  
+                                                              break; // خروج از حلقه  
+                                                                }  
+                                                     }  
+                                                     } ?>
                                     <div class="product-foot mt-2 border-top border-1 pt-1">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <nav class="navbar navbar-expand">
@@ -490,17 +503,14 @@
                                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                                             data-bs-title="افزودن به سبد خرید"><i
                                                                 class="bi bi-basket"></i></a></li>
-                                                    <li class="nav-item"><a href="<?php $this->url('/product/addfivert/'. $Bestseller_posts_all['product_id']) ?>"
+                                                    <li class="nav-item"><a href="<?php $this->url('/product/add_favorites/'. $Bestseller_posts_all['product_id']) ?>"
                                                             class="nav-item product-box-hover-item product-box-hover-item-btn"
                                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                                             data-bs-title="افزودن به علاقه ها"><i
-                                                                class="bi bi-heart"></i></a></li>
+                                                                class="bi bi-heart-fill" style="<?php if($found == true ) {echo " color: red ;";}?>"></i></a></li>
                                                 </ul>
                                             </nav>
-                                            <div class="product-rating">
-                                                <div class="number"><span class="text-muted font-12">(15+) 4.8</span></div>
-                                                <div class="icon"><i class="bi bi-star-fill"></i></div>
-                                            </div>
+                                           
                                         </div>
                                     </div>
                                 </div>
@@ -624,6 +634,16 @@
                                         </div>
                                     </div>
                                 </a>
+                                <?php 
+                                                    if($favorites !== null ){
+                                                    $found = false ;
+                                                     foreach ($favorites as $favorite) {  
+                                                       if (in_array($all_post['product_id'], $favorite)) { // استفاده از in_array برای پیدا کردن عدد  
+                                                          $found = true; // عدد پیدا شد  
+                                                              break; // خروج از حلقه  
+                                                                }  
+                                                     }  
+                                                     } ?>
                                 <div class="product-foot mt-2 border-top border-1 pt-1">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <nav class="navbar navbar-expand">
@@ -638,11 +658,11 @@
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         data-bs-title="افزودن به سبد خرید"><i
                                                             class="bi bi-basket"></i></a></li>
-                                                <li class="nav-item"><a href="<?php $this->url('/product/find/'. $all_post['product_id']) ?>"
+                                                <li class="nav-item"><a href="<?php $this->url('/product/add_favorites/'. $all_post['product_id']) ?>"
                                                         class="nav-item product-box-hover-item product-box-hover-item-btn"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         data-bs-title="افزودن به علاقه ها"><i
-                                                            class="bi bi-heart"></i></a></li>
+                                                            class="bi bi-heart-fill" style="<?php if($found == true ) {echo " color: red ;";} ?>"></i></a></li>
                                             </ul>
                                         </nav>
                                       
