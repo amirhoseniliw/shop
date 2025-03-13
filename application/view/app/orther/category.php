@@ -25,20 +25,21 @@
 
         <div class="swiper cat-slider">
             <div class="swiper-wrapper">
+                <?php foreach($categories as $category) {?>
                 <div class="swiper-slide">
-                    <a href="">
+                    <a href="<?php $this->url('/product/category/' . $category['category_id']) ?>">
                         <div class="slider-category-item">
                             <div class="slider-category-item-title">
-                                <h6>کنکور نظام جدید</h6>
-                                <span>326 محصول</span>
+                                <h6><?= $category['category_name'] ?></h6>
+                                <span><?= $category['post_count'] ?> محصول</span>
                             </div>
                             <div class="slider-category-item-image">
-                                <img src="assets/img/mega-img-1.jpg" alt="">
+                                <img src="<?php echo $this->asset($category['img_url']) ?>" alt="category">
                             </div>
                         </div>
                     </a>
                 </div>
-             
+             <?php } ?>
             </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
@@ -75,13 +76,13 @@
                                 <div class="category-meta">
                                     <div class="category-meta-title d-flex align-items-center">
                                         <h5>لوازم‌ تحریر</h5>
-                                        <h5 class="ms-2">(17,604 محصول)</h5>
+                                        <h5 class="ms-2">(<?= $count_posts['total_products'] ?> محصول)</h5>
                                     </div>
                                 </div>
                                 <div class="category-bread mt-2">
                                     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="#">خانه</a></li>
+                                            <li class="breadcrumb-item"><a href="<?php $this->url('/home') ?>">خانه</a></li>
                                             <li class="breadcrumb-item active" aria-current="page">لوازم تحریر</li>
                                         </ol>
                                     </nav>
@@ -111,13 +112,13 @@
                     <div class="category-meta">
                         <div class="category-meta-title d-flex align-items-center">
                             <h5>لوازم‌ تحریر</h5>
-                            <h5 class="ms-2">(17,604 محصول)</h5>
+                            <h5 class="ms-2">(<?= $count_posts['total_products'] ?> محصول)</h5>
                         </div>
                     </div>
                     <div class="category-bread mt-2">
                         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">خانه</a></li>
+                                <li class="breadcrumb-item"><a href="<?php $this->url('/home') ?>">خانه</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">لوازم تحریر</li>
                             </ol>
                         </nav>
@@ -146,17 +147,31 @@
 
                 <div class="category-pro">
                     <div class="row g-3">
+                    <?php if($posts == null) {?>
+                        <h1 style="color : red ;             text-align: center;">هیچ محصولی برای فیلتر ها شما وجود
+                            ندارد !</h1>
+                        <a href="<?php echo $this->url('/product/index/cheap '); ?>">مشاهده همه محصولات </a>
+
+                        <?php } ?>
+                        <?php foreach($posts as $post ){ ?>
                         <div class="col-md-6 col-xl-4 col-xxl-3">
                             <div class="product-box">
-                                <a href="">
+                                <a href="<?php $this->url('/product/find/'. $post['product_id']) ?>">
                                     <div class="product-image">
-                                        <img src="assets/img/product/product-1.webp"  alt="" class="img-fluid one-image">
-                                        <img src="assets/img/product/product-2.webp"  alt="" class="img-fluid two-image">
+                                        <?php   $imageUrlsArrays = explode(',', $post['photo_file_names']);
+                            $alt_text = explode(',', $post['alt_texts']);?>
+                                        <img src="<?php $this->asset($imageUrlsArrays[0]) ?>" loading="lazy"
+                                            alt="<?= $alt_text[0] ?>" class="img-fluid one-image">
+                                        <?php if(isset($imageUrlsArrays[1])){ ?>
+                                        <img src="<?php $this->asset($imageUrlsArrays[1]) ?>" loading="lazy"
+                                            alt="<?= $alt_text[0] ?>" class="img-fluid two-image">
+                                        <?php } ?>
                                     </div>
                                     <div class="product-title">
                                         <div class="title">
-                                            <p class="text-overflow-1 title-font">دفتر سیمی 85 برگ همیشه طرح انار کد 6338</p>
+                                            <p class="text-overflow-1 title-font"><?= $post['name'] ?></p>
                                         </div>
+                                        <span><?= $post['category'] ?></span>
                                     </div>
                                     <div class="product-action">
                                         <div class="link">
@@ -165,8 +180,9 @@
                                             </button>
                                         </div>
                                         <div class="price">
-                                            <p class="old-price">6,500,000 <span class="danger-label rounded-3 ms-2">40%</span></p>
-                                            <p class="new-price">3,175,000 <span class="font-12">تومان</span></p>
+
+                                            <p class="new-price"><?php echo $this->formatPrice( $post['price']) ?> <span
+                                                    class="font-12">تومان</span></p>
                                         </div>
                                     </div>
                                 </a>
@@ -174,359 +190,38 @@
                                     <div class="d-flex align-items-center justify-content-between">
                                         <nav class="navbar navbar-expand">
                                             <ul class="navbar-nav align-items-center">
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="مشاهده سریع"><i class="bi bi-search"></i></a></li>
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn mx-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="افزودن به سبد خرید"><i class="bi bi-basket"></i></a></li>
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="افزودن به علاقه ها"><i class="bi bi-heart"></i></a></li>
+                                                <li class="nav-item"><a
+                                                        href="<?php $this->url('/product/find/'. $post['product_id']) ?>"
+                                                        class="nav-item product-box-hover-item product-box-hover-item-btn"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        data-bs-title="مشاهده سریع"><i class="bi bi-product"></i></a>
+                                                </li>
+                                                <li class="nav-item"><a
+                                                        href="<?php $this->url('/product/find/'. $post['product_id']) ?>"
+                                                        class="nav-item product-box-hover-item product-box-hover-item-btn mx-3"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        data-bs-title="افزودن به سبد خرید"><i
+                                                            class="bi bi-basket"></i></a></li>
+                                                <li class="nav-item"><a
+                                                        href="<?php $this->url('/product/add_fivert/'. $post['product_id']) ?>"
+                                                        class="nav-item product-box-hover-item product-box-hover-item-btn"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        data-bs-title="افزودن به علاقه ها"><i
+                                                            class="bi bi-heart"></i></a></li>
                                             </ul>
                                         </nav>
-                                        <div class="product-rating">
-                                            <div class="number"><span class="text-muted font-12">(15+) 4.8</span></div>
-                                            <div class="icon"><i class="bi bi-star-fill"></i></div>
-                                        </div>
+                                        <span>بازدید محصول &nbsp;&nbsp; <u><?= $post['view'] ?></u> </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-xl-4 col-xxl-3">
-                            <div class="product-box">
-                                <a href="">
-                                    <div class="product-image">
-                                        <img src="assets/img/product/product-3.webp"  alt="" class="img-fluid one-image">
-                                        <img src="assets/img/product/product-4.webp"  alt="" class="img-fluid two-image">
-                                    </div>
-                                    <div class="product-title">
-                                        <div class="title">
-                                            <p class="text-overflow-1 title-font">دفتر سیمی 85 برگ همیشه طرح انار کد 6338</p>
-                                        </div>
-                                    </div>
-                                    <div class="product-action">
-                                        <div class="link">
-                                            <button class="btn border-0 rounded-3 main-color-one-bg" href="">
-                                                <i class="bi bi-basket text-white"></i>
-                                            </button>
-                                        </div>
-                                        <div class="price">
-                                            <p class="old-price">6,500,000 <span class="danger-label rounded-3 ms-2">40%</span></p>
-                                            <p class="new-price">3,175,000 <span class="font-12">تومان</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="product-foot mt-2 border-top border-1 pt-1">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <nav class="navbar navbar-expand">
-                                            <ul class="navbar-nav align-items-center">
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="مشاهده سریع"><i class="bi bi-search"></i></a></li>
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn mx-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="افزودن به سبد خرید"><i class="bi bi-basket"></i></a></li>
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="افزودن به علاقه ها"><i class="bi bi-heart"></i></a></li>
-                                            </ul>
-                                        </nav>
-                                        <div class="product-rating">
-                                            <div class="number"><span class="text-muted font-12">(15+) 4.8</span></div>
-                                            <div class="icon"><i class="bi bi-star-fill"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-4 col-xxl-3">
-                            <div class="product-box">
-                                <a href="">
-                                    <div class="product-image">
-                                        <img src="assets/img/product/product-5.webp"  alt="" class="img-fluid one-image">
-                                        <img src="assets/img/product/product-6.webp"  alt="" class="img-fluid two-image">
-                                    </div>
-                                    <div class="product-title">
-                                        <div class="title">
-                                            <p class="text-overflow-1 title-font">دفتر سیمی 85 برگ همیشه طرح انار کد 6338</p>
-                                        </div>
-                                    </div>
-                                    <div class="product-action">
-                                        <div class="link">
-                                            <button class="btn border-0 rounded-3 main-color-one-bg" href="">
-                                                <i class="bi bi-basket text-white"></i>
-                                            </button>
-                                        </div>
-                                        <div class="price">
-                                            <p class="old-price">6,500,000 <span class="danger-label rounded-3 ms-2">40%</span></p>
-                                            <p class="new-price">3,175,000 <span class="font-12">تومان</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="product-foot mt-2 border-top border-1 pt-1">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <nav class="navbar navbar-expand">
-                                            <ul class="navbar-nav align-items-center">
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="مشاهده سریع"><i class="bi bi-search"></i></a></li>
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn mx-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="افزودن به سبد خرید"><i class="bi bi-basket"></i></a></li>
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="افزودن به علاقه ها"><i class="bi bi-heart"></i></a></li>
-                                            </ul>
-                                        </nav>
-                                        <div class="product-rating">
-                                            <div class="number"><span class="text-muted font-12">(15+) 4.8</span></div>
-                                            <div class="icon"><i class="bi bi-star-fill"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-4 col-xxl-3">
-                            <div class="product-box">
-                                <a href="">
-                                    <div class="product-image">
-                                        <img src="assets/img/product/product-7.webp"  alt="" class="img-fluid one-image">
-                                        <img src="assets/img/product/product-8.webp"  alt="" class="img-fluid two-image">
-                                    </div>
-                                    <div class="product-title">
-                                        <div class="title">
-                                            <p class="text-overflow-1 title-font">دفتر سیمی 85 برگ همیشه طرح انار کد 6338</p>
-                                        </div>
-                                    </div>
-                                    <div class="product-action">
-                                        <div class="link">
-                                            <button class="btn border-0 rounded-3 main-color-one-bg" href="">
-                                                <i class="bi bi-basket text-white"></i>
-                                            </button>
-                                        </div>
-                                        <div class="price">
-                                            <p class="old-price">6,500,000 <span class="danger-label rounded-3 ms-2">40%</span></p>
-                                            <p class="new-price">3,175,000 <span class="font-12">تومان</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="product-foot mt-2 border-top border-1 pt-1">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <nav class="navbar navbar-expand">
-                                            <ul class="navbar-nav align-items-center">
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="مشاهده سریع"><i class="bi bi-search"></i></a></li>
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn mx-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="افزودن به سبد خرید"><i class="bi bi-basket"></i></a></li>
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="افزودن به علاقه ها"><i class="bi bi-heart"></i></a></li>
-                                            </ul>
-                                        </nav>
-                                        <div class="product-rating">
-                                            <div class="number"><span class="text-muted font-12">(15+) 4.8</span></div>
-                                            <div class="icon"><i class="bi bi-star-fill"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-4 col-xxl-3">
-                            <div class="product-box">
-                                <a href="">
-                                    <div class="product-image">
-                                        <img src="assets/img/product/product-9.webp"  alt="" class="img-fluid one-image">
-                                        <img src="assets/img/product/product-10.webp"  alt="" class="img-fluid two-image">
-                                    </div>
-                                    <div class="product-title">
-                                        <div class="title">
-                                            <p class="text-overflow-1 title-font">دفتر سیمی 85 برگ همیشه طرح انار کد 6338</p>
-                                        </div>
-                                    </div>
-                                    <div class="product-action">
-                                        <div class="link">
-                                            <button class="btn border-0 rounded-3 main-color-one-bg" href="">
-                                                <i class="bi bi-basket text-white"></i>
-                                            </button>
-                                        </div>
-                                        <div class="price">
-                                            <p class="old-price">6,500,000 <span class="danger-label rounded-3 ms-2">40%</span></p>
-                                            <p class="new-price">3,175,000 <span class="font-12">تومان</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="product-foot mt-2 border-top border-1 pt-1">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <nav class="navbar navbar-expand">
-                                            <ul class="navbar-nav align-items-center">
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="مشاهده سریع"><i class="bi bi-search"></i></a></li>
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn mx-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="افزودن به سبد خرید"><i class="bi bi-basket"></i></a></li>
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="افزودن به علاقه ها"><i class="bi bi-heart"></i></a></li>
-                                            </ul>
-                                        </nav>
-                                        <div class="product-rating">
-                                            <div class="number"><span class="text-muted font-12">(15+) 4.8</span></div>
-                                            <div class="icon"><i class="bi bi-star-fill"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-4 col-xxl-3">
-                            <div class="product-box">
-                                <a href="">
-                                    <div class="product-image">
-                                        <img src="assets/img/product/product-11.webp"  alt="" class="img-fluid one-image">
-                                        <img src="assets/img/product/product-12.webp"  alt="" class="img-fluid two-image">
-                                    </div>
-                                    <div class="product-title">
-                                        <div class="title">
-                                            <p class="text-overflow-1 title-font">دفتر سیمی 85 برگ همیشه طرح انار کد 6338</p>
-                                        </div>
-                                    </div>
-                                    <div class="product-action">
-                                        <div class="link">
-                                            <button class="btn border-0 rounded-3 main-color-one-bg" href="">
-                                                <i class="bi bi-basket text-white"></i>
-                                            </button>
-                                        </div>
-                                        <div class="price">
-                                            <p class="old-price">6,500,000 <span class="danger-label rounded-3 ms-2">40%</span></p>
-                                            <p class="new-price">3,175,000 <span class="font-12">تومان</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="product-foot mt-2 border-top border-1 pt-1">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <nav class="navbar navbar-expand">
-                                            <ul class="navbar-nav align-items-center">
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="مشاهده سریع"><i class="bi bi-search"></i></a></li>
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn mx-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="افزودن به سبد خرید"><i class="bi bi-basket"></i></a></li>
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="افزودن به علاقه ها"><i class="bi bi-heart"></i></a></li>
-                                            </ul>
-                                        </nav>
-                                        <div class="product-rating">
-                                            <div class="number"><span class="text-muted font-12">(15+) 4.8</span></div>
-                                            <div class="icon"><i class="bi bi-star-fill"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-4 col-xxl-3">
-                            <div class="product-box">
-                                <a href="">
-                                    <div class="product-image">
-                                        <img src="assets/img/product/product-13.webp"  alt="" class="img-fluid one-image">
-                                        <img src="assets/img/product/product-14.webp"  alt="" class="img-fluid two-image">
-                                    </div>
-                                    <div class="product-title">
-                                        <div class="title">
-                                            <p class="text-overflow-1 title-font">دفتر سیمی 85 برگ همیشه طرح انار کد 6338</p>
-                                        </div>
-                                    </div>
-                                    <div class="product-action">
-                                        <div class="link">
-                                            <button class="btn border-0 rounded-3 main-color-one-bg" href="">
-                                                <i class="bi bi-basket text-white"></i>
-                                            </button>
-                                        </div>
-                                        <div class="price">
-                                            <p class="old-price">6,500,000 <span class="danger-label rounded-3 ms-2">40%</span></p>
-                                            <p class="new-price">3,175,000 <span class="font-12">تومان</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="product-foot mt-2 border-top border-1 pt-1">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <nav class="navbar navbar-expand">
-                                            <ul class="navbar-nav align-items-center">
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="مشاهده سریع"><i class="bi bi-search"></i></a></li>
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn mx-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="افزودن به سبد خرید"><i class="bi bi-basket"></i></a></li>
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="افزودن به علاقه ها"><i class="bi bi-heart"></i></a></li>
-                                            </ul>
-                                        </nav>
-                                        <div class="product-rating">
-                                            <div class="number"><span class="text-muted font-12">(15+) 4.8</span></div>
-                                            <div class="icon"><i class="bi bi-star-fill"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-4 col-xxl-3">
-                            <div class="product-box">
-                                <a href="">
-                                    <div class="product-image">
-                                        <img src="assets/img/product/product-2.webp"  alt="" class="img-fluid one-image">
-                                        <img src="assets/img/product/product-3.webp"  alt="" class="img-fluid two-image">
-                                    </div>
-                                    <div class="product-title">
-                                        <div class="title">
-                                            <p class="text-overflow-1 title-font">دفتر سیمی 85 برگ همیشه طرح انار کد 6338</p>
-                                        </div>
-                                    </div>
-                                    <div class="product-action">
-                                        <div class="link">
-                                            <button class="btn border-0 rounded-3 main-color-one-bg" href="">
-                                                <i class="bi bi-basket text-white"></i>
-                                            </button>
-                                        </div>
-                                        <div class="price">
-                                            <p class="old-price">6,500,000 <span class="danger-label rounded-3 ms-2">40%</span></p>
-                                            <p class="new-price">3,175,000 <span class="font-12">تومان</span></p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="product-foot mt-2 border-top border-1 pt-1">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <nav class="navbar navbar-expand">
-                                            <ul class="navbar-nav align-items-center">
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="مشاهده سریع"><i class="bi bi-search"></i></a></li>
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn mx-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="افزودن به سبد خرید"><i class="bi bi-basket"></i></a></li>
-                                                <li class="nav-item"><a href="" class="nav-item product-box-hover-item product-box-hover-item-btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="افزودن به علاقه ها"><i class="bi bi-heart"></i></a></li>
-                                            </ul>
-                                        </nav>
-                                        <div class="product-rating">
-                                            <div class="number"><span class="text-muted font-12">(15+) 4.8</span></div>
-                                            <div class="icon"><i class="bi bi-star-fill"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="my-paginate mt-5">
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination justify-content-center">
-                                        <li class="page-item disabled">
-                                            <a class="page-link rounded-3" href="#"><i class="bi bi-chevron-right"></i></a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link rounded-3" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link rounded-3" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link rounded-3" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link rounded-3" href="#">...</a></li>
-                                        <li class="page-item"><a class="page-link rounded-3" href="#">14</a></li>
-                                        <li class="page-item"><a class="page-link rounded-3" href="#">15</a></li>
-                                        <li class="page-item"><a class="page-link rounded-3" href="#">16</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link rounded-3" href="#"><i class="bi bi-chevron-left"></i></a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
+                        <?php }?>
+                     
                     </div>
                 </div>
             </div>
 
-            <div class="col-12">
-                <div class="content-box">
-                    <div class="container-fluid">
-                        <div class="product-desc-content">
-                            <input class="read-more-state" id="readMore3" type="checkbox">
-                            <!-- والد بیشتر ، کمتر ، تمام متن توضیحات باید داخل این تگ قرار بگیرند -->
-                            <div class="read-more-wrap">
-                                <h6 class="font-22 mb-2 title-font title-line-bottom">دسته بندی لوازم تحریر</h6>
-
-                                <p>
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد...
-                                </p>
-
-                                <!-- متن بیشتر -->
-                                <div class="read-more-target">
-                                    <p>
-                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-                                    </p>
-                                </div>
-                                <!-- پایان متن بیشتر -->
-                            </div>
-                            <!-- پایان والد بیشتر کمتر -->
-                            <label class="read-more-trigger" for="readMore3"></label>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          
 
         </div>
     </div>

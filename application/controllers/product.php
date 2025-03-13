@@ -3,7 +3,7 @@ namespace application\controllers;
 
 use Application\Controllers\Controller;
 use application\model\Products as ProductsModel;
-use application\model\panel\Category as CategoryModel;
+use application\model\Category as CategoryModel;
 class product extends Controller{
 public function index($type_posts) {
     if(isset($_GET['type_posts'])){
@@ -97,14 +97,15 @@ public function find($id){
         $count_posts = new ProductsModel;
         $count_posts = $count_posts->count_all();
             
+        $ob_category = new CategoryModel();
+        $categories = $ob_category->all_cat_post();
     
     
     
     
     
     
-    
-            return $this->view("app.orther.category" , compact('posts' , 'count_posts'  ));
+            return $this->view("app.orther.category" , compact('posts' , 'count_posts' , 'categories'  ));
     
         }
 
