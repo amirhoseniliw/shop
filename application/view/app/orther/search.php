@@ -9,6 +9,7 @@
             <h1 class="h3">
                 نتیجه برای <?php if($name_status == "ALL_POSTS") { echo"همه محصولات " ;} else echo  $name ?> !
             </h1>
+           
         </div>
 
         <div class="row">
@@ -123,9 +124,9 @@
                                                                 src="<?php echo $this->asset($category['img_url']) ?>"
                                                                 alt="" class="bi bi-phone ms-1" width="20"></img>
                                                         </label>
-                                                        <input type="checkbox" name="id_category"
+                                                        <input type="radio" name="id_category"
                                                             value="<?= $category['category_id'] ?>" id="colorCheck111"
-                                                            class="form-check-input">
+                                                            class="form-check-input" >
                                                     </div>
                                                     <div>
                                                         <span
@@ -240,9 +241,9 @@
                                                                 src="<?php echo $this->asset($category['img_url']) ?>"
                                                                 alt="" class="bi bi-phone ms-1" width="20"></img>
                                                         </label>
-                                                        <input type="checkbox" name="id_category"
+                                                        <input type="radio" name="id_category"
                                                             value="<?= $category['category_id'] ?>" id="colorCheck111"
-                                                            class="form-check-input">
+                                                            class="form-check-input" <?php if($id_category ==  $category['category_id']) echo 'checked' ; ?> >
                                                     </div>
                                                     <div>
                                                         <span
@@ -326,6 +327,11 @@
 
                 <div class="category-pro">
                     <div class="row g-3">
+                        <?php if($posts == null) {?>
+                            <h1 style="color : red ;             text-align: center;">هیچ محصولی برای فیلتر ها شما وجود ندارد !</h1>
+                            <a href="<?php echo $this->url('/search/index/all '); ?>">مشاهده همه محصولات </a>
+
+                            <?php } ?>
                         <?php foreach($posts as $post ){ ?>
                         <div class="col-md-6 col-xl-4 col-xxl-3">
                             <div class="product-box">
@@ -344,6 +350,7 @@
                                         <div class="title">
                                             <p class="text-overflow-1 title-font"><?= $post['name'] ?></p>
                                         </div>
+                                        <span><?= $post['category'] ?></span>
                                     </div>
                                     <div class="product-action">
                                         <div class="link">

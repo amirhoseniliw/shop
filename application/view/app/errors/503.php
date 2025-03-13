@@ -5,8 +5,8 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="assets/js/plugin/503/style.css">
-  <link rel="stylesheet" type="text/css" href="assets/js/plugin/503/oxygen.fonts.css">
+  <link rel="stylesheet" type="text/css" href="<?php $this->asset('js/plugin/503/style.css')?>">
+  <link rel="stylesheet" type="text/css" href="<?php $this->asset('js/plugin/503/oxygen.fonts.css')?>">
   <title>503</title>
 </head>
 <body>
@@ -150,7 +150,7 @@
     bottom:0;
   }
 </style>
-<script type="text/javascript" src="assets/js/plugin/503/script.js"></script>
+<script type="text/javascript" src="<?php $this->asset('js/plugin/503/script.js')?>"></script>
 
 </body>
 </html>

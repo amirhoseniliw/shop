@@ -33,7 +33,7 @@ class Products extends Model
     FROM `products` p  
     LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
     WHERE p.`product_id` = ?  
-        AND p.`status` = 'enable'  
+    AND p.`status` = 'enable'  
     GROUP BY p.product_id;";  
     $result = $this->query($query, [$id])->fetch();  
     $this->closeConnection();  
@@ -77,6 +77,24 @@ public function find_most_cheap($name)
     $this->closeConnection();  
     return $result;  
 }  
+//کل ارزان ها 
+public function find_most_cheap_all()  
+{  
+    $query = "SELECT   
+        p.*,  
+        (SELECT `name` FROM `categories` WHERE `categories`.`category_id` = p.`category_id`) AS category,  
+        GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
+        GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts  
+    FROM `products` p  
+    LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
+    WHERE p.`status` = 'enable' 
+        GROUP BY p.product_id     
+    ORDER BY p.price ASC ;";  
+    $result = $this->query($query)->fetchAll();  
+    $this->closeConnection();  
+    return $result;  
+} 
+
 //پر فروش
 public function find_bestseller_products($name)  
 {  
@@ -133,7 +151,7 @@ public function find_selected_products($name)
 }  
 
 // کلش 
-public function find_for_search($name)  
+public function find_for_search($name, $id_category)  
 {  
     $query = "SELECT   
         p.*,  
@@ -143,9 +161,10 @@ public function find_for_search($name)
     FROM `products` p  
     LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
     WHERE p.`name` LIKE  ?  
+    AND p.`category_id` = ?
     AND p.`status` = 'enable'  
     GROUP BY p.product_id;";  
-    $result = $this->query($query, ["%$name%"])->fetchAll();  
+    $result = $this->query($query, ["%$name%" , $id_category ])->fetchAll();  
     $this->closeConnection();  
     return $result;  
 } 
@@ -174,7 +193,7 @@ public function findColorsByProductId($id)
     $query = "SELECT *  
     FROM `colors` 
     WHERE product_id = ?
-    AND  `status` = 'enable'  
+  
     ORDER BY titel_name DESC;";  
     $result = $this->query($query, [$id])->fetchAll();  
     $this->closeConnection();  

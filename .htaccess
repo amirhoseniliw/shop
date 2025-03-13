@@ -2,12 +2,23 @@
 RewriteEngine On  
 RewriteBase /  
 
+# هدایت خطای 404 به صفحه خطای سفارشی  
+ErrorDocument 404 /error/error_404  
+
+# هدایت خطای 403 به صفحه خطای سفارشی  
+ErrorDocument 403 /error/error_403  
+
+# هدایت خطای 500 به صفحه خطای سفارشی  
+ErrorDocument 500 /error/error_500  
+
+# هدایت خطای 503 به صفحه خطای سفارشی  
+ErrorDocument 503 /error/error_503  
+
 # هدایت تمام درخواست‌ها (به جز دایرکتوری‌ها و فایل‌های موجود) به index.php  
 RewriteCond %{REQUEST_FILENAME} !-d  
 RewriteCond %{REQUEST_FILENAME} !-f  
 RewriteRule ^(.+)$ TahrirKhayam/index.php [QSA,L]  
 
 # مسدود کردن دسترسی به پوشه‌های داخلی خاص  
- 
 RewriteCond %{THE_REQUEST} /(application|system|view)/.+ [NC]  
-RewriteRule ^ - [R=403,L]
+RewriteRule ^ - [R=403,L]  

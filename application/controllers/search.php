@@ -33,6 +33,17 @@ class search extends Controller
         $category = new ProductsModel();
         $categories = $category->category();
         $search_name =  $_SESSION['name'];
+
+
+      if(isset($_GET['id_category'])){
+         $id_category = filter_var($_GET['id_category'], FILTER_VALIDATE_INT); 
+            $posts = new ProductsModel();
+        $posts = $posts->find_for_search($search_name , $id_category);
+        $type_post = null ;
+        
+        }
+        else {
+            $id_category = null ;
         switch ($type_posts) {
             case 'expensive':
                  $posts = new ProductsModel();
@@ -60,13 +71,17 @@ class search extends Controller
                 $posts = $posts->find_most_viewed($search_name);
                 $type_post = 'view' ;
              break;
-
+             case 'all':
+                $posts = new ProductsModel();
+                $posts = $posts->find_most_cheap_all();
+                $type_post = 'cheap' ;
+             break;
             default:
                 $this->dd('چیزی یافت نشد !');
+        }  
         }
-        // $posts = new ProductsModel();
-        // $posts = $posts->find_for_search($search_name);
-        return $this->view("app.orther.search", compact( 'type_post' , 'posts', 'name', 'name_status', 'count_posts', 'categories'));
+        
+        return $this->view("app.orther.search", compact('id_category' , 'type_post' , 'posts', 'name', 'name_status', 'count_posts', 'categories'));
     }
 
     public function search_type()

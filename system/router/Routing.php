@@ -16,7 +16,8 @@ public function run(){
 
   $path = realpath(dirname(__FILE__) . "/../../application/controllers/" . $this->current_route[0] . ".php");
   if(!file_exists($path)){
-    echo "404 - file not exist!!";
+    $protocol = stripos($_SERVER['SERVER_PROTOCOL'], 'https')=== true ? 'https://' : 'http://';
+    header("Location: ".$protocol.$_SERVER['HTTP_HOST']."/TahrirKhayam/". "error/error_404");
     exit;
   }
   require_once($path);
