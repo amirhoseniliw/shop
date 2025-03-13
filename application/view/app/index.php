@@ -360,6 +360,13 @@
                                                         </div>
 
                                                     </a>
+                                                    <?php  foreach ($favorites as $favorite) {  
+        // بررسی آرایه‌های درون آرایه اصلی  
+        if (in_array($target_number, $sub_array)) { // استفاده از in_array برای پیدا کردن عدد  
+            $found = true; // عدد پیدا شد  
+            break; // خروج از حلقه  
+        }  
+    }   ?>
                                                     <div class="product-foot mt-2 border-top border-1 pt-1">
                                                         <div class="d-flex align-items-center justify-content-between">
                                                             <nav class="navbar navbar-expand">
@@ -374,11 +381,11 @@
                                                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                                                             data-bs-title="افزودن به سبد خرید"><i
                                                                                 class="bi bi-basket"></i></a></li>
-                                                                    <li class="nav-item"><a href="<?php $this->url('/product/addfivert/'. $Selected_post['product_id']) ?>"
+                                                                    <li class="nav-item"><a href="<?php $this->url('/product/add_favorites/'. $Selected_post['product_id']) ?>"
                                                                             class="nav-item product-box-hover-item product-box-hover-item-btn"
                                                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                                                             data-bs-title="افزودن به علاقه ها"><i
-                                                                                class="bi bi-heart"></i></a></li>
+                                                                                class="bi bi-heart" style=""></i></a></li>
                                                                 </ul>
                                                             </nav>
 

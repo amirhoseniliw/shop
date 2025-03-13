@@ -233,7 +233,6 @@ class UserPanel extends Controller
     $user = $user->find($user_id);
     $favorite = new favoritesModel();
     $favorite = $favorite->allPanel($user_id);
-    
     return $this->view("app.panel.favorites", compact('user' , 'favorite'));
 
   }

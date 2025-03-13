@@ -16,7 +16,8 @@
                                 <div class="cart-canvas border rounded-3 p-3">
                                     <div class="row align-items-center">
                                         <div class="col-4 ps-0">
-                                            <img src="<?php echo $this->asset($favorit['image_url']) ?>" width="200" alt="">
+                                        <?php   $imageUrlsArrays = explode(',', $favorit['images']); ?>
+                                            <img src="<?php echo $this->asset($imageUrlsArrays[0]) ?>" width="200" alt="">
                                         </div>
                                         <div class="col-8">
                                             <h3 class="text-overflow-2 font-16">
@@ -30,7 +31,7 @@
                                             </div>
                                             <div class="cart-canvas-foot d-flex align-items-center justify-content-between">
                                                 <div class="cart-canvas-delete">
-                                                    <a href="<?php $this->url('/userpanel/delete_favorites/' . $favorit['wishlist_id']) ?>" class="btn"><i class="bi bi-x"></i></a>
+                                                    <a href="<?php $this->url('/userpanel/delete_favorites/' . $favorit['id']) ?>" class="btn"><i class="bi bi-x"></i></a>
                                                 </div>
                                             </div>
                                         </div>

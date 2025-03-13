@@ -3,10 +3,13 @@
 namespace Application\Controllers;
 use application\model\Products as ProductsModel;
 use application\model\Category as CategoryModel;
+use application\model\favorites as favoritesModel;
+
 class Home extends Controller{
 
     public function index(){
-       
+      
+
         // $category = new CategoryModel();
         // $categories = $category->all();
         $posts = new ProductsModel();
@@ -19,30 +22,21 @@ class Home extends Controller{
         $Bestseller_posts_alls = $posts->find_all('Bestseller' , 1 , 100 );
         $posts = new ProductsModel();
         $all_posts = $posts->all();
-        // $this->dd($categories);
-        return $this->View('app.index', compact('Bestseller_posts' , 'categories' , 'Selected_posts' , 'Bestseller_posts_alls' , 'all_posts'));
+        if(isset( $_SESSION['user_id'])){
+       $user_id = $_SESSION['user_id'];
+        $favorite = new favoritesModel();
+        $favorites = $favorite->find_all($user_id);
+        }
+       else {
+        $favorites = null ;
+
+       }
+      
+        return $this->View('app.index', compact('favorites' ,'Bestseller_posts' , 'categories' , 'Selected_posts' , 'Bestseller_posts_alls' , 'all_posts'));
 
     }
 
-    public function category($id){
-        $ob_category = new CategoryModel();
-        $categories = $ob_category->all();
-
-        $ob_category = new CategoryModel();
-        $category = $ob_category->find($id);
-
-        $ob_category = new CategoryModel();
-         $articles = $ob_category->article($id);
-         return $this->View('app.category', compact('categories', 'articles','category'));
-
-    }
-    
-    public function show($id){
-        $category = new CategoryModel();
-        $categories = $category->all();
-        return $this->View('app.detail', compact('article','categories'));
-
-    }
+   
     public function addcard($id){
         $this->dd($_POST);
         $category = new CategoryModel();
@@ -50,6 +44,7 @@ class Home extends Controller{
         return $this->View('app.detail', compact('article','categories'));
 
     }
+
     
 
 

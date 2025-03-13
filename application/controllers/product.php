@@ -4,6 +4,8 @@ namespace application\controllers;
 use Application\Controllers\Controller;
 use application\model\Products as ProductsModel;
 use application\model\Category as CategoryModel;
+use application\model\favorites as favoritesModel;
+
 class product extends Controller{
 public function index($type_posts) {
     if(isset($_GET['type_posts'])){
@@ -108,5 +110,26 @@ public function find($id){
             return $this->view("app.orther.category" , compact('posts' , 'count_posts' , 'categories'  ));
     
         }
+        public function add_favorites ($id_product){ 
+            $id_product = (int)$id_product;  
+  
+            $user_id =$_SESSION['user_id'];
+            $favorite = new favoritesModel();
+            $favorite_ol = $favorite->find($user_id , $id_product);
+            if($favorite_ol == false) {
+                $favorite = new favoritesModel();
+                $favorite = $favorite->insert($user_id , $id_product);
+            }
+            else {  
+
+                 $favorite = new favoritesModel();
+                 $favorite = $favorite->delete_home($user_id , $id_product);
+                
+            }
+
+            return $this->redirect('home');
+           
+        }
+        
 
 }
