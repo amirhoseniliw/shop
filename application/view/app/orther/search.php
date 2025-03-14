@@ -365,6 +365,16 @@
                                         </div>
                                     </div>
                                 </a>
+                                <?php 
+                                                    if($favorites !== null ){
+                                                    $found = false ;
+                                                     foreach ($favorites as $favorite) {  
+                                                       if (in_array($post['product_id'], $favorite)) { // استفاده از in_array برای پیدا کردن عدد  
+                                                          $found = true; // عدد پیدا شد  
+                                                              break; // خروج از حلقه  
+                                                                }  
+                                                     }  
+                                                     } ?>
                                 <div class="product-foot mt-2 border-top border-1 pt-1">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <nav class="navbar navbar-expand">
@@ -382,11 +392,11 @@
                                                         data-bs-title="افزودن به سبد خرید"><i
                                                             class="bi bi-basket"></i></a></li>
                                                 <li class="nav-item"><a
-                                                        href="<?php $this->url('/product/add_fivert/'. $post['product_id']) ?>"
+                                                        href="<?php $this->url('/product/add_favorites/'. $post['product_id']) ?>"
                                                         class="nav-item product-box-hover-item product-box-hover-item-btn"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         data-bs-title="افزودن به علاقه ها"><i
-                                                            class="bi bi-heart"></i></a></li>
+                                                            class="bi bi-heart-fill" style="<?php if($found == true ) {echo " color: red ;";} ?>"></i></a></li>
                                             </ul>
                                         </nav>
                                         <span>بازدید محصول &nbsp;&nbsp; <u><?= $post['view'] ?></u> </span>

@@ -121,10 +121,20 @@
                                 data-bs-placement="top" title="اشتراک گذاری">
                                 <i class="bi bi-share"></i>
                             </div>
-                            <div class="icon-product-box-item" data-bs-toggle="tooltip" data-bs-placement="top"
+                            <?php 
+                                                    if($favorites !== null ){
+                                                    $found = false ;
+                                                     foreach ($favorites as $favorite) {  
+                                                       if (in_array($post['product_id'], $favorite)) { // استفاده از in_array برای پیدا کردن عدد  
+                                                          $found = true; // عدد پیدا شد  
+                                                              break; // خروج از حلقه  
+                                                                }  
+                                                     }  
+                                                     } ?>
+                           <a href="<?php $this->url('/product/add_favorites/'. $post['product_id']) ?>"> <div class="icon-product-box-item" data-bs-toggle="tooltip" data-bs-placement="top"
                                 data-bs-title="افزودن به علاقه مندی">
-                                <i class="bi bi-heart"></i>
-                            </div>
+                                <i class="bi bi-heart-fill" style="<?php if($found == true ) {echo " color: red ;";} ?>"></i>
+                            </div></a>
                             <div class="icon-product-box-item" data-bs-toggle="tooltip" data-bs-placement="top"
                                 data-bs-title="مقایسه محصول">
                                 <i class="bi bi-arrow-left-right"></i>

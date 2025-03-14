@@ -62,10 +62,18 @@ public function index($type_posts) {
 
 
 
+        if(isset( $_SESSION['user_id'])){
+            $user_id = $_SESSION['user_id'];
+             $favorite = new favoritesModel();
+             $favorites = $favorite->find_all($user_id);
+             }
+            else {
+             $favorites = null ;
+     
+            }
 
 
-
-        return $this->view("app.orther.all_product" , compact('posts' , 'count_posts' , 'type_post' ));
+        return $this->view("app.orther.all_product" , compact('favorites' ,'posts' , 'count_posts' , 'type_post' ));
 
     }
 public function find($id){
@@ -84,8 +92,17 @@ public function find($id){
     $post = $posts->find($id); 
     $colors = new ProductsModel();  
     $colors = $colors->findColorsByProductId($id); 
+    if(isset( $_SESSION['user_id'])){
+        $user_id = $_SESSION['user_id'];
+         $favorite = new favoritesModel();
+         $favorites = $favorite->find_all($user_id);
+         }
+        else {
+         $favorites = null ;
+ 
+        }
 
-    return $this->view("app.orther.product", compact('post' , 'colors'));   }
+    return $this->view("app.orther.product", compact('favorites' ,'post' , 'colors'));   }
    
 
     public function category($id_category) {
@@ -104,10 +121,18 @@ public function find($id){
     
     
     
+        if(isset( $_SESSION['user_id'])){
+            $user_id = $_SESSION['user_id'];
+             $favorite = new favoritesModel();
+             $favorites = $favorite->find_all($user_id);
+             }
+            else {
+             $favorites = null ;
+     
+            }
     
     
-    
-            return $this->view("app.orther.category" , compact('posts' , 'count_posts' , 'categories'  ));
+            return $this->view("app.orther.category" , compact('favorites' ,'posts' , 'count_posts' , 'categories'  ));
     
         }
         public function add_favorites ($id_product){ 
@@ -127,7 +152,7 @@ public function find($id){
                 
             }
 
-            return $this->redirect('home');
+            return $this->back();
            
         }
         
