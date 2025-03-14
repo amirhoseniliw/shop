@@ -12,6 +12,7 @@
                     <div class="container-fluid">
                         <ul class="row gy-3 ps-0">
                             <?php foreach($favorite as $favorit ) {?>
+                                
                             <div class="col-sm-6">
                                 <div class="cart-canvas border rounded-3 p-3">
                                     <div class="row align-items-center">
@@ -21,10 +22,10 @@
                                         </div>
                                         <div class="col-8">
                                             <h3 class="text-overflow-2 font-16">
-                                                <?= $favorit['name'] ?>
+                                              <a href="<?php $this->url('/product/find/'. $favorit['product_id']) ?>">  <?= $favorit['name'] ?>
                                             </h3>
                                             <u>توضیحات </u>
-                                            <p>  <?= $favorit['description'] ?></p>
+                                            <p>  <?= $favorit['description'] ?></p></a>
                                             <div class="product-box-suggest-price my-2  d-flex align-items-center justify-content-between">
                                                 <ins class="font-25 ms-0">   <?= $favorit['price'] ?>  <span>تومان</span></ins>
                                                  <span><?= $favorit['brand'] ?></span>

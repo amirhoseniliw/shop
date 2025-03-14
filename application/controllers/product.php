@@ -106,8 +106,7 @@ public function find($id){
    
 
     public function category($id_category) {
-       
-         
+    
                $posts = new ProductsModel();
            $posts = $posts->find_for_search('' ,$id_category);
            
@@ -130,12 +129,21 @@ public function find($id){
              $favorites = null ;
      
             }
-    
+       
+         if($id_category == 0){
+            $posts = new ProductsModel();
+            $posts = $posts->find_most_cheap('');
+         }
     
             return $this->view("app.orther.category" , compact('favorites' ,'posts' , 'count_posts' , 'categories'  ));
     
         }
         public function add_favorites ($id_product){ 
+            if(!isset($_SESSION['user_id'])){
+                return $this->redirect('auth/login');
+
+            }
+            else {
             $id_product = (int)$id_product;  
   
             $user_id =$_SESSION['user_id'];
@@ -153,7 +161,7 @@ public function find($id){
             }
 
             return $this->back();
-           
+           }
         }
         
 

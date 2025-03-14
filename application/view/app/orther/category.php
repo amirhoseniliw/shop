@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="section-title-link text-sm-end text-start">
-                        <a class="btn btn-title  rounded-pill" href=""> مشاهده همه</a>
+                        <a class="btn btn-title  rounded-pill" href="<?php $this->url('/product/category/0') ?>"> مشاهده همه</a>
                     </div>
                 </div>
             </div>
@@ -150,7 +150,7 @@
                     <?php if($posts == null) {?>
                         <h1 style="color : red ;             text-align: center;">هیچ محصولی برای فیلتر ها شما وجود
                             ندارد !</h1>
-                        <a href="<?php echo $this->url('/product/index/cheap '); ?>">مشاهده همه محصولات </a>
+                        <a href="<?php $this->url('/product/category/0') ?>">مشاهده همه محصولات </a>
 
                         <?php } ?>
                         <?php foreach($posts as $post ){ ?>

@@ -263,7 +263,7 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="section-title-link text-sm-end text-start">
-                            <a class="btn btn-title  rounded-pill" href=""> مشاهده همه</a>
+                            <a class="btn btn-title  rounded-pill" href="<?php $this->url('/product/category/0') ?>"> مشاهده همه</a>
                         </div>
                     </div>
                 </div>
