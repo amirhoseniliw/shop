@@ -17,7 +17,7 @@
             </div>
             <div class="card-body">
                 <p><strong>شماره سفارش:</strong> <?= $order['order_id'] ?></p>
-                <p><strong>نام مشتری:</strong> <?= $order['nameuser'] ?></p>
+                <p><strong>نام مشتری:</strong> <?= $order['username'] ?></p>
                 <p><strong>تاریخ سفارش:</strong> <?php echo $this->jalaliData($order['updated_at']) ;?></p>
                 <p><strong>مبلغ کل:</strong> <?=$order['unit_price'] ?> تومان</p>
                 <p> <strong> وضعیت :</strong>
@@ -28,6 +28,15 @@
                             <span class="badge bg-success">کامل شد </span> <?php } else { ?>
                             <span class="badge bg-danger">لغو شد</span> <?php }?></p>
             </div>
+            <?php   $title_adders = explode(',', $order['address_titles']);
+                    $body_adders = explode(',', $order['address_bodies']);
+                  
+                           
+                            ?>
+            <p> <strong> ادرس ارسال  :</strong>
+            //TODO
+            <span><?= </span>
+
         </div>
 
         <div class="card mt-4">
@@ -48,8 +57,15 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><?= $order['product_name'] ?></td>
-                            <td><img src="<?= $this->asset($order['image_url']) ?>" alt="محصول" width="50"></td>
+                            <td><?= $order['name'] ?></td>
+                            <?php   $imageUrlsArrays = explode(',', $order['image_urls']);
+                            
+                           
+                            ?>
+                          
+                        
+                            <td> <?php    foreach ($imageUrlsArrays as $imageUrlsArray) { ?><img src="<?= $this->asset(trim($imageUrlsArray)) ?>" alt="محصول" width="50"> <?php } ?></td>
+                           
                             <td><?= $order['quantity'] ?></td>
                             <td><?= $order['product_brand'] ?></td>
                             <td><?= $order['unit_price'] ?> تومان</td>

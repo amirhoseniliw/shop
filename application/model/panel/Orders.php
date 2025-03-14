@@ -16,13 +16,37 @@ class Orders extends Model
         $this->closeConnection();
         return $result;
     }
-    public function find($id)
-    {
-        $query = "SELECT orders.*, users.username AS nameuser, products.name AS product_name, products.image_url AS image_url, products.brand AS product_brand FROM orders LEFT JOIN users ON users.user_id = orders.user_id LEFT JOIN products ON products.product_id = orders.product_id WHERE orders.order_id = ? ;";
-        $result = $this->query($query, [$id])->fetch();
-        $this->closeConnection();
-        return $result;
-    }
+    public function find($id)  
+    {  
+        $query = "  
+            SELECT   
+                orders.*,   
+                users.username AS username,   
+                products.name AS name,   
+                products.brand AS brand,  
+                GROUP_CONCAT(DISTINCT product_images.image_url SEPARATOR ', ') AS image_urls,  
+                GROUP_CONCAT(DISTINCT addresses.Title SEPARATOR '; ') AS address_titles,  
+                GROUP_CONCAT(DISTINCT addresses.AddressText SEPARATOR '; ') AS address_bodies  
+            FROM   
+                orders   
+            LEFT JOIN   
+                users ON users.user_id = orders.user_id   
+            LEFT JOIN   
+                products ON products.product_id = orders.product_id  
+            LEFT JOIN   
+                product_images AS product_images ON product_images.product_id = products.product_id  
+            LEFT JOIN   
+                addresses ON addresses.UserID  = users.user_id   
+            WHERE   
+                orders.order_id = ?  
+            GROUP BY   
+                orders.order_id;  
+        ";  
+    
+        $result = $this->query($query, [$id])->fetch();  
+        $this->closeConnection();  
+        return $result;  
+    }  
     public function edit_find($id)
     {
         $query = "SELECT * FROM orders WHERE order_id = ? ;";

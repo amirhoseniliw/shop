@@ -28,7 +28,7 @@ public function edit($id) {
   public function show($id) {
     $orders = new OrdersModel();
     $order = $orders->find($id);
-      // $this->dd($order);
+
       return $this->view("panel.Orders.show" , compact('order'));
   }
   // public function delete() {
