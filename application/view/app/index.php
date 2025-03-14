@@ -1,4 +1,4 @@
-<?php $this->include('app.layouts.header'); ?>
+<?php $this->include('app.layouts.header' , compact('categories')); ?>
 <style>
     .swiper-progress-bar {  
     position: relative; /* یا position: absolute اگر والد دیگری این خاصیت را دارد */  

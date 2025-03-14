@@ -350,18 +350,11 @@
                           
                             <li class="nav-item"><a href="" class="nav-link f-600 border-animate fromCenter"><i class="bi bi-menu-app"></i>دسته بندی ها </a>
                                 <ul class="level-one">
-                                    <li><a href="">منو شماره 1</a></li>
-                                    <li><a href="">منو شماره 2</a></li>
-                                    <li class="position-relative"><a href="">منو شماره 3 <i class="bi bi-chevron-left"></i></a>
-                                        <ul class="level-two">
-                                            <li><a href="">زیر منو شماره 1</a></li>
-                                            <li><a href="">2 زیر منو شماره </a></li>
-                                            <li><a href="">3 زیر منو شماره </a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="">منو شماره 4</a></li>
-                                    <li><a href="">منو شماره 5</a></li>
-                                    <li><a href="">منو شماره 6</a></li>
+                                    <?php foreach($categories as $category) { ?>
+                                    <li><a  style="display: inline;" href="<?php $this->url('/product/category/' . $category['category_id']) ?>"><?= $category['category_name'] ?></a>
+                                    <img style="display: inline;  float: left; " src="<?php echo $this->asset($category['img_url']) ?>" alt="error" width="30"></li>
+                                    
+                                    <?php } ?>
                                 </ul>
                             </li>
                             <li class="nav-item">
