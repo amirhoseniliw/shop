@@ -28,14 +28,12 @@
                             <span class="badge bg-success">کامل شد </span> <?php } else { ?>
                             <span class="badge bg-danger">لغو شد</span> <?php }?></p>
             </div>
-            <?php   $title_adders = explode(',', $order['address_titles']);
-                    $body_adders = explode(',', $order['address_bodies']);
-                  
-                           
-                            ?>
+           
             <p> <strong> ادرس ارسال  :</strong>
-            //TODO
-            <span><?= </span>
+<h4>عنوان </h4>
+            <span><?= $order['address_title'] ?> </span>
+            <h5>ادرس دقیق</h5>
+            <span><?= $order['address_body'] ?></span>
 
         </div>
 
@@ -67,7 +65,7 @@
                             <td> <?php    foreach ($imageUrlsArrays as $imageUrlsArray) { ?><img src="<?= $this->asset(trim($imageUrlsArray)) ?>" alt="محصول" width="50"> <?php } ?></td>
                            
                             <td><?= $order['quantity'] ?></td>
-                            <td><?= $order['product_brand'] ?></td>
+                            <td><?= $order['brand'] ?></td>
                             <td><?= $order['unit_price'] ?> تومان</td>
                             <td><?= $order['total_price'] ?> تومان</td>
                         </tr>
