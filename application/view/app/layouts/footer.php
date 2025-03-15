@@ -53,7 +53,7 @@
                             </div>
                             <div class="footer-service-item-desc ms-3">
                                 <p>پشتیبانی <strong>24 ساعته</strong></p>
-                                <small class="text-muted">تماس با 021123456</small>
+                                <small class="text-muted">تماس با 09918694588</small>
                             </div>
                         </div>
                     </li>
@@ -117,8 +117,8 @@
                                 </svg>
                             </div>
                             <div class="footer-service-item-desc ms-3">
-                                <p>فرصت 7 روزه <strong>بازگشت کالا</strong></p>
-                                <small class="text-muted">ضمانت بازگشت کالا تا 7 روز </small>
+                                <p>   <strong> ارسال سریع </strong></p>
+                                <small class="text-muted">   ارسال سریع به کل کشور    </small>
                             </div>
                         </div>
                     </li>
@@ -220,7 +220,7 @@
                                         <li class="nav-item"><a href="" class="nav-link font-15">نحوه ثبت سفارش</a></li>
                                         <li class="nav-item"><a href="" class="nav-link font-15">چگونگی ارسال کالا</a></li>
                                         <li class="nav-item"><a href="" class="nav-link font-15">چگونگی پرداخت</a></li>
-                                        <li class="nav-item"><a href="" class="nav-link font-15">چگونگی ثبت</a></li>
+                                        
                                     </ul>
                                 </nav>
                             </div>
@@ -234,8 +234,8 @@
                                     <ul class="navbar-nav">
                                         <li class="nav-item"><a href="" class="nav-link font-15">معرفی تخفیف ها</a></li>
                                         <li class="nav-item"><a href="" class="nav-link font-15">پرسش های متداول</a></li>
-                                        <li class="nav-item"><a href="" class="nav-link font-15">چگونگی بازگشت کالا</a></li>
-                                        <li class="nav-item"><a href="" class="nav-link font-15">حریم خصوصی</a></li>
+                                        <li class="nav-item"><a href="" class="nav-link font-15"> درباره ما </a></li>
+                                        <li class="nav-item"><a href="" class="nav-link font-15"> ارتباط با ما </a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -243,32 +243,21 @@
                         <div class="col-md-3 col-sm-6 col-6">
                             <div class="footer-col-item">
                                 <div class="font-20">
-                                    <strong> مجموعه </strong>گاج
+                                    <strong> مجموعه </strong>برند ها 
                                 </div>
                                 <nav class="navbar">
                                     <ul class="navbar-nav">
-                                        <li class="nav-item"><a href="" class="nav-link font-15">گاجینو</a></li>
-                                        <li class="nav-item"><a href="" class="nav-link font-15">دکتر آی کیو</a></li>
-                                        <li class="nav-item"><a href="" class="nav-link font-15">مای گاج</a></li>
-                                        <li class="nav-item"><a href="" class="nav-link font-15">گاج مگ</a></li>
+                                        <li class="nav-item">سی کلاس</li>
+                                        <li class="nav-item">پالمو</li>
+                                        <li class="nav-item">تو تو </li>
+                                        <li class="nav-item">فابر کاستر </li>
+                                       
                                     </ul>
                                 </nav>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-6 col-6">
-                            <div class="footer-col-item">
-                                <div class="font-20">
-                                    <strong> نقشه </strong>استادینو
-                                </div>
-                                <nav class="navbar">
-                                    <ul class="navbar-nav">
-                                        <li class="nav-item"><a href="" class="nav-link font-15">درباره ما</a></li>
-                                        <li class="nav-item"><a href="" class="nav-link font-15">تماس با ما</a></li>
-                                        <li class="nav-item"><a href="" class="nav-link font-15">همکاری و فرصت شغلی</a></li>
-                                        <li class="nav-item"><a href="" class="nav-link font-15">شعب گاج <span class="badge bg-info rounded-pill">جدید</span></a></li>
-                                    </ul>
-                                </nav>
-                            </div>
+                          
                         </div>
                     </div>
                 </div>
@@ -276,10 +265,10 @@
                     <div class="row gy-3">
                         <div class="col-sm-5">
                             <div class="main-color-one-bg hover p-2 rounded-3 text-center f-600">
-                                کارشناسان ما میزبان صدایتان هستند
+                                  میزبان صدایتان هستیم
                             </div>
                             <div class="d-flex align-items-center justify-content-end mt-2 py-2">
-                                <a href=""><span class="me-2">021123456</span></a>
+                                <a href=""><span class="me-2">09918694588</span></a>
                                 <i class="bi bi-telephone-inbound-fill font-16"></i>
                             </div>
                         </div>
@@ -294,10 +283,10 @@
                             <div class="footer-social">
                                 <nav class="navbar navbar-expand">
                                     <ul class="navbar-nav">
-                                        <li class="nav-item"><a href="" class="nav-link"><img src="assets/img/aparat-white.svg" alt=""></a></li>
-                                        <li class="nav-item"><a href="" class="nav-link"><img src="assets/img/instagram-white.svg" alt=""></a></li>
-                                        <li class="nav-item"><a href="" class="nav-link"><img src="assets/img/telegram-white.svg" alt=""></a></li>
-                                        <li class="nav-item"><a href="" class="nav-link"><img src="assets/img/youtube-white.svg" alt=""></a></li>
+                                        <li class="nav-item"><a href="" class="nav-link"><img src="<?php echo $this->asset('/img_site/icon/robicka.png') ?>" alt=""></a></li>
+                                        <li class="nav-item"><a href="" class="nav-link"><img src="<?php echo $this->asset('/img_site/icon/shad.png') ?>" alt=""></a></li>
+                                        <li class="nav-item"><a href="" class="nav-link"><img src="<?php echo $this->asset('/img_site/icon/instagrom.png') ?>" alt=""></a></li>
+                                        <li class="nav-item"><a href="" class="nav-link"><img src="<?php echo $this->asset('/img_site/icon/telgram.png') ?>" alt=""></a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -309,15 +298,14 @@
                         <div class="col-lg-2">
                             <div class="footer-logo-parent">
                                 <div class="footer__logo">
-                                    <a href="/" class="footer__logo__image">
-                                        <img src="assets/img/logo-stand.png" alt="">
+                                   <a href="<?php $this->url('/home')?>" class="footer__logo__image">
+                                        <img src="<?php echo $this->asset('/img_site/icon/icon_png.png') ?>" alt="icon">
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-10">
                             <div class="footer-description pt-3 border-top ">
-                                <small class="text-muted"> گاج‌مارکت؛ مرکز خرید و فروش انواع کتاب‌های کمک درسی، آموزشی، دانشگاهی، زبان‌های خارجی، عمومی، کودک و نوجوان می‌باشد و مرجعی برای تهیه انواع لوازم‌التحریر مورد نیاز برای دانش‌آموزان و دانشجویان، لوازم اداری برای شرکت‌ها و سازمان‌ها و بازی‌های آموزشی برای تمامی سنین است. </small>
                             </div>
                         </div>
                     </div>
@@ -334,16 +322,14 @@
 <div class="copy-right mt-5">
     <div class="container-fluid">
         <div class="copy-right-parent">
-            <div class="row">
+            <div class="row" >
                 <div class="col-sm-6">
-                    <p class="font-12 text-sm-start text-center">
-                        2024 © - تمامی حقوق مادی و معنوی برای فروشگاه اینترنتی استادینو محفوظ می باشد.
+                    <p class="font-12 text-sm-start text-center" >
+                        1404 © - تمامی حقوق مادی و معنوی برای فروشگاه اینترنتی لوازم التحریر خیام محفوظ می باشد.
                     </p>
                 </div>
                 <div class="col-sm-6">
-                    <a href="" class="d-block text-sm-end text-center">
-                        طراحی و توسعه امیر رضایی
-                    </a>
+                   
                 </div>
             </div>
         </div>
@@ -464,23 +450,22 @@
                 <span class="mt-1 font-12 fw-bold mf-link-title">بالا</span>
             </div>
         </li>
-        <li class="d-table-cell"><a href="" class="mf-link nav-link text-center">
+        <li class="d-table-cell"><a href="<?php $this->url('/Userpanel/favorites') ?>" class="mf-link nav-link text-center">
             <div class="mf-link-icon position-relative d-table mx-auto">
                 <i class="bi bi-heart font-20"></i>
                 <span class="position-absolute main-color-one-bg rounded-pill font-10 text-white badge" style="right:-40%;bottom:-5px;">0</span>
             </div>
             <span class="mt-1 font-12 fw-bold mf-link-title">علاقه مندی ها</span>
         </a></li>
-        <li class="d-table-cell"><a href="" class="mf-link nav-link text-center">
+        <li class="d-table-cell"><a href="<?php $this->url('/home') ?>" class="mf-link nav-link text-center">
             <span class="d-block mf-link-icon"><i class="bi bi-house font-20"></i></span>
             <span class="mt-1 font-12 fw-bold mf-link-title">صفحه اصلی</span>
         </a></li>
-        <li class="d-table-cell"><a href="" class="mf-link nav-link text-center">
+        <li class="d-table-cell"><a href="<?php $this->url('/product/index/cheap') ?>" class="mf-link nav-link text-center">
             <div class="position-relative mf-link-icon d-table mx-auto">
-                <span class="d-block mf-link-icon"><i class="bi bi-arrow-left-right font-20"></i></span>
-                <span class="position-absolute main-color-one-bg rounded-pill font-10 text-white badge" style="right:-60%;bottom:-5px;">0</span>
+                <span class="d-block mf-link-icon"><i class="bi bi-grid font-20"></i></span>
             </div>
-            <span class="mt-1 font-12 fw-bold mf-link-title">مقایسه</span>
+            <span class="mt-1 font-12 fw-bold mf-link-title">کل محصولات</span>
         </a></li>
         <li class="d-table-cell"><a class="mf-link nav-link text-center" data-bs-toggle="offcanvas" href="#offcanvasCart" role="button" aria-controls="offcanvasCart">
             <div class="position-relative mf-link-icon d-table mx-auto">
