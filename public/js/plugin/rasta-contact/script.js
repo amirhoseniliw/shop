@@ -1,10 +1,4 @@
-/*
 
- Version: 1.0.0
-  Author: Amir Rezaie
- Website:
-    Repo: https://amir-rezaie.ir
- */
 
 (function ($) {
     "use strict";
@@ -54,7 +48,7 @@
 
                 var _child_el = '<ul class="_child_collapzion">';
                 jQuery.each(child_attribute, function (i, val) {
-                    _child_el += '<li><a href="' + val.url + '" class=""><div class="float-contact"><span class="_title ">' + val.label + '</span><div class="icon"><i class="' + val.icon + '"></i></div></div></a></li>';
+                    _child_el += '<li><a href="' + val.url + '" class=""><div class="float-contact">بقبقبق<span class="_title ">' + val.label + '</span><div class="icon"><i class="' + val.icon + '"></i></div></div></a></li>';
                 });
                 _child_el += '</ul>';
 

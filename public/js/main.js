@@ -114,17 +114,17 @@ $(document).ready(function () {
 $('#btncollapzion').Collapzion({
     _child_attribute: [{
         'label': 'پشتیبانی تلفنی',
-        'url': 'tel:0930555555555',
+        'url': 'tel:0989918694588',
         'icon': 'bi bi-telephone'
     },
         {
             'label': 'پشتیبانی تلگرام',
-            'url': 'https://tlgrm.me',
+            'url': 'https://t.me/tahrir_khayam',
             'icon': 'bi bi-telegram'
         },
         {
             'label': 'پشتیبانی واتس آپ',
-            'url': 'https://wa.me/444444444',
+            'url': 'https://wa.me/9918694588',
             'icon': 'bi-whatsapp'
         },
 

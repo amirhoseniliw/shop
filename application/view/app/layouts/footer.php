@@ -283,10 +283,10 @@
                             <div class="footer-social">
                                 <nav class="navbar navbar-expand">
                                     <ul class="navbar-nav">
-                                        <li class="nav-item"><a href="" class="nav-link"><img src="<?php echo $this->asset('/img_site/icon/robicka.png') ?>" alt=""></a></li>
-                                        <li class="nav-item"><a href="" class="nav-link"><img src="<?php echo $this->asset('/img_site/icon/shad.png') ?>" alt=""></a></li>
-                                        <li class="nav-item"><a href="" class="nav-link"><img src="<?php echo $this->asset('/img_site/icon/instagrom.png') ?>" alt=""></a></li>
-                                        <li class="nav-item"><a href="" class="nav-link"><img src="<?php echo $this->asset('/img_site/icon/telgram.png') ?>" alt=""></a></li>
+                                        <li class="nav-item"><a href="https://rubika.ir/tahrir__khayam" target="_blank" class="nav-link" title="عضویت در کانال روبیکا "><img src="<?php echo $this->asset('/img_site/icon/robicka.png') ?>" alt=""></a></li>
+                                        <li class="nav-item"><a href="https://wa.me/9918694588" target="_blank" class="nav-link"  title="پیام به اکانت واتشاپ"><img src="<?php echo $this->asset('/img_site/icon/whatsup.png') ?>" alt=""></a></li>
+                                        <li class="nav-item"><a href="https://www.instagram.com/tahrir.khayam" target="_blank" class="nav-link"  title="عضویت در پیج انیستا "><img src="<?php echo $this->asset('/img_site/icon/instagrom.png') ?>" alt=""></a></li>
+                                        <li class="nav-item"><a href="https://t.me/tahrir_khayam" target="_blank" class="nav-link"  title="پیام به اکانت تلگرام  "><img src="<?php echo $this->asset('/img_site/icon/telgram.png') ?>" alt=""></a></li>
                                     </ul>
                                 </nav>
                             </div>
