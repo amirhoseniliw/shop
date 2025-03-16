@@ -39,6 +39,15 @@ class Products extends Model
     $this->closeConnection();  
     return $result;  
 } 
+public function findcolors_id($id)  
+{  
+    $query = "SELECT hex_value 
+    FROM `colors` 
+    WHERE `color_id`  = ? ;";  
+    $result = $this->query($query, [$id])->fetch();  
+    $this->closeConnection();  
+    return $result;  
+}  
 //!-----------------------------------------------------------------------for search 
 // گران ترین
 public function find_most_expensive($name)  

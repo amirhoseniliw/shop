@@ -144,7 +144,7 @@
                                 <i class="bi bi-bar-chart"></i>
                             </div>
                         </div>
-                      <form action="<?php $this->url('/home/addcard/' . $post['product_id']) ?>" method="post">
+                      <form action="<?php $this->url('/cart/add_card/' . $post['product_id']) ?>" method="post">
                         <div class="product-meta-color">
                             <h5 class="font-16">
                                 انتخاب رنگ کالا

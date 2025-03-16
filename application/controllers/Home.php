@@ -37,13 +37,6 @@ class Home extends Controller{
     }
 
    
-    public function addcard($id){
-        $this->dd($_POST);
-        $category = new CategoryModel();
-        $categories = $category->all();
-        return $this->View('app.detail', compact('article','categories'));
-
-    }
 
     
 
