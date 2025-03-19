@@ -184,7 +184,7 @@
                                             </div>
                                             <div class="d-flex">
                                                 <div class="detail-order-item d-flex align-items-center">
-                                                    <img src="assets/img/shipping-post-iran.svg" alt="">
+                                                    <img src="<?php $this->asset('img_site/icon/shipping-post-iran.svg')?>" alt="">
                                                     <h6 class="ms-3">پست پیشتاز</h6>
                                                 </div>
                                             </div>
@@ -213,70 +213,24 @@
 
 
                     <div class="row g-3">
+                        <?php foreach($orders as $order) {?>
                         <div class="col-sm-3">
                             <div class="pro-box-item p-3 img-thumbnail shadow-box text-center">
                                 <a href="">
-                                    <img src="assets/img/product/product-5.webp" alt="">
+                                    <img src="<?php $this->asset($order['img'])?>" alt="">
                                     <div class="pro-box-var mt-4 justify-content-center">
                                         <div class="pro-box-var-item">
-                                            1
+                                            <?= $order['count'] ?>
                                         </div>
                                         <div class="pro-box-var-item px-1">
-                                            <div class="pro-box-var-item-color" style="background-color:#ccc2a4;"></div>
-                                            سفید
+                                            <div class="pro-box-var-item-color" style="background:<?php if($order['color'] == 'hue' || $order['color'] == '' ) { echo('linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);');} else {echo $order['color'] ;}?>;"></div>
+                                            
                                         </div>
                                     </div>
                                 </a>
                             </div>
                         </div>
-                        <div class="col-sm-3">
-                            <div class="pro-box-item p-3 img-thumbnail shadow-box text-center">
-                                <a href="">
-                                    <img src="assets/img/product/product-3.webp" alt="">
-                                    <div class="pro-box-var mt-4 justify-content-center">
-                                        <div class="pro-box-var-item">
-                                            1
-                                        </div>
-                                        <div class="pro-box-var-item px-1">
-                                            <div class="pro-box-var-item-color" style="background-color:#c00;"></div>
-                                            سفید
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="pro-box-item p-3 img-thumbnail shadow-box text-center">
-                                <a href="">
-                                    <img src="assets/img/product/product-2.webp" alt="">
-                                    <div class="pro-box-var mt-4 justify-content-center">
-                                        <div class="pro-box-var-item">
-                                            1
-                                        </div>
-                                        <div class="pro-box-var-item px-1">
-                                            <div class="pro-box-var-item-color" style="background-color:#e2ac0b;"></div>
-                                            سفید
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="pro-box-item p-3 img-thumbnail shadow-box text-center">
-                                <a href="">
-                                    <img src="assets/img/product/product-1.webp" alt="">
-                                    <div class="pro-box-var mt-4 justify-content-center">
-                                        <div class="pro-box-var-item">
-                                            1
-                                        </div>
-                                        <div class="pro-box-var-item px-1">
-                                            <div class="pro-box-var-item-color" style="background-color:#7e0bd2;"></div>
-                                            سفید
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                       <?php } ?>
                     </div>
                 </div>
                 <div class="col-xl-3">
@@ -289,10 +243,7 @@
                                         <p class="mb-0 font-17">1,228,000 تومان</p>
                                     </div>
 
-                                    <div class="d-flex factor-item mb-3 align-items-center justify-content-between">
-                                        <h5 class="mb-0 h6">تخفیف کالا ها</h5>
-                                        <p class="mb-0 font-18">1,296,000 تومان</p>
-                                    </div>
+                                  
 
                                     <div class="d-flex factor-item flex-column mb-3 align-items-start justify-content-between">
                                         <h5 class="mb-0 h6">حمل و نقل</h5>
