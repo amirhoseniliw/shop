@@ -8,24 +8,7 @@ use application\model\favorites as favoritesModel;
 class Cart extends Controller{
 
     public function index(){
-    //     $posts = new ProductsModel();
-    //     $Bestseller_posts = $posts->find_all('Bestseller' , 1 , 3 );
-    //     $posts = new ProductsModel();
-    //     $Selected_posts = $posts->find_all('Selected' , 1 , 10);
-       
-    //     $posts = new ProductsModel();
-    //     $Bestseller_posts_alls = $posts->find_all('Bestseller' , 1 , 100 );
-    //     $posts = new ProductsModel();
-    //     $all_posts = $posts->all();
-    //     if(isset( $_SESSION['user_id'])){
-    //    $user_id = $_SESSION['user_id'];
-    //     $favorite = new favoritesModel();
-    //     $favorites = $favorite->find_all($user_id);
-    //     }
-    //    else {
-    //     $favorites = null ;
-
-    //    }
+ 
      $orders = $_SESSION['cart'];
        $ob_category = new CategoryModel();
         $categories = $ob_category->all_cat_post();
@@ -71,6 +54,7 @@ class Cart extends Controller{
         if (array_key_exists($product_id, $_SESSION['cart'])) {  
             // اگر موجود است، مقدار آن را افزایش می‌دهیم  
             $_SESSION['cart'][$product_id] = [  
+                'id' => $product_id,  
                 'name' => $product_name,  
                 'price' => $product_price,  
                 'color' => $product_color,  
@@ -79,7 +63,8 @@ class Cart extends Controller{
             ];  
         } else {  
             // اگر موجود نیست، اطلاعات آن را به سبد خرید اضافه می‌کنیم  
-            $_SESSION['cart'][$product_id] = [  
+            $_SESSION['cart'][$product_id] = [
+                'id' => $product_id,   
                 'name' => $product_name,  
                 'price' => $product_price,  
                 'color' => $product_color,  
@@ -88,10 +73,24 @@ class Cart extends Controller{
             ];  
         }  
 
-        return $this->redirect('cart');  
+        return $this->redirect('cart/index');  
     }  
-
     
-
+    public function delete_on_list($id){
+       
+     unset($_SESSION['cart'][$id]);
+     return $this->back();  
+   
+       }
+    public function checkout(){
+       
+         $orders = $_SESSION['cart'];
+         $this->dd($orders);
+           $ob_category = new CategoryModel();
+            $categories = $ob_category->all_cat_post();
+            return $this->View('app.cart.checkout' , compact('categories' , 'orders'));
+    
+        }
+    
 
 }

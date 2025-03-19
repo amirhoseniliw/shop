@@ -55,10 +55,12 @@
                                         </thead>
                                         <tbody>
                                          
-                                            <?php foreach($orders as $order) {?>
+                                            <?php $Total_Price = 0 ;
+                                             foreach($orders as $order) {
+                                                 $Total_Price += $order['price'] * $order['count']; ?>?>
                                         <tr>
                                             <td class="text-center align-middle">
-                                                <a href="" data-bs-toggle="tooltip" class="p-4" data-bs-placement="top" data-bs-title="حذف محصول از سبد خرید">
+                                                <a href="<?php $this->url('/cart/delete_on_list/' . $order['id'] ) ?>" data-bs-toggle="tooltip" class="p-4" data-bs-placement="top" data-bs-title="حذف محصول از سبد خرید">
                                                     <i class="bi bi-x-lg"></i>
                                                 </a>
                                             </td>
@@ -112,43 +114,12 @@
                                     <div class="item">
                                         <div class="factor">
                                             <div class="d-flex factor-item mb-3 align-items-center justify-content-between">
-                                                <h5 class="mb-0 h6">قیمت کالا ها</h5>
-                                                <p class="mb-0 font-17">1,228,000 تومان</p>
-                                            </div>
-
-                                            <div class="d-flex factor-item mb-3 align-items-center justify-content-between">
-                                                <h5 class="mb-0 h6">تخفیف کالا ها</h5>
-                                                <p class="mb-0 font-18">1,296,000 تومان</p>
-                                            </div>
-
-                                            <div class="d-flex factor-item flex-column mb-3 align-items-start justify-content-between">
-                                                <h5 class="mb-0 h6">حمل و نقل</h5>
-                                                <form action="">
-                                                    <div class="form-check mt-3">
-                                                        <input type="radio" checked class="form-check-input" name="post"
-                                                               id="post-1">
-                                                        <label for="post-1" class="form-check-label">
-                                                            پیک موتوری اختصاصی (کمتر از 5 ساعت): 80,000 تومان
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check mt-3">
-                                                        <input type="radio" class="form-check-input" name="post"
-                                                               id="post-2">
-                                                        <label for="post-2" class="form-check-label">
-                                                            پیک عمومی استادینو (2 تا 3 روز کاری): 50,000 تومان
-
-                                                        </label>
-                                                    </div>
-                                                </form>
-                                            </div>
-
-                                            <div class="d-flex factor-item mb-3 align-items-center justify-content-between">
                                                 <h5 class="mb-0 h6">مجموع</h5>
-                                                <p class="mb-0 font-18">1,308,000 تومان</p>
+                                                <p class="mb-0 font-18"><?= $Total_Price ?> تومان</p>
                                             </div>
 
                                             <div class="action mt-3 d-flex align-items-center justify-content-center">
-                                                <a href="#"
+                                                <a href="<?php $this->url('/cart/checkout') ?>"
                                                    class="btn main-color-one-bg w-100">تسویه
                                                     حساب</a>
                                             </div>

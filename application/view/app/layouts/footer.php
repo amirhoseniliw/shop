@@ -350,7 +350,8 @@
         <ul class="navbar-nav cart-canvas-parent">
             <?php $orders =  $_SESSION['cart'] ;
             $Total_Price = 0 ;
-            foreach($orders as $order) {?>
+            foreach($orders as $order) {
+                $Total_Price += $order['price'] * $order['count']; ?>
             <li class="nav-item">
                 <div class="cart-canvas">
                     <div class="row align-items-center">
@@ -386,7 +387,7 @@
                 <div class="col-6">
                     <div class="cart-canvas-foot-sum">
                         <p class="text-muted mb-2">جمع کل</p>
-                        <h5><?php echo  $this->formatPrice( ($order['price'] * $order['count'])) * count($_SESSION['cart']) ?>  تومان</h5>
+                        <h5><?php echo  $this->formatPrice( $Total_Price) ?>  تومان</h5>
                     </div>
                 </div>
                 <div class="col-6">
