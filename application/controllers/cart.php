@@ -3,7 +3,10 @@
 namespace Application\Controllers;
 use application\model\Products as ProductsModel;
 use application\model\Category as CategoryModel;
-use application\model\favorites as favoritesModel;
+use application\model\addres as AssersModel;
+
+use application\model\Users as UsersModel;
+
 
 class Cart extends Controller{
 
@@ -85,10 +88,15 @@ class Cart extends Controller{
     public function checkout(){
        
          $orders = $_SESSION['cart'];
-         $this->dd($orders);
+         $user_id = $_SESSION['user_id'];
+         $user = new UsersModel();
+         $user = $user->find($user_id);
+         $adders = new AssersModel();
+         $adders = $adders->allPanel($user_id);
+        
            $ob_category = new CategoryModel();
             $categories = $ob_category->all_cat_post();
-            return $this->View('app.cart.checkout' , compact('categories' , 'orders'));
+            return $this->View('app.cart.checkout' , compact('categories' , 'orders' , 'user' , 'adders'));
     
         }
     

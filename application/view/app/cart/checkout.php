@@ -11,13 +11,13 @@
                 <nav class="navbar navbar-expand">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                        <a href="<?php $this->url('/cart/index') ?>" class="nav-link">
                                 <span>1</span>
                                 <p>سبد خرید</p>
                             </a>
                         </li>
                         <li class="nav-item active">
-                            <a href="" class="nav-link">
+                        <a href="<?php $this->url('/cart/checkout') ?>" class="nav-link">
                                 <span>2</span>
                                 <p>صورتحساب</p>
                             </a>
@@ -130,30 +130,32 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="text-sm-end">
-                                       <h5> <a href="" class="text-info"> + ثبت آدرس جدید</a></h5>
+                                       <h5> <a href="<?php $this->url('/Userpanel/address') ?>" class="text-info"> + ثبت آدرس جدید</a></h5>
                                     </div>
                                 </div>
                             </div>
-
+                              <?php
+                           
+                              foreach($adders as $adder) {?>
                             <label for="address-one" class="d-block">
                                 <div class="detail-order mt-4">
                                     <div class="d-flex align-items-center">
                                         <div class="me-4 border-end border-2 pe-3 border-dark">
-                                            <input type="radio" name="address" id="address-one" class="form-check-input">
+                                            <input type="radio" name="address" id="address-one" class="form-check-input" checked>
                                         </div>
                                         <div class="d-flex flex-column">
                                             <div class="detail-order-item d-flex align-items-center">
-                                                <h6><i class="bi bi-pin-map-fill me-1"></i> آدرس تحویل:</h6>
-                                                <span class="ms-2 text-muted">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</span>
+                                                <h6><i class="bi bi-pin-map-fill me-1"></i> آدرس تحویل: <?= $adder['AddressText'] ?></h6>
+                                                <span class="ms-2 text-muted"><?= $adder['Title'] ?></span>
                                             </div>
                                             <div class="d-flex align-items-center mt-4">
                                                 <div class="detail-order-item d-flex me-3 align-items-center">
                                                     <h6><i class="bi bi-person-fill me-1"></i>تحویل گیرنده:</h6>
-                                                    <span class="ms-2 text-muted">امیر رضایی</span>
+                                                    <span class="ms-2 text-muted"><?= $user['username'] ?></span>
                                                 </div>
                                                 <div class="detail-order-item d-flex align-items-center">
                                                     <h6><i class="bi bi-telephone-fill me-1"></i>شماره تماس:</h6>
-                                                    <span class="ms-2 text-muted">091234567890</span>
+                                                    <span class="ms-2 text-muted"><?= $user['phone_number'] ?></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -161,33 +163,7 @@
                                     </div>
                                 </div>
                             </label>
-
-                            <label for="address-two" class="d-block">
-                                <div class="detail-order mt-4">
-                                    <div class="d-flex align-items-center">
-                                        <div class="me-4 border-end border-2 pe-3 border-dark">
-                                            <input type="radio" name="address" id="address-two" class="form-check-input">
-                                        </div>
-                                        <div class="d-flex flex-column">
-                                            <div class="detail-order-item d-flex align-items-center">
-                                                <h6><i class="bi bi-pin-map-fill me-1"></i> آدرس تحویل:</h6>
-                                                <span class="ms-2 text-muted">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</span>
-                                            </div>
-                                            <div class="d-flex align-items-center mt-4">
-                                                <div class="detail-order-item d-flex me-3 align-items-center">
-                                                    <h6><i class="bi bi-person-fill me-1"></i>تحویل گیرنده:</h6>
-                                                    <span class="ms-2 text-muted">امیر رضایی</span>
-                                                </div>
-                                                <div class="detail-order-item d-flex align-items-center">
-                                                    <h6><i class="bi bi-telephone-fill me-1"></i>شماره تماس:</h6>
-                                                    <span class="ms-2 text-muted">091234567890</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </label>
+                           <?php } ?> 
 
 
                         </div>
@@ -204,7 +180,7 @@
                                     <div class="detail-order mt-4">
                                         <div class="d-flex align-items-center">
                                             <div class="me-4 border-end border-2 pe-3 border-dark">
-                                                <input type="radio" name="shipping" class="form-check-input">
+                                                <input type="radio" name="shipping" class="form-check-input" checked>
                                             </div>
                                             <div class="d-flex">
                                                 <div class="detail-order-item d-flex align-items-center">

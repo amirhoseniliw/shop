@@ -9,13 +9,13 @@
                 <nav class="navbar navbar-expand">
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <a href="" class="nav-link">
+                            <a href="<?php $this->url('/cart/index') ?>" class="nav-link">
                                 <span>1</span>
                                 <p>سبد خرید</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                        <a href="<?php $this->url('/cart/checkout') ?>" class="nav-link">
                                 <span>2</span>
                                 <p>صورتحساب</p>
                             </a>
@@ -29,7 +29,7 @@
                     </ul>
                 </nav>
             </div>
-            <h2 class="title-font main-color-one-color mt-4 h4">سبد خرید شما <span class="main-color-three-color">(3 کالا)</span>
+            <h2 class="title-font main-color-one-color mt-4 h4">سبد خرید شما <span class="main-color-three-color">(<?php if(isset($_SESSION['cart'])) {echo $count = count($_SESSION['cart']);} else {echo"0";}?> کالا)</span>
             </h2>
         </div>
 
