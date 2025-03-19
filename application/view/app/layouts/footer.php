@@ -348,24 +348,27 @@
     </div>
     <div class="offcanvas-body">
         <ul class="navbar-nav cart-canvas-parent">
+            <?php $orders =  $_SESSION['cart'] ;
+            $Total_Price = 0 ;
+            foreach($orders as $order) {?>
             <li class="nav-item">
                 <div class="cart-canvas">
                     <div class="row align-items-center">
                         <div class="col-4 ps-0">
-                            <img src="assets/img/product/product-1.webp" alt="">
+                            <img src="<?php echo $this->asset($order['img']) ?>" alt="">
                         </div>
                         <div class="col-8">
                             <h3 class="text-overflow-2 font-16">
-                                کتاب Nuovo Espresso A2 اثر Luciano Ziglio and Givonna Rizzo انتشارات الوندپویان
-                            </h3>
+                            <?= $order['name'] ?>
+                        </h3>
                             <div class="product-box-suggest-price my-2  d-flex align-items-center justify-content-between">
-                                <del class="font-16">5,000,000</del>
-                                <ins class="font-25">2,500,000 <span>تومان</span></ins>
+                               
+                                <ins class="font-25"><?php echo  $this->formatPrice( $order['price'] * $order['count']) ?> <span>تومان</span></ins>
                             </div>
                             <div class="cart-canvas-foot d-flex align-items-center justify-content-between">
                                 <div class="cart-canvas-count">
                                     <span>تعداد:</span>
-                                    <span class="fw-bold">3</span>
+                                    <span class="fw-bold"><?= $order['count']?></span>
                                 </div>
                                 <div class="cart-canvas-delete">
                                     <a href="" class="btn"><i class="bi bi-x"></i></a>
@@ -374,34 +377,8 @@
                         </div>
                     </div>
                 </div>
-            </li>
-            <li class="nav-item">
-                <div class="cart-canvas">
-                    <div class="row align-items-center">
-                        <div class="col-4 ps-0">
-                            <img src="assets/img/product/product-13.webp" alt="">
-                        </div>
-                        <div class="col-8">
-                            <h3 class="text-overflow-2 font-16">
-                                کتاب Nuovo Espresso A2 اثر Luciano Ziglio and Givonna Rizzo انتشارات الوندپویان
-                            </h3>
-                            <div class="product-box-suggest-price my-2  d-flex align-items-center justify-content-between">
-                                <del class="font-16">5,000,000</del>
-                                <ins class="font-25">2,500,000 <span>تومان</span></ins>
-                            </div>
-                            <div class="cart-canvas-foot d-flex align-items-center justify-content-between">
-                                <div class="cart-canvas-count">
-                                    <span>تعداد:</span>
-                                    <span class="fw-bold">3</span>
-                                </div>
-                                <div class="cart-canvas-delete">
-                                    <a href="" class="btn"><i class="bi bi-x"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
+            </li><?php } ?>
+            
         </ul>
 
         <div class="cart-canvas-foots bg-white shadow-md">
@@ -409,12 +386,12 @@
                 <div class="col-6">
                     <div class="cart-canvas-foot-sum">
                         <p class="text-muted mb-2">جمع کل</p>
-                        <h5>11,000,000 تومان</h5>
+                        <h5><?php echo  $this->formatPrice( ($order['price'] * $order['count'])) * count($_SESSION['cart']) ?>  تومان</h5>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="cart-canvas-foot-link text-end">
-                        <a href="" class="btn border-0 main-color-green text-white"><i
+                        <a href="<?php $this->url('/cart') ?>" class="btn border-0 main-color-green text-white"><i
                                 class="bi bi-arrow-left me-1"></i> تکمیل خرید</a>
                     </div>
                 </div>
@@ -470,7 +447,7 @@
         <li class="d-table-cell"><a class="mf-link nav-link text-center" data-bs-toggle="offcanvas" href="#offcanvasCart" role="button" aria-controls="offcanvasCart">
             <div class="position-relative mf-link-icon d-table mx-auto">
                 <span class="d-block mf-link-icon"><i class="bi bi-bag font-20"></i></span>
-                <span class="position-absolute main-color-one-bg rounded-pill font-10 text-white badge" style="right:-60%;bottom:-5px;">0</span>
+                <span class="position-absolute main-color-one-bg rounded-pill font-10 text-white badge" style="right:-60%;bottom:-5px;"><?php if(isset($_SESSION['cart'])) {echo $count = count($_SESSION['cart']);} else {echo"0";}?></span>
             </div>
             <span class="mt-1 font-12 fw-bold mf-link-title">سبد خرید</span>
         </a></li>
