@@ -1,4 +1,4 @@
-<?php $this->include('app.layouts.header'); ?>
+<?php $this->include('app.layouts.header' , compact('categories')); ?>
 <div class="bread-crumb py-4">
     <div class="container-fluid">
         <nav aria-label="breadcrumb" class="my-lg-0 my-2">

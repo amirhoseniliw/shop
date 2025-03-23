@@ -348,7 +348,7 @@
     </div>
     <div class="offcanvas-body">
         <?php
-          if(isset($_SESSION['cart'])){  ?>
+          if(isset($_SESSION['cart']) &&  $_SESSION['cart'] != null){  ?>
         <ul class="navbar-nav cart-canvas-parent">
             <?php $orders =  $_SESSION['cart'] ;
             $Total_Price = 0 ;
@@ -403,7 +403,7 @@
         <?php } 
         
        
-        if($_SESSION['cart'] == null) { ?>
+      else{ ?>
         <h4 style="color: red; text-align: center; box-shadow: 2px 2px 10px black;">هیچ محصولی در سبد خرید  نمی باشد !</h4>
         <?php } ?>
     </div>

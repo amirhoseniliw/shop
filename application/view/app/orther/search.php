@@ -1,4 +1,4 @@
-<?php $this->include('app.layouts.header'); ?>
+<?php $this->include('app.layouts.header' , compact('categories')); ?>
 
 
 <div class="content mt-3">

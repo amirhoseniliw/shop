@@ -71,9 +71,10 @@ public function index($type_posts) {
              $favorites = null ;
      
             }
+            $ob_category = new CategoryModel();
+            $categories = $ob_category->all_cat_post();
 
-
-        return $this->view("app.orther.all_product" , compact('favorites' ,'posts' , 'count_posts' , 'type_post' ));
+        return $this->view("app.orther.all_product" , compact('favorites' , 'categories' ,'posts' , 'count_posts' , 'type_post' ));
 
     }
 public function find($id){
@@ -101,8 +102,10 @@ public function find($id){
          $favorites = null ;
  
         }
+        $ob_category = new CategoryModel();
+        $categories = $ob_category->all_cat_post();
 
-    return $this->view("app.orther.product", compact('favorites' ,'post' , 'colors'));   }
+    return $this->view("app.orther.product", compact('favorites' , 'categories' ,'post' , 'colors'));   }
    
 
     public function category($id_category) {
@@ -134,7 +137,7 @@ public function find($id){
             $posts = new ProductsModel();
             $posts = $posts->find_most_cheap('');
          }
-    
+       
             return $this->view("app.orther.category" , compact('favorites' ,'posts' , 'count_posts' , 'categories'  ));
     
         }

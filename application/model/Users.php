@@ -47,8 +47,8 @@ class Users extends Model
     }
     
     public function insert($values)
-    {
-        $query = "INSERT INTO `users`(`username`,`phone_number`, `password`, `img_prof`  `created_at`) VALUES (?,?,? , '\img_site\icon\user.jpg',NOW());";
+    { 
+        $query = "INSERT INTO `users`(`username`,`phone_number`, `password`, `created_at`) VALUES (?,?,?,NOW());";
         $this->execute($query , array_values($values));
         $this->closeConnection();
     }

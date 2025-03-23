@@ -4,7 +4,7 @@ namespace application\controllers;
 
 use Application\Controllers\Controller;
 use application\model\Products as ProductsModel;
-use application\model\panel\Category as CategoryModel;
+use application\model\Category as CategoryModel;
 use application\model\favorites as favoritesModel;
 
 
@@ -91,7 +91,9 @@ class search extends Controller
              $favorites = null ;
      
             }
-        return $this->view("app.orther.search", compact( 'favorites' ,'id_category' , 'type_post' , 'posts', 'name', 'name_status', 'count_posts', 'categories'));
+            $ob_category = new CategoryModel();
+            $categories = $ob_category->all_cat_post();
+        return $this->view("app.orther.search", compact( 'favorites' , 'categories','id_category' , 'type_post' , 'posts', 'name', 'name_status', 'count_posts', 'categories'));
     }
 
     // public function search_type()

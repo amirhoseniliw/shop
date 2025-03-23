@@ -9,7 +9,9 @@ class Auth extends Controller
     public function logout(){
         if(isset($_SESSION['user_id'])){
             unset($_SESSION['user_id']);
+            unset($_SESSION['cart']);
             return $this->redirect('home/index');
+            
 
         }
 
@@ -193,7 +195,7 @@ class Auth extends Controller
                 $user = new UsersModel();
                 $user = $user->find_username($username);
                 $_SESSION['user_id'] = $user['user_id'];
-                   return $this->redirect('home/index');            }
+                   return $this->redirect('home/login');            }
         }
     }
 }
