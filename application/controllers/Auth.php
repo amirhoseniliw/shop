@@ -26,12 +26,12 @@ class Auth extends Controller
     }
     public function Check_login()
     {
-        $username = $_POST['username'];
+        $phone_number = $_POST['phone_number'];
         $password = $_POST['password'];
         $code = $_POST['captcha'];
       
         $user = new UsersModel();
-        $user = $user->find_login($username);
+        $user = $user->find_login($phone_number);
 
         if  ($code !=  $_SESSION['captcha'] ) {
             $this->flash('login_errors', 'عدد را به صورت صحیح وارد کنید !');
@@ -42,7 +42,7 @@ class Auth extends Controller
                 return $this->redirect('Auth/login');
             }
              else {
-                if ($this->verify_password($password, $user['password']) && $user['username'] == $username) {
+                if ($this->verify_password($password, $user['password']) && $user['phone_number'] == $phone_number ) {
 
                     $_SESSION['user_id'] = $user['user_id'];
                     return $this->redirect('home/index');

@@ -87,8 +87,8 @@ $_SESSION['captcha'] = $captcha_number; // ذخیره عدد در SESSION
 
                                         <div class="comment-item mb-3">
                                             <input type="text" class="form-control" id="floatingInputEmail"
-                                                name="username">
-                                            <label for="floatingInputEmail" class="form-label label-float"> نام کاربری
+                                                name="phone_number">
+                                            <label for="floatingInputEmail" class="form-label label-float">  شماره تلفن 
                                                 خود را وارد نمایید
                                             </label>
                                         </div>

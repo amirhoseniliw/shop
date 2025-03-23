@@ -1,5 +1,5 @@
 
-<?php $this->include('app.layouts.header' , ['user' => $user] ); 
+<?php $this->include('app.layouts.header' ,['user' => $user, 'categories' => $categories]); 
  $this->include('app.layouts.sidbor', ['user' => $user] ); ?>
 
 

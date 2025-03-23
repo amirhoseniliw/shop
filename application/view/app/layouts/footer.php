@@ -342,11 +342,13 @@
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
     <div class="offcanvas-header shadow-md">
-        <h5 class="offcanvas-title title-font" id="offcanvasCartLabel">سبد خرید <small class="text-muted fw-bold font-14 ms-1">(1
+        <h5 class="offcanvas-title title-font" id="offcanvasCartLabel">سبد خرید <small class="text-muted fw-bold font-14 ms-1">(<?php if(isset($_SESSION['cart'])) {echo $count = count($_SESSION['cart']);} else {echo"0";}?>
             مورد)</small></h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
+        <?php
+          if(isset($_SESSION['cart'])){  ?>
         <ul class="navbar-nav cart-canvas-parent">
             <?php $orders =  $_SESSION['cart'] ;
             $Total_Price = 0 ;
@@ -372,7 +374,7 @@
                                     <span class="fw-bold"><?= $order['count']?></span>
                                 </div>
                                 <div class="cart-canvas-delete">
-                                    <a href="" class="btn"><i class="bi bi-x"></i></a>
+                                    <a href="<?php $this->url('/cart/delete_on_list/' . $order['id']) ?>" class="btn"><i class="bi bi-x"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -398,6 +400,12 @@
                 </div>
             </div>
         </div>
+        <?php } 
+        
+       
+        if($_SESSION['cart'] == null) { ?>
+        <h4 style="color: red; text-align: center; box-shadow: 2px 2px 10px black;">هیچ محصولی در سبد خرید  نمی باشد !</h4>
+        <?php } ?>
     </div>
 
 </div>

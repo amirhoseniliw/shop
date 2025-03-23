@@ -19,7 +19,7 @@ class Users extends Model
     }
     public function find_login($username)
     {
-        $query = "SELECT * FROM `users` WHERE `username` = ?";
+        $query = "SELECT * FROM `users` WHERE `phone_number` = ?";
         $result = $this->query($query, [$username])->fetch();
         $this->closeConnection();
         return $result;
@@ -48,7 +48,7 @@ class Users extends Model
     
     public function insert($values)
     {
-        $query = "INSERT INTO `users`(`username`,`phone_number`, `password`,  `created_at`) VALUES (?,?,?,NOW());";
+        $query = "INSERT INTO `users`(`username`,`phone_number`, `password`, `img_prof`  `created_at`) VALUES (?,?,? , '\img_site\icon\user.jpg',NOW());";
         $this->execute($query , array_values($values));
         $this->closeConnection();
     }

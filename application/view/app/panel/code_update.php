@@ -1,5 +1,5 @@
-<?php  
-$this->include('app.layouts.header');   
+<?php $this->include('app.layouts.header' ,['user' => $user, 'categories' => $categories]); 
+
 $this->include('app.layouts.sidbor', ['user' => $user]);   
 $error = $this->flash('error');  
 $error_suc = $this->flash('error_suc');  

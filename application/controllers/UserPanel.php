@@ -7,6 +7,8 @@ use application\model\Orders as OrdersModel;
 use application\model\addres as AssersModel;
 use application\model\favorites as favoritesModel;
 use application\model\messages as messagesModel;
+use application\model\Category as CategoryModel;
+
 use PHPMailer\PHPMailer\POP3;
 
 class UserPanel extends Controller
@@ -25,21 +27,24 @@ class UserPanel extends Controller
     $user_id = $_SESSION['user_id'];
     $user = new UsersModel();
     $user = $user->find($user_id);
-    return $this->view("app.panel.index", compact('user'));
+    $ob_category = new CategoryModel();
+    $categories = $ob_category->all_cat_post();
+    return $this->view("app.panel.index", compact('user' , 'categories'));
 
   }
  
   
   public function edit_profil()
   {
-
+    $ob_category = new CategoryModel();
+    $categories = $ob_category->all_cat_post();
     if (!isset($_SESSION['user_id'])) {
       return $this->redirect('auth/login');
     }
     $user_id = $_SESSION['user_id'];
     $user = new UsersModel();
     $user = $user->find($user_id);
-    return $this->view("app.panel.edit", compact('user'));
+    return $this->view("app.panel.edit", compact('user' , 'categories'));
   }
   public function send_code()
   {
@@ -139,8 +144,9 @@ class UserPanel extends Controller
                   $_SESSION['last_code_sent_time'] = $current_time;  
                   $_SESSION['resend_count']++;  
                   $this->flash('error_suc', 'کد تأیید جدید با موفقیت ارسال شد!');  
-  
-                  return $this->view("app.panel.code_update", compact('user'));  
+                  $ob_category = new CategoryModel();
+    $categories = $ob_category->all_cat_post();
+                  return $this->view("app.panel.code_update", compact('user' , 'categories'));  
               }  
           }  
       }  
@@ -172,8 +178,9 @@ class UserPanel extends Controller
     $orders = $orders->allPanel($user_id);
     $user = new UsersModel();
     $user = $user->find($user_id);
-
-    return $this->view("app.panel.latest_order", compact('user' , 'orders'));
+    $ob_category = new CategoryModel();
+    $categories = $ob_category->all_cat_post();
+    return $this->view("app.panel.latest_order", compact('user' , 'orders' , 'categories'));
 
   }
   public function order_detail($id)
@@ -186,7 +193,9 @@ class UserPanel extends Controller
     $orders = $orders->find($id);
     $user = new UsersModel();
     $user = $user->find($user_id);
-    return $this->view("app.panel.order_detail", compact('user' , 'orders'));
+    $ob_category = new CategoryModel();
+    $categories = $ob_category->all_cat_post();
+    return $this->view("app.panel.order_detail", compact('user' , 'orders' , 'categories'));
 
   }
   public function address()
@@ -197,7 +206,9 @@ class UserPanel extends Controller
     $user = $user->find($user_id);
     $adders = new AssersModel();
     $adders = $adders->allPanel($user_id);
-    return $this->view("app.panel.address", compact('user' , 'adders'));
+    $ob_category = new CategoryModel();
+    $categories = $ob_category->all_cat_post();
+    return $this->view("app.panel.address", compact('user' , 'adders' , 'categories'));
 
   }
   public function create_address()
@@ -206,8 +217,9 @@ class UserPanel extends Controller
     $user_id = $_SESSION['user_id'];
     $user = new UsersModel();
     $user = $user->find($user_id);
-   
-    return $this->view("app.panel.address_create", compact('user'));
+    $ob_category = new CategoryModel();
+    $categories = $ob_category->all_cat_post();
+    return $this->view("app.panel.address_create", compact('user' , 'categories'));
 
   }
   public function stor_addres()
@@ -233,7 +245,9 @@ class UserPanel extends Controller
     $user = $user->find($user_id);
     $favorite = new favoritesModel();
     $favorite = $favorite->allPanel($user_id);
-    return $this->view("app.panel.favorites", compact('user' , 'favorite'));
+    $ob_category = new CategoryModel();
+    $categories = $ob_category->all_cat_post();
+    return $this->view("app.panel.favorites", compact('user' , 'favorite' , 'categories'));
 
   }
   public function delete_favorites($id)
@@ -252,7 +266,9 @@ class UserPanel extends Controller
     $user = $user->find($user_id);
   $messages = new messagesModel();
    $chaths = $messages->allPanel_chath($user_id);
-    return $this->view("app.panel.ticket", compact('user' , 'chaths'));
+   $ob_category = new CategoryModel();
+   $categories = $ob_category->all_cat_post();
+    return $this->view("app.panel.ticket", compact('user' , 'chaths' , 'categories'));
 
   }
   public function create_Chath()
@@ -272,7 +288,9 @@ class UserPanel extends Controller
     $messages = $messages->allPanel_mess($id);
     $chath = new messagesModel();
     $chath = $chath->find_chath($id);
-    return $this->view("app.panel.ticket_single", compact('user' ,  'messages' , 'chath'));
+    $ob_category = new CategoryModel();
+    $categories = $ob_category->all_cat_post();
+    return $this->view("app.panel.ticket_single", compact('user' ,  'messages' , 'chath' , 'categories'));
 
   }
   public function send_messaged($id) {
