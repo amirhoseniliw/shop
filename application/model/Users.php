@@ -19,7 +19,14 @@ class Users extends Model
     }
     public function find_login($username)
     {
-        $query = "SELECT * FROM `users` WHERE `phone_number` = ?";
+        $query = "SELECT * FROM `users` WHERE `phone_number` = ? ";
+        $result = $this->query($query, [$username])->fetch();
+        $this->closeConnection();
+        return $result;
+    }
+    public function find_login_status($username)
+    {
+        $query = "SELECT * FROM `users` WHERE `phone_number` = ? AND `status` = 'active'";
         $result = $this->query($query, [$username])->fetch();
         $this->closeConnection();
         return $result;
@@ -40,7 +47,7 @@ class Users extends Model
     }
     public function find_username($username)
     {
-        $query = "SELECT `username` FROM `users` WHERE `username` = ?";
+        $query = "SELECT `users`.`username` , `users`.`user_id` FROM `users` WHERE `username` = ?";
         $result = $this->query($query, [$username])->fetch();
         $this->closeConnection();
         return $result;

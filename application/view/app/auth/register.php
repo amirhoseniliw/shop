@@ -117,7 +117,7 @@ $_SESSION['captcha'] = $captcha_number; // ذخیره عدد در SESSION
                                 </div>
 
                                 <div class="auth-form mt-80 py-4" style="margin-top: 40%;">
-                                    <form id="passwordForm" action="<?php echo $this->url('/auth/register_Check') ?>"
+                                    <form id="passwordForm" action="<?php echo $this->url('/auth/code_register') ?>"
                                         method="post">
 
                                         <div class="mb-4 form-avatar text-center">
@@ -132,7 +132,7 @@ $_SESSION['captcha'] = $captcha_number; // ذخیره عدد در SESSION
                                         <div class="comment-item mb-3">
                                             <input type="text" class="form-control" id="floatingInputEmail"
                                                 name="username" required>
-                                            <label for="floatingInputEmail" class="form-label label-float">نام کاربری
+                                            <label for="floatingInputEmail" class="form-label label-float">نام 
                                                 خود را وارد کنید</label>
                                         </div>
                                         <div class="comment-item mb-3">

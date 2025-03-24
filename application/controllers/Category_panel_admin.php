@@ -2,7 +2,7 @@
 namespace Application\Controllers;
 use application\model\panel\Article as ArticleModel;
 use application\model\panel\Category as CategoryModel;
-class Category extends Controller{
+class Category_panel_admin extends Controller{
     public function index(){
         $category = new CategoryModel();
         $categories = $category->all();
