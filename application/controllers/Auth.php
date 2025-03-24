@@ -73,65 +73,54 @@ class Auth extends Controller
         // $this->dd($categories);
         return $this->View('app.auth.otp-sms');
     }
-    public function send_mss()
-    {
-        if(isset($_POST)){
-        $user = new UsersModel();
-        $user = $user->find_mob($_POST['phone']);
-        if ($user == "") {
-            $this->flash('not_find_user', '! کاربری با این مشخصات یافت نشد ');
-            return $this->redirect('Auth/otp_sms');
-        }
+    public function send_mss()  
+    {  
+ 
+    
+        $current_time = time(); // زمان فعلی  
+        $time_limit = 120; // دو دقیقه به ثانیه  
+    
+        // بررسی وجود متغیر زمان ارسال در سشن  
+        if (!isset($_SESSION['last_send_time'])) {  
+            $_SESSION['last_send_time'] = 0; // مقدار اولیه برای اولین بار  
+        }  
+    
+        // بررسی اینکه آیا دو دقیقه گذشته است  
+        if ($current_time - $_SESSION['last_send_time'] < $time_limit) {  
+            $this->flash('not_find_user', 'لطفا دو دقیقه بعد تلاش کنید !');  
+            return $this->redirect('Auth/otp_sms');  
 
-        $verification_code  = rand(10000, 99999);
 
-        // اطلاعات احراز هویت  
-        $apiKey = 'USvet6AabDekmTc81jqeTXYOAsjiNldCeXJwnz6cKS4SLxib'; // توکن API خود را اینجا قرار دهید  
-        $url = 'https://api.sms.ir/v1/send/bulk';
-        $massege = "با سلام کد تایید شما " . "\n" . $verification_code;
+        }   else {
+    
+        if (isset($_POST)) {  
+            $user = new UsersModel();  
+            $userData = $user->find_mob($_POST['phone']);  
+            
+            if ($userData == "") {  
+                $this->flash('not_find_user', '! کاربری با این مشخصات یافت نشد ');  
+                return $this->redirect('Auth/otp_sms');  
+            }  
+    
+            $verification_code = rand(10000, 99999);  
+            $message = "با سلام کد تایید شما " . "\n" . $verification_code;  
+    
+            if (!isset($_POST['phone']) || empty($_POST['phone'])) { 
+                $this->flash('not_find_user', 'شماره موبایل ارسال نشده است.');  
+  
+                return $this->redirect('Auth/otp_sms');  
 
-        if (!isset($_POST['phone']) || empty($_POST['phone'])) {
-            echo 'شماره موبایل ارسال نشده است.';
-            return;
-        }
-
-        $mobail = $_POST['phone'];
-
-        // داده‌های پیام  
-        $data = [
-            'lineNumber' => '30007487132973', // شماره خط  
-            'messageText' => $massege, // متن پیام  
-            'mobiles' => [
-                $mobail // شماره گیرنده  
-            ]
-        ];
-
-        // ایجاد یک cURL session  
-        $ch = curl_init($url);
-
-        // تنظیمات cURL  
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Content-Type: application/json',
-            "X-API-KEY: $apiKey" // هدر توکن امنیتی  
-        ]);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data)); // ارسال داده‌ها به صورت JSON  
-
-        // ارسال درخواست  
-        $response = curl_exec($ch);
-
-        // بررسی خطاها  
-        if (curl_errno($ch)) {
-            echo 'خطا در ارسال درخواست: ' . curl_error($ch);
-        } else {
-            return $this->View('app.auth.code', compact('verification_code', 'mobail'));
-        }
-    }
-
-        // بستن cURL session  
-        curl_close($ch);
-    }
+            }  
+   
+            $mobile = $_POST['phone'];  
+            $status = $this->sendMessage($message, $mobile);  
+    
+            if ($status == true) {  
+                $_SESSION['last_send_time'] = $current_time; // به روز رسانی زمان ارسال  
+                return $this->View('app.auth.code', compact('verification_code', 'mobile'));  
+            }  }
+        }  
+    }  
     public function set_session()
     {
         session_start();
@@ -139,17 +128,18 @@ class Auth extends Controller
     }
     // متد برای بررسی کد تأیید
     public function password($mobail)
-    {
-        if ($_SESSION['status'] != true) {
-            return $this->redirect('Auth/otp_sms');
-            $this->flash('not_find_user', '! کاربری با این مشخصات یافت نشد ');
+    {if ($_SESSION['status'] != true) {
+        $this->flash('not_find_user', '! کاربری با این مشخصات یافت نشد ');
+$_SESSION['status'] = false;
+        return $this->redirect('Auth/otp_sms');
 
-            $_SESSION['status'] = false;
-        } else {
-            return $this->View('app.auth.password', compact('mobail'));
-            $_SESSION['status'] = false;
-        }
+        
+    } else { 
+                   $_SESSION['status'] = false;
+
+        return $this->View('app.auth.password', compact('mobail'));
     }
+}
     public function update_password($mobail)
     {
         $user = new UsersModel();

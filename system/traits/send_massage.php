@@ -7,7 +7,7 @@ trait send_massage
    protected function sendMessage($messageText, $mobiles) {  
         // URL آدرس API  
         $lineNumber = '30007487132973';
-        $apiUrl = 'https://api.sms.ir/v1/send/bulk'; // جایگزین با URL واقعی  
+        $apiUrl = 'https://api.sms.ir/v1/send/bulk'; // جایگزین با URL   
     
         // داده‌هایی که باید ارسال شوند  
         $data = [  
