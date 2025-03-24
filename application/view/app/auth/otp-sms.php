@@ -144,6 +144,7 @@ $_SESSION['captcha'] = $captcha_number; // ذخیره عدد در SESSION
                 <button type="submit" id="send-btn" class="btn">ارسال کد تایید</button>
                 <div id="timer"></div>
             </form>
+            <a href="<?php $this->url('/auth/login') ?>" style="text-decoration: none; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">برگشت به صفحه ورود </a>
         </div>
 
         <!-- فرم تایید کد -->

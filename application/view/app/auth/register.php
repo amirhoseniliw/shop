@@ -1,4 +1,8 @@
-<?php $mass = $this->flash('register_error'); ?>
+<?php $mass = $this->flash('register_error');
+
+$captcha_number = rand(1000, 9999); // تولید یک عدد تصادفی بین 1000 و 9999  
+$_SESSION['captcha'] = $captcha_number; // ذخیره عدد در SESSION 
+?>
 <!doctype html>
 <html class="no-js" dir="rtl" lang="Fa_IR">
 
@@ -71,7 +75,24 @@
         .toast.success {
             background-color: #2ecc71;
         }
+        .code_captcha {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
 
+.input_code_captcha {
+    width: 60%;
+    height: 10%;
+    border: none;
+    border-bottom: 2px solid blue;
+    outline: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    display: block;
+    margin: auto;
+}
     </style>
 </head>
 
@@ -95,7 +116,7 @@
                                         class="btn btn-lg bg-white shadow-md fw-bold font-18 ms-2">عضویت در سایت</a>
                                 </div>
 
-                                <div class="auth-form mt-80 py-4" style="margin-top: 30%;">
+                                <div class="auth-form mt-80 py-4" style="margin-top: 40%;">
                                     <form id="passwordForm" action="<?php echo $this->url('/auth/register_Check') ?>"
                                         method="post">
 
@@ -134,7 +155,12 @@
                                             <label for="floatingInputPasswdRe" class="form-label label-float">رمز عبور
                                                 خود را تکرار کنید</label>
                                         </div>
+                                        <label style="font-size: 20px;" for="captcha">برای ورود به سایت عدد را وارد کنید
+                                        </label>
+                                        <div class="code_captcha"><?=$captcha_number?></div>
 
+                                        <input type="text" id="captcha" name="captcha" class="input_code_captcha"
+                                            required>
                                         <div class="form-check my-4">
                                             <div class="d-flex">
                                                 <input class="form-check-input" type="checkbox" value=""

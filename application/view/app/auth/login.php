@@ -1,5 +1,6 @@
 <?php 
-$mass  = $this->flash('login_errors');
+if( $this->flash('login_errors') != ""){
+$mass  = $this->flash('login_errors');}
 $captcha_number = rand(1000, 9999); // تولید یک عدد تصادفی بین 1000 و 9999  
 $_SESSION['captcha'] = $captcha_number; // ذخیره عدد در SESSION 
  ?>
