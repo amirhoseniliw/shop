@@ -3,7 +3,7 @@ namespace application\controllers;
 use application\model\messages as messagesModel;
 use application\model\panel\Products as ProductsModel;
 
-class chats_panel extends Controller{
+class chats_panel_admin extends Controller{
 public function index() {
 
    $chats = new messagesModel();
@@ -22,7 +22,7 @@ public function chang_status($id) {
 
     $chats = new messagesModel();
     $chats = $chats->update_chat($id , 'status' , $status);
-    return $this->redirect('chats_panel');
+    return $this->redirect('chats_panel_admin');
 
  }
  public function open_chat($id) {
@@ -38,7 +38,7 @@ public function chang_status($id) {
     $messages = new messagesModel();
      $messages->insert($id , $user_id , $_POST);
 
-    return $this->redirect('chats_panel/open_chat/' . $id);
+    return $this->redirect('chats_panel_admin/open_chat/' . $id);
 }
  
 }

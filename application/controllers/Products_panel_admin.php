@@ -4,7 +4,7 @@ namespace application\controllers;
 use Application\Controllers\Controller;
 use application\model\panel\Products as ProductsModel;
 use application\model\panel\Category as CategoryModel;
-class products extends Controller{
+class Products_panel_admin extends Controller{
 public function index() {
          $posts = new ProductsModel();
          $posts = $posts->allPanel();      
@@ -21,7 +21,7 @@ public function index() {
  public function products_store() {
     $posts = new ProductsModel();
     $posts->insert($_POST);
-    return $this->redirect('products');
+    return $this->redirect('Products_panel_admin');
     
 
 }
@@ -29,7 +29,7 @@ public function products_delete($id) {
 
  $post = new ProductsModel();
     $post->delete($id);
-    return $this->redirect('products');
+    return $this->redirect('Products_panel_admin');
 
    
 
@@ -47,7 +47,7 @@ public function products_edit($id) {
 public function products_update($id) {
     $post = new ProductsModel();
     $post->update($id , $_POST);
-    return $this->redirect('products');
+    return $this->redirect('Products_panel_admin');
 
 }
 public function Product_find(){
@@ -56,7 +56,7 @@ public function Product_find(){
     $posts = $posts->find($_POST['productId']); 
     if($posts == null){
         $this->flash('not_find','not find any record');
-        return $this->redirect('products');
+        return $this->redirect('Products_panel_admin');
     }
     return $this->view("panel.products.find", compact('posts')); 
 } else {
@@ -68,7 +68,7 @@ public function Product_find(){
     $posts = $posts->filter($search_name , $search_brand  );  
     if($posts == null){
         $this->flash('not_find_all','not find any record');
-        return $this->redirect('products');
+        return $this->redirect('Products_panel_admin');
     }
     return $this->view("panel.products.find_all", compact('posts')); }}
    
@@ -79,12 +79,12 @@ public function products_status($id) {
     if ($post['status'] == 'enable') {
         $post = new ProductsModel();
         $post->update_butten($id , 'status', 'disable');
-        return $this->redirect('products');
+        return $this->redirect('Products_panel_admin');
     }
 else {
     $post = new ProductsModel();
     $post->update_butten($id , 'status', 'enable');
-    return $this->redirect('products');
+    return $this->redirect('Products_panel_admin');
 }
 }
 public function products_Selected($id) {
@@ -93,12 +93,12 @@ public function products_Selected($id) {
     if ($post['Selected'] == '1') {
         $post = new ProductsModel();
         $post->update_butten($id , 'Selected', '0');
-        return $this->redirect('products');
+        return $this->redirect('Products_panel_admin');
     }
 else {
     $post = new ProductsModel();
     $post->update_butten($id , 'Selected', '1');
-    return $this->redirect('products');
+    return $this->redirect('Products_panel_admin');
 }
 }public function products_Bestseller($id) {
     $posts = new ProductsModel();
@@ -106,12 +106,12 @@ else {
     if ($post['Bestseller'] == '1') {
         $post = new ProductsModel();
         $post->update_butten($id , 'Bestseller', '0');
-        return $this->redirect('products');
+        return $this->redirect('Products_panel_admin');
     }
 else {
     $post = new ProductsModel();
     $post->update_butten($id , 'Bestseller', '1');
-    return $this->redirect('products');
+    return $this->redirect('Products_panel_admin');
 }
 //?------------------------------------------------------------------------------------------------------------
 }

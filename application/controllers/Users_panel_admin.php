@@ -3,7 +3,7 @@ namespace application\controllers;
 
 use application\model\panel\Users as UsersModel;
 
-class Users extends Controller{
+class Users_panel_admin extends Controller{
 public function index() {
     $users = new UsersModel();
     $users=  $users->all();
@@ -33,7 +33,7 @@ public function usersUpdate($id) {
     $_POST['img_prof'] =  $user['img_prof'];
     $user = new UsersModel();
     $user->update($id , $_POST);
-    return $this->redirect('users');
+    return $this->redirect('Users_panel_admin');
 }
 public function users_add() {
     return $this->view("panel.Customers.create");
@@ -44,7 +44,7 @@ public function user_stor() {
     $_POST['password'] = $this->hash_password($_POST['password']);
     $Users = new UsersModel();
     $Users->insert($_POST);
-    return $this->redirect('users');
+    return $this->redirect('Users_panel_admin');
     }
 
 public function usersDelete($id) {
@@ -54,7 +54,7 @@ $img = $this->removeImage($old_user['img_prof']);
 if($img){
  $user = new UsersModel();
     $user->delete($id);
-    return $this->redirect('users');
+    return $this->redirect('Users_panel_admin');
 }}
 //!-------------------------------------------------------
 public function status($id) {
@@ -64,12 +64,12 @@ public function status($id) {
         $user = new UsersModel();
         $user->update_butten($id , 'status', 'inactive');
         
-        return $this->redirect('users');
+        return $this->redirect('Users_panel_admin');
     }
 else {
     $user = new UsersModel();
     $user->update_butten($id , 'status', 'active');
-    return $this->redirect('users');
+    return $this->redirect('Users_panel_admin');
 }
 }public function user_type($id) {
     $user = new UsersModel();
@@ -77,11 +77,11 @@ else {
     if ($user['user_type'] == 'regular') {
         $user = new UsersModel();
         $user->update_butten($id , 'user_type', 'admin');
-        return $this->redirect('users');
+        return $this->redirect('Users_panel_admin');
     }
 else {
     $user = new UsersModel();
     $user->update_butten($id , 'user_type', 'regular');
-    return $this->redirect('users');
+    return $this->redirect('Users_panel_admin');
 }
 }}

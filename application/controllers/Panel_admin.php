@@ -7,7 +7,7 @@ use application\model\panel\Orders as OrdersModel;
 
 
 
-class Panel extends Controller {
+class Panel_admin extends Controller {
     
     public function index() {
         $posts = new ProductsModel();

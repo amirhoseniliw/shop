@@ -49,7 +49,7 @@ class Auth extends Controller
                     if($user['user_type'] = "admin") {
                         $_SESSION['admin_id'] = $user['user_id'];
                         
-                        return $this->redirect('panel/index');
+                        return $this->redirect('Panel_admin/index');
                     }
                     else {
                     $_SESSION['user_id'] = $user['user_id'];
@@ -89,7 +89,6 @@ class Auth extends Controller
         }
         $current_time = time(); // زمان فعلی  
         $time_limit = 120; // دو دقیقه به ثانیه  
-
         if (!isset($_SESSION['last_send_time'])) {
             $_SESSION['last_send_time'] = 0; // مقدار اولیه برای اولین بار  
         }

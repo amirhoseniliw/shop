@@ -3,7 +3,7 @@ namespace application\controllers;
 use application\model\panel\Orders as OrdersModel;
 
 
-class Orders extends Controller{
+class Orders_panel_admin extends Controller{
 public function index() {
   $orders = new OrdersModel();
   $orders = $orders->allPanel();
@@ -23,7 +23,7 @@ public function edit($id) {
      $orders->update($id , $_POST);
 
 
-      return $this->redirect('orders');
+      return $this->redirect('Orders_panel_admin');
   }
   public function show($id) {
     $orders = new OrdersModel();

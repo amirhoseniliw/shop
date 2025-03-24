@@ -4,7 +4,7 @@ namespace application\controllers;
 use application\model\panel\Orders as OrdersModel;
 use application\model\panel\Products as ProductsModel;
 
-class Reports extends Controller{
+class reports_panel_admin extends Controller{
 public function index() {
 
     $orders = new OrdersModel();
