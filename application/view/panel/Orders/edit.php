@@ -26,7 +26,7 @@
     <div class="container">  
         <div class="card">  
             <h3 class="text-center">ویرایش سفارش</h3>  
-            <form action="<?php $this->url('/orders/update/' . $order['order_id']) ?>" method="post">  
+            <form action="<?php $this->url('/Orders_panel_admin/update/' . $order['order_id']) ?>" method="post">  
                 <div class="form-group">  
                     <label for="user_id">شناسه کاربر:</label>  
                     <input type="text" class="form-control" id="user_id" name="user_id" value="<?= $order['user_id'] ?>" required>  

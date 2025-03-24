@@ -116,7 +116,7 @@
 <body>  
     <div class="container">  
         <h1>ایجاد محصول جدید</h1>  
-        <form action="<?php $this->url('/products/products_store') ?>" method="post" enctype="multipart/form-data">  
+        <form action="<?php $this->url('/Products_panel_admin/products_store') ?>" method="post" enctype="multipart/form-data">  
             <label for="user_id">شناسه کاربر:</label>  
             <select name="user_id" required>  
                 <option value="1">دسته 1</option>  
@@ -183,7 +183,7 @@
             <input type="submit" value="ایجاد محصول">  
         </form>  
         <div class="button-container">  
-      <a href="<?php $this->url('/products') ?>" class="btn btn-secondary back-button" >بازگشت</a>
+      <a href="<?php $this->url('/Products_panel_admin') ?>" class="btn btn-secondary back-button" >بازگشت</a>
     </div>  
     </div>  
 

@@ -75,7 +75,7 @@
         </div>
 
         <div class="text-center mt-4">
-            <a href="<?php $this->url('/orders') ?>" class="btn btn-secondary">بازگشت به لیست سفارش‌ها</a>
+            <a href="<?php $this->url('/Orders_panel_admin') ?>" class="btn btn-secondary">بازگشت به لیست سفارش‌ها</a>
         </div>
     </div>
 

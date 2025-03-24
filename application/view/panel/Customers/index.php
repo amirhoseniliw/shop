@@ -52,7 +52,7 @@
     <a href="<?php $this->url('/Products_panel_admin') ?>"><i class="fas fa-box"></i> محصولات</a>
     <a href="<?php $this->url('/Orders_panel_admin') ?>"><i class="fas fa-shopping-cart"></i> سفارش‌ها</a>
     <a href="<?php $this->url('/Users_panel_admin') ?>"><i class="fas fa-users"></i> مشتریان</a>
-    <a href="<?php $this->url('/Category_panel_admin_panel_admin') ?>"><i class="fas fa-folder"></i> دسته بندی ها</a>
+    <a href="<?php $this->url('/Category_panel_admin') ?>"><i class="fas fa-folder"></i> دسته بندی ها</a>
     <a href="<?php $this->url('/reports_panel_admin') ?>"><i class="fas fa-chart-line"></i> گزارش‌ها</a>
     <a href="<?php $this->url('/chats_panel_admin') ?>"><i class="fas fa-comment"></i> پیام ها </a>
 
@@ -128,14 +128,14 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <a style="float: left;" href="<?php $this->url('/panel') ?>" class="btn btn-secondary back-button">بازگشت</a>
+    <a style="float: left;" href="<?php $this->url('/Panel_admin') ?>" class="btn btn-secondary back-button">بازگشت</a>
     <script>  
     function deleteRecord(id) {  
         // جعبه تأیید  
         const confirmation = confirm('آیا اطمینان دارید که می‌خواهید کاربر  را حذف کنید؟');  
         if (confirmation) {  
             // کاربر تأیید کرد، به آدرس حذف بروید  
-            window.location.href = 'users/usersDelete/' + id;  
+            window.location.href = 'Users_panel_admin/usersDelete/' + id;  
         } else {  
             // کاربر کنسل کرد  
             alert('عملیات حذف لغو شد.');  

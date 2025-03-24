@@ -222,14 +222,15 @@
         <div class="text-center py-4">
             <h4>فروشگاه شما</h4>
         </div>
-        <a href="<?php $this->url('/panel') ?>" class="active"><i class="fas fa-tachometer-alt"></i> داشبورد</a>
-        <a href="<?php $this->url('/products') ?>"><i class="fas fa-box"></i> محصولات</a>
-        <a href="<?php $this->url('/orders') ?>"><i class="fas fa-shopping-cart"></i> سفارش‌ها</a>
-        <a href="<?php $this->url('/users') ?>"><i class="fas fa-users"></i> مشتریان</a>
-        <a href="<?php $this->url('/category') ?>"><i class="fas fa-folder"></i> دسته بندی ها</a>
-        <a href="<?php $this->url('/reports') ?>"><i class="fas fa-chart-line"></i> گزارش‌ها</a>
-        <a href="<?php $this->url('/chats_panel') ?>"><i class="fas fa-comment"></i> پیام ها </a>
-        <a href="<?php $this->url('/settings') ?>"><i class="fas fa-cogs"></i> تنظیمات</a>
+        <a href="<?php $this->url('/Panel_admin') ?>" class="active"><i class="fas fa-tachometer-alt"></i> داشبورد</a>
+    <a href="<?php $this->url('/Products_panel_admin') ?>"><i class="fas fa-box"></i> محصولات</a>
+    <a href="<?php $this->url('/Orders_panel_admin') ?>"><i class="fas fa-shopping-cart"></i> سفارش‌ها</a>
+    <a href="<?php $this->url('/Users_panel_admin') ?>"><i class="fas fa-users"></i> مشتریان</a>
+    <a href="<?php $this->url('/Category_panel_admin') ?>"><i class="fas fa-folder"></i> دسته بندی ها</a>
+    <a href="<?php $this->url('/reports_panel_admin') ?>"><i class="fas fa-chart-line"></i> گزارش‌ها</a>
+    <a href="<?php $this->url('/chats_panel_admin') ?>"><i class="fas fa-comment"></i> پیام ها </a>
+
+    <a href="<?php $this->url('/Settings_panel_admin') ?>"><i class="fas fa-cogs"></i> تنظیمات</a>
     </div>
 
     <div class="main-content">
@@ -256,7 +257,7 @@
                 <img src="<?php $this->asset($img_post['image_url']) ?>" alt="محصول">
                 <span class="image-id">ID: <?= $img_post['image_id'] ?></span>
                 <span class="image-id">alt: <?= $img_post['alt_text'] ?></span>
-                <a href="<?php $this->url('/products/delete_img/' .  $img_post['image_id']) ?>" title="حذف عکس "><button
+                <a href="<?php $this->url('/Products_panel_admin/delete_img/' .  $img_post['image_id']) ?>" title="حذف عکس "><button
                         class="delete-btn"><i class="fas fa-times"></i></button></a>
             </div>
             <?php } ?>
@@ -266,7 +267,7 @@
         <div class="form-wrapper">
             <div class="form-container">
                 <h3>آپدیت تصویر</h3>
-                <form action="<?php $this->url('/products/update_img/' . $post['product_id'])  ?>" method="post"
+                <form action="<?php $this->url('/Products_panel_admin/update_img/' . $post['product_id'])  ?>" method="post"
                     enctype="multipart/form-data">
                     <label for="image_id">کد تصویر را انتخاب کنید:</label>
                     <select name="image_id" id="image_id" required>
@@ -285,7 +286,7 @@
 
             <div class="form-container">
                 <h3>افزودن تصویر جدید</h3>
-                <form action="<?php $this->url('/products/img_stor/' .  $post['product_id']) ?>" method="post"
+                <form action="<?php $this->url('/Products_panel_admin/img_stor/' .  $post['product_id']) ?>" method="post"
                     enctype="multipart/form-data">
                     <input type="file" name="image_url" accept="image/*" required>
                     <input type="text" name="alt_text" placeholder="توضیحات " required>
@@ -294,7 +295,7 @@
                 </form>
             </div>
         </div>
-        <a href="<?php $this->url('/products') ?> "> <button class="back-btn">بازگشت</button></a>
+        <a href="<?php $this->url('/Products_panel_admin') ?> "> <button class="back-btn">بازگشت</button></a>
 </body>
 
 </html>

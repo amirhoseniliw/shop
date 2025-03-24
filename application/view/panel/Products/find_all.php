@@ -40,12 +40,12 @@
 
         <!-- دکمه اضافه کردن محصول جدید -->
         <div class="text-end">
-            <a href="<?php $this->url('/products/products_create') ?>" class="btn btn-primary add-button">ایجاد محصول جدید</a>
+            <a href="<?php $this->url('/Products_panel_admin/products_create') ?>" class="btn btn-primary add-button">ایجاد محصول جدید</a>
         </div>
 
         <!-- بخش جستجو و فیلتر -->
         <div class="text-end">
-            <a href="<?php $this->url('/products') ?>" class="btn btn-primary add-button">بازگشت</a>
+            <a href="<?php $this->url('/Products_panel_admin') ?>" class="btn btn-primary add-button">بازگشت</a>
         </div>
 
         <!-- جدول نمایش محصولات -->
@@ -87,24 +87,24 @@
                                 <td><?= $post['view'] ?></td>
                                 <td>
                                     <?php if ($post['Selected'] == 0) { ?>
-                                        <a href="<?php $this->url('/products/products_Selected/' . $post['product_id']) ?>"> <button class="btn btn-success btn-sm">افزودن</button></a><p>نیست</p>
+                                        <a href="<?php $this->url('/Products_panel_admin/products_Selected/' . $post['product_id']) ?>"> <button class="btn btn-success btn-sm">افزودن</button></a><p>نیست</p>
                                     <?php } else { ?>
-                                        <a href="<?php $this->url('/products/products_Selected/' . $post['product_id']) ?>"> <button class="btn btn-danger btn-sm">حذف</button></a> <p>هست</p><?php } ?>
+                                        <a href="<?php $this->url('/Products_panel_admin/products_Selected/' . $post['product_id']) ?>"> <button class="btn btn-danger btn-sm">حذف</button></a> <p>هست</p><?php } ?>
                                 </td>
                                 <td>
                                     <?php if ($post['Bestseller'] == 0) { ?>
-                                        <a href="<?php $this->url('/products/products_Bestseller/' . $post['product_id']) ?>"><button class="btn btn-success btn-sm">افزودن</button></a><p>نیست</p>
+                                        <a href="<?php $this->url('/Products_panel_admin/products_Bestseller/' . $post['product_id']) ?>"><button class="btn btn-success btn-sm">افزودن</button></a><p>نیست</p>
                                     <?php } else { ?>
-                                        <a href="<?php $this->url('/products/products_Bestseller/' . $post['product_id']) ?>"> <button class="btn btn-danger btn-sm">حذف</button></a><p>هست</p><?php } ?>
+                                        <a href="<?php $this->url('/Products_panel_admin/products_Bestseller/' . $post['product_id']) ?>"> <button class="btn btn-danger btn-sm">حذف</button></a><p>هست</p><?php } ?>
                                 </td>
                                 <td> <?php if ($post['status'] == 'disable') { ?>
-                                        <a href="<?php $this->url('/products/products_status/' . $post['product_id']) ?>"> <button class="btn btn-success btn-sm">فعال</button></a> <p>فعال نیست</p>
+                                        <a href="<?php $this->url('/Products_panel_admin/products_status/' . $post['product_id']) ?>"> <button class="btn btn-success btn-sm">فعال</button></a> <p>فعال نیست</p>
                                     <?php } else { ?>
-                                        <a href="<?php $this->url('/products/products_status/' . $post['product_id']) ?>"> <button class="btn btn-danger btn-sm">غیرفعال</button></a> <p>فعال است</p><?php } ?>
+                                        <a href="<?php $this->url('/Products_panel_admin/products_status/' . $post['product_id']) ?>"> <button class="btn btn-danger btn-sm">غیرفعال</button></a> <p>فعال است</p><?php } ?>
                                 </td>
                                 <td><?php echo  $this->jalaliData($post['updated_at']) ?></td>
                                 <td>
-                                    <a href="<?php $this->url('/products/products_edit/' . $post['product_id']) ?>"><button class="btn btn-warning btn-sm">ویرایش</button></a>
+                                    <a href="<?php $this->url('/Products_panel_admin/products_edit/' . $post['product_id']) ?>"><button class="btn btn-warning btn-sm">ویرایش</button></a>
                                     <button class="btn btn-danger btn-sm" onclick="deleteRecord(<?= $post['product_id']?>)">حذف</button>
                                 </td>
                                 </tr>
@@ -116,7 +116,7 @@
     </div>
 
     <!-- دکمه بازگشت -->
-    <a href="<?php $this->url('/panel') ?>" class="btn btn-secondary back-button">بازگشت</a>
+    <a href="<?php $this->url('/Panel_admin') ?>" class="btn btn-secondary back-button">بازگشت</a>
     <script>  
     function deleteRecord(id) {  
         // جعبه تأیید  

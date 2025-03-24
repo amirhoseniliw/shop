@@ -219,14 +219,15 @@
     <div class="text-center py-4">
         <h4>فروشگاه شما</h4>
     </div>
-    <a href="<?php $this->url('/panel') ?>" class="active"><i class="fas fa-tachometer-alt"></i> داشبورد</a>
-    <a href="<?php $this->url('/products') ?>"><i class="fas fa-box"></i> محصولات</a>
-    <a href="<?php $this->url('/orders') ?>"><i class="fas fa-shopping-cart"></i> سفارش‌ها</a>
-    <a href="<?php $this->url('/users') ?>"><i class="fas fa-users"></i> مشتریان</a>
-    <a href="<?php $this->url('/category') ?>"><i class="fas fa-folder"></i> دسته بندی ها</a>
-    <a href="<?php $this->url('/reports') ?>"><i class="fas fa-chart-line"></i> گزارش‌ها</a>
-    <a href="<?php $this->url('/chats_panel') ?>"><i class="fas fa-comment"></i> پیام ها </a>
-    <a href="<?php $this->url('/settings') ?>"><i class="fas fa-cogs"></i> تنظیمات</a>
+    <a href="<?php $this->url('/Panel_admin') ?>" class="active"><i class="fas fa-tachometer-alt"></i> داشبورد</a>
+    <a href="<?php $this->url('/Products_panel_admin') ?>"><i class="fas fa-box"></i> محصولات</a>
+    <a href="<?php $this->url('/Orders_panel_admin') ?>"><i class="fas fa-shopping-cart"></i> سفارش‌ها</a>
+    <a href="<?php $this->url('/Users_panel_admin') ?>"><i class="fas fa-users"></i> مشتریان</a>
+    <a href="<?php $this->url('/Category_panel_admin') ?>"><i class="fas fa-folder"></i> دسته بندی ها</a>
+    <a href="<?php $this->url('/reports_panel_admin') ?>"><i class="fas fa-chart-line"></i> گزارش‌ها</a>
+    <a href="<?php $this->url('/chats_panel_admin') ?>"><i class="fas fa-comment"></i> پیام ها </a>
+
+    <a href="<?php $this->url('/Settings_panel_admin') ?>"><i class="fas fa-cogs"></i> تنظیمات</a>
 </div>
 
 <div class="main-content">
@@ -264,7 +265,7 @@
             <span class="color-id">کد: <?= $color['color_id'] ?></span>
             <span class="color-id">نام: <?= $color['titel_name'] ?></span>
             <span>تعداد: <?= $color['stock'] ?></span>
-            <a href="<?php $this->url('/products/delete_color/' .  $color['color_id']) ?>" title="حذف عکس "><button
+            <a href="<?php $this->url('/Products_panel_admin/delete_color/' .  $color['color_id']) ?>" title="حذف عکس "><button
                         class="delete-btn"><i class="fas fa-times"></i></button></a>
         </div>
         <?php } ?>
@@ -274,7 +275,7 @@
     <div class="form-wrapper">
         <div class="form-container">
             <h3>آپدیت تعداد رنگ</h3>
-            <form   method="post" action="<?php $this->url('/Products/update_color/' . $post['product_id']) ?>">
+            <form   method="post" action="<?php $this->url('/Products_panel_admin/update_color/' . $post['product_id']) ?>">
                 <input type="text" name="color_id" placeholder="کد رنگ را وارد کنید">
                 <input type="number" name="stock" placeholder="تعداد جدید را وارد کنید">
                 <button type="submit">آپدیت</button>
@@ -283,7 +284,7 @@
         
         <div class="form-container">
             <h3>افزودن رنگ جدید</h3>
-            <form method="post" action="<?php $this->url('/Products/color_stor/' . $post['product_id']) ?>">
+            <form method="post" action="<?php $this->url('/Products_panel_admin/color_stor/' . $post['product_id']) ?>">
                 <input type="text" name="color_name" placeholder="نام رنگ را  انگلیسی وارد کنید">
                 <input type="text" name="titel_name" placeholder="نام رنگ را فارسی وارد کنید">
                 <label for="color">کد رنگی را انتخاب کنید </label>
@@ -299,7 +300,7 @@
             </form>
         </div>
     </div>
-    <a href="<?php $this->url('/products') ?> "> <button class="back-btn">بازگشت</button></a>
+    <a href="<?php $this->url('/Products_panel_admin') ?> "> <button class="back-btn">بازگشت</button></a>
 
 </body>
 </html>

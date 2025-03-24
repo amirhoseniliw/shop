@@ -43,7 +43,7 @@ $massall = ($this->flash('not_find_all'));
 
         <!-- دکمه اضافه کردن محصول جدید -->
         <div class="text-end">
-            <a href="<?php $this->url('/Products/products_create') ?>" class="btn btn-primary add-button">ایجاد محصول جدید</a>
+            <a href="<?php $this->url('/Products_panel_admin/products_create') ?>" class="btn btn-primary add-button">ایجاد محصول جدید</a>
         </div>
 
         <!-- بخش جستجو و فیلتر -->
@@ -53,7 +53,7 @@ $massall = ($this->flash('not_find_all'));
                 <h5>جستجو و فیلتر محصولات</h5>
             </div><p style="color: red;text-align: center;"><?php if($massall) {echo $massall ;}?></p>
             <div class="card-body">
-                <!-- <form class="row g-3" method="post" action="<?php $this->url('/Products/product_find')?>" >
+                <!-- <form class="row g-3" method="post" action="<?php $this->url('/Products_panel_admin/product_find')?>" >
                     <div class="col-md-4">
                         <label for="productName" class="form-label">نام محصول</label>
                         <input type="text" id="productName" name="name" class="form-control" placeholder="نام محصول را وارد کنید">
@@ -70,7 +70,7 @@ $massall = ($this->flash('not_find_all'));
                         <button type="submit" class="btn btn-primary">اعمال فیلتر</button>
                     </div> 
                 </form> -->
-                <form class="row g-3" method="post" action="<?php $this->url('/Products/product_find')?>"> <!-- آدرس فایل پردازش -->  
+                <form class="row g-3" method="post" action="<?php $this->url('/Products_panel_admin/product_find')?>"> <!-- آدرس فایل پردازش -->  
     <div class="col-md-4">  
         <label for="productName" class="form-label">نام محصول</label>  
         <input type="text" name="productName" id="productName" class="form-control" placeholder="نام محصول را وارد کنید">  
@@ -88,7 +88,7 @@ $massall = ($this->flash('not_find_all'));
 
 <p style="color: red; text-align: center;"><?php if($mass) {echo $mass ;}?></p>
 <!-- فرم جستجوی بر اساس آیدی -->  
-<form class="row g-3" method="post" action="<?php $this->url('/Products/product_find')?>"> <!-- آدرس فایل پردازش -->  
+<form class="row g-3" method="post" action="<?php $this->url('/Products_panel_admin/product_find')?>"> <!-- آدرس فایل پردازش -->  
     <div class="col-md-4">  
         <label for="productId" class="form-label">آیدی محصول</label>  
         <input type="text" name="productId" id="productId" class="form-control" placeholder="آیدی محصول را وارد کنید">  
@@ -152,26 +152,26 @@ $massall = ($this->flash('not_find_all'));
                                
                                 <td>
                                     <?php if ($post['Bestseller'] == 0) { ?>
-                                        <a href="<?php $this->url('/Products/products_Bestseller/' . $post['product_id']) ?>"><button class="btn btn-success btn-sm">افزودن</button></a><p>نیست</p>
+                                        <a href="<?php $this->url('/Products_panel_admin/products_Bestseller/' . $post['product_id']) ?>"><button class="btn btn-success btn-sm">افزودن</button></a><p>نیست</p>
                                     <?php } else { ?>
-                                        <a href="<?php $this->url('/Products/products_Bestseller/' . $post['product_id']) ?>"> <button class="btn btn-danger btn-sm">حذف</button></a><p>هست</p><?php } ?>
+                                        <a href="<?php $this->url('/Products_panel_admin/products_Bestseller/' . $post['product_id']) ?>"> <button class="btn btn-danger btn-sm">حذف</button></a><p>هست</p><?php } ?>
                                 </td>
                                 <td>
                                     <?php if ($post['Selected'] == 0) { ?>
-                                        <a href="<?php $this->url('/Products/products_Selected/' . $post['product_id']) ?>"> <button class="btn btn-success btn-sm">افزودن</button></a><p>نیست</p>
+                                        <a href="<?php $this->url('/Products_panel_admin/products_Selected/' . $post['product_id']) ?>"> <button class="btn btn-success btn-sm">افزودن</button></a><p>نیست</p>
                                     <?php } else { ?>
-                                        <a href="<?php $this->url('/Products/products_Selected/' . $post['product_id']) ?>"> <button class="btn btn-danger btn-sm">حذف</button></a> <p>هست</p><?php } ?>
+                                        <a href="<?php $this->url('/Products_panel_admin/products_Selected/' . $post['product_id']) ?>"> <button class="btn btn-danger btn-sm">حذف</button></a> <p>هست</p><?php } ?>
                                 </td>
                                 <td> <?php if ($post['status'] == 'disable') { ?>
-                                        <a href="<?php $this->url('/Products/products_status/' . $post['product_id']) ?>"> <button class="btn btn-success btn-sm">فعال</button></a> <p>فعال نیست</p>
+                                        <a href="<?php $this->url('/Products_panel_admin/products_status/' . $post['product_id']) ?>"> <button class="btn btn-success btn-sm">فعال</button></a> <p>فعال نیست</p>
                                     <?php } else { ?>
-                                        <a href="<?php $this->url('/Products/products_status/' . $post['product_id']) ?>"> <button class="btn btn-danger btn-sm">غیرفعال</button></a> <p>فعال است</p><?php } ?>
+                                        <a href="<?php $this->url('/Products_panel_admin/products_status/' . $post['product_id']) ?>"> <button class="btn btn-danger btn-sm">غیرفعال</button></a> <p>فعال است</p><?php } ?>
                                 </td>
                                 <td><?php echo $this->jalaliData($post['updated_at']) ?></td>
                                 <td>
-                                    <a href="<?php $this->url('/Products/products_edit/' . $post['product_id']) ?>"><button class="btn btn-warning btn-sm">ویرایش</button></a>
-                                    <a href="<?php $this->url('/Products/add_mor_img/' . $post['product_id']) ?>"><button class="btn btn-warning btn-sm">  عکس </button></a>
-                                    <a href="<?php $this->url('/Products/add_color/' . $post['product_id']) ?>"><button class="btn btn-warning btn-sm">  رنگ </button></a>
+                                    <a href="<?php $this->url('/Products_panel_admin/products_edit/' . $post['product_id']) ?>"><button class="btn btn-warning btn-sm">ویرایش</button></a>
+                                    <a href="<?php $this->url('/Products_panel_admin/add_mor_img/' . $post['product_id']) ?>"><button class="btn btn-warning btn-sm">  عکس </button></a>
+                                    <a href="<?php $this->url('/Products_panel_admin/add_color/' . $post['product_id']) ?>"><button class="btn btn-warning btn-sm">  رنگ </button></a>
                                     <button class="btn btn-danger btn-sm" onclick="deleteRecord(<?= $post['product_id']?>)">حذف</button>
                                 </td>
                                 </tr>
@@ -183,14 +183,14 @@ $massall = ($this->flash('not_find_all'));
     </div>
 
     <!-- دکمه بازگشت -->
-    <a href="<?php $this->url('/panel') ?>" class="btn btn-secondary back-button">بازگشت</a>
+    <a href="<?php $this->url('/Panel_admin') ?>" class="btn btn-secondary back-button">بازگشت</a>
     <script>  
     function deleteRecord(id) {  
         // جعبه تأیید  
         const confirmation = confirm('آیا اطمینان دارید که می‌خواهید رکورد را حذف کنید؟');  
         if (confirmation) {  
             // کاربر تأیید کرد، به آدرس حذف بروید  
-            window.location.href = 'products/products_delete/' + id;  
+            window.location.href = 'Products_panel_admin/products_delete/' + id;  
         } else {  
             // کاربر کنسل کرد  
             alert('عملیات حذف لغو شد.');  

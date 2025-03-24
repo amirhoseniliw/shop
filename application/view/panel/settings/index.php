@@ -53,15 +53,15 @@
     <div class="text-center py-4">
         <h4>فروشگاه شما</h4>
     </div>
-    <a href="<?php $this->url('/panel') ?>" class="active"><i class="fas fa-tachometer-alt"></i> داشبورد</a>
-    <a href="<?php $this->url('/products') ?>"><i class="fas fa-box"></i> محصولات</a>
-    <a href="<?php $this->url('/orders') ?>"><i class="fas fa-shopping-cart"></i> سفارش‌ها</a>
-    <a href="<?php $this->url('/users') ?>"><i class="fas fa-users"></i> مشتریان</a>
-    <a href="<?php $this->url('/category') ?>"><i class="fas fa-folder"></i> دسته بندی ها</a>
-    <a href="<?php $this->url('/reports') ?>"><i class="fas fa-chart-line"></i> گزارش‌ها</a>
-    <a href="<?php $this->url('/chats_panel') ?>"><i class="fas fa-comment"></i> پیام ها </a>
+    <a href="<?php $this->url('/Panel_admin') ?>" class="active"><i class="fas fa-tachometer-alt"></i> داشبورد</a>
+    <a href="<?php $this->url('/Products_panel_admin') ?>"><i class="fas fa-box"></i> محصولات</a>
+    <a href="<?php $this->url('/Orders_panel_admin') ?>"><i class="fas fa-shopping-cart"></i> سفارش‌ها</a>
+    <a href="<?php $this->url('/Users_panel_admin') ?>"><i class="fas fa-users"></i> مشتریان</a>
+    <a href="<?php $this->url('/Category_panel_admin') ?>"><i class="fas fa-folder"></i> دسته بندی ها</a>
+    <a href="<?php $this->url('/reports_panel_admin') ?>"><i class="fas fa-chart-line"></i> گزارش‌ها</a>
+    <a href="<?php $this->url('/chats_panel_admin') ?>"><i class="fas fa-comment"></i> پیام ها </a>
 
-    <a href="<?php $this->url('/settings') ?>"><i class="fas fa-cogs"></i> تنظیمات</a>
+    <a href="<?php $this->url('/Settings_panel_admin') ?>"><i class="fas fa-cogs"></i> تنظیمات</a>
 </div>
     <div class="main-content">
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
@@ -87,7 +87,7 @@
                             <h5>تنظیمات عمومی</h5>
                         </div>
                         <div class="card-body">
-                            <form action="<?= $this->url('/settings/update/' . $settings['setting_id']) ?>"
+                            <form action="<?= $this->url('/Settings_panel_admin/update/' . $settings['setting_id']) ?>"
                                 method="post">
                                 <div class="mb-3">
                                     <label for="storeName" class="form-label">نام فروشگاه</label>

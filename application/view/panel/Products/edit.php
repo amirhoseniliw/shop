@@ -116,7 +116,7 @@
 <body>  
     <div class="container">  
         <h1>ویرایش محصول </h1>  
-        <form action="<?php $this->url('/products/products_update/' .$post['product_id']) ?>" method="post" enctype="multipart/form-data" >  
+        <form action="<?php $this->url('/Products_panel_admin/products_update/' .$post['product_id']) ?>" method="post" enctype="multipart/form-data" >  
            
 
             <label for="name">نام محصول:</label>  
@@ -177,7 +177,7 @@
 
             <input type="submit" value="ویرایش">  
         </form>  
-        <a href="<?php $this->url('/products') ?>" class="btn btn-secondary back-button" >بازگشت</a>
+        <a href="<?php $this->url('/Products_panel_admin') ?>" class="btn btn-secondary back-button" >بازگشت</a>
 
     </div>  
 

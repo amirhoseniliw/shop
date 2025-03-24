@@ -53,15 +53,15 @@
     <div class="text-center py-4">
         <h4>فروشگاه شما</h4>
     </div>
-    <a href="<?php $this->url('/panel') ?>" class="active"><i class="fas fa-tachometer-alt"></i> داشبورد</a>
-    <a href="<?php $this->url('/products') ?>"><i class="fas fa-box"></i> محصولات</a>
-    <a href="<?php $this->url('/orders') ?>"><i class="fas fa-shopping-cart"></i> سفارش‌ها</a>
-    <a href="<?php $this->url('/users') ?>"><i class="fas fa-users"></i> مشتریان</a>
-    <a href="<?php $this->url('/category') ?>"><i class="fas fa-folder"></i> دسته بندی ها</a>
-    <a href="<?php $this->url('/reports') ?>"><i class="fas fa-chart-line"></i> گزارش‌ها</a>
-    <a href="<?php $this->url('/chats_panel') ?>"><i class="fas fa-comment"></i> پیام ها </a>
+    <a href="<?php $this->url('/Panel_admin') ?>" class="active"><i class="fas fa-tachometer-alt"></i> داشبورد</a>
+    <a href="<?php $this->url('/Products_panel_admin') ?>"><i class="fas fa-box"></i> محصولات</a>
+    <a href="<?php $this->url('/Orders_panel_admin') ?>"><i class="fas fa-shopping-cart"></i> سفارش‌ها</a>
+    <a href="<?php $this->url('/Users_panel_admin') ?>"><i class="fas fa-users"></i> مشتریان</a>
+    <a href="<?php $this->url('/Category_panel_admin') ?>"><i class="fas fa-folder"></i> دسته بندی ها</a>
+    <a href="<?php $this->url('/reports_panel_admin') ?>"><i class="fas fa-chart-line"></i> گزارش‌ها</a>
+    <a href="<?php $this->url('/chats_panel_admin') ?>"><i class="fas fa-comment"></i> پیام ها </a>
 
-    <a href="<?php $this->url('/settings') ?>"><i class="fas fa-cogs"></i> تنظیمات</a>
+    <a href="<?php $this->url('/Settings_panel_admin') ?>"><i class="fas fa-cogs"></i> تنظیمات</a>
 </div>
     <div class="main-content">
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
@@ -123,10 +123,10 @@
                             <button class="btn btn-warning btn-sm save1" id="refreshButton">کامل شد</button>
                         </td>
                         <td>
-                            <a href="<?php echo $this->url('/orders/show/' . $order['order_id']) ?>">
+                            <a href="<?php echo $this->url('/Orders_panel_admin/show/' . $order['order_id']) ?>">
                                 <button class="btn btn-info btn-sm">مشاهده</button>
                             </a>
-                            <a href="<?php echo $this->url('/orders/edit/' . $order['order_id']) ?>">
+                            <a href="<?php echo $this->url('/Orders_panel_admin/edit/' . $order['order_id']) ?>">
                                 <button class="btn btn-primary btn-sm">ویرایش</button>
                             </a>
                             <input type="hidden" class="item_id" value="<?= $order['order_id'] ?>">
@@ -144,7 +144,7 @@
     <script>
    $('.save').click(function() {  
     let id = $(this).siblings('.item_id').val();   
-    let url = `orders/status_cancel/${id}`;  
+    let url = `Orders_panel_admin/status_cancel/${id}`;  
 
     // ارسال درخواست AJAX به سرور  
     $.ajax({  
@@ -169,7 +169,7 @@
 });  
     $('.save1').click(function() {
         let id = $(this).siblings('.item_id').val(); // به‌دست آوردن ID از دکمه خواهر  
-        let url = `orders/status_finsh/${id}`; // ساخت URL با شناسه و اطمینان از / در ابتدای آن  
+        let url = `Orders_panel_admin/status_finsh/${id}`; // ساخت URL با شناسه و اطمینان از / در ابتدای آن  
 
         // ارسال درخواست AJAX به سرور  
         $.ajax({

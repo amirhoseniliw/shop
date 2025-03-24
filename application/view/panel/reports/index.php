@@ -345,4 +345,4 @@
     </div>
 
     </div>
-<a href="<?php $this->url('/panel') ?>" class="btn btn-secondary back-button">بازگشت</a>
+<a href="<?php $this->url('/panel_admin') ?>" class="btn btn-secondary back-button">بازگشت</a>
