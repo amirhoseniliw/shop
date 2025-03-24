@@ -3,7 +3,7 @@ namespace application\controllers;
 
 use application\model\panel\Setting as SettingModel;
 
-class Settings extends Controller{
+class Settings_panel_admin extends Controller{
 public function index() {
   $setting  = new SettingModel();
   $settings = $setting->all();
@@ -14,7 +14,7 @@ public function update($id) {
     $setting  = new SettingModel();
      $setting->update($id , $_POST);
   //   $this->dd($settings);
-  return $this->redirect('settings');
+  return $this->redirect('Settings_panel_admin');
 
   }
 }

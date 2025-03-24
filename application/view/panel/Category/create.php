@@ -9,7 +9,7 @@
 <body>
   <div class="container mt-5">
     <h1 class="text-center mb-4">ایجاد دسته‌بندی جدید</h1>
-    <form action="<?php $this->url('/category/store') ?>" method="post" enctype="multipart/form-data">
+    <form action="<?php $this->url('/Category_panel_admin/store') ?>" method="post" enctype="multipart/form-data">
       <div class="mb-3">
         <label for="categoryName" class="form-label">نام دسته‌بندی</label>
         <input type="text" class="form-control" id="categoryName" name="name" placeholder="نام دسته‌بندی را وارد کنید">
@@ -26,7 +26,7 @@
     
       </div>
       <button type="submit" class="btn btn-success">ذخیره</button>
-      <a href="<?php $this->url('/category') ?>" class="btn btn-secondary">بازگشت</a>
+      <a href="<?php $this->url('/Category_panel_admin') ?>" class="btn btn-secondary">بازگشت</a>
     </form>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>

@@ -48,15 +48,15 @@
     <div class="text-center py-4">
         <h4>فروشگاه شما</h4>
     </div>
-    <a href="<?php $this->url('/panel') ?>" class="active"><i class="fas fa-tachometer-alt"></i> داشبورد</a>
-    <a href="<?php $this->url('/products') ?>"><i class="fas fa-box"></i> محصولات</a>
-    <a href="<?php $this->url('/orders') ?>"><i class="fas fa-shopping-cart"></i> سفارش‌ها</a>
-    <a href="<?php $this->url('/users') ?>"><i class="fas fa-users"></i> مشتریان</a>
-    <a href="<?php $this->url('/category') ?>"><i class="fas fa-folder"></i> دسته بندی ها</a>
-    <a href="<?php $this->url('/reports') ?>"><i class="fas fa-chart-line"></i> گزارش‌ها</a>
-    <a href="<?php $this->url('/chats_panel') ?>"><i class="fas fa-comment"></i> پیام ها </a>
+    <a href="<?php $this->url('/Panel_admin') ?>" class="active"><i class="fas fa-tachometer-alt"></i> داشبورد</a>
+    <a href="<?php $this->url('/Products_panel_admin') ?>"><i class="fas fa-box"></i> محصولات</a>
+    <a href="<?php $this->url('/Orders_panel_admin') ?>"><i class="fas fa-shopping-cart"></i> سفارش‌ها</a>
+    <a href="<?php $this->url('/Users_panel_admin') ?>"><i class="fas fa-users"></i> مشتریان</a>
+    <a href="<?php $this->url('/Category_panel_admin_panel_admin') ?>"><i class="fas fa-folder"></i> دسته بندی ها</a>
+    <a href="<?php $this->url('/reports_panel_admin') ?>"><i class="fas fa-chart-line"></i> گزارش‌ها</a>
+    <a href="<?php $this->url('/chats_panel_admin') ?>"><i class="fas fa-comment"></i> پیام ها </a>
 
-    <a href="<?php $this->url('/settings') ?>"><i class="fas fa-cogs"></i> تنظیمات</a>
+    <a href="<?php $this->url('/Settings_panel_admin') ?>"><i class="fas fa-cogs"></i> تنظیمات</a>
 </div>
     <div class="main-content">
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
@@ -104,27 +104,27 @@
                     <td><?php echo $this->jalaliData($user['updated_at']) ?></td>
                      <td>
                                     <?php if ($user['status'] == 'inactive') { ?>
-                                        <a href="<?php $this->url('/users/status/' . $user['user_id']) ?>"><button class="btn btn-success btn-sm">فعال</button></a><p>غیر فعال</p>
+                                        <a href="<?php $this->url('/Users_panel_admin_panel_admin/status/' . $user['user_id']) ?>"><button class="btn btn-success btn-sm">فعال</button></a><p>غیر فعال</p>
                                     <?php } else { ?>
-                                        <a href="<?php $this->url('/users/status/' . $user['user_id']) ?>"> <button class="btn btn-danger btn-sm">غیر فعال</button></a><p>فعال هست </p><?php } ?>
+                                        <a href="<?php $this->url('/Users_panel_admin/status/' . $user['user_id']) ?>"> <button class="btn btn-danger btn-sm">غیر فعال</button></a><p>فعال هست </p><?php } ?>
                                 </td>
                                 <td>
                                     <?php if ($user['user_type'] == 'regular') { ?>
-                                        <a href="<?php $this->url('/users/user_type/' . $user['user_id']) ?>"><button class="btn btn-success btn-sm">ادمین</button></a><p> کاربر عادی </p>
+                                        <a href="<?php $this->url('/Users_panel_admin/user_type/' . $user['user_id']) ?>"><button class="btn btn-success btn-sm">ادمین</button></a><p> کاربر عادی </p>
                                     <?php } else { ?>
-                                        <a href="<?php $this->url('/users/user_type/' . $user['user_id']) ?>"> <button class="btn btn-danger btn-sm">کاربر عادی</button></a><p> ادمین </p><?php } ?>
+                                        <a href="<?php $this->url('/Users_panel_admin/user_type/' . $user['user_id']) ?>"> <button class="btn btn-danger btn-sm">کاربر عادی</button></a><p> ادمین </p><?php } ?>
                                 </td>
 
 
                     <td>
-                       <a href="<?php $this->url('/users/usersEdit/' . $user['user_id'] )?>"> <button class="btn btn-warning btn-sm">ویرایش</button></a>
+                       <a href="<?php $this->url('/Users_panel_admin/usersEdit/' . $user['user_id'] )?>"> <button class="btn btn-warning btn-sm">ویرایش</button></a>
  <button class="btn btn-danger btn-sm" onclick="deleteRecord(<?= $user['user_id']?>)">حذف</button>
                     </td>
                 </tr>
                 <?php }?>
             </tbody>
         </table>
-        <a href="<?php $this->url('/users/users_add') ?>"><button class="btn btn-success mt-3">افزودن مشتری جدید</button></a>
+        <a href="<?php $this->url('/Users_panel_admin/users_add') ?>"><button class="btn btn-success mt-3">افزودن مشتری جدید</button></a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

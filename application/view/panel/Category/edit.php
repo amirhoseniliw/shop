@@ -9,7 +9,7 @@
 <body>
   <div class="container mt-5">
     <h1 class="text-center mb-4">ویرایش دسته‌بندی</h1>
-    <form action="<?php $this->url('/category/update/' .$category['category_id'] ) ?>" method="post" enctype="multipart/form-data">
+    <form action="<?php $this->url('/Category_panel_admin/update/' .$category['category_id'] ) ?>" method="post" enctype="multipart/form-data">
       <div class="mb-3">
         <label for="categoryName" class="form-label">نام دسته‌بندی</label>
         <input type="text" class="form-control" id="categoryName" name="name" value="<?= $category['name'] ?>">
@@ -28,7 +28,7 @@
       </div>
      
       <button type="submit" class="btn btn-warning">ذخیره تغییرات</button>
-      <a href="<?php $this->url('/category') ?>" class="btn btn-secondary">بازگشت</a>
+      <a href="<?php $this->url('/Category_panel_admin') ?>" class="btn btn-secondary">بازگشت</a>
     </form>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>

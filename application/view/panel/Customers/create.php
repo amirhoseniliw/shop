@@ -117,7 +117,7 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center">ساخت مشتری</h1>
-        <form class="mt-4" action="<?php $this->url('/users/user_stor') ?>" method="post" enctype="multipart/form-data" >
+        <form class="mt-4" action="<?php $this->url('/Users_panel_admin/user_stor') ?>" method="post" enctype="multipart/form-data" >
         <div class="mb-3">
                 <label for="customerName" class="form-label">نام مشتری</label>
                 <input type="text" class="form-control" id="customerName" name="username">

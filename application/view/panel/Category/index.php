@@ -68,11 +68,11 @@
     <a href="<?php $this->url('/Products_panel_admin') ?>"><i class="fas fa-box"></i> محصولات</a>
     <a href="<?php $this->url('/Orders_panel_admin') ?>"><i class="fas fa-shopping-cart"></i> سفارش‌ها</a>
     <a href="<?php $this->url('/Users_panel_admin') ?>"><i class="fas fa-users"></i> مشتریان</a>
-    <a href="<?php $this->url('/Category_panel_admin') ?>"><i class="fas fa-folder"></i> دسته بندی ها</a>
-    <a href="<?php $this->url('/reports') ?>"><i class="fas fa-chart-line"></i> گزارش‌ها</a>
+    <a href="<?php $this->url('/Category_panel_admin_panel_admin') ?>"><i class="fas fa-folder"></i> دسته بندی ها</a>
+    <a href="<?php $this->url('/reports_panel_admin') ?>"><i class="fas fa-chart-line"></i> گزارش‌ها</a>
     <a href="<?php $this->url('/chats_panel_admin') ?>"><i class="fas fa-comment"></i> پیام ها </a>
 
-    <a href="<?php $this->url('/settings') ?>"><i class="fas fa-cogs"></i> تنظیمات</a>
+    <a href="<?php $this->url('/Settings_panel_admin') ?>"><i class="fas fa-cogs"></i> تنظیمات</a>
 </div>
 
   <!-- محتوای اصلی -->
@@ -80,7 +80,7 @@
     <div class="container mt-5">
       <h1 class="text-center mb-4">دسته‌بندی‌ها</h1>
       <div class="text-end mb-3">
-        <a href="<?php $this->url('/category/create') ?>" class="btn btn-primary">ایجاد دسته‌بندی جدید</a>
+        <a href="<?php $this->url('/Category_panel_admin/create') ?>" class="btn btn-primary">ایجاد دسته‌بندی جدید</a>
       </div>
       <table class="table table-striped table-bordered text-center align-middle">
         <thead class="table-dark">
@@ -104,7 +104,7 @@
             </td>
             <td><?php  echo $this->jalaliData($category['updated_at']) ?></td>
             <td>
-              <a href="<?php $this->url('/category/edit/' . $category['category_id'] ) ?>" class="btn btn-warning btn-sm">ویرایش</a>
+              <a href="<?php $this->url('/Category_panel_admin/edit/' . $category['category_id'] ) ?>" class="btn btn-warning btn-sm">ویرایش</a>
               <button class="btn btn-danger btn-sm" onclick="deleteRecord(<?= $category['category_id'] ?>)">حذف</button>
             </td>
           </tr>
@@ -119,7 +119,7 @@
         const confirmation = confirm('آیا اطمینان دارید که می‌خواهید کاربر  را حذف کنید؟');  
         if (confirmation) {  
             // کاربر تأیید کرد، به آدرس حذف بروید  
-            window.location.href = 'category/Delete/' + id;  
+            window.location.href = 'category_panel_admin/Delete/' + id;  
         } else {  
             // کاربر کنسل کرد  
             alert('عملیات حذف لغو شد.');  

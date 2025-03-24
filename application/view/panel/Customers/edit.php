@@ -13,7 +13,7 @@
     <div class="container mt-5">
         
         <h1 class="text-center">ویرایش مشتری</h1>
-        <form class="mt-4" action="<?php $this->url('/users/usersUpdate/'  . $user['user_id'])?>" method="post"
+        <form class="mt-4" action="<?php $this->url('/Users_panel_admin/usersUpdate/'  . $user['user_id'])?>" method="post"
             enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="customerName" class="form-label">نام مشتری</label>
