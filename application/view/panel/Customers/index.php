@@ -104,12 +104,12 @@
                     <td><?php echo $this->jalaliData($user['updated_at']) ?></td>
                      <td>
                                     <?php if ($user['status'] == 'inactive') { ?>
-                                        <a href="<?php $this->url('/Users_panel_admin_panel_admin/status/' . $user['user_id']) ?>"><button class="btn btn-success btn-sm">فعال</button></a><p>غیر فعال</p>
+                                        <a href="<?php $this->url('/Users_panel_admin/status/' . $user['user_id']) ?>"><button class="btn btn-success btn-sm">فعال</button></a><p>غیر فعال</p>
                                     <?php } else { ?>
                                         <a href="<?php $this->url('/Users_panel_admin/status/' . $user['user_id']) ?>"> <button class="btn btn-danger btn-sm">غیر فعال</button></a><p>فعال هست </p><?php } ?>
                                 </td>
                                 <td>
-                                    <?php if ($user['user_type'] == 'regular') { ?>
+                                    <?php if ($user['user_type'] == 'customer') { ?>
                                         <a href="<?php $this->url('/Users_panel_admin/user_type/' . $user['user_id']) ?>"><button class="btn btn-success btn-sm">ادمین</button></a><p> کاربر عادی </p>
                                     <?php } else { ?>
                                         <a href="<?php $this->url('/Users_panel_admin/user_type/' . $user['user_id']) ?>"> <button class="btn btn-danger btn-sm">کاربر عادی</button></a><p> ادمین </p><?php } ?>

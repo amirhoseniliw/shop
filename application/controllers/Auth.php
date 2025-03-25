@@ -38,15 +38,24 @@ class Auth extends Controller
         $user = $user->find_login($phone_number);
         $user_ob = new UsersModel();
         $user_status = $user_ob->find_login_status($phone_number);
+        if ($user == "") {
+                $this->flash('login_errors', ' کاربری با این نام کاربری  یافت نشد !');
+                return $this->redirect('Auth/login');
+            } else {
               if($user_status == null ){
             $this->flash('login_errors', '  حساب کاربری شما غیر فعال می باشد   !');
             return $this->redirect('Auth/login');
         }
-            if ($user == "") {
-                $this->flash('login_errors', ' کاربری با این نام کاربری  یافت نشد !');
-                return $this->redirect('Auth/login');
-            } else {
+            
                 if ($this->verify_password($password, $user['password']) && $user['phone_number'] == $phone_number) {
+                    $username = $user['username'];
+                    $message = "با سلام و احترام، " . $username . " عزیز,\n\n" .  
+           "شما با موفقیت به حساب کاربری خود وارد شدید.\n\n" .  
+           "از خدمات فروشگاه لوازم‌التحریر خیام بهره‌مند شوید و در صورت نیاز به کمک، ما در خدمت شما هستیم.\n\n" .  
+           "با آرزوی موفقیت،\n" .  
+           "فروشگاه لوازم‌التحریر خیام\n";  
+           $status = $this->sendMessage($message, $phone_number);
+
                     if($user['user_type'] = "admin") {
                         $_SESSION['admin_id'] = $user['user_id'];
                         $_SESSION['user_id'] = $user['user_id'];
@@ -117,8 +126,12 @@ class Auth extends Controller
                     return $this->redirect('Auth/otp_sms');
                 }
                 $verification_code = rand(10000, 99999);
-                $message = "با سلام کد تایید شما " . "\n" . $verification_code;
-                $mobile = $_POST['phone'];
+                $username = $userData['username'];
+                $message = "با سلام و احترام، " . $username . " عزیز,\n\n" .  
+                "کد تایید شما برای بازیابی رمز عبور: " . $verification_code . "\n\n" .  
+                "لطفاً این کد را با دقت وارد کنید.\n\n" .  
+                "با آرزوی موفقیت،\n" .  
+                "فروشگاه لوازم‌التحریر خیام\n";                  $mobile = $_POST['phone'];
                 $status = $this->sendMessage($message, $mobile);
 
                 if ($status == true) {
@@ -157,7 +170,13 @@ class Auth extends Controller
             $this->flash('not_find_user', '! کاربری با این مشخصات یافت نشد ');
             return $this->redirect('Auth/otp_sms');
         } else {
-
+           
+            $message = "با سلام و احترام، " . $user['username'] . " عزیز,\n\n" .  
+           "رمز عبور شما با موفقیت تغییر یافت.\n\n" .  
+           "لطفاً در حفظ رمز عبور جدید خود دقت کنید و از آن در ورود به حساب کاربری استفاده نمایید.\n\n" .  
+           "با آرزوی موفقیت،\n" .  
+           "فروشگاه لوازم‌التحریر خیام\n";  
+            $status = $this->sendMessage($message, $mobail);
             $password  = $this->hash_password($_POST['password']);
             $user = new UsersModel();
             $user = $user->update_password($mobail, $password);
@@ -182,6 +201,14 @@ class Auth extends Controller
             $user = $user->insert($info_user);
             $user = new UsersModel();
             $user = $user->find_username($username);
+            $mobile = $info_user['phone_number'];
+            $message = "با سلام و احترام، " . $username . " عزیز,\n\n" .  
+           "ثبت‌نام شما با موفقیت انجام شد.\n\n" .  
+           "حال می‌توانید با نام کاربری و رمز عبور خود وارد حساب کاربری شوید.\n" .  
+           "از خدمات فروشگاه لوازم‌التحریر خیام بهره‌مند شوید و در صورت نیاز به کمک، ما در خدمت شما هستیم.\n\n" .  
+           "با آرزوی موفقیت،\n" .  
+           "فروشگاه لوازم‌التحریر خیام\n";  
+            $status = $this->sendMessage($message, $mobile);
 
             $_SESSION['user_id'] = $user['user_id'];
             return $this->redirect('home');
@@ -245,8 +272,17 @@ class Auth extends Controller
             }
             $verification_code = rand(10000, 99999);
             $_SESSION['verification_code'] = $verification_code;
-            $message = "با سلام کد تایید شما برای ثبت نام  " . "\n" . $verification_code;
-
+            $message = "با سلام و احترام، " . $username . " عزیز,\n\n" .  
+            "شما به صفحه ثبت‌نام خوش آمدید.\n\n" .  
+            "کد تأیید شما: " . $verification_code . "\n\n" .  
+            "لطفاً اطلاعات خود را با دقت وارد کنید تا ثبت‌ نام شما انجام شود.\n\n" .  
+            "برای اطلاعات بیشتر و پشتیبانی می‌توانید با شماره زیر تماس بگیرید:\n" .  
+            "شماره پشتیبانی: 09918694588\n" .  
+            "آدرس:اذربایجان شرقی / مرند / سردار ملی    فروشگاه لوازم‌التحریر خیام\n" .  
+            "کانال تلگرام: @khayame_station\n" .  
+            "روبیکا: @khayame_station\n\n" .  
+            "با آرزوی موفقیت،\n" .  
+            "فروشگاه لوازم‌التحریر خیام\n";  
             $status = $this->sendMessage($message,  $phone_number);
             if ($status == true) {
 

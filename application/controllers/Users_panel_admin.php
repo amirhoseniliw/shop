@@ -77,17 +77,18 @@ else {
     $user->update_butten($id , 'status', 'active');
     return $this->redirect('Users_panel_admin');
 }
-}public function user_type($id) {
+}
+public function user_type($id) {
     $user = new UsersModel();
     $user = $user->find($id);
-    if ($user['user_type'] == 'regular') {
+    if ($user['user_type'] == 'customer') {
         $user = new UsersModel();
         $user->update_butten($id , 'user_type', 'admin');
         return $this->redirect('Users_panel_admin');
     }
 else {
     $user = new UsersModel();
-    $user->update_butten($id , 'user_type', 'regular');
+    $user->update_butten($id , 'user_type', 'customer');
     return $this->redirect('Users_panel_admin');
 }
 }}

@@ -24,10 +24,10 @@ class Users extends Model
         $this->closeConnection();
         return $result;
     }
-    public function find_login_status($username)
+    public function find_login_status($phone_number)
     {
         $query = "SELECT * FROM `users` WHERE `phone_number` = ? AND `status` = 'active'";
-        $result = $this->query($query, [$username])->fetch();
+        $result = $this->query($query, [$phone_number])->fetch();
         $this->closeConnection();
         return $result;
     }
