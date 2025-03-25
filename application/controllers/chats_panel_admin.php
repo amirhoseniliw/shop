@@ -4,6 +4,12 @@ use application\model\messages as messagesModel;
 use application\model\panel\Products as ProductsModel;
 
 class chats_panel_admin extends Controller{
+    public function __construct()
+    {
+ if (!isset($_SESSION['admin_id'])) {
+   return $this->redirect('auth/login');
+       }
+    }
 public function index() {
 
    $chats = new messagesModel();

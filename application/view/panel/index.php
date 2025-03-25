@@ -65,7 +65,7 @@
             </button>
             <h5 class="m-0">پنل مدیریت</h5>
             <div class="ms-auto">
-                <button class="btn btn-primary"><i class="fas fa-user-circle"></i> مدیر</button>
+                <button class="btn btn-primary"><i class="fas fa-user-circle"></i><span><?php echo " " . $user['username'] ?></span>   مدیر</button>
             </div>
         </div>
     </nav>

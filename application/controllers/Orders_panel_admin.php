@@ -4,6 +4,12 @@ use application\model\panel\Orders as OrdersModel;
 
 
 class Orders_panel_admin extends Controller{
+  public function __construct()
+  {
+if (!isset($_SESSION['admin_id'])) {
+ return $this->redirect('auth/login');
+     }
+  }
 public function index() {
   $orders = new OrdersModel();
   $orders = $orders->allPanel();

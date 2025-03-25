@@ -3,7 +3,15 @@ namespace Application\Controllers;
 use application\model\panel\Article as ArticleModel;
 use application\model\panel\Category as CategoryModel;
 class Category_panel_admin extends Controller{
+    public function __construct()
+       {
+    if (!isset($_SESSION['admin_id'])) {
+      return $this->redirect('auth/login');
+          }
+       }
+
     public function index(){
+
         $category = new CategoryModel();
         $categories = $category->all();
         return $this->View('panel.category.index', compact('categories'));

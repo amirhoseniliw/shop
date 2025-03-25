@@ -5,6 +5,12 @@ use Application\Controllers\Controller;
 use application\model\panel\Products as ProductsModel;
 use application\model\panel\Category as CategoryModel;
 class Products_panel_admin extends Controller{
+    public function __construct()
+    {
+ if (!isset($_SESSION['admin_id'])) {
+   return $this->redirect('auth/login');
+       }
+    }
 public function index() {
          $posts = new ProductsModel();
          $posts = $posts->allPanel();      

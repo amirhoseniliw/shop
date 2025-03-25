@@ -48,6 +48,7 @@ class Auth extends Controller
                 if ($this->verify_password($password, $user['password']) && $user['phone_number'] == $phone_number) {
                     if($user['user_type'] = "admin") {
                         $_SESSION['admin_id'] = $user['user_id'];
+                        $_SESSION['user_id'] = $user['user_id'];
                         
                         return $this->redirect('Panel_admin/index');
                     }
