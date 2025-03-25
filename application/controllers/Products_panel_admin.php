@@ -25,6 +25,9 @@ public function index() {
 
  }
  public function products_store() {
+    
+
+    $_POST['price'] = str_replace(',' , "" , $_POST['price'] );
     $posts = new ProductsModel();
     $posts->insert($_POST);
     return $this->redirect('Products_panel_admin');

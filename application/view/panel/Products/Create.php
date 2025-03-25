@@ -117,12 +117,8 @@
     <div class="container">  
         <h1>ایجاد محصول جدید</h1>  
         <form action="<?php $this->url('/Products_panel_admin/products_store') ?>" method="post" enctype="multipart/form-data">  
-            <label for="user_id">شناسه کاربر:</label>  
-            <select name="user_id" required>  
-                <option value="1">دسته 1</option>  
-                <option value="2">دسته 2</option>  
-                <option value="3">دسته 3</option>  
-            </select>  
+           
+            <input type="text" name="user_id"  value="<?= $_SESSION['admin_id'] ?>"hidden>
 
             <label for="name">نام محصول:</label>  
             <input type="text" name="name" required>  
@@ -139,8 +135,8 @@
             <label for="stock_qty">مقدار موجودی:</label>  
             <input type="number" name="stock_qty" required>  
 
-            <label for="view">بازدید </label>  
-            <input type="number" name="view" required> 
+           
+            <input type="number" name="view" hidden value="0">  
             
             
             <div class="checkbox-label">  
