@@ -107,58 +107,39 @@ class Cart extends Controller{
     public function pardahct (){
        
 
-        // مقداردهی اولیه به cURL  
-        $curl = curl_init();  
-        
-        // تنظیمات cURL  
-        curl_setopt_array($curl, array(  
-            CURLOPT_URL => 'https://api.zarinpal.com/pg/v4/payman/request.json',  
-            CURLOPT_RETURNTRANSFER => true,  
-            CURLOPT_ENCODING => '',  
-            CURLOPT_MAXREDIRS => 10,  
-            CURLOPT_TIMEOUT => 30, // زمان تایم اوت به ثانیه  
-            CURLOPT_FOLLOWLOCATION => true,  
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,  
-            CURLOPT_CUSTOMREQUEST => 'POST',  
-            CURLOPT_POSTFIELDS => json_encode(array(  
-                "merchant_id" => "2121313131312123132123", // شناسه مرچنت  
-                "mobile" => "09123456789", // شماره موبایل  
-                "ssn" => "0480123456", // شماره شناسائی  
-                "expire_at" => "2025-04-08 00:00:00", // تاریخ انقضا  
-                "max_daily_count" => "100", // حداکثر تعداد روزانه  
-                "max_monthly_count" => "1000", // حداکثر تعداد ماهانه  
-                "max_amount" => "50000", // حداکثر مبلغ  
-                "callback_url" => "https://your-site.com/direct" // آدرس Callback  
-            )),  
-            CURLOPT_HTTPHEADER => array(  
-                'Content-Type: application/json',  
-                'Accept: application/json'  
-            ),  
-        ));  
-        
-        // اجرای درخواست  
-        $response = curl_exec($curl);  
-        
-        // بررسی خطاها  
-        if (curl_errno($curl)) {  
-            echo 'Error: ' . curl_error($curl);  
-        } else {  
-            // بررسی کد پاسخ HTTP  
-            $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);  
-            if ($httpCode == 200) {  
-                // نمایش پاسخ در صورت موفقیت  
-                echo $response;  
-            } else {  
-                // نمایش کد خطای HTTP و پاسخ  
-                echo 'HTTP Error Code: ' . $httpCode;  
-                echo 'Response: ' . $response;  
-            }  
-        }  
-        
-        // بستن cURL  
-        curl_close($curl);  
-          
+     
 
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => 'https://payment.zarinpal.com/pg/v4/payment/request.json',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS =>'{
+          "merchant_id": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9...",
+          "amount": "1100",
+          "callback_url": "http://example.com/verify",
+          "description": "Transaction description.",
+          "metadata": {
+            "mobile": "09399376644",
+            "email": "amirhoseniliw.951858@gmail.com"
+          }
+        }',
+          CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json',
+            'Accept: application/json'
+          ),
+        ));
+        
+        $response = curl_exec($curl);
+        
+        curl_close($curl);
+        echo $response;
     }
 
 }
