@@ -252,10 +252,14 @@
                                 </span>
                                 <span class="top-header-user-panel-text">پنل کاربری</span>
                             </a>
-                            <?php }?>
-
+                            <?php }?> 
+                                <?php if(!empty($_SESSION['admin_id'])) { ?>
+                            <a class="top-header-cart btn"  href="<?php $this->url("/panel_admin");  ?>"
+                                >انتقال به پنل </a>
+                                <?php } ?>
                             <a class="top-header-cart btn" data-bs-toggle="offcanvas" href="#offcanvasCart"
-                                role="button" aria-controls="offcanvasCart">
+                            role="button" aria-controls="offcanvasCart">
+                           
                                 <span class="top-header-cart-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"
                                         fill="none">

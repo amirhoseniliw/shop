@@ -11,6 +11,7 @@ class Auth extends Controller
         if (isset($_SESSION['user_id'])) {
             unset($_SESSION['user_id']);
             unset($_SESSION['cart']);
+            unset($_SESSION['admin_id']);
             return $this->redirect('home/index');
         }
     }
