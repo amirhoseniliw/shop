@@ -108,106 +108,83 @@
                                                     اصلی</a>
                                             </li>
                                             <li class="nav-item bg-ul-f7">
-                                                <a class="nav-link" href="">  دسته بندی محصولات  </a>
+                                                <a class="nav-link" href="<?php $this->url('/product/category/0') ?>">
+                                                    دسته بندی محصولات </a>
                                                 <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
                                                 <ul class="navbar-nav h-0">
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="<?php $this->url('/product/category/0') ?>">انواع</a>
+                                                        <a class="nav-link"
+                                                            href="<?php $this->url('/product/category/0') ?>">انواع</a>
                                                         <span class="showSubMenu"><i
                                                                 class="bi bi-chevron-left"></i></span>
                                                         <ul class="navbar-nav h-0 bg-ul-f7">
                                                             <?php foreach ($categories as $category) {?>
                                                             <li class="nav-item"><a style="display: inline;"
-                                                            href="<?php $this->url('/product/category/' . $category['category_id']) ?>"><?= $category['category_name'] ?></a>
+                                                                    href="<?php $this->url('/product/category/' . $category['category_id']) ?>"><?= $category['category_name'] ?></a>
                                                             </li>
-                                                           <?php } ?>
+                                                            <?php } ?>
                                                         </ul>
                                                     </li>
-                                                   
+
                                                 </ul>
                                             </li>
-                                            
-                                          
+
+
                                             <li class="nav-item bg-ul-f7">
                                                 <a class="nav-link" href="">صفحات</a>
                                                 <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
                                                 <ul class="navbar-nav h-0">
-                                                    <li><a href="index.html">صفحه اصلی</a></li>
-                                                    <li class="nav-item"><a class="nav-link" href="product.html">صفحه
+                                                    <li><a href="<?php $this->url('/home/index') ?>">صفحه اصلی</a></li>
+                                                    <li class="nav-item"><a class="nav-link"
+                                                            href="<?php $this->url('/product/index/cheap') ?>">صفحه
                                                             محصول</a>
                                                     </li>
-                                                    <li class="nav-item"><a class="nav-link" href="category.html">صفحه
+                                                    <li class="nav-item"><a class="nav-link"
+                                                            href="<?php $this->url('/product/category/0') ?>">صفحه
                                                             دسته
                                                             بندی</a></li>
-                                                    <li class="nav-item"><a class="nav-link" href="cart.html">صفحه سبد
+                                                    <li class="nav-item"><a class="nav-link"
+                                                            href="<?php $this->url('/cart/index') ?>">صفحه سبد
                                                             خرید</a>
                                                     </li>
-                                                    <li class="nav-item"><a class="nav-link" href="search.html">صفحه
+                                                    <li class="nav-item"><a class="nav-link"
+                                                            href="<?php $this->url('/search/index/cheap') ?>">صفحه
                                                             جستجو</a>
                                                     </li>
+
+
                                                     <li class="nav-item"><a class="nav-link"
-                                                            href="category-product-row.html">دسته بندی
-                                                            محصولات خطی</a></li>
-                                                    <li class="nav-item"><a class="nav-link" href="404.html">صفحه
-                                                            404</a>
-                                                    </li>
-                                                    <li class="nav-item"><a class="nav-link" href="login.html">صفحه
+                                                            href="<?php $this->url('/auth/login') ?>">صفحه
                                                             ورود</a>
                                                     </li>
-                                                    <li class="nav-item"><a class="nav-link" href="register.html">صفحه
+                                                    <li class="nav-item"><a class="nav-link"
+                                                            href="<?php $this->url('/auth/register') ?>">صفحه
                                                             ثبت
                                                             نام</a></li>
-                                                    <li class="nav-item"><a class="nav-link" href="forget.html">صفحه
-                                                            فراموشی
-                                                            رمز
-                                                            عبور</a></li>
-                                                    <li class="nav-item"><a class="nav-link" href="blog.html">صفحه
-                                                            وبلاگ</a>
-                                                    </li>
+
                                                     <li class="nav-item"><a class="nav-link"
-                                                            href="blog-detail.html">صفحه
-                                                            جزییات
-                                                            وبلاگ</a></li>
-                                                    <li class="nav-item"><a class="nav-link" href="compare.html">صفحه
-                                                            مقایسه
-                                                            محصول</a></li>
-                                                    <li class="nav-item"><a class="nav-link" href="checkout.html">پرداخت
-                                                            مرحله
-                                                            ای</a></li>
+                                                            href="<?php $this->url('') ?>">درباره ما 
+                                                            
+                                                            </a></li>
                                                     <li class="nav-item"><a class="nav-link"
-                                                            href="payment-ok.html">پرداخت
-                                                            موفق</a></li>
+                                                            href="<?php $this->url('') ?>">ارتباط با ما 
+                                                            
+                                                            </a></li>
+
+
                                                     <li class="nav-item"><a class="nav-link"
-                                                            href="payment-nok.html">پرداخت
-                                                            ناموفق</a></li>
-                                                    <li class="nav-item"><a class="nav-link"
-                                                            href="product-not-found.html">محصول
-                                                            ناموجود</a></li>
-                                                    <li class="nav-item"><a class="nav-link" href="empty-cart.html">سبد
-                                                            خرید
-                                                            خالی</a></li>
-                                                    <li class="nav-item"><a class="nav-link" href="dashboard.html">
+                                                            href="<?php $this->url('/Userpanel') ?>">
                                                             داشبورد
                                                             کاربری</a></li>
                                                     <li class="nav-item"><a class="nav-link"
-                                                            href="order.html">سفارشات</a>
+                                                            href="<?php $this->url('/cart/index') ?>">سفارشات</a>
                                                     </li>
                                                     <li class="nav-item"><a class="nav-link"
-                                                            href="favorite.html">محصولات
+                                                            href="<?php $this->url('/Userpanel/favorites') ?>">محصولات
                                                             مورد
                                                             علاقه</a></li>
-                                                    <li class="nav-item"><a class="nav-link"
-                                                            href="notification.html">اطلاعیه</a>
-                                                    </li>
-                                                    <li class="nav-item"><a class="nav-link"
-                                                            href="comments.html">نظرات</a>
-                                                    </li>
-                                                    <li class="nav-item"><a class="nav-link" href="address.html">آدرس
-                                                            ها</a>
-                                                    </li>
-                                                    <li class="nav-item"><a class="nav-link" href="last-seen.html">آخرین
-                                                            بازدید
-                                                            ها</a></li>
+
+
                                                 </ul>
                                             </li>
                                         </ul>
@@ -277,7 +254,8 @@
                             </a>
                             <?php }?>
 
-                            <a class="top-header-cart btn" data-bs-toggle="offcanvas" href="#offcanvasCart" role="button" aria-controls="offcanvasCart" > 
+                            <a class="top-header-cart btn" data-bs-toggle="offcanvas" href="#offcanvasCart"
+                                role="button" aria-controls="offcanvasCart">
                                 <span class="top-header-cart-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"
                                         fill="none">
