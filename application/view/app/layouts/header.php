@@ -108,122 +108,26 @@
                                                     اصلی</a>
                                             </li>
                                             <li class="nav-item bg-ul-f7">
-                                                <a class="nav-link" href=""> نوشت افزار </a>
+                                                <a class="nav-link" href="">  دسته بندی محصولات  </a>
                                                 <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
                                                 <ul class="navbar-nav h-0">
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="">انواع</a>
+                                                        <a class="nav-link" href="<?php $this->url('/product/category/0') ?>">انواع</a>
                                                         <span class="showSubMenu"><i
                                                                 class="bi bi-chevron-left"></i></span>
                                                         <ul class="navbar-nav h-0 bg-ul-f7">
-                                                            <li class="nav-item"><a class="nav-link" href="">مداد</a>
+                                                            <?php foreach ($categories as $category) {?>
+                                                            <li class="nav-item"><a style="display: inline;"
+                                                            href="<?php $this->url('/product/category/' . $category['category_id']) ?>"><?= $category['category_name'] ?></a>
                                                             </li>
-                                                            <li class="nav-item"><a class="nav-link" href="">پاک کن</a>
-                                                            </li>
-                                                            <li class="nav-item"><a class="nav-link" href="">خودکار</a>
-                                                            </li>
-                                                            <li class="nav-item"><a class="nav-link" href="">خط کش</a>
-                                                            </li>
-                                                            <li class="nav-item"><a class="nav-link" href="">غلط گیر
-                                                                </a>
-                                                            </li>
+                                                           <?php } ?>
                                                         </ul>
                                                     </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="">برند</a>
-                                                        <span class="showSubMenu"><i
-                                                                class="bi bi-chevron-left"></i></span>
-                                                        <ul class="navbar-nav h-0 bg-ul-f7">
-                                                            <li class="nav-item"><a class="nav-link" href="">بیک</a>
-                                                            </li>
-                                                            <li class="nav-item"><a class="nav-link" href="">سی کلاس</a>
-                                                            </li>
-                                                            <li class="nav-item"><a class="nav-link" href="">پالمو</a>
-                                                            </li>
-                                                            <li class="nav-item"><a class="nav-link" href="">کیان </a>
-                                                            </li>
-                                                            <li class="nav-item"><a class="nav-link" href="">پیکاسو</a>
-                                                            </li>
-                                                            <li class="nav-item"><a class="nav-link" href="">فابر
-                                                                    کاستر</a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
+                                                   
                                                 </ul>
                                             </li>
-                                            <li class="nav-item bg-ul-f7">
-                                                <a class="nav-link" href="">تبلت</a>
-                                                <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
-                                                <ul class="navbar-nav h-0">
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="">کشور</a>
-                                                        <span class="showSubMenu"><i
-                                                                class="bi bi-chevron-left"></i></span>
-                                                        <ul class="navbar-nav h-0 bg-ul-f7">
-                                                            <li class="nav-item"><a class="nav-link" href="">ژاپن</a>
-                                                            </li>
-                                                            <li class="nav-item"><a class="nav-link" href="">کره
-                                                                    جنوبی</a>
-                                                            </li>
-                                                            <li class="nav-item"><a class="nav-link"
-                                                                    href="">آمریکایی</a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="">بر اساس رده بندی</a>
-                                                        <span class="showSubMenu"><i
-                                                                class="bi bi-chevron-left"></i></span>
-                                                        <ul class="navbar-nav h-0 bg-ul-f7">
-                                                            <li class="nav-item"><a class="nav-link" href="">لمسی</a>
-                                                            </li>
-                                                            <li class="nav-item"><a class="nav-link" href="">دانش
-                                                                    آموزی</a>
-                                                            </li>
-                                                            <li class="nav-item"><a class="nav-link" href="">مخصوص
-                                                                    بازی</a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="nav-item bg-ul-f7">
-                                                <a class="nav-link" href="">لپتاپ</a>
-                                                <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>
-                                                <ul class="navbar-nav h-0">
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="">برند</a>
-                                                        <span class="showSubMenu"><i
-                                                                class="bi bi-chevron-left"></i></span>
-                                                        <ul class="navbar-nav h-0 bg-ul-f7">
-                                                            <li class="nav-item"><a class="nav-link" href="">ایسر</a>
-                                                            </li>
-                                                            <li class="nav-item"><a class="nav-link"
-                                                                    href="">مایکروسافت</a>
-                                                            </li>
-                                                            <li class="nav-item"><a class="nav-link" href="">ایسوس</a>
-                                                            </li>
-                                                            <li class="nav-item"><a class="nav-link" href="">اپل</a>
-                                                            </li>
-                                                            <li class="nav-item"><a class="nav-link" href="">سونی</a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="">بر اساس قیمت</a>
-                                                        <span class="showSubMenu"><i
-                                                                class="bi bi-chevron-left"></i></span>
-                                                        <ul class="navbar-nav h-0 bg-ul-f7">
-                                                            <li class="nav-item"><a class="nav-link" href="">ارزان</a>
-                                                            </li>
-                                                            <li class="nav-item"><a class="nav-link" href="">اقتصادی</a>
-                                                            </li>
-                                                            <li class="nav-item"><a class="nav-link" href="">گران</a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
+                                            
+                                          
                                             <li class="nav-item bg-ul-f7">
                                                 <a class="nav-link" href="">صفحات</a>
                                                 <span class="showSubMenu"><i class="bi bi-chevron-left"></i></span>

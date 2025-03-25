@@ -136,9 +136,16 @@ public function find($id){
          if($id_category == 0){
             $posts = new ProductsModel();
             $posts = $posts->find_most_cheap('');
+            $name = 'همه محصولات ';
          }
-       
-            return $this->view("app.orther.category" , compact('favorites' ,'posts' , 'count_posts' , 'categories'  ));
+         if($id_category != 0){
+
+         
+         $ob_category = new CategoryModel();
+         $categories_name = $ob_category->find($id_category);
+         $name = $categories_name['name'];
+       } 
+            return $this->view("app.orther.category" , compact('favorites' ,'posts' , 'count_posts' , 'categories' , 'name'  ));
     
         }
         public function add_favorites ($id_product){ 

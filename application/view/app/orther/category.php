@@ -1,9 +1,5 @@
 
 <?php $this->include('app.layouts.header' , compact('categories')); ?>
-
-
-
-
 <div class="slider-category free-swiper py-30">
     <div class="container-fluid position-relative">
 
@@ -13,6 +9,7 @@
                     <div class="section-title-title">
                         <h2 class="title-font h1 main-color-three-color">دسته بندی <span class="main-color-one-color">محصولات</span>
                         </h2>
+                        <h3><?= $name ?></h3>
                     </div>
                 </div>
                 <div class="col-sm-4">
