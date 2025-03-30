@@ -83,22 +83,23 @@
                                     <?php echo  count($posts); ?> کالا</div>
                             </div>
                             <div class="d-lg-none d-block">
-                                <form action="<?php $this->url('/product/index') ?>" method="get" id="sortForm">
+                                <form action="<?php $this->url('/product/index') ?>" method="post" id="sortForm">
                                     <h5 class="mb-3">مرتب سازی بر اساس</h5>
                                     <select name="type_posts" id="sortingOptions" class="form-select"
                                         onchange="document.getElementById('sortForm').submit();">
                                         <option value="expensive"
-                                            <?php if($type_post == 'expensive' ) echo "selected" ?>>گران ترین</option>
-                                        <option value="cheap" <?php if($type_post == 'cheap' ) echo "selected" ?>>
+                                            <?php if($type_posts == 'expensive' ) echo "selected" ?>>گران ترین</option>
+                                        <option value="cheap" <?php if($type_posts == 'cheap' ) echo "selected" ?>>
                                             ارزان ترین</option>
                                         <option value="Bestseller"
-                                            <?php if($type_post == 'Bestseller' ) echo "selected" ?>>پرفروش ترین
+                                            <?php if($type_posts == 'Bestseller' ) echo "selected" ?>>پرفروش ترین
                                         </option>
-                                        <option value="selected" <?php if($type_post == 'selected' ) echo "selected" ?>>
+                                        <option value="selected" <?php if($type_posts == 'selected' ) echo "selected" ?>>
                                             انتخاب شده </option>
-                                        <option value="view" <?php if($type_post == 'view' ) echo "selected" ?>>محبوب
+                                        <option value="view" <?php if($type_posts == 'view' ) echo "selected" ?>>محبوب
                                             ترین</option>
                                     </select>
+                                    <input type="text" name="text_search" value="ALL_POSTS" hidden>
                                 </form>
                             </div>
                         </div>
@@ -176,8 +177,9 @@
                                                         href="<?php $this->url('/product/add_favorites/'. $post['product_id']) ?>"
                                                         class="nav-item product-box-hover-item product-box-hover-item-btn"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        data-bs-title="افزودن به علاقه ها"><i
-                                                            class="bi bi-heart-fill" style="<?php if($found == true ) {echo " color: red ;";} ?>"></i></a></li>
+                                                        data-bs-title="افزودن به علاقه ها"><i class="bi bi-heart-fill"
+                                                            style="<?php if($found == true ) {echo " color: red ;";} ?>"></i></a>
+                                                </li>
                                             </ul>
                                         </nav>
                                         <span>بازدید محصول &nbsp;&nbsp; <u><?= $post['view'] ?></u> </span>

@@ -35,6 +35,12 @@ class Home extends Controller{
         return $this->View('app.index', compact('favorites' ,'Bestseller_posts' , 'categories' , 'Selected_posts' , 'Bestseller_posts_alls' , 'all_posts'));
 
     }
+    public function abut_us () {
+        $ob_category = new CategoryModel();
+        $categories = $ob_category->all_cat_post();
+        return $this->View('app.orther.abut_us', compact('categories'));
+
+    }
 
    
 

@@ -7,17 +7,21 @@ use application\model\Category as CategoryModel;
 use application\model\favorites as favoritesModel;
 
 class product extends Controller{
-public function index($type_posts) {
-    if(isset($_GET['type_posts'])){
-        $type_post = $_GET['type_posts'] ;
-        return $this->redirect('search/index/' . $type_post);
+public function index() {
+
+    if(isset($_POST['type_posts'])){
+        $type_posts = $_POST['type_posts'] ;
+      
        }
+else {
+    $type_posts = 'cheap' ;
+
+}
         $count_posts = new ProductsModel;
         $count_posts = $count_posts->count_all();
       
       
-
-
+   
      
       
        
@@ -74,7 +78,7 @@ public function index($type_posts) {
             $ob_category = new CategoryModel();
             $categories = $ob_category->all_cat_post();
 
-        return $this->view("app.orther.all_product" , compact('favorites' , 'categories' ,'posts' , 'count_posts' , 'type_post' ));
+        return $this->view("app.orther.all_product" , compact('favorites' , 'categories' ,'posts' , 'count_posts' , 'type_posts' ));
 
     }
 public function find($id){

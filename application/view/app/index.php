@@ -12,7 +12,8 @@
     height: 10px;  
     border-radius: 25px;  
     background-color: red; /* رنگ پس‌زمینه برای دیدن بهتر */  
-} 
+} /* تنظیمات عمومی برای محفظه اسلاید */  
+
 </style>
 
 <!-- end mega menu -->
@@ -34,7 +35,7 @@
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
 
-                                <img alt="error404" class="img-fluid"
+                                <img alt="error404" class="img-fluid" 
                                     src="<?php echo $this->asset('/img_site/banerr/0101.jpg') ?>">
 
                             </div>
@@ -538,25 +539,25 @@
 
                         <div class="col-lg-4">
                             <div class="advert-item advert-box-item">
-                                <a href=""><img src="<?php echo $this->asset('/img_site/banerr/adary.jpg') ?>" class="rounded-4" alt=""></a>
+                                <a href="<?php $this->url('/product/category/4') ?>"><img src="<?php echo $this->asset('/img_site/banerr/adary.jpg') ?>" class="rounded-4" alt=""></a>
                             </div>
                         </div>
 
                         <div class="col-lg-8">
                             <div class="advert-item advert-box-item">
-                                <a href=""><img src="<?php echo $this->asset('/img_site/banerr/N.jpg') ?>" class="rounded-4" alt=""></a>
+                                <a href="<?php $this->url('/product/category/9') ?>"><img src="<?php echo $this->asset('/img_site/banerr/N.jpg') ?>" class="rounded-4" alt=""></a>
                             </div>
                         </div>
 
                         <div class="col-lg-8">
                             <div class="advert-item advert-box-item">
-                                <a href=""><img src="<?php echo $this->asset('/img_site/banerr/K.jpg') ?>" class="rounded-4" alt=""></a>
+                                <a href="<?php $this->url('/product/category/3') ?>"><img src="<?php echo $this->asset('/img_site/banerr/K.jpg') ?>" class="rounded-4" alt=""></a>
                             </div>
                         </div>
 
                         <div class="col-lg-4">
                             <div class="advert-item advert-box-item">
-                                <a href=""><img src="<?php echo $this->asset('/img_site/banerr/B.jpg') ?>" class="rounded-4" alt=""></a>
+                                <a href="<?php $this->url('/product/category/7') ?>"><img src="<?php echo $this->asset('/img_site/banerr/B.jpg') ?>" class="rounded-4" alt=""></a>
                             </div>
                         </div>
 
@@ -565,7 +566,7 @@
 
                 <div class="col-lg-4">
                     <div class="advert-item advert-box-item-two">
-                        <a href=""><img src="<?php echo $this->asset('/img_site/banerr/daftar.jpg') ?>" class="rounded-4" alt=""></a>
+                        <a href="<?php $this->url('/product/category/2') ?>"><img src="<?php echo $this->asset('/img_site/banerr/daftar.jpg') ?>" class="rounded-4" alt=""></a>
                     </div>
                 </div>
 
