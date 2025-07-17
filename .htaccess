@@ -1,0 +1,16 @@
+RewriteEngine On
+RewriteBase /tahrirkhayam/
+
+
+ErrorDocument 404 /tahrirkhayam/error/error_404
+ErrorDocument 403 /tahrirkhayam/error/error_403
+ErrorDocument 500 /tahrirkhayam/error/error_500
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)$ index.php [QSA,L]
+
+RewriteCond %{THE_REQUEST} /(application|system|view)/.+ [NC]
+RewriteRule ^ - [R=403,L]
+
+Options -Indexes

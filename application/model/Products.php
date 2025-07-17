@@ -1,0 +1,322 @@
+<?php
+
+namespace application\model;
+
+use Exception;
+use InvalidArgumentException;
+
+class Products extends Model
+{
+    // برای ذخیره شهر ها و استان ها از api
+    // public function syncProvincesAndCities()
+    // {
+    //     // --- دریافت استان و ذخیره در جدول state ---
+    //     $provinceApi = "https://iranplacesapi.liara.run/api/provinces";
+    //     $provinceJson = file_get_contents($provinceApi);
+    //     $provinces = json_decode($provinceJson, true);
+    
+    //     foreach ($provinces as $province) {
+    //         $query = "INSERT INTO `province` (`id`, `name`)
+    //                   VALUES (:id, :name)
+    //                   ON DUPLICATE KEY UPDATE `name` = VALUES(`name`)";
+    //         $stmt = $this->connection->prepare($query);
+    //         $stmt->execute([
+    //             ':id' => $province['id'],
+    //             ':name' => $province['name']
+    //         ]);
+    //     }
+    
+    //     // --- دریافت شهرها و ذخیره در جدول city ---
+    //     $cityApi = "https://iranplacesapi.liara.run/api/cities";
+    //     $cityJson = file_get_contents($cityApi);
+    //     $cities = json_decode($cityJson, true);
+    
+    //     foreach ($cities as $city) {
+    //         $query = "INSERT INTO `city` (`id`, `name`, `province_id`)
+    //                   VALUES (:id, :name, :province_id)
+    //                   ON DUPLICATE KEY UPDATE `name` = VALUES(`name`), `province_id` = VALUES(`province_id`)";
+    //         $stmt = $this->connection->prepare($query);
+    //         $stmt->execute([
+    //             ':id' => $city['id'],
+    //             ':name' => $city['name'],
+    //             ':province_id' => $city['province_id']
+    //         ]);
+    //     }
+    
+    //     $this->closeConnection();
+    // }
+    
+public function getRandomProducts($limit = 5)
+{
+    $limit = intval($limit); // برای اطمینان از اینکه عدد هست
+    $query = "SELECT * 
+              FROM `products` 
+              WHERE `status` = 'enable' 
+              ORDER BY RAND() 
+              LIMIT $limit";
+
+    $result = $this->query($query)->fetchAll();
+    $this->closeConnection();
+    return $result;
+}
+
+
+    public function all()
+    {
+         $query = "SELECT   
+    p.*,  
+    GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
+    GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts,  
+    GROUP_CONCAT(DISTINCT c.hex_value) AS color_names  
+     FROM `products` p  
+      LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
+      LEFT JOIN `colors` c ON p.product_id = c.product_id  
+      WHERE p.`status` = 'enable'  
+       GROUP BY p.product_id;";
+        $result = $this->query($query)->fetchAll();
+        $this->closeConnection();
+        return $result;
+    }
+    public function find($id)  
+{  
+    $query = "SELECT   
+        p.*,  
+        (SELECT `name` FROM `categories` WHERE `categories`.`category_id` = p.`category_id`) AS category,  
+        GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
+        GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts  
+    FROM `products` p  
+    LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
+    WHERE p.`product_id` = ?  
+    AND p.`status` = 'enable'  
+    GROUP BY p.product_id;";  
+    $result = $this->query($query, [$id])->fetch();  
+    $this->closeConnection();  
+    return $result;  
+} 
+public function findcolors_id($id)  
+{  
+    $query = "SELECT hex_value 
+    FROM `colors` 
+    WHERE `color_id`  = ? ;";  
+    $result = $this->query($query, [$id])->fetch();  
+    $this->closeConnection();  
+    return $result;  
+}  
+//!-----------------------------------------------------------------------for search 
+// گران ترین
+public function find_most_expensive($name)  
+{  
+    $query = "SELECT   
+        p.*,   
+        (SELECT `name` FROM `categories` WHERE `categories`.`category_id` = p.`category_id`) AS category,  
+        GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
+        GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts  
+    FROM `products` p  
+    LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
+    WHERE p.`name` LIKE ?   
+    AND p.`status` = 'enable'  
+    GROUP BY p.product_id    
+    ORDER BY p.price DESC;";  
+
+    $result = $this->query($query, ["%$name%"])->fetchAll();  
+    $this->closeConnection();  
+    return $result;  
+}  
+
+
+//ارزان ترین 
+public function find_most_cheap($name)  
+{  
+    $query = "SELECT   
+        p.*,  
+        (SELECT `name` FROM `categories` WHERE `categories`.`category_id` = p.`category_id`) AS category,  
+        GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
+        GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts  
+    FROM `products` p  
+    LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
+    WHERE p.`name` LIKE ?  
+    AND p.`status` = 'enable' 
+        GROUP BY p.product_id     
+    ORDER BY p.price ASC ;";  
+    $result = $this->query($query, ["%$name%"])->fetchAll();  
+    $this->closeConnection();  
+    return $result;  
+}  
+//کل ارزان ها 
+public function find_most_cheap_all()  
+{  
+    $query = "SELECT   
+        p.*,  
+        (SELECT `name` FROM `categories` WHERE `categories`.`category_id` = p.`category_id`) AS category,  
+        GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
+        GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts  
+    FROM `products` p  
+    LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
+    WHERE p.`status` = 'enable' 
+        GROUP BY p.product_id     
+    ORDER BY p.price ASC ;";  
+    $result = $this->query($query)->fetchAll();  
+    $this->closeConnection();  
+    return $result;  
+} 
+
+//پر فروش
+public function find_bestseller_products($name)  
+{  
+    $query = "SELECT   
+        p.*,  
+        (SELECT `name` FROM `categories` WHERE `categories`.`category_id` = p.`category_id`) AS category,  
+        GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
+        GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts  
+    FROM `products` p  
+    LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
+    WHERE p.`Bestseller` = 1  
+      AND p.`status` = 'enable'  
+      AND p.`name` LIKE ?  
+    GROUP BY p.product_id;";  
+    $result = $this->query($query, ["%$name%"])->fetchAll();  
+    $this->closeConnection();  
+    return $result;  
+}  
+//محبوب 
+public function find_most_viewed($name = '')  
+{  
+    $query = "SELECT   
+        p.*,  
+        (SELECT `name` FROM `categories` WHERE `categories`.`category_id` = p.`category_id`) AS category,  
+        GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
+        GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts  
+    FROM `products` p  
+    LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
+    WHERE p.`name` LIKE ?  
+     AND p.`status` = 'enable'  
+     GROUP BY p.product_id    
+    ORDER BY p.view DESC ;";  
+    $result = $this->query($query, ["%$name%"])->fetchAll();  
+    $this->closeConnection();  
+    return $result;  
+}  
+//انتخابب شده 
+public function find_selected_products($name)  
+{  
+    $query = "SELECT   
+        p.*,  
+        (SELECT `name` FROM `categories` WHERE `categories`.`category_id` = p.`category_id`) AS category,  
+        GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
+        GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts  
+    FROM `products` p  
+    LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
+    WHERE p.`Selected` = 1  
+      AND p.`status` = 'enable'  
+       AND p.`name` LIKE ?  
+    GROUP BY p.product_id;";  
+    $result = $this->query($query, ["%$name%"])->fetchAll();  
+    $this->closeConnection();  
+    return $result;  
+}  
+
+// کلش 
+public function find_for_search($name , $id_category)  
+{  
+    $query = "SELECT   
+        p.*,  
+        (SELECT `name` FROM `categories` WHERE `categories`.`category_id` = p.`category_id`) AS category,  
+        GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
+        GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts  
+    FROM `products` p  
+    LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
+    WHERE p.`name` LIKE  ?  
+    AND p.`category_id` = ?
+    AND p.`status` = 'enable'  
+    GROUP BY p.product_id;";  
+    $result = $this->query($query, ["%$name%" , $id_category ])->fetchAll();  
+    $this->closeConnection();  
+    return $result;  
+} 
+public function count_all()
+    {   $query = "SELECT COUNT(*) AS total_products FROM products WHERE `status` = 'enable'; ";
+      
+        $result = $this->query($query)->fetch();
+        $this->closeConnection();
+        return $result;
+    }
+    public function category()
+    { 
+          $query = "  
+        SELECT c.*, COUNT(p.product_id) AS product_count  
+        FROM categories c  
+        LEFT JOIN products p ON c.category_id  = p.category_id  
+        GROUP BY c.category_id   
+    ";  
+      
+        $result = $this->query($query)->fetchAll();
+        $this->closeConnection();
+        return $result;
+    }
+public function findColorsByProductId($id)  
+{  
+    $query = "SELECT *  
+    FROM `colors` 
+    WHERE product_id = ?
+  
+    ORDER BY titel_name DESC;";  
+    $result = $this->query($query, [$id])->fetchAll();  
+    $this->closeConnection();  
+    return $result;  
+}  
+    public function find_all($fildes, $values, $int)  
+    {  
+        // تعریف فیلدهای مجاز  
+        $allowedFields = ['id', 'name', 'Selected', 'Bestseller'];  
+    
+        // بررسی معتبر بودن نام فیلد  
+        if (!in_array($fildes, $allowedFields)) {  
+            throw new Exception("Invalid field name");  
+        }  
+    
+        // اطمینان از اینکه مقدار $int یک عدد صحیح است  
+        $int = (int)$int;  
+    
+        // ساخت کوئری با JOIN برای جداول photos و colors  
+        $query = "SELECT   
+    p.*,  
+    GROUP_CONCAT(DISTINCT ph.image_url) AS photo_file_names,  
+    GROUP_CONCAT(DISTINCT ph.alt_text) AS alt_texts,  
+    GROUP_CONCAT(DISTINCT c.hex_value) AS color_names  
+FROM `products` p  
+LEFT JOIN `product_images` ph ON p.product_id = ph.product_id  
+LEFT JOIN `colors` c ON p.product_id = c.product_id  
+WHERE p.`$fildes` = ? AND p.`status` = 'enable'  
+GROUP BY p.product_id  
+LIMIT 0, $int;  ";  
+    
+        // اجرای کوئری با پارامترها  
+        $result = $this->query($query, [$values])->fetchAll();  
+    
+        // بستن اتصال  
+        $this->closeConnection();  
+    
+        return $result;  
+    }  
+    
+    
+//!------------------------------------------------------------------------------------------------
+  
+    public function update_view($id) {
+        $query= "UPDATE `products` SET `view` = `view` + 1 WHERE `product_id` = ? AND `status` = 'enable'";
+        $this->execute($query , [$id]);
+        $this->closeConnection();
+    }
+    // public function update_butten($id, $field, $value) {  
+    //     // از نام فیلد ورودی در SQL به طور ایمن استفاده کنید  
+    //     $query = "UPDATE `products` SET `$field` = ? WHERE `product_id` = ?;";  
+        
+    //     // از تابع execute استفاده کنید  
+    //     $this->execute($query, [$value, $id]);  
+        
+    //     // بستن ارتباط  
+    //     $this->closeConnection();  
+    // }  
+
+  
+}

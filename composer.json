@@ -1,0 +1,7 @@
+{
+    "require": {
+        "parsidev/jalali": "^2.0",
+        "melipayamak/php": "1.0.0",
+        "dompdf/dompdf": "^3.1"
+    }
+}
