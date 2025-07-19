@@ -176,7 +176,15 @@ public function removeDiscountCode()  {
         foreach ($orders as $order) {
             $total_price += $order['price'] * $order['count'];
         }
-        if ($adders_price + $total_price = $_POST['final_total_price']) {
+        if(isset($_SESSION['discount_value']) && !empty($_SESSION['discount_value'])){
+            $value_code = $_SESSION['discount_value']['discountAmount'];
+           
+
+        }
+        else{
+            $value_code = 0 ;
+        }
+        if ($adders_price + $total_price  = $_POST['final_total_price'] || $value_code = ['final_total_price']) {
 
             $inserted_order_ids = [];
            
@@ -217,10 +225,13 @@ public function removeDiscountCode()  {
 
             $_SESSION['final_total_price'] = $_POST['final_total_price'];
             $amount = $_POST['final_total_price'];
+            if(isset($_SESSION['discount_value']) && !empty($_SESSION['discount_value'])){
+                $amount =  $value_code ;
+                $_SESSION['final_total_price'] =   $value_code ;
+            }
             $amount = intval($amount) * 10;
 
             $_SESSION['amount'] = $amount;
-
 
             // شناسه مرچنت خود را وارد کنید (از پنل زرنپال دریافت کنید)
             $merchant_id = 'defcec54-76ec-4d9a-9650-65684644236e'; // جایگزین کنید با شناسه واقعی شما
@@ -294,6 +305,7 @@ public function removeDiscountCode()  {
                 echo "خطا در دریافت لینک پرداخت:<br><pre>" . print_r($responseData, true) . "</pre>";
             }
         } else {
+                            unset($_SESSION['discount_value']);
             return $this->back();
             exit;
         }
@@ -301,6 +313,9 @@ public function removeDiscountCode()  {
     //!--------------------------------------------------------------
         public function complate()
 {
+     $codes = new CodeModel();
+    $codes = $codes->update_used_count($_SESSION['discount_value']['code']);
+    unset($_SESSION['discount_value']);
     $total_amount = $_SESSION['final_total_price'] ?? 0;
     $ob_category = new CategoryModel();
     $categories = $ob_category->all_cat_post();

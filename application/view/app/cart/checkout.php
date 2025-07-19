@@ -1,4 +1,6 @@
-<?php $this->include('app.layouts.header', compact('categories')); ?>
+<?php $this->include('app.layouts.header', compact('categories'));
+
+?>
 
 
 <div class="content mt-3">
@@ -145,7 +147,7 @@ foreach ($orders as $order) {
                                     const addressRadios = document.querySelectorAll("input[name='address']");
                                     const shippingLabel = document.getElementById("shipping-price");
                                     const totalLabel = document.getElementById("total-price");
-                                    const productPrice = <?= $total_price ?>;
+                                    const productPrice = <?= isset($_SESSION['discount_value']['discountAmount']) ? $total_price - $_SESSION['discount_value']['discountAmount'] : $total_price?>;
                                     const selectedAddressInput = document.getElementById("selected-address-id");
                                     const finalTotalInput = document.getElementById("final-total-price");
 
@@ -284,7 +286,10 @@ foreach ($orders as $order) {
                                             <h5 class="mb-0 h6">قیمت کالا ها</h5>
                                             <p class="mb-0 font-17"><?= number_format($total_price) ?> تومان</p>
                                         </div>
-
+ <div class="d-flex factor-item mb-3 align-items-center justify-content-between">
+                                        <h5 class="mb-0 h6">تخفیف کالا ها</h5>
+                                        <p class="mb-0 font-18"><?= number_format($_SESSION['discount_value']['discountAmount']) ?> تومان</p>
+                                    </div>
                                         <div class="d-flex factor-item flex-column mb-3 align-items-start justify-content-between">
                                             <h5 class="mb-0 h6">هزینه ارسال</h5>
                                             <p id="shipping-price" class="mt-2 font-17 text-success"></p>
@@ -292,6 +297,7 @@ foreach ($orders as $order) {
 
                                         <div class="d-flex factor-item mb-3 align-items-center justify-content-between">
                                             <h5 class="mb-0 h6">مجموع</h5>
+
                                             <p id="total-price" class="mb-0 font-18 text-primary"></p>
                                         </div>
                                 </div>
